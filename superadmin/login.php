@@ -51,35 +51,25 @@
                                                 account.</p>
                                         </div>
 
-                                        <form action="#" class="mb-3">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label" for="emailaddress">Email address</label>
-                                                <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
-                                            </div>
+                                    <form class="mb-3">
 
-                                            <div class="mb-3">
-                                                <a href="auth-forgotpw.html" class="text-muted float-end"><small>Forgot your password?</small></a>
-                                                <label for="password" class="form-label">Password</label>
-                                                <div class="input-group input-group-merge">
-                                                    <input type="password" id="password" class="form-control" placeholder="Enter your password">
-                                                    <div class="input-group-text" data-password="false">
-                                                        <span class="password-eye"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
+<div class="form-group mb-3">
+<label class="form-label">Email address</label>
+<input class="form-control" type="email" id="emailaddress" placeholder="Enter your email" required>
+</div>
 
-                                            <div class="form-group mb-3">
-                                                <div class="d-flex gap-2">
-                                                    <input class="form-check-input" type="checkbox" id="checkbox-signin" checked>
-                                                    <label class="form-check-label" for="checkbox-signin">Remember me</label>
-                                                </div>
-                                            </div>
+<div class="mb-3">
+<label class="form-label">Password</label>
+<input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+</div>
 
-                                            <div class="form-group mb-0 text-center">
-                                                <button class="btn btn-dark w-100" type="submit" ><i class="mdi mdi-login me-1"></i> Log In </button>
-                                            </div>
+<div class="form-group mb-0 text-center">
+<button id="loginBtn" class="btn btn-dark w-100" type="button" onclick="loginApi()">
+<i class="mdi mdi-login me-1"></i> Log In
+</button>
+</div>
 
-                                        </form>
+</form>
 
 
                                         <div class="text-center mt-4">
