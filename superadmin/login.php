@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="assets/app-0f19a312.css">
    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
+      <script src="js/login.js"></script>
 </head>
 
 <body class="authentication-bg">
@@ -75,7 +76,7 @@
                                             </div>
 
                                             <div class="form-group mb-0 text-center">
-                                                <button class="btn btn-dark w-100" type="submit"><i class="mdi mdi-login me-1"></i> Log In </button>
+                                                <button class="btn btn-dark w-100" type="submit" ><i class="mdi mdi-login me-1"></i> Log In </button>
                                             </div>
 
                                         </form>
@@ -109,7 +110,7 @@
                     </div>
                 </div>
                 <!-- end card -->
-                <p class="text-muted text-center font-16 mb-5">Don't have an account? <a href="auth-register.php" class="text-dark ms-1">Sign Up</a></p>
+                <p class="text-muted text-center font-16 mb-5">Don't have an account? <a href="register.php" class="text-dark ms-1">Sign Up</a></p>
 
             </div> <!-- end col -->
         </div>

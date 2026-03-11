@@ -140,7 +140,7 @@
                     </div>
                 </div>
                 <!-- end card -->
-                <p class="text-muted text-center font-16 mb-5">Don't have an account? <a href="auth-login.php"
+                <p class="text-muted text-center font-16 mb-5">Don't have an account? <a href="login.php"
                         class="text-dark ms-1">Sign In</a></p>
 
             </div> <!-- end col -->
