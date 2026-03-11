@@ -10,7 +10,8 @@
     <meta content="GetAppui" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/favicon-3ab1de74.ico">
+       <link rel="shortcut icon" href="assets/img/favicon.webp">
+
 
     <!-- Theme Config Js -->
 
@@ -34,10 +35,10 @@
                                 <div class="flex-shrink-0">
                                     <div class="auth-brand mb-5">
                                         <a href="index.html" class="logo-dark">
-                                            <span><img src="assets/logo-light-e9fb2c1a.png" alt="" height="32"></span>
+                                            <span><img src="assets/img/logo.png" alt="" height="32"></span>
                                         </a>
                                         <a href="index.html" class="logo-light">
-                                            <span><img src="assets/logo-dark-3d833aea.png" alt="" height="32"></span>
+                                            <span><img src="assets/img/logo.png" alt="" height="32"></span>
                                         </a>
                                     </div>
                                 </div>
@@ -71,7 +72,7 @@
                     </div>
                 </div>
                 <!-- end card -->
-                <p class="text-muted text-center font-16 mb-5">Back To <a href="auth-login.html" class="text-dark ms-1">Sign In</a></p>
+                <p class="text-muted text-center font-16 mb-5">Back To <a href="login.php" class="text-dark ms-1">Sign In</a></p>
 
             </div> <!-- end col -->
         </div>
@@ -81,7 +82,7 @@
 
     <footer class="footer footer-alt fw-medium bg-transparent">
         <span class="text-muted">
-            <script>document.write(new Date().getFullYear())</script> © TechUI - Template by GetAppui
+            <script>document.write(new Date().getFullYear())</script> © Hyperscripts
         </span>
     </footer>
 

@@ -12,7 +12,17 @@
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/favicon.webp">
-    <script src="js/login.js"></script>
+    <!-- <script src="js/login.js"></script> -->
+    <script>
+
+        let token = localStorage.getItem("superadminToken");
+
+        if (!token) {
+            window.location.href = "login.php";
+        }
+
+    </script>
+
 
 
 
@@ -30,7 +40,7 @@
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
 
-     <!-- Font Family -->
+    <!-- Font Family -->
     <script type="module" crossorigin src="assets/quill.snow-71ebf701.js"></script>
     <script type="module" crossorigin src="assets/dropify.min-7eced412.js"></script>
     <script type="module" crossorigin src="assets/product-create.init-c3b189cb.js"></script>
@@ -38,7 +48,21 @@
     <link rel="stylesheet" href="assets/quill-fe58e407.css">
     <link rel="stylesheet" href="assets/dropify-1a8a5c67.css">
 
- 
+    <script>
+
+        function logout() {
+
+            // remove superadmin token
+            localStorage.removeItem("superadminToken");
+            localStorage.removeItem("adminLogin");
+
+            // redirect
+            window.location.href = "login.php";
+
+        }
+
+
+    </script>
 
 
 </head>
@@ -56,13 +80,13 @@
                 <!-- Brand Logo Light -->
                 <a href="index.php" class="logo-light">
                     <img src="assets/logo.png" alt="logo" class="logo-lg">
-                 
+
                 </a>
 
                 <!-- Brand Logo Dark -->
                 <a href="index.php" class="logo-dark">
                     <img src="assets/logo.png" alt="dark logo" class="logo-lg">
-                 
+
                 </a>
             </div>
 
@@ -518,10 +542,10 @@
                                 <div class="dropdown-divider"></div>
 
                                 <!-- item-->
-                                <a href="auth-logout.html" class="dropdown-item notify-item">
+                                <a href="logout.php" class="dropdown-item notify-item">
                                     <i class="mdi mdi-logout me-1"></i>
 
-                                    <span>Logouts</span>
+                                    <span onclick="logout()">Logouts</span>
                                 </a>
 
                             </div>

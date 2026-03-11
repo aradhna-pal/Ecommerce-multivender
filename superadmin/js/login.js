@@ -1,4 +1,4 @@
-
+// ****************************************************************LOGIN API ****************************************************************
 
 function loginApi(){
 
@@ -28,9 +28,11 @@ if(data.status === true || data.success === true){
 
 alert("Login Successful");
 
+// superadmin token save
+localStorage.setItem("superadminToken", data.token);
 
-// login save
-localStorage.setItem("adminLogin", "true");
+// login flag
+// localStorage.setItem("adminLogin", "true");
 
 // redirect
 window.location.href="index.php";
@@ -42,7 +44,6 @@ alert("Invalid Email or Password");
 }
 
 })
-
 .catch(error => {
 
 console.log(error);
@@ -51,4 +52,8 @@ alert("API Error");
 });
 
 }
+
+// ****************************************************************LOGOUT ****************************************************************
+
+
 

@@ -2,26 +2,27 @@
 <html lang="en">
 
 <!-- Mirrored from themes.getappui.com/techui/layouts/auth-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Feb 2026 07:41:00 GMT -->
+
 <head>
     <meta charset="utf-8" />
-    <title>Log In  | TechUI - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title>Log In </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="GetAppui" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/favicon-3ab1de74.ico">
+    <link rel="shortcut icon" href="assets/img/favicon.webp">
 
     <!-- Theme Config Js -->
 
 
     <!-- Font Family -->
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&amp;display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="assets/app-22784e3d.js"></script>
-  <link rel="stylesheet" href="assets/app-0f19a312.css">
-   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css">
+    <script type="module" crossorigin src="assets/app-22784e3d.js"></script>
+    <link rel="stylesheet" href="assets/app-0f19a312.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
-      <script src="js/login.js"></script>
+    <script src="js/login.js"></script>
 </head>
 
 <body class="authentication-bg">
@@ -35,10 +36,10 @@
                                 <div class="flex-shrink-0">
                                     <div class="auth-brand mb-5">
                                         <a href="index.html" class="logo-dark">
-                                            <span><img src="assets/logo-light-e9fb2c1a.png" alt="" height="32"></span>
+                                            <span><img src="assets/img/logo.png" alt="" height="32"></span>
                                         </a>
                                         <a href="index.html" class="logo-light">
-                                            <span><img src="assets/logo-dark-3d833aea.png" alt="" height="32"></span>
+                                            <span><img src="assets/img/logo.png" alt="" height="32"></span>
                                         </a>
                                     </div>
                                 </div>
@@ -51,34 +52,45 @@
                                                 account.</p>
                                         </div>
 
-                                    <form class="mb-3">
+                                        <form class="mb-3">
 
-<div class="form-group mb-3">
-<label class="form-label">Email address</label>
-<input class="form-control" type="email" id="emailaddress" placeholder="Enter your email" required>
-</div>
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Email address</label>
+                                                <input class="form-control" type="email" id="emailaddress"
+                                                    placeholder="Enter your email" required>
+                                            </div>
 
-<div class="mb-3">
-<label class="form-label">Password</label>
-<input type="password" id="password" class="form-control" placeholder="Enter your password" required>
-</div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Password</label>
+                                                <input type="password" id="password" class="form-control"
+                                                    placeholder="Enter your password" required>
+                                            </div>
 
-<div class="form-group mb-0 text-center">
-<button id="loginBtn" class="btn btn-dark w-100" type="button" onclick="loginApi()">
-<i class="mdi mdi-login me-1"></i> Log In
-</button>
-</div>
+                                            <div class="form-group mb-0 text-center">
+                                                <button id="loginBtn" class="btn btn-dark w-100" type="button"
+                                                    onclick="loginApi()">
+                                                    <i class="mdi mdi-login me-1"></i> Log In
+                                                </button>
+                                            </div>
 
-</form>
+                                        </form>
 
 
                                         <div class="text-center mt-4">
-                                            <p class="text-muted font-18">Sign in with</p>
+                                            <!-- <p class="text-muted font-18">Sign in with</p> -->
                                             <div class="d-flex gap-2 justify-content-center mt-3">
-                                                <a href="javascript: void(0);" class="btn btn-sm btn-soft-primary font-16"><i class="mdi mdi-facebook"></i></a>
-                                                <a href="javascript: void(0);" class="btn btn-sm btn-soft-danger font-16"><i class="mdi mdi-instagram"></i></a>
-                                                <a href="javascript: void(0);" class="btn btn-sm btn-soft-info font-16"><i class="mdi mdi-twitter"></i></a>
-                                                <a href="javascript: void(0);" class="btn btn-sm btn-soft-dark font-16"><i class="mdi mdi-github"></i></a>
+                                                <a href="javascript: void(0);"
+                                                    class="btn btn-sm btn-soft-primary font-16"><i
+                                                        class="mdi mdi-facebook"></i></a>
+                                                <a href="javascript: void(0);"
+                                                    class="btn btn-sm btn-soft-danger font-16"><i
+                                                        class="mdi mdi-instagram"></i></a>
+                                                <a href="javascript: void(0);"
+                                                    class="btn btn-sm btn-soft-info font-16"><i
+                                                        class="mdi mdi-twitter"></i></a>
+                                                <a href="javascript: void(0);"
+                                                    class="btn btn-sm btn-soft-dark font-16"><i
+                                                        class="mdi mdi-github"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -100,7 +112,8 @@
                     </div>
                 </div>
                 <!-- end card -->
-                <p class="text-muted text-center font-16 mb-5">Don't have an account? <a href="register.php" class="text-dark ms-1">Sign Up</a></p>
+                <p class="text-muted text-center font-16 mb-5">Don't have an account? <a href="register.php"
+                        class="text-dark ms-1">Sign Up</a></p>
 
             </div> <!-- end col -->
         </div>
@@ -110,7 +123,7 @@
 
     <footer class="footer footer-alt fw-medium bg-transparent">
         <span class="text-muted">
-            <script>document.write(new Date().getFullYear())</script> © TechUI - Template by GetAppui
+            <script>document.write(new Date().getFullYear())</script> © Hyperscripts 
         </span>
     </footer>
 
@@ -120,9 +133,10 @@
     <!-- App js -->
 
 
-<script src="../../../getappui.com/app/newsletter/index.js"></script>
+    <script src="../../../getappui.com/app/newsletter/index.js"></script>
 </body>
 
 
 <!-- Mirrored from themes.getappui.com/techui/layouts/auth-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Feb 2026 07:41:00 GMT -->
+
 </html>
