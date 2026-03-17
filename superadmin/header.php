@@ -10,6 +10,7 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="GetAppui" name="author" />
 
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/favicon.webp">
  
@@ -22,6 +23,8 @@
         }
 
     </script>
+
+
 
 
 
@@ -47,6 +50,9 @@
     <link rel="stylesheet" href="assets/app-0f19a312.css">
     <link rel="stylesheet" href="assets/quill-fe58e407.css">
     <link rel="stylesheet" href="assets/dropify-1a8a5c67.css">
+
+    <script src="js/brand.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
 

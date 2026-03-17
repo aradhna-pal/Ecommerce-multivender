@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
 
-                                
+
 
                                 <div class="flex-grow-1 d-flex flex-column align-items-center justify-content-center">
                                     <div class="w-100">
@@ -116,8 +116,8 @@
                     </div>
                 </div>
                 <!-- end card -->
-                <p class="text-muted text-center font-16 mb-5">Don't have an account? <a href="register.php"
-                        class="text-dark ms-1">Sign Up</a></p>
+                <!-- <p class="text-muted text-center font-16 mb-5">Don't have an account? <a href="register.php"
+                        class="text-dark ms-1">Sign Up</a></p> -->
 
             </div> <!-- end col -->
         </div>
