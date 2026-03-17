@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Log In </title>
+    <title> Hyperscripts | Log In </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="GetAppui" name="author" />
@@ -35,14 +35,18 @@
                             <div class="d-flex flex-column p-4">
                                 <div class="flex-shrink-0">
                                     <div class="auth-brand mb-5">
-                                        <a href="index.html" class="logo-dark">
+
+                                    
+                                        <a href="index.php" class="logo-dark">
                                             <span><img src="assets/img/logo.png" alt="" height="32"></span>
                                         </a>
-                                        <a href="index.html" class="logo-light">
+                                        <a href="index.php" class="logo-light">
                                             <span><img src="assets/img/logo.png" alt="" height="32"></span>
                                         </a>
                                     </div>
                                 </div>
+
+                                
 
                                 <div class="flex-grow-1 d-flex flex-column align-items-center justify-content-center">
                                     <div class="w-100">
