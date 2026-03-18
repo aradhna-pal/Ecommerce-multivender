@@ -52,6 +52,8 @@
     <link rel="stylesheet" href="assets/dropify-1a8a5c67.css">
 
     <script src="js/brand.js"></script>
+    <script src="js/product.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
