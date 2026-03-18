@@ -9,14 +9,14 @@
         <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center py-2">
-                    <h4>Add Brand </h4>
+                    <h4>Edit Brand </h4>
 
 
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">TechUI</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Apps</a></li>
 
-                        <li class="breadcrumb-item"><a href="javascript: void(0);"> Add Brand </a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);"> Edit Brand </a></li>
                     </ol>
                 </div>
             </div>
@@ -176,8 +176,8 @@
             </div>
             <div class="d-flex justify-content-end mb-3">
                 <!-- IMPORTANT: type="button" -->
-                <button type="button" class="btn btn-dark" id="addBrandBtn">
-                    Add Brand
+                <button type="button" class="btn btn-dark" id="editBrandBtn">
+                    Edit Brand
                 </button>
             </div>
 

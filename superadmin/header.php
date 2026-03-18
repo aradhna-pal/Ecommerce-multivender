@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="GetAppui" name="author" />
+    <link rel="stylesheet" href="style.css">
+
 
 
     <!-- App favicon -->
@@ -50,8 +52,12 @@
     <link rel="stylesheet" href="assets/app-0f19a312.css">
     <link rel="stylesheet" href="assets/quill-fe58e407.css">
     <link rel="stylesheet" href="assets/dropify-1a8a5c67.css">
+    <script src="script.js"></script>
 
     <script src="js/brand.js"></script>
+    <script src="js/product.js"></script>
+    <script src="js/color.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
