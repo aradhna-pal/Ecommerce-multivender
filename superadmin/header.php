@@ -395,18 +395,23 @@
                         <div class="collapse" id="authPages">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a href="auth-login.php" class="menu-link">
-                                        <span class="menu-text">Sign In</span>
+                                    <a href="register.php" class="menu-link">
+                                        <span class="menu-text">Sign Up</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
                                     <a href="login.php" class="menu-link">
-                                        <span class="menu-text">Sign Up</span>
+                                        <span class="menu-text">Sign In</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
                                     <a href="reset-password.php" class="menu-link">
                                         <span class="menu-text">Reset Password</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="forget-password.php" class="menu-link">
+                                        <span class="menu-text">Forget Password</span>
                                     </a>
                                 </li>
                             </ul>
