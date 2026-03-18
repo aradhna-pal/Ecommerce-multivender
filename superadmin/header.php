@@ -57,6 +57,7 @@
     <script src="js/brand.js"></script>
     <script src="js/product.js"></script>
     <script src="js/color.js"></script>
+    <script src="js/size.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

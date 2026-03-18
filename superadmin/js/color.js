@@ -204,8 +204,6 @@ function editColor(colorId) {
   window.location.href = `edit-color.php?id=${colorId}`;
 }
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
   const btn = document.getElementById("editColorBtn");
   const token = localStorage.getItem("superadminToken");
@@ -242,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       const data = await res.json();
@@ -287,8 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Edit Button Clicked ✅");
 
     const name = document.getElementById("colorName").value.trim();
-    const description =
-      document.getElementById("description")?.value || "";
+    const description = document.getElementById("description")?.value || "";
     const isActive = document.getElementById("isActive").checked;
 
     // 🔥 BASIC VALIDATION
@@ -317,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(payload),
-        }
+        },
       );
 
       console.log("Response Status:", res.status);
@@ -342,7 +339,6 @@ document.addEventListener("DOMContentLoaded", function () {
           text: data.message || "Update failed",
         });
       }
-
     } catch (err) {
       console.error("Update Error ❌", err);
 
