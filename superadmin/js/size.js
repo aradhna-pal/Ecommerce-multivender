@@ -1,5 +1,3 @@
-
-
 // ****************************************** GET ALL SIZE  START ******************************************
 
 async function loadSizes() {
@@ -40,7 +38,7 @@ async function loadSizes() {
                    
 
                     <td>${size.name}</td>
-                      <td>${size.description && typeof size.description === 'object' ? JSON.stringify(size.description) : size.description || "N/A"}</td>
+                    <td>${size.description}</td>
 
 
                     
@@ -65,7 +63,7 @@ async function loadSizes() {
 }
 
 loadSizes();
-
+//   <td>${size.description && typeof size.description === "object" ? JSON.stringify(size.description) : size.description || "N/A"}</td>
 
 // ****************************************** GET ALL SIZE  END ******************************************
 
@@ -73,7 +71,7 @@ loadSizes();
 async function deleteSize(id) {
   const token = localStorage.getItem("superadminToken");
 
-    if (!token) {
+  if (!token) {
     Swal.fire("Error", "Please login first", "error");
     return;
   }
@@ -90,15 +88,18 @@ async function deleteSize(id) {
 
   if (!result.isConfirmed) return;
 
-    try {
-        const res = await fetch(`http://multivendor_backend.workarya.com/api/size/delete-size-permanent/${id}`, {
-            method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
+  try {
+    const res = await fetch(
+      `http://multivendor_backend.workarya.com/api/size/delete-size-permanent/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
 
-       if (res.ok) {
+    if (res.ok) {
       await Swal.fire("Deleted!", "Size deleted successfully.", "success");
       location.reload(); // or call getAllSize() if you want to refresh table without reload
     } else {
@@ -106,7 +107,11 @@ async function deleteSize(id) {
     }
   } catch (error) {
     console.error("Error deleting size:", error);
-    Swal.fire("Error", "An error occurred while deleting the size. Please try again.", "error");
+    Swal.fire(
+      "Error",
+      "An error occurred while deleting the size. Please try again.",
+      "error",
+    );
   }
 }
 
