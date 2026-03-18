@@ -397,28 +397,23 @@
                         <div class="collapse" id="authPages">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a href="auth-login.php" class="menu-link">
-                                        <span class="menu-text">Sign In</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="auth-register.php" class="menu-link">
+                                    <a href="register.php" class="menu-link">
                                         <span class="menu-text">Sign Up</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="auth-logout.php" class="menu-link">
-                                        <span class="menu-text">Logout</span>
+                                    <a href="login.php" class="menu-link">
+                                        <span class="menu-text">Sign In</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="auth-forgotpw.php" class="menu-link">
-                                        <span class="menu-text">Forgot Password</span>
+                                    <a href="reset-password.php" class="menu-link">
+                                        <span class="menu-text">Reset Password</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="auth-lock-screen.php" class="menu-link">
-                                        <span class="menu-text">Lock Screen</span>
+                                    <a href="forget-password.php" class="menu-link">
+                                        <span class="menu-text">Forget Password</span>
                                     </a>
                                 </li>
                             </ul>
