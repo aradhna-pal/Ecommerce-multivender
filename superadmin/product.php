@@ -46,22 +46,23 @@
                         <table class="table table-centered w-100 nowrap mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th class="all" style="width: 20px;">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck1">
-                                            <label class="form-check-label" for="customCheck1">&nbsp;</label>
-                                        </div>
+                                    <th >
+                                        S.No
                                     </th>
-                                    <th class="all">Product</th>
+                                    <th >Product</th>
+                                    <th >Short Description</th>
+                                    <th >Description</th>
+                                    <th >Category</th>
                                     <th>Brand</th>
-                                    <th>Added Date</th>
+                                    <th>Discount Price</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Status</th>
-                                    <th style="width: 120px;">Action</th>
+                                    <th >Edit</th>
+                                    <th >Delete</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="allproduct">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -73,20 +74,24 @@
                                         <img src="assets/product-1-eec07e95.jpg" alt="contact-img" title="contact-img"
                                             class="rounded me-3" height="48" />
                                         <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="products-details.html" class="text-body">Blue Ndr Tennis Shoe</a>
-                                            <br />
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
+                                            <a href="products-details.html" class="text-body">Blue N</a>
+                                    
                                         </p>
+                                    </td>
+                                    <td>
+                                        shrot description
+                                    </td>
+                                    <td>
+                                         description
+                                    </td>
+                                    <td>
+                                         category
                                     </td>
                                     <td>
                                         Wilson
                                     </td>
                                     <td>
-                                        09/12/2018
+                                       6245
                                     </td>
                                     <td>
                                         $148.66
@@ -99,14 +104,13 @@
                                         <span class="badge bg-success-subtle text-success p-1">Published</span>
                                     </td>
 
-                                    <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                class="mdi mdi-delete"></i></a>
-                                    </td>
+                                    <td style="cursor: pointer;">
+                        <i class="mdi mdi-square-edit-outline text-primary fs-3"></i>
+                    </td>
+
+                  <td  style="cursor: pointer;">
+                    <i class="mdi mdi-delete text-danger fs-3"></i>
+                   </td>
                                 </tr>
 
                                

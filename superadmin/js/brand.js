@@ -54,7 +54,7 @@ async function loadBrands() {
                         </span>
                     </td>
 
-                    <td onclick="window.location.href='edit_brand.php?id=${brand.id}'" style="cursor: pointer;">
+                    <td onclick="editBrand('${brand.id}')" style="cursor: pointer;">
                         <i class="mdi mdi-square-edit-outline text-primary fs-3"></i>
                     </td>
 
@@ -72,6 +72,14 @@ async function loadBrands() {
 }
 
 loadBrands();
+
+
+// {/* <td
+//   onclick="window.location.href='edit_brand.php?id=${brand.id}'"
+//   style="cursor: pointer;"
+// >
+//   <i class="mdi mdi-square-edit-outline text-primary fs-3"></i>
+// </td>; */}
 
 // ******************************************************END BRAND******************************************************
 
@@ -218,13 +226,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // ******************************************************ADD BRAND END ******************************************************
 
-
-
-
 // ******************************************************EDIT BRAND START ******************************************************
 
 document.addEventListener("DOMContentLoaded", function () {
-
   const token = localStorage.getItem("superadminToken");
   const btn = document.getElementById("editBrandBtn");
 
@@ -261,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       const data = await res.json();
@@ -279,7 +283,6 @@ document.addEventListener("DOMContentLoaded", function () {
         preview.style.display = "block";
         placeholder.style.display = "none";
       }
-
     } catch (err) {
       console.error("Load Error ❌", err);
     }
@@ -291,7 +294,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // ✅ UPDATE API
   // =========================
   btn.addEventListener("click", async function () {
-
     const payload = {
       Name: nameInput.value,
       Description: descInput.value,
@@ -311,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(payload),
-        }
+        },
       );
 
       const data = await res.json();
@@ -329,7 +331,6 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         Swal.fire("Error", data.message || "Update failed", "error");
       }
-
     } catch (err) {
       console.error("Update Error ❌", err);
 
@@ -340,9 +341,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   });
-
 });
 
+function editBrand(brandId) {
+  window.location.href = `edit_brand.php?id=${brandId}`;
+}
 // ******************************************************EDIT BRAND END ******************************************************
-
-
