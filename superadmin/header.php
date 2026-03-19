@@ -59,6 +59,8 @@
     <script src="js/color.js"></script>
     <script src="js/size.js"></script>
     <script src="js/category.js"></script>
+    <script src="js/subcategory.js"></script>
+    <script src="js/childcategory.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -165,8 +167,13 @@
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="apps-ecommerce-product.php" class="menu-link">
+                                    <a href="sub-category.php" class="menu-link">
                                         <span class="menu-text"> Sub Category</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="child-category.php" class="menu-link">
+                                        <span class="menu-text"> Child Category</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">

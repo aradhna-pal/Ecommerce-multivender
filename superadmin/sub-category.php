@@ -9,14 +9,14 @@
         <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center py-2">
-                    <h4>Category</h4>
+                    <h4>Sub Category</h4>
 
 
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">TechUI</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
 
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Category</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Sub Category</a></li>
                     </ol>
                 </div>
             </div>
@@ -29,8 +29,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-sm-5">
-                                <a href="add-category.php" class="btn btn-dark"><i class="mdi mdi-plus-circle me-2"></i>
-                                    Add Category</a>
+                                <a href="add-subcategory.php" class="btn btn-dark"><i class="mdi mdi-plus-circle me-2"></i>
+                                    Add Sub Category</a>
                             </div>
                             <div class="col-sm-7">
                                 <div class="text-sm-end">
@@ -55,6 +55,7 @@
                                     <th>Category Image</th>
 
                                     <th>Category Name</th>
+                                    <th> Sub Category Name</th>
 
 
                                     <th>Status</th>
@@ -64,7 +65,7 @@
 
                                 </tr>
                             </thead>
-                            <tbody id="allcategory">
+                            <tbody id="allsubcategory">
                                 <tr>
                                     <td>
                                         1
@@ -77,6 +78,9 @@
                                             class="avatar-sm">
                                     </td>
 
+                                    <td>
+                                        dfgh
+                                    </td>
                                     <td>
                                         dfgh
                                     </td>

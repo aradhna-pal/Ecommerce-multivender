@@ -153,7 +153,240 @@ async function deleteCategory(categoryId) {
 
 // **********************************************************delete category end *******************************************************
 
+// ********************************************************** edit category******************************************************************
 
+function editCategory(id) {
+  window.location.href = `edit-category.php?id=${id}`;
+}
 
+// ✅ GET ID FROM URL (MOST IMPORTANT)
+const urlParams = new URLSearchParams(window.location.search);
+const categoryId = urlParams.get("id");
 
+async function loadCategoryDetails() {
+  try {
+    const token = localStorage.getItem("superadminToken");
 
+    // ❗ FIX: ID check
+    if (!categoryId) {
+      console.error("❌ Category ID not found in URL");
+      return; // ❌ Swal mat dikhao reload pe
+    }
+
+    console.log("Category ID 👉", categoryId);
+
+    const res = await fetch(
+      "http://multivendor_backend.workarya.com/api/category/list",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+
+    const data = await res.json();
+    const categories = data.data || data;
+
+    // 🔥 RECURSIVE FIND FUNCTION
+    function findCategory(list, id) {
+      for (let item of list) {
+        if (item.id == id) return item;
+
+        if (item.children && item.children.length > 0) {
+          const found = findCategory(item.children, id);
+          if (found) return found;
+        }
+      }
+      return null;
+    }
+
+    const category = findCategory(categories, categoryId);
+
+    console.log("Selected Category 👉", category);
+
+    // ❗ FIX: only show alert if ID valid but not found
+    if (!category) {
+      console.error("❌ Category not found in data");
+      return;
+    }
+
+    // ✅ Prefill
+    document.getElementById("categoryName").value = category.name || "";
+    document.getElementById("categoryDescription").value =
+      category.description || "";
+    document.getElementById("isActive").checked = category.isActive;
+
+    // ✅ Image
+    if (category.logo) {
+      const preview = document.getElementById("previewImage");
+      const placeholder = document.getElementById("placeholderText");
+
+      preview.src = category.logo;
+      preview.style.display = "block";
+      placeholder.style.display = "none";
+    }
+
+  } catch (error) {
+    console.error("Prefill error:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadCategoryDetails);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("editcategorybtn");
+
+  btn.addEventListener("click", async () => {
+    try {
+      const token = localStorage.getItem("superadminToken");
+
+      if (!categoryId) {
+        Swal.fire("Error", "Category ID missing", "error");
+        return;
+      }
+
+      const name = document.getElementById("categoryName").value.trim();
+      const isActive = document.getElementById("isActive").checked;
+      const fileInput = document.getElementById("categoryImage");
+
+      if (!name) {
+        Swal.fire("Error", "Category name is required", "error");
+        return;
+      }
+
+      const formData = new FormData();
+
+      // ❌ ID remove from body
+      formData.append("category_name", name);
+      formData.append("parent_id", "");
+      // formData.append("id", categoryId);
+      formData.append("category_status", isActive ? "true" : "false");
+
+      // ✅ image
+      const file = fileInput.files[0];
+      if (file) {
+  formData.append("category_image", file);
+}
+
+      // 🔍 DEBUG
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+
+      // ✅ YOUR API (ID IN URL)
+      const res = await fetch(
+        `http://multivendor_backend.workarya.com/api/category/update/${categoryId}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        },
+      );
+
+      const data = await res.json();
+      console.log("Update API Response 👉", data);
+
+      const apiData = data?.value || data;
+
+      if (apiData.status === false) {
+        Swal.fire("Error", apiData.message || "Update failed", "error");
+        return;
+      }
+
+      // ✅ SUCCESS
+      Swal.fire({
+        title: "Updated!",
+        text: "Category updated successfully.",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "category.php";
+      });
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error", "Something went wrong", "error");
+    }
+  });
+});
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const btn = document.getElementById("editcategorybtn");
+
+//   btn.addEventListener("click", async () => {
+//     try {
+//       const token = localStorage.getItem("superadminToken");
+
+//       if (!categoryId) {
+//         Swal.fire("Error", "Category ID missing", "error");
+//         return;
+//       }
+
+//       const name = document.getElementById("categoryName").value.trim();
+//       const isActive = document.getElementById("isActive").checked;
+//       const fileInput = document.getElementById("categoryImage");
+
+//       if (!name) {
+//         Swal.fire("Error", "Category name is required", "error");
+//         return;
+//       }
+
+//       const formData = new FormData();
+
+//       // ✅ ID body me hi jayegi (IMPORTANT)
+//       formData.append("id", categoryId);
+
+//       formData.append("category_name", name);
+//       formData.append("parent_id", "");
+//       formData.append("category_status", isActive ? "true" : "false");
+
+//       // ✅ IMAGE SIZE CHECK (413 FIX)
+//       const file = fileInput.files[0];
+//       if (file) {
+//         if (file.size > 2 * 1024 * 1024) {
+//           Swal.fire("Error", "Image must be less than 2MB", "error");
+//           return;
+//         }
+//         formData.append("category_image", file);
+//       }
+
+//       // 🔍 DEBUG
+//       for (let pair of formData.entries()) {
+//         console.log(pair[0], pair[1]);
+//       }
+
+//       const res = await fetch(
+//         "http://multivendor_backend.workarya.com/api/category/update",
+//         {
+//           method: "POST",
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//           body: formData,
+//         }
+//       );
+
+//       const data = await res.json();
+//       console.log("Update API Response 👉", data);
+
+//       const apiData = data?.value || data;
+
+//       if (apiData.status === false) {
+//         Swal.fire("Error", apiData.message || "Update failed", "error");
+//         return;
+//       }
+
+//       Swal.fire({
+//         title: "Updated!",
+//         text: "Category updated successfully.",
+//         icon: "success",
+//       }).then(() => {
+//         window.location.href = "category.php";
+//       });
+
+//     } catch (error) {
+//       console.error(error);
+//       Swal.fire("Error", "Something went wrong", "error");
+//     }
+//   });
+// });
