@@ -58,6 +58,7 @@
     <script src="js/product.js"></script>
     <script src="js/color.js"></script>
     <script src="js/size.js"></script>
+    <script src="js/category.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -159,13 +160,13 @@
                                 </li>
 
                                 <li class="menu-item">
-                                    <a href="main-category.php" class="menu-link">
-                                        <span class="menu-text">main category </span>
+                                    <a href="category.php" class="menu-link">
+                                        <span class="menu-text">Category </span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
                                     <a href="apps-ecommerce-product.php" class="menu-link">
-                                        <span class="menu-text"> Category</span>
+                                        <span class="menu-text"> Sub Category</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">

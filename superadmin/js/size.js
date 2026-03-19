@@ -46,7 +46,7 @@ async function loadSizes() {
                     
 
                     <td onclick="editSize('${size.id}')" style="cursor: pointer;">
-                        <i class="mdi mdi-square-edit-outline text-primary fs-3"></i>
+                        <i class="mdi mdi-square-edit-outline text-dark fs-3"></i>
                     </td>
 
                   <td onclick="deleteSize('${size.id}')" style="cursor: pointer;">
@@ -56,7 +56,7 @@ async function loadSizes() {
             `;
 
       tbody.insertAdjacentHTML("beforeend", row);
-    });
+    }); 
   } catch (error) {
     console.error("Error:", error);
   }
