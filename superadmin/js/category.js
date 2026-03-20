@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (parentId) {
         formData.append("parent_id", parentId);
       } else {
-        formData.append("parent_id", null); // or skip if API allows
+        formData.append("parent_id", null); 
       }
 
       // ⚠️ IMPORTANT (your API key names)

@@ -42,11 +42,13 @@
                             </div>
 
                             <!-- Content -->
-                            <!-- <div class="mb-3">
-                                <label class="form-label" for="parentId">Parent Id</label>
-                                <input type="text" class="form-control" id="parentId" name="parentId"
+
+                             
+                            <div class="mb-3">
+                                <!-- <label class="form-label" for="parentId">Parent Id</label> -->
+                                <input type="hidden" class="form-control" id="parentId" name="parentId"
                                     placeholder="parentId ">
-                            </div> -->
+                            </div>
 
                             <div class="mb-3">
                                 <h4 class="mt-0">Images</h4>
