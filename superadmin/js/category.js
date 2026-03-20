@@ -310,83 +310,99 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const btn = document.getElementById("editcategorybtn");
 
-//   btn.addEventListener("click", async () => {
-//     try {
-//       const token = localStorage.getItem("superadminToken");
 
-//       if (!categoryId) {
-//         Swal.fire("Error", "Category ID missing", "error");
-//         return;
-//       }
 
-//       const name = document.getElementById("categoryName").value.trim();
-//       const isActive = document.getElementById("isActive").checked;
-//       const fileInput = document.getElementById("categoryImage");
+// ************************************************ edit categorry end **************************************************
 
-//       if (!name) {
-//         Swal.fire("Error", "Category name is required", "error");
-//         return;
-//       }
 
-//       const formData = new FormData();
+// *************************************************  ADD CATEGORY START *************************************************
 
-//       // ✅ ID body me hi jayegi (IMPORTANT)
-//       formData.append("id", categoryId);
 
-//       formData.append("category_name", name);
-//       formData.append("parent_id", "");
-//       formData.append("category_status", isActive ? "true" : "false");
 
-//       // ✅ IMAGE SIZE CHECK (413 FIX)
-//       const file = fileInput.files[0];
-//       if (file) {
-//         if (file.size > 2 * 1024 * 1024) {
-//           Swal.fire("Error", "Image must be less than 2MB", "error");
-//           return;
-//         }
-//         formData.append("category_image", file);
-//       }
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("addCategoryBtn");
 
-//       // 🔍 DEBUG
-//       for (let pair of formData.entries()) {
-//         console.log(pair[0], pair[1]);
-//       }
+  btn.addEventListener("click", async () => {
+    try {
+      const token = localStorage.getItem("superadminToken");
 
-//       const res = await fetch(
-//         "http://multivendor_backend.workarya.com/api/category/update",
-//         {
-//           method: "POST",
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//           body: formData,
-//         }
-//       );
+      if (!token) {
+        Swal.fire("Error", "Please login first", "error");
+        return;
+      }
 
-//       const data = await res.json();
-//       console.log("Update API Response 👉", data);
+      const name = document.getElementById("categoryName").value.trim();
+      const parentId = document.getElementById("parentId").value.trim();
+      const isActive = document.getElementById("isActive").checked;
+      const file = document.getElementById("brandImage").files[0];
 
-//       const apiData = data?.value || data;
+      // ✅ Validation
+      if (!name) {
+        Swal.fire("Error", "Category name is required", "error");
+        return;
+      }
 
-//       if (apiData.status === false) {
-//         Swal.fire("Error", apiData.message || "Update failed", "error");
-//         return;
-//       }
+      // ✅ FormData
+      const formData = new FormData();
+      formData.append("category_name", name);
 
-//       Swal.fire({
-//         title: "Updated!",
-//         text: "Category updated successfully.",
-//         icon: "success",
-//       }).then(() => {
-//         window.location.href = "category.php";
-//       });
+      // ⚠️ parent_id handling
+      if (parentId) {
+        formData.append("parent_id", parentId);
+      } else {
+        formData.append("parent_id", null); // or skip if API allows
+      }
 
-//     } catch (error) {
-//       console.error(error);
-//       Swal.fire("Error", "Something went wrong", "error");
-//     }
-//   });
-// });
+      // ⚠️ IMPORTANT (your API key names)
+      formData.append("CategoryStatus", isActive);
+
+      if (file) {
+        formData.append("category_image", file);
+      }
+
+      // 🔍 DEBUG
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+
+      // ✅ API CALL
+      const res = await fetch(
+        "http://multivendor_backend.workarya.com/api/category/insert",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
+
+      const data = await res.json();
+      console.log("Add Category API 👉", data);
+
+      const apiData = data?.value || data;
+
+      // ❌ Error handling
+      if (!res.ok || apiData.status === false) {
+        throw new Error(apiData.message || "Failed to add category");
+      }
+
+      // ✅ SUCCESS
+      Swal.fire({
+        title: "Success!",
+        text: "Category added successfully",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "category.php";
+      });
+
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error", error.message, "error");
+    }
+  });
+});
+
+
+// **************************************************** ADD CATEGORY END*******************************************

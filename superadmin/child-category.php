@@ -29,7 +29,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-sm-5">
-                                <a href="add-subcategory.php" class="btn btn-dark"><i class="mdi mdi-plus-circle me-2"></i>
+                                <a href="add-childcategory.php" class="btn btn-dark"><i class="mdi mdi-plus-circle me-2"></i>
                                     Add Child Category</a>
                             </div>
                             <div class="col-sm-7">

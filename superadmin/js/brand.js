@@ -347,3 +347,7 @@ function editBrand(brandId) {
   window.location.href = `edit_brand.php?id=${brandId}`;
 }
 // ******************************************************EDIT BRAND END ******************************************************
+
+
+
+
