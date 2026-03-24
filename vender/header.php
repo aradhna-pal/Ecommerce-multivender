@@ -30,13 +30,14 @@
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
 
-     <!-- Font Family -->
+    <!-- Font Family -->
     <script type="module" crossorigin src="assets/quill.snow-71ebf701.js"></script>
     <script type="module" crossorigin src="assets/dropify.min-7eced412.js"></script>
     <script type="module" crossorigin src="assets/product-create.init-c3b189cb.js"></script>
     <link rel="stylesheet" href="assets/app-0f19a312.css">
     <link rel="stylesheet" href="assets/quill-fe58e407.css">
     <link rel="stylesheet" href="assets/dropify-1a8a5c67.css">
+    <script src="./vender/login.js"></script>
     <!-- <script src="js/login.js"></script> -->
 
 </head>
@@ -54,13 +55,13 @@
                 <!-- Brand Logo Light -->
                 <a href="index.php" class="logo-light">
                     <img src="assets/logo.png" alt="logo" class="logo-lg">
-                 
+
                 </a>
 
                 <!-- Brand Logo Dark -->
                 <a href="index.php" class="logo-dark">
                     <img src="assets/logo.png" alt="dark logo" class="logo-lg">
-                 
+
                 </a>
             </div>
 
@@ -373,7 +374,7 @@
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="auth-logout.php" class="menu-link">
+                                    <a href="logout.php" class="menu-link">
                                         <span class="menu-text">Logout</span>
                                     </a>
                                 </li>
@@ -516,10 +517,9 @@
                                 <div class="dropdown-divider"></div>
 
                                 <!-- item-->
-                                <a href="auth-logout.html" class="dropdown-item notify-item">
+                                <a  id="logoutBtn" class="dropdown-item notify-item">
                                     <i class="mdi mdi-logout me-1"></i>
-
-                                    <span>Logouts</span>
+                                    <span>Logout</span>
                                 </a>
 
                             </div>
