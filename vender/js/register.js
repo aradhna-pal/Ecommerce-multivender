@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("registerForm");
 
     form.addEventListener("submit", async function (e) {
-        e.preventDefault();D
+        e.preventDefault();
 
         console.log("Form Submitted ✅");
 
@@ -43,19 +43,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
             console.log("API Response:", data);
 
-            if (data.success === true) {
-                Swal.fire({
-                    icon: "success",
-                    title: "User Registered Successfully 🎉"
-                });
+           if (data.success === true) {
+    Swal.fire({
+        icon: "success",
+        title: "User Registered Successfully 🎉"
+    }).then(() => {
+        window.location.href = "login.php"; // ✅ redirect here
+    });
 
-                form.reset();
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: data.message || "Registration Failed"
-                });
-            }
+    form.reset();
+} else {
+    Swal.fire({
+        icon: "error",
+        title: data.message || "Registration Failed"
+    });
+}
 
         } catch (error) {
             console.error("Error:", error);
