@@ -61,6 +61,7 @@
     <script src="js/category.js"></script>
     <script src="js/subcategory.js"></script>
     <script src="js/childcategory.js"></script>
+    <!-- <script src="js/register.js"></script> -->
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
