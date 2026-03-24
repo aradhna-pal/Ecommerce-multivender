@@ -23,12 +23,12 @@
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="js/login.js"></script>
-    <script>
-        // If the vendor is already logged in, redirect them to the dashboard immediately
+    <!-- <script>
+        
         if (localStorage.getItem("vendorToken")) {
             window.location.href = "index.php";
         }
-    </script>
+    </script> -->
     <script src="./vender/login.js"></script>
 </head>
 

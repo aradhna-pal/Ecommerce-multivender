@@ -21,6 +21,11 @@
   <link rel="stylesheet" href="assets/app-0f19a312.css">
    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
+    <!-- <script>
+        if (localStorage.getItem("vendorToken")) {
+            window.location.href = "index.php";
+        }
+    </script> -->
 </head>
 
 <body class="authentication-bg">

@@ -1,12 +1,5 @@
 <?php include 'header.php'; ?>
 
-<script>
-    // Check if the vendor is logged in; if no token, redirect to login page
-    if (!localStorage.getItem("vendorToken")) {
-        window.location.href = "login.php";
-    }
-</script>
-
 <div class="content">
 
     <!-- Start Content-->

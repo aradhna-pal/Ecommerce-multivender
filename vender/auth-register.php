@@ -11,7 +11,8 @@
     <meta content="GetAppui" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/favicon-3ab1de74.ico">
+      <link rel="shortcut icon" href="assets/img/favicon.webp">
+
 
     <!-- Theme Config Js -->
 
@@ -22,6 +23,10 @@
     <link rel="stylesheet" href="assets/app-0f19a312.css">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/register.js"></script>
+
 </head>
 
 <body class="authentication-bg">
@@ -35,10 +40,10 @@
                                 <div class="flex-shrink-0">
                                     <div class="auth-brand mb-5">
                                         <a href="index.html" class="logo-dark">
-                                            <span><img src="assets/logo-light-e9fb2c1a.png" alt="" height="32"></span>
+                                            <span><img src="assets/img/logo.png" alt="" height="32"></span>
                                         </a>
                                         <a href="index.html" class="logo-light">
-                                            <span><img src="assets/logo-dark-3d833aea.png" alt="" height="32"></span>
+                                            <span><img src="assets/img/logo.png" alt="" height="32"></span>
                                         </a>
                                     </div>
                                 </div>
@@ -80,11 +85,11 @@
                                                     <input class="form-control" type="tel" id="phone"
                                                         placeholder="Enter your phone number">
                                                 </div>
-                                                <div class="mb-3 col-xl-6">
+                                                <!-- <div class="mb-3 col-xl-6">
                                                     <label for="role" class="form-label">Role</label>
                                                     <input class="form-control" type="text" id="role"
                                                         placeholder="Enter your role">
-                                                </div>
+                                                </div> -->
 
                                             </div>
 
@@ -140,7 +145,7 @@
                     </div>
                 </div>
                 <!-- end card -->
-                <p class="text-muted text-center font-16 mb-5">Don't have an account? <a href="auth-login.php"
+                <p class="text-muted text-center font-16 mb-5">Don't have an account? <a href="login.php"
                         class="text-dark ms-1">Sign In</a></p>
 
             </div> <!-- end col -->
@@ -152,7 +157,7 @@
 
     <footer class="footer footer-alt fw-medium bg-transparent">
         <span class="text-muted">
-            <script>document.write(new Date().getFullYear())</script> © TechUI - Template by GetAppui
+            <script>document.write(new Date().getFullYear())</script> © Hyperscripts
         </span>
     </footer>
 

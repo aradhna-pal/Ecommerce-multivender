@@ -14,6 +14,12 @@
     <link rel="shortcut icon" href="assets/favicon.webp">
     <script src="js/login.js"></script>
 
+    <script>
+        // Check if the vendor is logged in; if no token, redirect to login page
+        if (!localStorage.getItem("vendorToken")) {
+            window.location.href = "login.php";
+        }
+    </script>
 
 
     <!-- Theme Config Js -->
@@ -364,18 +370,13 @@
                         <div class="collapse" id="authPages">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a href="auth-login.php" class="menu-link">
+                                    <a href="login.php" class="menu-link">
                                         <span class="menu-text">Sign In</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
                                     <a href="auth-register.php" class="menu-link">
                                         <span class="menu-text">Sign Up</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="logout.php" class="menu-link">
-                                        <span class="menu-text">Logout</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
