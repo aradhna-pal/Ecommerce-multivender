@@ -35,7 +35,7 @@
                                 <div class="text-sm-end">
                                     <button type="button" class="btn btn-success me-1"><i
                                             class="mdi mdi-cog-outline"></i></button>
-                                    <button type="button" class="btn btn-light me-1">Import</button>
+                                    <button type="button" class="btn btn-light me-1" data-bs-toggle="modal" data-bs-target="#importModal">Import</button>
                                     <button type="button" class="btn btn-light">Export</button>
                                 </div>
                             </div><!-- end col-->
@@ -126,5 +126,28 @@
 
 </div> <!-- content -->
 
+<!-- Import Modal -->
+<div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="importModalLabel">Import Products</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="importForm">
+                    <div class="mb-3">
+                        <label for="excelFile" class="form-label">Upload Excel Sheet</label>
+                        <input class="form-control" type="file" id="excelFile" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="uploadExcelBtn">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php include 'footer.php'; ?>
