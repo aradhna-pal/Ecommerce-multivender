@@ -1,59 +1,71 @@
 // ****************************************************************LOGIN API ****************************************************************
 
-function loginApi(){
+function loginApi() {
 
-let email = document.getElementById("emailaddress").value;
-let password = document.getElementById("password").value;
+  let email = document.getElementById("emailaddress").value.trim();
+  let password = document.getElementById("password").value.trim();
 
-if(email === "" || password === ""){
-alert("Please enter email and password");
-return;
+  if (!email || !password) {
+    Swal.fire({
+      icon: "warning",
+      title: "Please enter email and password"
+    });
+    return;
+  }
+
+  let formData = new FormData();
+  formData.append("email", email);
+  formData.append("password", password);
+
+  fetch("http://multivendor_backend.workarya.com/api/login", {
+    method: "POST",
+    body: formData
+  })
+    .then(res => res.json())
+    .then(data => {
+
+      console.log("Login Response 👉", data);
+
+      if (data.status === true || data.success === true) {
+
+        // ✅ TOKEN HANDLE
+        const token =
+          data.token ||
+          data.data?.token ||
+          data.accessToken;
+
+        localStorage.setItem("superadminToken", token);
+
+        // ✅ SUCCESS + REDIRECT
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful ✅",
+          timer: 1500,
+          showConfirmButton: false
+        });
+
+        // 🔥 redirect (guaranteed)
+        setTimeout(() => {
+          window.location.href = "index.php";
+        }, 1500);
+
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: data.message || "Invalid Email or Password ❌"
+        });
+      }
+
+    })
+    .catch(err => {
+      console.error(err);
+      Swal.fire({
+        icon: "error",
+        title: "API Error ❌"
+      });
+    });
 }
 
-let formData = new FormData();
-formData.append("email", email);
-formData.append("password", password);
 
-fetch("http://multivendor_backend.workarya.com/api/login",{
-method:"POST",
-body:formData
-})
-
-.then(response => response.json())
-.then(data => {
-
-console.log(data);
-
-if(data.status === true || data.success === true){
-
-alert("Login Successful");
-
-// superadmin token save
-localStorage.setItem("superadminToken", data.token);
-
-// login flag
-// localStorage.setItem("adminLogin", "true");
-
-// redirect
-window.location.href="index.php";
-
-}else{
-
-alert("Invalid Email or Password");
-
-}
-
-})
-.catch(error => {
-
-console.log(error);
-alert("API Error");
-
-});
-
-}
 
 // ****************************************************************LOGOUT ****************************************************************
-
-
-
