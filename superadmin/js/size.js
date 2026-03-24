@@ -220,6 +220,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   checkbox.addEventListener("change", () => {
     label.textContent = checkbox.checked ? "Active" : "Inactive";
   });
+  
 
   // ===================== PREFILL =====================
   if (sizeId) {
