@@ -1,4 +1,5 @@
 // ****************************************** GET ALL SIZE  START ******************************************
+const BASE_URL = "http://multivendor_backend.workarya.com/api";
 
 async function loadSizes() {
   try {
@@ -10,7 +11,7 @@ async function loadSizes() {
     }
 
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/size/get",
+      `${BASE_URL}/size/get`,
       {
         method: "GET",
         headers: {
@@ -80,7 +81,7 @@ async function deleteSize(id) {
 
   try {
     const res = await fetch(
-      `http://multivendor_backend.workarya.com/api/size/delete-size-permanent/${id}`,
+      `${BASE_URL}/size/delete-size-permanent/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -153,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const res = await fetch(
-          "http://multivendor_backend.workarya.com/api/size/add",
+          `${BASE_URL}/size/add`,
           {
             method: "POST",
             headers: {
@@ -220,13 +221,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   checkbox.addEventListener("change", () => {
     label.textContent = checkbox.checked ? "Active" : "Inactive";
   });
-  
+
 
   // ===================== PREFILL =====================
   if (sizeId) {
     try {
       const res = await fetch(
-        "http://multivendor_backend.workarya.com/api/size/get",
+        `${BASE_URL}/size/get`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -299,7 +300,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log("Update Payload 👉", payload);
 
       const res = await fetch(
-        `http://multivendor_backend.workarya.com/api/size/update/${sizeId}`,
+       `${BASE_URL}/size/update/${sizeId}`,
         {
           method: "PUT",
           headers: {
