@@ -32,20 +32,10 @@ async function loadSizes() {
     sizes.forEach((size, index) => {
       const row = `
                 <tr>
-                     <td>${index + 1}</td> <!-- ✅ S.No -->
-
-
-                   
-
+                     <td>${index + 1}</td> <!-- ✅ S.No -->                  
                     <td>${size.name}</td>
-                    <td>${size.description}</td>
-
-
-                    
-
-                    
-
-                    <td onclick="editSize('${size.id}')" style="cursor: pointer;">
+                    <td>${size.description}</td>             
+                    <td onclick="editSize('${size._id || size.id}')" style="cursor: pointer;">
                         <i class="mdi mdi-square-edit-outline text-dark fs-3"></i>
                     </td>
 
@@ -116,3 +106,228 @@ async function deleteSize(id) {
 }
 
 // ******************************************* DELETE SIZE END ******************************************
+
+
+
+
+// ********************************************** ADD SIZE START ******************************************
+
+// ********************************************** ADD SIZE START ******************************************
+document.addEventListener("DOMContentLoaded", () => {
+
+  console.log("JS Loaded ✅");
+
+  const toggle = document.getElementById("isActive");
+  const label = document.getElementById("toggleLabel");
+
+  toggle.addEventListener("change", function () {
+    label.textContent = this.checked ? "Active" : "Inactive";
+  });
+
+  document.addEventListener("click", async function (e) {
+
+    if (e.target.closest("#addSizeBtn")) {
+
+      try {
+        const token = localStorage.getItem("superadminToken");
+
+        if (!token) {
+          Swal.fire("Error", "Please login first ❌", "error");
+          return;
+        }
+
+        const name = document.getElementById("sizeName").value.trim();
+        const description = document.getElementById("sizeDescription").value.trim();
+        const isActive = document.getElementById("isActive").checked;
+
+        if (!name) {
+          Swal.fire("Error", "Size Name required ❌", "error");
+          return;
+        }
+
+        const payload = {
+          name: name,
+          description: description,
+          isActive: isActive,
+          isDeleted: false
+        };
+
+        const res = await fetch(
+          "http://multivendor_backend.workarya.com/api/size/add",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(payload),
+          }
+        );
+
+        const data = await res.json();
+
+        if (res.ok) {
+          Swal.fire({
+            title: "Success ✅",
+            text: "Size added successfully",
+            icon: "success",
+            confirmButtonText: "OK"
+          }).then(() => {
+            window.location.href = "size.php"; 
+          });
+
+        } else {
+          Swal.fire("Error", data.message || "Failed ❌", "error");
+        }
+
+      } catch (error) {
+        console.error(error);
+        Swal.fire("Error", "Something went wrong ❌", "error");
+      }
+
+    }
+
+  });
+
+});
+
+// ********************************************** ADD SIZE END ******************************************
+
+
+
+
+
+// *********************************************** EDIT SIZE START **************************************
+
+function editSize(id) {
+  localStorage.setItem("editSizeId", id); // ✅ store ID
+  window.location.href = "edit-size.php";
+}
+
+// **************************************** SIZE PREFILL ****************************************
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+  const token = localStorage.getItem("superadminToken");
+  const sizeId = localStorage.getItem("editSizeId");
+
+  console.log("Edit Size ID 👉", sizeId);
+
+  const checkbox = document.getElementById("isActive");
+  const label = document.getElementById("toggleLabel");
+
+  // ===================== TOGGLE LIVE =====================
+  checkbox.addEventListener("change", () => {
+    label.textContent = checkbox.checked ? "Active" : "Inactive";
+  });
+
+  // ===================== PREFILL =====================
+  if (sizeId) {
+    try {
+      const res = await fetch(
+        "http://multivendor_backend.workarya.com/api/size/get",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await res.json();
+      const sizes = data.data || data;
+
+      const size = sizes.find(
+        (item) => item.id == sizeId || item._id == sizeId
+      );
+
+      console.log("Selected Size 👉", size);
+
+      if (!size) return;
+
+      // ✅ PREFILL INPUT
+      document.getElementById("sizeName").value = size.name || "";
+
+      // ✅ PREFILL TEXTAREA
+      document.getElementById("sizeDescription").value =
+        size.description || "";
+
+      // ✅ PREFILL CHECKBOX
+      const isActiveValue =
+        size.isActive === true || size.isActive === "true";
+
+      checkbox.checked = isActiveValue;
+
+      // ✅ LABEL FIX
+      label.textContent = isActiveValue ? "Active" : "Inactive";
+
+    } catch (error) {
+      console.error("Prefill error:", error);
+    }
+  }
+
+  // ===================== UPDATE =====================
+  document.getElementById("addEditBtn").addEventListener("click", async () => {
+    try {
+
+      if (!token) {
+        Swal.fire("Error", "Please login first ❌", "error");
+        return;
+      }
+
+      if (!sizeId) {
+        Swal.fire("Error", "Size ID missing ❌", "error");
+        return;
+      }
+
+      const name = document.getElementById("sizeName").value.trim();
+      const description = document.getElementById("sizeDescription").value.trim();
+      const isActive = checkbox.checked;
+
+      if (!name) {
+        Swal.fire("Error", "Size name required ❌", "error");
+        return;
+      }
+
+      const payload = {
+        name,
+        description,
+        isActive,
+        isDeleted: false
+      };
+
+      console.log("Update Payload 👉", payload);
+
+      const res = await fetch(
+        `http://multivendor_backend.workarya.com/api/size/update/${sizeId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+        Swal.fire({
+          title: "Updated!",
+          text: "Size updated successfully.",
+          icon: "success",
+        }).then(() => {
+          localStorage.removeItem("editSizeId"); // ✅ clear ID
+          window.location.href = "size.php";
+        });
+      } else {
+        Swal.fire("Error", data.message || "Update failed", "error");
+      }
+
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error", "Something went wrong", "error");
+    }
+  });
+
+});

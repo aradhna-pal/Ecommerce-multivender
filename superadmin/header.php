@@ -138,7 +138,7 @@
                                     </a>
                                 </li>
 
-                                <li class="menu-item">
+                                <!-- <li class="menu-item">
                                     <a href="product-create.php" class="menu-link">
                                         <span class="menu-text">Product Create</span>
                                     </a>
@@ -147,7 +147,9 @@
                                     <a href="product-edit.php" class="menu-link">
                                         <span class="menu-text">Product Edit</span>
                                     </a>
-                                </li>
+                                </li> -->
+
+                                
                                 <!-- <li class="menu-item">
                                     <a href="apps-ecommerce-products-details.html" class="menu-link">
                                         <span class="menu-text">Product Details</span>
