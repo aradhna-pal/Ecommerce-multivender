@@ -73,7 +73,6 @@ async function loadBrands() {
 
 loadBrands();
 
-
 // {/* <td
 //   onclick="window.location.href='edit_brand.php?id=${brand.id}'"
 //   style="cursor: pointer;"
@@ -83,7 +82,9 @@ loadBrands();
 
 // ******************************************************END BRAND******************************************************
 
-// ******************************************************DELETE BRAND START ******************************************************
+// ******************************************************DELETE BRAND START *****************************************************
+
+
 async function deleteBrand(id) {
   const result = await Swal.fire({
     title: "Confirm Deletion",
@@ -95,7 +96,9 @@ async function deleteBrand(id) {
     confirmButtonText: "Delete",
     cancelButtonText: "Cancel",
   });
+
   if (!result.isConfirmed) return;
+
 
   try {
     const token = localStorage.getItem("superadminToken");
@@ -120,6 +123,7 @@ async function deleteBrand(id) {
         text: "Brand has been deleted.",
         confirmButtonColor: "#000",
       });
+
 
       loadBrands(); // reload
     } else {
@@ -347,7 +351,4 @@ function editBrand(brandId) {
   window.location.href = `edit_brand.php?id=${brandId}`;
 }
 // ******************************************************EDIT BRAND END ******************************************************
-
-
-
 
