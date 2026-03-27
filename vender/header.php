@@ -14,6 +14,7 @@
     <link rel="shortcut icon" href="assets/favicon.webp">
     <script src="js/login.js"></script>
     <script src="js/color.js"></script>
+    <script src="js/size.js"></script>
 
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page
@@ -47,7 +48,8 @@
     <link rel="stylesheet" href="assets/quill-fe58e407.css">
     <link rel="stylesheet" href="assets/dropify-1a8a5c67.css">
     <script src="./vender/login.js"></script>
-    <!-- <script src="js/login.js"></script> -->
+    
+
 
 </head>
 
