@@ -158,17 +158,14 @@ async function deleteProduct(id) {
     const text = await res.text();
     if (!res.ok) throw new Error(text || "Delete failed");
 
-    // ✅ remove row without reload
-    const icon = document.querySelector(`i[onclick="deleteProduct('${id}')"]`);
-    if (icon) icon.closest("tr").remove();
-
-    Swal.fire({
+    await Swal.fire({
       icon: "success",
       title: "Deleted!",
-      text: "Product deleted successfully.",
-      timer: 1500,
-      showConfirmButton: false
+      text: "Product deleted successfully."
     });
+
+    // ✅ IMPORTANT: table reload
+    loadProduct();
 
   } catch (err) {
     Swal.fire({
@@ -178,6 +175,5 @@ async function deleteProduct(id) {
     });
   }
 }
-
 
 // ************************************************ end delte ********************************
