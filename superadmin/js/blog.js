@@ -203,3 +203,114 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ############################################# END ADD BLOG ###########################################
+
+
+
+
+
+
+
+
+// ############################################# Start Edit BLOG ###########################################
+function editBlog(id) {
+  window.location.href = `edit-blog.php?id=${id}`;
+}
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const blogId = new URLSearchParams(window.location.search).get("id");
+
+  if (!blogId) return;
+
+  try {
+    // SAME API you used in loadBlogs()
+    const res = await fetch("http://multivendor_backend.workarya.com/api/blogs");
+    const blogs = await res.json();
+
+    // find matching blog
+    const blog = blogs.find(b => String(b.id) === String(blogId));
+    if (!blog) return;
+
+    console.log("Prefill blog:", blog);
+
+    // Prefill fields (same keys you used in table)
+    document.getElementById("blogName").value = blog.title || "";
+    document.getElementById("blogDescription").value = blog.description || "";
+    document.getElementById("isActive").checked = blog.is_active;
+
+    if (blog.image) {
+      const img = document.getElementById("previewImage");
+      img.src = "http://multivendor_backend.workarya.com" + blog.image;
+      img.style.display = "block";
+      document.getElementById("placeholderText").style.display = "none";
+    }
+
+  } catch (err) {
+    console.error("Prefill error:", err);
+  }
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("editBlogBtn");
+  const token = localStorage.getItem("superadminToken");
+  const blogId = new URLSearchParams(window.location.search).get("id");
+
+  btn.addEventListener("click", async () => {
+    const title = document.getElementById("blogName").value.trim();
+    const content = document.getElementById("blogDescription").value.trim();
+    const imageFile = document.getElementById("blogImage").files[0];
+    const status = document.getElementById("isActive").checked;
+
+    if (!title || !content) {
+      Swal.fire({ icon: "warning", title: "Fill required fields" });
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("Title", title);
+    formData.append("Content", content);
+    formData.append("Status", status);
+    formData.append("Tags", "");
+    formData.append("MetaTitle", title);
+    formData.append("Description", content);
+    formData.append("MetaDescription", content);
+    if (imageFile) formData.append("Image", imageFile);
+
+    try {
+      const res = await fetch(
+        `http://multivendor_backend.workarya.com/api/blogs/${blogId}`,
+        {
+          method: "PUT", // if not working change to POST
+          headers: { "Authorization": `Bearer ${token}` },
+          body: formData,
+        }
+      );
+
+      if (!res.ok) throw new Error();
+
+      Swal.fire({
+        icon: "success",
+        title: "Blog updated",
+        timer: 1200,
+        showConfirmButton: false,
+      }).then(() => {
+        window.location.href = "all-blogs.php";
+      });
+
+    } catch (e) {
+      console.error(e);
+      Swal.fire({ icon: "error", title: "Update failed" });
+    }
+  });
+});
+
+
+
+
+// ############################################# end Edit BLOG ###########################################
