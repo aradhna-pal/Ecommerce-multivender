@@ -29,7 +29,7 @@
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-sm-5">
-                                            <a href="javascript:void(0);" class="btn btn-dark"><i
+                                            <a href="add-blog.php" class="btn btn-dark"><i
                                                     class="mdi mdi-plus-circle me-2"></i> Add Blogs</a>
                                         </div>
                                         <div class="col-sm-7">
