@@ -46,20 +46,20 @@
                         <table class="table table-centered w-100 nowrap mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th >
+                                    <th>
                                         S.No
                                     </th>
-                                    <th >Product</th>
-                                    <th >Short Description</th>
-                                    <th >Description</th>
-                                    <th >Category</th>
+                                    <th>Product</th>
+                                    <th>Short Description</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
                                     <th>Brand</th>
                                     <th>Discount Price</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Status</th>
-                                    <th >Edit</th>
-                                    <th >Delete</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody id="allproduct">
@@ -75,23 +75,23 @@
                                             class="rounded me-3" height="48" />
                                         <p class="m-0 d-inline-block align-middle font-16">
                                             <a href="products-details.html" class="text-body">Blue N</a>
-                                    
+
                                         </p>
                                     </td>
                                     <td>
                                         shrot description
                                     </td>
                                     <td>
-                                         description
+                                        description
                                     </td>
                                     <td>
-                                         category
+                                        category
                                     </td>
                                     <td>
                                         Wilson
                                     </td>
                                     <td>
-                                       6245
+                                        6245
                                     </td>
                                     <td>
                                         $148.66
@@ -105,15 +105,15 @@
                                     </td>
 
                                     <td style="cursor: pointer;">
-                        <i class="mdi mdi-square-edit-outline text-primary fs-3"></i>
-                    </td>
+                                        <i class="mdi mdi-square-edit-outline text-primary fs-3"></i>
+                                    </td>
 
-                  <td  style="cursor: pointer;">
-                    <i class="mdi mdi-delete text-danger fs-3"></i>
-                   </td>
+                                    <td style="cursor: pointer;">
+                                        <i class="mdi mdi-delete text-danger fs-3"></i>
+                                    </td>
                                 </tr>
 
-                               
+
                             </tbody>
                         </table>
                     </div>
@@ -140,11 +140,13 @@
                         <label for="excelFile" class="form-label">Upload Excel Sheet</label>
                         <input class="form-control" type="file" id="excelFile" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
                     </div>
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="uploadExcelBtn">Upload</button>
+                <button type="submit" class="btn btn-primary" id="uploadExcelBtn">Upload</button>
+
             </div>
         </div>
     </div>
