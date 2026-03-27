@@ -1,5 +1,4 @@
 // ******************************************************GET COLORS******************************************************
-alert("Color JS Loaded ✅");
 async function getAllColor() {
   try {
     const token = localStorage.getItem("vendorToken");
