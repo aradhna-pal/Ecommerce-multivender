@@ -35,9 +35,10 @@ async function loadBrands() {
                      <td>${index + 1}</td> <!-- ✅ S.No -->
 
 
-                    <td>
-                        <img src="http://multivendor_backend.workarya.com${brand.logo || "https://via.placeholder.com/48"}"
-                             class="rounded" height="48" />
+                    <td >
+                        <img src="http://multivendor_backend.workarya.com${brand.logo || "https://via.placeholder.com/48"} "
+                             class="rounded" height="78" width="78"
+    style="object-fit: contain;" />
                     </td>
 
                     <td>${brand.name}</td>
@@ -270,7 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function loadBrand() {
     try {
       const res = await fetch(
-        `http://multivendor_backend.workarya.com/api/brands/list/${brandId}`,
+        `http://multivendor_backend.workarya.com/api/brands/list/${brandId}` ,
         {
           headers: {
             Authorization: `Bearer ${token}`,
