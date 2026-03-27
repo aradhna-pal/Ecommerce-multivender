@@ -71,3 +71,65 @@ async function loadBlogs() {
 }
 
 loadBlogs();
+
+
+// ############################################# End GET ALL BLOGS ###########################################
+
+
+
+
+
+// #############################################Start  delete  BLOGS ###########################################
+
+
+
+
+async function deleteBlog(id) {
+  const token = localStorage.getItem("superadminToken");
+
+  const confirm = await Swal.fire({
+    title: "Delete this blog?",
+    text: "Are you sure you want to delete this blog?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete it",
+    cancelButtonText: "Cancel",
+  });
+
+  if (!confirm.isConfirmed) return;
+
+  try {
+    const res = await fetch(
+      `http://multivendor_backend.workarya.com/api/blogs/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`, // or "token": token
+        },
+      }
+    );
+
+    if (!res.ok) throw new Error();
+
+    await Swal.fire({
+      icon: "success",
+      title: "Deleted!",
+      text: "Blog deleted successfully.",
+      timer: 1500,
+      showConfirmButton: false,
+    });
+
+    loadBlogs(); // refresh table
+  } catch (err) {
+    Swal.fire({
+      icon: "error",
+      title: "Delete failed",
+      text: "Please check console or token.",
+    });
+    console.error(err);
+  }
+}
+
+// ############################################# END DELETE BLOG ###########################################
+
