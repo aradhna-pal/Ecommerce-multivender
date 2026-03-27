@@ -108,3 +108,76 @@ async function loadProduct() {
 }
 
 loadProduct();
+
+
+// ****************************************************** END GET ALL PRODUCT API **************************************
+
+
+// ****************************************************** DELETE PRODUCT START ******************************************
+
+async function deleteProduct(id) {
+  const token = localStorage.getItem("superadminToken");
+
+  if (!token) {
+    Swal.fire({
+      icon: "warning",
+      title: "Login required",
+      text: "Please login first."
+    });
+    return;
+  }
+
+  const confirm = await Swal.fire({
+    icon: "warning",
+    title: "Delete permanently?",
+    text: "This action cannot be undone!",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete",
+    cancelButtonText: "Cancel"
+  });
+
+  if (!confirm.isConfirmed) return;
+
+  try {
+    Swal.fire({
+      title: "Deleting...",
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading()
+    });
+
+    const res = await fetch(
+      `http://multivendor_backend.workarya.com/api/products/permanent-delete-product/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const text = await res.text();
+    if (!res.ok) throw new Error(text || "Delete failed");
+
+    // ✅ remove row without reload
+    const icon = document.querySelector(`i[onclick="deleteProduct('${id}')"]`);
+    if (icon) icon.closest("tr").remove();
+
+    Swal.fire({
+      icon: "success",
+      title: "Deleted!",
+      text: "Product deleted successfully.",
+      timer: 1500,
+      showConfirmButton: false
+    });
+
+  } catch (err) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: err.message
+    });
+  }
+}
+
+
+// ************************************************ end delte ********************************
