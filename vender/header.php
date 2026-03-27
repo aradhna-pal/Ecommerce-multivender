@@ -13,6 +13,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/favicon.webp">
     <script src="js/login.js"></script>
+    <script src="js/color.js"></script>
 
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page
@@ -35,6 +36,8 @@
     <link rel="stylesheet" href="assets/world-bcd2ab8c.css">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Font Family -->
     <script type="module" crossorigin src="assets/quill.snow-71ebf701.js"></script>
