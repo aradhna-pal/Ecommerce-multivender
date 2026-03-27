@@ -63,6 +63,7 @@
     <script src="js/childcategory.js"></script>
     <script src="js/uploadExcel.js"></script>
     <script src="js/blog.js"></script>
+    <script src="js/order.js"></script>
     <!-- <script src="js/register.js"></script> -->
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -214,7 +215,7 @@
                         <div class="collapse" id="order">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a href="apps-ecommerce-order.php" class="menu-link">
+                                    <a href="order.php" class="menu-link">
                                         <span class="menu-text">Order</span>
                                     </a>
                                 </li>
