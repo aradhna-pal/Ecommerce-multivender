@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const phone = document.getElementById("phone").value;
 
         const checkbox = document.getElementById("checkbox-signUp");
+        
 
         if (!checkbox.checked) {
             Swal.fire({
