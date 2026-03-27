@@ -133,3 +133,73 @@ async function deleteBlog(id) {
 
 // ############################################# END DELETE BLOG ###########################################
 
+
+
+
+
+// ############################################# Start Add BLOG ###########################################
+// ############################################# ADD BLOG ###########################################
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("addBlogBtn").addEventListener("click", async () => {
+    const token = localStorage.getItem("superadminToken");
+
+    const title = document.getElementById("blogName").value.trim();
+    const content = document.getElementById("blogDescription").value.trim();
+    const imageFile = document.getElementById("blogImage").files[0];
+    const status = document.getElementById("isActive").checked;
+
+    if (!title || !content || !imageFile) {
+      Swal.fire({ icon: "warning", title: "All fields required" });
+      return;
+    }
+
+    const formData = new FormData();
+
+    // ✅ EXACT API FIELD NAMES
+    formData.append("Title", title);
+    formData.append("Content", content);
+    formData.append("Image", imageFile);
+    formData.append("Status", status);
+
+    // Optional fields (send empty if you don’t have inputs)
+    formData.append("Tags", "");
+    formData.append("MetaTitle", title);
+    formData.append("Description", content);
+    formData.append("MetaDescription", content);
+
+    try {
+      const res = await fetch(
+        "http://multivendor_backend.workarya.com/api/blogs/add",
+        {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
+
+      if (!res.ok) throw new Error(await res.text());
+
+     Swal.fire({
+  icon: "success",
+  title: "Blog added successfully",
+  timer: 1200,
+  showConfirmButton: false,
+}).then(() => {
+  window.location.href = "all-blogs.php";
+});
+
+      document.getElementById("addBlogForm").reset();
+    } catch (err) {
+      console.error(err);
+      Swal.fire({ icon: "error", title: "Add failed" });
+    }
+  });
+});
+
+
+// ############################################# END ADD BLOG ###########################################
