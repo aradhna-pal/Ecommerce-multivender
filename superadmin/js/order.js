@@ -53,17 +53,29 @@ async function loadOrders() {
             </span>
           </td>
 
-          <td class="table-action">
-            <i class="mdi mdi-eye fs-5 text-primary"
-               style="cursor:pointer"
-               onclick="viewOrder('${o.orderId}')"></i>
-          </td>
+         <td class="table-action">
+  <!-- Order Details -->
+  <i class="mdi mdi-eye-outline fs-4 text-primary"
+     title="Order Details"
+     style="cursor:pointer"
+     onclick="viewOrder('${o.orderId}')"></i>
+</td>
 
-          <td class="table-action">
-            <i class="mdi mdi-delete fs-5 text-danger"
-               style="cursor:pointer"
-               onclick="deleteOrder('${o.orderId}')"></i>
-          </td>
+<td class="table-action">
+  <!-- Print Invoice -->
+  <i class="mdi mdi-printer fs-3 text-success"
+     title="Print Invoice"
+     style="cursor:pointer"
+     onclick="printInvoice('${o.orderId}')"></i>
+</td>
+
+<td class="table-action">
+  <!-- Download PDF -->
+  <i class="mdi mdi-file-pdf-box fs-3 text-danger"
+     title="Download PDF"
+     style="cursor:pointer"
+     onclick="downloadInvoice('${o.orderId}')"></i>
+</td>
         </tr>
       `;
 

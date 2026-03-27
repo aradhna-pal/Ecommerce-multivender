@@ -81,12 +81,13 @@
                                     <th>Total</th>
                                     <th>Payment Status</th>
                                     <th>Order Status</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th>Order Detail</th>
+                                    <th>Invoice</th>
+                                    <th>Pdf</th>
                                 </tr>
                             </thead>
                             <tbody id="allorder">
-                                <tr>
+                                <!-- <tr>
                                     <td>
                                        1
                                     </td>
@@ -126,7 +127,7 @@
                                         <a href="javascript:void(0);" class="action-icon"> <i
                                                 class="mdi mdi-delete"></i></a>
                                     </td>
-                                </tr>
+                                </tr> -->
 
 
 
