@@ -15,6 +15,7 @@
     <script src="js/login.js"></script>
     <script src="js/color.js"></script>
     <script src="js/size.js"></script>
+    <script src="./js/category.js"></script>
 
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page
@@ -137,7 +138,7 @@
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="apps-ecommerce-product.php" class="menu-link">
+                                    <a href="category.php" class="menu-link">
                                         <span class="menu-text"> Category</span>
                                     </a>
                                 </li>
