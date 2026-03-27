@@ -36,7 +36,7 @@ async function loadBrands() {
 
 
                     <td>
-                        <img src="${brand.logo || "https://via.placeholder.com/48"}"
+                        <img src="http://multivendor_backend.workarya.com${brand.logo || "https://via.placeholder.com/48"}"
                              class="rounded" height="48" />
                     </td>
 
@@ -140,91 +140,97 @@ async function deleteBrand(id) {
 // ******************************************************ADD BRAND START ******************************************************
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("JS Loaded ✅");
-
   const btn = document.getElementById("addBrandBtn");
   const token = localStorage.getItem("superadminToken");
 
-  if (!btn) {
-    console.error("Button not found ❌");
-    return;
-  }
+  if (!btn) return;
 
-  // Quill init (SAFE)
+  // ✅ Quill init
   let quill;
   try {
     quill = new Quill("#snow-editor", { theme: "snow" });
-    console.log("Quill Loaded ✅");
   } catch (e) {
-    console.error("Quill Error ❌", e);
+    console.warn("Quill not loaded");
   }
 
   btn.addEventListener("click", async function () {
-    console.log("Button Clicked ✅");
+    const name = document.getElementById("brandName").value.trim();
+    const description = quill
+      ? quill.root.innerHTML
+      : document.getElementById("brandDescription").value.trim();
 
-    alert(token);
-
-    const name = document.getElementById("brandName").value;
-    const description = document.getElementById("brandDescription").value;
-    // const description = quill ? quill.root.innerHTML : "";
     const isActive = document.getElementById("isActive").checked;
-    const file = document.getElementById("brandImage").files[0];
+    const fileInput = document.getElementById("brandImage");
+    const file = fileInput.files[0];
 
-    const payload = {
-      Name: name,
-      Description: description,
-      Logo: file ? file.name : "",
-      IsActive: isActive,
-    };
+    if (!token) {
+      Swal.fire({ icon: "warning", title: "Login required" });
+      return;
+    }
 
-    console.log("Payload:", payload);
+    if (!name) {
+      Swal.fire({ icon: "warning", title: "Enter brand name" });
+      return;
+    }
+
+    if (!file) {
+      Swal.fire({ icon: "warning", title: "Select brand image" });
+      return;
+    }
+
+    // ✅ FormData for file upload
+    const formData = new FormData();
+    formData.append("Name", name);
+    formData.append("Description", description);
+    formData.append("IsActive", isActive);
+
+    // 🔥 .NET ke liye correct key
+    formData.append("logo", file);
 
     try {
+      Swal.fire({
+        title: "Uploading...",
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading(),
+      });
+
       const res = await fetch(
         "http://multivendor_backend.workarya.com/api/brands/insert",
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(payload),
-        },
+          body: formData,
+        }
       );
 
-      console.log("Response Status:", res.status);
-
       const data = await res.json();
-      console.log("API Response:", data);
-      if (data.status === true || data.success === true) {
+
+      if (res.ok && (data.status === true || data.success === true)) {
         await Swal.fire({
           icon: "success",
-          title: "Success",
-          text: "Brand added successfully",
-          confirmButtonColor: "#000",
+          title: "Brand added successfully",
         });
 
-        // form reset
         document.getElementById("addBrandForm").reset();
         if (quill) quill.root.innerHTML = "";
 
-        // 🔥 redirect after OK click
         window.location.href = "brand.php";
       } else {
         Swal.fire({
           icon: "error",
           title: "Error",
-          text: data.message || "Add brand failed",
+          text: data.message || "Insert failed",
         });
       }
     } catch (err) {
-      console.error("Fetch Error ❌", err);
-
       Swal.fire({
         icon: "error",
         title: "Error",
         text: "Something went wrong",
       });
+      console.error(err);
     }
   });
 });
