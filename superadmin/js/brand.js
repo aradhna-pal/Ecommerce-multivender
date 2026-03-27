@@ -303,54 +303,66 @@ document.addEventListener("DOMContentLoaded", function () {
   // =========================
   // ✅ UPDATE API
   // =========================
-  btn.addEventListener("click", async function () {
-    const payload = {
-      Name: nameInput.value,
-      Description: descInput.value,
-      Logo: fileInput.files[0] ? fileInput.files[0].name : "",
-      IsActive: isActiveInput.checked,
-    };
+btn.addEventListener("click", async function () {
+  const token = localStorage.getItem("superadminToken");
+  const file = fileInput.files[0];
 
-    console.log("Update Payload:", payload);
+  if (!token) {
+    Swal.fire({ icon: "warning", title: "Login required" });
+    return;
+  }
 
-    try {
-      const res = await fetch(
-        `http://multivendor_backend.workarya.com/api/brands/update/${brandId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(payload),
+  const formData = new FormData();
+  formData.append("Name", nameInput.value);
+  formData.append("Description", descInput.value);
+  formData.append("IsActive", isActiveInput.checked);
+
+  // ✅ only if new image selected
+  if (file) {
+    formData.append("logo", file); // .NET binding key
+  }
+
+  try {
+    Swal.fire({
+      title: "Updating...",
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading(),
+    });
+
+    const res = await fetch(
+      `http://multivendor_backend.workarya.com/api/brands/update/${brandId}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}` // ❗ no Content-Type
         },
-      );
-
-      const data = await res.json();
-      console.log("UPDATE API:", data);
-
-      if (data.status === true || data.success === true) {
-        await Swal.fire({
-          icon: "success",
-          title: "Updated",
-          text: "Brand updated successfully",
-          confirmButtonColor: "#000",
-        });
-
-        window.location.href = "brand.php";
-      } else {
-        Swal.fire("Error", data.message || "Update failed", "error");
+        body: formData,
       }
-    } catch (err) {
-      console.error("Update Error ❌", err);
+    );
 
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "Something went wrong",
+    const data = await res.json();
+    console.log("UPDATE API:", data);
+
+    if (res.ok && (data.status === true || data.success === true)) {
+      await Swal.fire({
+        icon: "success",
+        title: "Updated",
+        text: "Brand updated successfully",
       });
+
+      window.location.href = "brand.php";
+    } else {
+      Swal.fire("Error", data.message || "Update failed", "error");
     }
-  });
+  } catch (err) {
+    console.error(err);
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Something went wrong",
+    });
+  }
+});
 });
 
 function editBrand(brandId) {
