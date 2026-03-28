@@ -11,6 +11,9 @@
     <meta content="GetAppui" name="author" />
     <link rel="stylesheet" href="style.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
 
 
     <!-- App favicon -->
@@ -219,11 +222,11 @@
                                         <span class="menu-text">Order</span>
                                     </a>
                                 </li>
-                                <li class="menu-item">
+                                <!-- <li class="menu-item">
                                     <a href="apps-ecommerce-orders-details.php" class="menu-link">
                                         <span class="menu-text">Order Details</span>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </li>
@@ -363,7 +366,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="menu-item">
+                    <!-- <li class="menu-item">
                         <a href="#invoice" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="file-text"></i></span>
                             <span class="menu-text"> Invoice </span>
@@ -383,7 +386,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
 
 
                     <!-- <li class="menu-title">Pages</li> -->

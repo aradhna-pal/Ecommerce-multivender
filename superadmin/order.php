@@ -14,8 +14,8 @@
 
 
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">TechUI</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                        <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li> -->
 
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Order</a></li>
                     </ol>
@@ -81,12 +81,13 @@
                                     <th>Total</th>
                                     <th>Payment Status</th>
                                     <th>Order Status</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th>Order Detail</th>
+                                    <th>Invoice</th>
+                                    <!-- <th>Pdf</th> -->
                                 </tr>
                             </thead>
                             <tbody id="allorder">
-                                <tr>
+                                <!-- <tr>
                                     <td>
                                        1
                                     </td>
@@ -126,7 +127,7 @@
                                         <a href="javascript:void(0);" class="action-icon"> <i
                                                 class="mdi mdi-delete"></i></a>
                                     </td>
-                                </tr>
+                                </tr> -->
 
 
 
