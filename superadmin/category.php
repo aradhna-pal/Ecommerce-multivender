@@ -50,11 +50,13 @@
                                     <th>
                                         S.No
                                     </th>
-                                    
 
-                                    <th>Category Image</th>
 
-                                    <th>Category Name</th>
+                                   
+
+                                    <th>Category</th>
+                                    <th> Sub Category</th>
+                                    <th>Sub-Child Category</th>
 
 
                                     <th>Status</th>
@@ -78,12 +80,18 @@
                                     </td>
 
                                     <td>
-                                        dfgh
+                                        Tannu
                                     </td>
-                                   
+                                    <td>
+                                        Lokendra
+                                    </td>
+                                    <td>
+                                        Harshit
+                                    </td>
 
 
-                                     <td>
+
+                                    <td>
                                         <span class="badge bg-success-subtle text-success p-1">Published</span>
                                     </td>
 
@@ -112,5 +120,7 @@
     </div> <!-- container -->
 
 </div> <!-- content -->
+
+
 
 <?php include 'footer.php'; ?>

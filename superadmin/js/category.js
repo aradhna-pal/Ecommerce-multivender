@@ -1,408 +1,627 @@
-// **********************************************************get all category start *******************************************************
+// Get category list, render table, handle delete, and manage add category form with dynamic dropdowns and image preview.
+if (!window.categoryPageInitialized) {
+    window.categoryPageInitialized = true;
 
-async function categoryget() {
-  try {
-    const token = localStorage.getItem("superadminToken");
+    document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("superadminToken") ;
+        const categoryTableBody = document.getElementById("allcategory");
 
-    if (!token) {
-      alert("Please login first");
-      return;
-    }
+        if (!categoryTableBody) return;
 
-    const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/category/list",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
+        const BASE_URL = "http://multivendor_backend.workarya.com/api/category";
+        const IMAGE_BASE_URL = "http://multivendor_backend.workarya.com/uploads/";
 
-    const data = await res.json();
-
-    console.log("Category API:", data); // ✅ check response
-
-    const tbody = document.getElementById("allcategory");
-    tbody.innerHTML = "";
-
-    // agar response direct array hai
-    const categories = data.data || data;
-
-    categories.forEach((category, index) => {
-      const row = `
+        // =========================
+        // LOAD CATEGORY LIST
+        // =========================
+        async function loadCategories() {
+            categoryTableBody.innerHTML = `
                 <tr>
-                     <td>${index + 1}</td> <!-- ✅ S.No -->
-
-
-                    <td>
-                        <img src="${category.logo || "https://via.placeholder.com/48"}"
-                             class="rounded" height="48" />
-                    </td>
-
-                    <td>${category.name}</td>
-
-
-                    <td>
-                        <span class="badge ${
-                          category.isActive
-                            ? "bg-success-subtle text-success"
-                            : "bg-danger-subtle text-danger"
-                        }">
-                            ${category.isActive ? "Active" : "Inactive"}
-                        </span>
-                    </td>
-
-                    <td onclick="editCategory('${category.id}')" style="cursor: pointer;">
-                        <i class="mdi mdi-square-edit-outline text-primary fs-3"></i>
-                    </td>
-
-                  <td onclick="deleteCategory('${category.id}')" style="cursor: pointer;">
-                    <i class="mdi mdi-delete text-danger fs-3"></i>
-                   </td>
+                    <td colspan="8" class="text-center">Loading categories...</td>
                 </tr>
             `;
 
-      tbody.insertAdjacentHTML("beforeend", row);
-    });
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
+            try {
+                const response = await fetch(`${BASE_URL}/list`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        ...(token ? { "Authorization": `Bearer ${token}` } : {})
+                    }
+                });
 
-categoryget();
+                const result = await response.json();
+                console.log("Category List Response:", result);
 
-// **********************************************************get all category end *******************************************************
+                if (!result.success || !result.data || result.data.length === 0) {
+                    categoryTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="8" class="text-center text-danger">No category data found</td>
+                        </tr>
+                    `;
+                    return;
+                }
 
-// **********************************************************delete category start *******************************************************
-
-async function deleteCategory(categoryId) {
-  const result = await Swal.fire({
-    title: "Confirm Deletion",
-    text: "Are you sure you delete this category",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#000",
-    cancelButtonColor: "#6c757d",
-    confirmButtonText: "Delete",
-    cancelButtonText: "Cancel",
-  });
-
-  if (!result.isConfirmed) return;
-
-  try {
-    const token = localStorage.getItem("superadminToken");
-    if (!token) {
-      alert("Please login first");
-      return;
-    }
-
-    const res = await fetch(
-      `http://multivendor_backend.workarya.com/api/category/delete/${categoryId}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
-
-    const data = await res.json();
-    console.log("Delete API:", data);
-
-    // 👇 FIX: correct path
-    const apiData = data.value || {};
-    const message = (apiData.message || "").toLowerCase();
-
-    // ❌ If subcategory exists
-    if (apiData.status === false && message.includes("sub")) {
-      Swal.fire({
-        title: "Cannot Delete ❌",
-        text: apiData.message,
-        icon: "warning",
-        confirmButtonText: "OK",
-      });
-      return; // 🚫 stop success
-    }
-
-    // ✅ Success
-    if (res.ok && apiData.status !== false) {
-      Swal.fire({
-        title: "Deleted!",
-        text: "Category has been deleted.",
-        icon: "success",
-      }).then(() => {
-        categoryget();
-      });
-    } else {
-      Swal.fire({
-        title: "Error!",
-        text: apiData.message || "Failed to delete category.",
-        icon: "error",
-      });
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    Swal.fire({
-      title: "Error!",
-      text: "An error occurred while deleting the category.",
-      icon: "error",
-    });
-  }
-}
-
-// **********************************************************delete category end *******************************************************
-
-// ********************************************************** edit category******************************************************************
-
-function editCategory(id) {
-  window.location.href = `edit-category.php?id=${id}`;
-}
-
-// ✅ GET ID FROM URL (MOST IMPORTANT)
-const urlParams = new URLSearchParams(window.location.search);
-const categoryId = urlParams.get("id");
-
-async function loadCategoryDetails() {
-  try {
-    const token = localStorage.getItem("superadminToken");
-
-    // ❗ FIX: ID check
-    if (!categoryId) {
-      console.error("❌ Category ID not found in URL");
-      return; // ❌ Swal mat dikhao reload pe
-    }
-
-    console.log("Category ID 👉", categoryId);
-
-    const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/category/list",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
-
-    const data = await res.json();
-    const categories = data.data || data;
-
-    // 🔥 RECURSIVE FIND FUNCTION
-    function findCategory(list, id) {
-      for (let item of list) {
-        if (item.id == id) return item;
-
-        if (item.children && item.children.length > 0) {
-          const found = findCategory(item.children, id);
-          if (found) return found;
+                renderCategoryRows(result.data);
+            } catch (error) {
+                console.error("Category Load Error:", error);
+                categoryTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="text-center text-danger">Failed to load categories</td>
+                    </tr>
+                `;
+            }
         }
-      }
-      return null;
-    }
 
-    const category = findCategory(categories, categoryId);
+        // =========================
+        // RENDER TABLE ROWS
+        // =========================
+        function renderCategoryRows(categories) {
+            let rows = [];
+            let serial = 1;
 
-    console.log("Selected Category 👉", category);
+            categories.forEach(category => {
+                // 1. Main Category
+                rows.push(createRow(serial++, {
+                    category: category.name,
+                    subCategory: "--",
+                    childCategory: "--",
+                    image: category.image,
+                    isActive: category.isActive,
+                    id: category.id,
+                    hasChildren: category.children?.length > 0
+                }));
 
-    // ❗ FIX: only show alert if ID valid but not found
-    if (!category) {
-      console.error("❌ Category not found in data");
-      return;
-    }
+                if (category.children && category.children.length > 0) {
+                    category.children.forEach(subCategory => {
+                        // 2. Main + SubCategory
+                        rows.push(createRow(serial++, {
+                            category: category.name,
+                            subCategory: subCategory.name,
+                            childCategory: "--",
+                            image: subCategory.image || category.image,
+                            isActive: subCategory.isActive,
+                            id: subCategory.id,
+                            hasChildren: subCategory.children?.length > 0
+                        }));
 
-    // ✅ Prefill
-    document.getElementById("categoryName").value = category.name || "";
-    document.getElementById("categoryDescription").value =
-      category.description || "";
-    document.getElementById("isActive").checked = category.isActive;
+                        if (subCategory.children && subCategory.children.length > 0) {
+                            subCategory.children.forEach(child => {
+                                // 3. Main + SubCategory + Child
+                                rows.push(createRow(serial++, {
+                                    category: category.name,
+                                    subCategory: subCategory.name,
+                                    childCategory: child.name,
+                                    image: child.image || subCategory.image || category.image,
+                                    isActive: child.isActive,
+                                    id: child.id,
+                                    hasChildren: child.children?.length > 0
+                                }));
 
-    // ✅ Image
-    if (category.logo) {
-      const preview = document.getElementById("previewImage");
-      const placeholder = document.getElementById("placeholderText");
+                                if (child.children && child.children.length > 0) {
+                                    child.children.forEach(lastChild => {
+                                        // 4. Shifted Row
+                                        rows.push(createRow(serial++, {
+                                            category: category.name,
+                                            subCategory: child.name,
+                                            childCategory: lastChild.name,
+                                            image: lastChild.image || child.image || category.image,
+                                            isActive: lastChild.isActive,
+                                            id: lastChild.id,
+                                            hasChildren: lastChild.children?.length > 0
+                                        }));
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
 
-      preview.src = category.logo;
-      preview.style.display = "block";
-      placeholder.style.display = "none";
-    }
+            categoryTableBody.innerHTML = rows.length
+                ? rows.join("")
+                : `
+                    <tr>
+                        <td colspan="8" class="text-center">No categories found</td>
+                    </tr>
+                `;
 
-  } catch (error) {
-    console.error("Prefill error:", error);
-  }
+            attachDeleteEvents();
+        }
+
+        // =========================
+        // CREATE ROW
+        // =========================
+        function createRow(itemNo, item) {
+            const imageUrl = item.image
+                ? `${IMAGE_BASE_URL}${item.image}`
+                : "assets/images/products/img-1.png";
+
+            const statusBadge = item.isActive
+                ? `<span class="badge bg-success-subtle text-success p-1">Published</span>`
+                : `<span class="badge bg-danger-subtle text-danger p-1">Inactive</span>`;
+
+            const displayName =
+                item.childCategory !== "--"
+                    ? item.childCategory
+                    : item.subCategory !== "--"
+                    ? item.subCategory
+                    : item.category;
+
+            return `
+                <tr>
+                    <td>${itemNo}</td>
+
+                  
+
+                    <td>${item.category || "--"}</td>
+                    <td>${item.subCategory || "--"}</td>
+                    <td>${item.childCategory || "--"}</td>
+
+                    <td>${statusBadge}</td>
+
+                    <td class="table-action">
+                        <a href="edit-category.php?id=${item.id}" class="action-icon">
+                            <i class="mdi mdi-square-edit-outline"></i>
+                        </a>
+                    </td>
+
+                    <td class="table-action">
+                        <a href="javascript:void(0);" 
+                           class="action-icon delete-category-btn" 
+                           data-id="${item.id}" 
+                           data-name="${displayName}"
+                           data-has-children="${item.hasChildren}">
+                            <i class="mdi mdi-trash-can text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // =========================
+        // DELETE BUTTON EVENTS
+        // =========================
+        function attachDeleteEvents() {
+            document.querySelectorAll(".delete-category-btn").forEach(button => {
+                button.onclick = async function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const categoryId = this.getAttribute("data-id");
+                    const categoryName = this.getAttribute("data-name");
+                    const hasChildren = this.getAttribute("data-has-children") === "true";
+
+                    if (hasChildren) {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Cannot Delete",
+                            text: `First delete child categories of "${categoryName}"`,
+                            confirmButtonText: "OK"
+                        });
+                        return;
+                    }
+
+                    const confirmDelete = await Swal.fire({
+                        title: "Are you sure?",
+                        text: `You want to delete "${categoryName}"`,
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#d33",
+                        cancelButtonColor: "#6c757d",
+                        confirmButtonText: "Yes, Delete it!"
+                    });
+
+                    if (confirmDelete.isConfirmed) {
+                        deleteCategory(categoryId);
+                    }
+                };
+            });
+        }
+
+        // =========================
+        // DELETE CATEGORY
+        // =========================
+        async function deleteCategory(categoryId) {
+            try {
+                const response = await fetch(`${BASE_URL}/delete/${categoryId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        ...(token ? { "Authorization": `Bearer ${token}` } : {})
+                    }
+                });
+
+                const result = await response.json();
+                console.log("Delete Response:", result);
+
+                const deleteSuccess =
+                    result?.value?.status === true ||
+                    result?.status === true ||
+                    result?.success === true;
+
+                const deleteMessage =
+                    result?.value?.message ||
+                    result?.message ||
+                    "Category deleted successfully";
+
+                if (response.ok && deleteSuccess) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Deleted!",
+                        text: deleteMessage,
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+
+                    loadCategories();
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Delete Failed",
+                        text: deleteMessage || "Unable to delete category"
+                    });
+                }
+            } catch (error) {
+                console.error("Delete Error:", error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Something went wrong while deleting category"
+                });
+            }
+        }
+
+        // INITIAL LOAD
+        loadCategories();
+    });
 }
 
-document.addEventListener("DOMContentLoaded", loadCategoryDetails);
 
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("editcategorybtn");
 
-  btn.addEventListener("click", async () => {
-    try {
-      const token = localStorage.getItem("superadminToken");
 
-      if (!categoryId) {
-        Swal.fire("Error", "Category ID missing", "error");
-        return;
-      }
+// Add category page JS *************************
+document.addEventListener("DOMContentLoaded", function () {
 
-      const name = document.getElementById("categoryName").value.trim();
-      const isActive = document.getElementById("isActive").checked;
-      const fileInput = document.getElementById("categoryImage");
+    // ==================== CONFIG ====================
+    const BASE_URL = "http://multivendor_backend.workarya.com/api/category";
+    const IMAGE_BASE_URL = "http://multivendor_backend.workarya.com/uploads/";
+    let token = localStorage.getItem('vendorToken') || '';
+    let allCategories = [];
 
-      if (!name) {
-        Swal.fire("Error", "Category name is required", "error");
-        return;
-      }
+    // ==================== LOAD CATEGORIES ====================
+    async function loadCategories() {
+        try {
+            const res = await fetch("http://multivendor_backend.workarya.com/api/category/list", {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
-      const formData = new FormData();
+            const json = await res.json();
+            console.log("Category List Response:", json);
 
-      // ❌ ID remove from body
-      formData.append("category_name", name);
-      formData.append("parent_id", "");
-      // formData.append("id", categoryId);
-      formData.append("category_status", isActive ? "true" : "false");
-
-      // ✅ image
-      const file = fileInput.files[0];
-      if (file) {
-  formData.append("category_image", file);
-}
-
-      // 🔍 DEBUG
-      for (let pair of formData.entries()) {
-        console.log(pair[0], pair[1]);
-      }
-
-      // ✅ YOUR API (ID IN URL)
-      const res = await fetch(
-        `http://multivendor_backend.workarya.com/api/category/update/${categoryId}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        },
-      );
-
-      const data = await res.json();
-      console.log("Update API Response 👉", data);
-
-      const apiData = data?.value || data;
-
-      if (apiData.status === false) {
-        Swal.fire("Error", apiData.message || "Update failed", "error");
-        return;
-      }
-
-      // ✅ SUCCESS
-      Swal.fire({
-        title: "Updated!",
-        text: "Category updated successfully.",
-        icon: "success",
-      }).then(() => {
-        window.location.href = "category.php";
-      });
-    } catch (error) {
-      console.error(error);
-      Swal.fire("Error", "Something went wrong", "error");
+            allCategories = json.data || json || [];
+        } catch (err) {
+            console.error("Load Categories Error:", err);
+        }
     }
-  });
+
+    // ==================== FIND CATEGORY RECURSIVELY ====================
+    function findCategoryById(id, cats = allCategories) {
+        for (let cat of cats) {
+            if (String(cat.id) === String(id)) return cat;
+
+            if (cat.children && cat.children.length > 0) {
+                const found = findCategoryById(id, cat.children);
+                if (found) return found;
+            }
+        }
+        return null;
+    }
+
+    function getCategoryIdFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('id');
+    }
+
+    function getParentPath(categoryId, cats = allCategories, path = []) {
+        for (let cat of cats) {
+            if (String(cat.id) === String(categoryId)) {
+                return path;
+            }
+            if (cat.children && cat.children.length > 0) {
+                const result = getParentPath(categoryId, cat.children, [...path, cat.id]);
+                if (result) return result;
+            }
+        }
+        return null;
+    }
+
+    function fillSubcategoryPath(parentId) {
+        const isSubcategoryCheckbox = document.getElementById('isSubcategory');
+        if (!isSubcategoryCheckbox) return;
+
+        const container = document.getElementById('dynamicParentContainer');
+        if (!container) return;
+
+        isSubcategoryCheckbox.checked = true;
+        createDynamicDropdowns();
+
+        const path = getParentPath(parentId) || [];
+        path.forEach((value, level) => {
+            const select = container.querySelector(`select[data-level="${level}"]`);
+            if (select) {
+                select.value = value;
+                select.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        });
+
+        const finalLevel = path.length;
+        const finalSelect = container.querySelector(`select[data-level="${finalLevel}"]`);
+        if (finalSelect) {
+            finalSelect.value = parentId;
+            finalSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    }
+
+    async function loadCategoryForEdit() {
+        const categoryId = getCategoryIdFromUrl();
+        if (!categoryId) return;
+
+        const category = findCategoryById(categoryId);
+        if (!category) {
+            console.error('Category not found for edit id', categoryId);
+            return;
+        }
+
+        const pageTitle = document.getElementById('pageTitle');
+        if (pageTitle) pageTitle.textContent = 'Edit Category';
+
+        const submitBtn = document.getElementById('submitBtn');
+        if (submitBtn) submitBtn.textContent = 'Update Category';
+
+        document.getElementById('categoryId').value = categoryId;
+        document.getElementById('categoryName').value = category.name || '';
+        document.getElementById('isActive').checked = !!category.isActive;
+
+        if (category.image) {
+            preview.src = `${IMAGE_BASE_URL}${category.image}`;
+            preview.style.display = 'block';
+            placeholder.style.display = 'none';
+        }
+
+        const parentId = category.parent_id || category.parentId || '';
+        if (parentId) {
+            fillSubcategoryPath(parentId);
+        }
+    }
+
+    // ==================== DYNAMIC DROPDOWNS ====================
+    function createDynamicDropdowns() {
+        const container = document.getElementById('dynamicParentContainer');
+        container.innerHTML = '';
+
+        const rootCategories = allCategories.filter(cat => !cat.parentId || cat.parentId === 0 || cat.parent_id === 0 || cat.parent_id == null);
+
+        function addDropdown(levelCats, level = 0, selectedId = null) {
+            if (!levelCats || levelCats.length === 0) return;
+
+            const div = document.createElement('div');
+            div.className = 'dynamic-select mb-3';
+            div.setAttribute('data-level', level);
+
+            const label = document.createElement('label');
+            label.className = 'form-label';
+            label.textContent = level === 0
+                ? 'Select Root Category'
+                : `Select Sub Category (Level ${level})`;
+
+            div.appendChild(label);
+
+            const select = document.createElement('select');
+            select.className = 'form-select';
+            select.setAttribute('data-level', level);
+
+            // Default option
+            const defaultOpt = document.createElement('option');
+            defaultOpt.value = '';
+            defaultOpt.textContent = '-- Select Category --';
+            select.appendChild(defaultOpt);
+
+            // Add options
+            levelCats.forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat.id;
+                opt.textContent = cat.name;
+                if (String(cat.id) === String(selectedId)) opt.selected = true;
+                select.appendChild(opt);
+            });
+
+            // On change
+            select.addEventListener('change', function () {
+                const selectedValue = this.value;
+                const currentLevel = parseInt(this.getAttribute('data-level'));
+
+                // Remove all dropdowns after current level
+                const allDropdowns = container.querySelectorAll('.dynamic-select');
+                allDropdowns.forEach(drop => {
+                    const dropLevel = parseInt(drop.getAttribute('data-level'));
+                    if (dropLevel > currentLevel) {
+                        drop.remove();
+                    }
+                });
+
+                if (!selectedValue) return;
+
+                const selectedCat = findCategoryById(selectedValue);
+
+                if (selectedCat && selectedCat.children && selectedCat.children.length > 0) {
+                    addDropdown(selectedCat.children, currentLevel + 1);
+                }
+            });
+
+            div.appendChild(select);
+            container.appendChild(div);
+        }
+
+        addDropdown(rootCategories, 0);
+    }
+
+    // ==================== SUBCATEGORY CHECKBOX ====================
+    const isSubcategoryCheckbox = document.getElementById('isSubcategory');
+    if (isSubcategoryCheckbox) {
+        isSubcategoryCheckbox.addEventListener('change', function () {
+            const container = document.getElementById('dynamicParentContainer');
+
+            if (this.checked) {
+                createDynamicDropdowns();
+            } else {
+                container.innerHTML = '';
+            }
+        });
+    }
+
+    // ==================== IMAGE PREVIEW ====================
+    const fileInput = document.getElementById("categoryImage");
+    const preview = document.getElementById("previewImage");
+    const placeholder = document.getElementById("placeholderText");
+
+    if (fileInput) {
+        fileInput.addEventListener("change", function () {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                    placeholder.style.display = "none";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+                preview.style.display = "none";
+                placeholder.style.display = "block";
+            }
+        });
+    }
+
+    // ==================== FORM SUBMIT ====================
+    const addCategoryForm = document.getElementById('addCategoryForm');
+
+    async function submitCategory(e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('submitBtn');
+        const isEditMode = !!document.getElementById('categoryId')?.value;
+        submitBtn.disabled = true;
+        submitBtn.textContent = isEditMode ? 'Updating...' : 'Adding...';
+
+        const formData = new FormData();
+        formData.append('category_name', document.getElementById('categoryName').value.trim());
+        formData.append('category_status', document.getElementById('isActive').checked);
+
+        let parentId = '';
+        const allSelects = document.querySelectorAll('#dynamicParentContainer select');
+        if (allSelects.length > 0) {
+            for (let i = allSelects.length - 1; i >= 0; i--) {
+                if (allSelects[i].value) {
+                    parentId = allSelects[i].value;
+                    break;
+                }
+            }
+        }
+        formData.append('parent_id', parentId);
+
+        const imageFile = document.getElementById('categoryImage').files[0];
+        if (imageFile) {
+            formData.append('category_image', imageFile);
+        }
+
+        const categoryId = document.getElementById('categoryId')?.value;
+        const url = isEditMode
+            ? `http://multivendor_backend.workarya.com/api/category/update/${categoryId}`
+            : 'http://multivendor_backend.workarya.com/api/category/insert';
+        const method = isEditMode ? 'PUT' : 'POST';
+
+        try {
+            const res = await fetch(url, {
+                method,
+                headers: {
+                    ...(token ? { Authorization: `Bearer ${token}` } : {})
+                },
+                body: formData
+            });
+
+            const result = await res.json();
+            const apiSuccess = result?.value?.success === true || result?.success === true;
+            const apiMessage = result?.value?.message || result?.message || (isEditMode ? 'Category updated successfully!' : 'Category added successfully!');
+
+            if (res.ok && apiSuccess) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: apiMessage,
+                    icon: 'success',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                });
+
+                if (isEditMode) {
+                    setTimeout(() => {
+                        window.location.href = 'category.php';
+                    }, 3000);
+                } else {
+                    this.reset();
+                    preview.src = '';
+                    preview.style.display = 'none';
+                    placeholder.style.display = 'block';
+                    document.getElementById('dynamicParentContainer').innerHTML = '';
+                    document.getElementById('isSubcategory').checked = false;
+                    await loadCategories();
+                }
+            } else {
+                Swal.fire({
+                    title: 'Failed',
+                    text: apiMessage || (isEditMode ? 'Failed to update category' : 'Failed to add category'),
+                    icon: 'error'
+                });
+            }
+        } catch (err) {
+            console.error('Category submission error:', err);
+            Swal.fire({
+                title: 'Error',
+                text: 'Something went wrong!',
+                icon: 'error'
+            });
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = isEditMode ? 'Update Category' : 'Add Category';
+        }
+    }
+
+    if (addCategoryForm) {
+        addCategoryForm.addEventListener('submit', submitCategory);
+    }
+
+    // ==================== INIT ====================
+    (async function initialLoad() {
+        if (!token) {
+            alert("Token not found. Please login again.");
+            return;
+        }
+
+        await loadCategories();
+
+        const editCategoryId = getCategoryIdFromUrl();
+        if (editCategoryId) {
+            await loadCategoryForEdit();
+        }
+    })();
+
 });
 
 
 
-
-// ************************************************ edit categorry end **************************************************
-
-
-// *************************************************  ADD CATEGORY START *************************************************
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("addCategoryBtn");
-
-  btn.addEventListener("click", async () => {
-    try {
-      const token = localStorage.getItem("superadminToken");
-
-      if (!token) {
-        Swal.fire("Error", "Please login first", "error");
-        return;
-      }
-
-      const name = document.getElementById("categoryName").value.trim();
-      const parentId = document.getElementById("parentId").value.trim();
-      const isActive = document.getElementById("isActive").checked;
-      const file = document.getElementById("brandImage").files[0];
-
-      // ✅ Validation
-      if (!name) {
-        Swal.fire("Error", "Category name is required", "error");
-        return;
-      }
-
-      // ✅ FormData
-      const formData = new FormData();
-      formData.append("category_name", name);
-
-      // ⚠️ parent_id handling
-      if (parentId) {
-        formData.append("parent_id", parentId);
-      } else {
-        formData.append("parent_id", null); 
-      }
-
-      // ⚠️ IMPORTANT (your API key names)
-      formData.append("CategoryStatus", isActive);
-
-      if (file) {
-        formData.append("category_image", file);
-      }
-
-      // 🔍 DEBUG
-      for (let pair of formData.entries()) {
-        console.log(pair[0], pair[1]);
-      }
-
-      // ✅ API CALL
-      const res = await fetch(
-        "http://multivendor_backend.workarya.com/api/category/insert",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        }
-      );
-
-      const data = await res.json();
-      console.log("Add Category API 👉", data);
-
-      const apiData = data?.value || data;
-
-      // ❌ Error handling
-      if (!res.ok || apiData.status === false) {
-        throw new Error(apiData.message || "Failed to add category");
-      }
-
-      // ✅ SUCCESS
-      Swal.fire({
-        title: "Success!",
-        text: "Category added successfully",
-        icon: "success",
-      }).then(() => {
-        window.location.href = "category.php";
-      });
-
-    } catch (error) {
-      console.error(error);
-      Swal.fire("Error", error.message, "error");
-    }
-  });
-});
-
-
-// **************************************************** ADD CATEGORY END*******************************************

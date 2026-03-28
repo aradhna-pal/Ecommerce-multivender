@@ -32,113 +32,97 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="#" id="addCategoryForm">
+                        <form id="addCategoryForm" enctype="multipart/form-data">
 
-                            <!-- Product Name -->
+                            <!-- Category Name -->
                             <div class="mb-3">
-                                <label class="form-label" for="categoryName">Category Name</label>
-                                <input type="text" class="form-control" id="categoryName" name="categoryName"
-                                    placeholder="Category Name">
+                                <label class="form-label" for="categoryName">Category Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="categoryName"
+                                    placeholder="Enter category name" required>
                             </div>
 
-                            <!-- Content -->
-
-
-                            <div class="mb-3">
-                                <!-- <label class="form-label" for="parentId">Parent Id</label> -->
-                                <input type="hidden" class="form-control" id="parentId" name="parentId"
-                                    placeholder="parentId ">
-                            </div>
-
-                            <div class="mb-3">
-                                <h4 class="mt-0">Images</h4>
-
-                                <div id="imageBox" class="image-box">
-                                    <span id="placeholderText">Click to upload image</span>
-                                    <img id="previewImage" src="" />
-                                    <input type="file" id="brandImage" name="image" accept="image/*" />
-                                </div>
-                            </div>
-                            <style>
-                                .image-box {
-                                    position: relative;
-                                    width: 100%;
-                                    height: 200px;
-                                    border: 2px dashed #ccc;
-                                    border-radius: 10px;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
-                                    cursor: pointer;
-                                    overflow: hidden;
-                                    background: #fafafa;
-                                }
-
-                                .image-box input {
-                                    position: absolute;
-                                    width: 100%;
-                                    height: 100%;
-                                    opacity: 0;
-                                    cursor: pointer;
-                                }
-
-
-                                .image-box img {
-                                    max-width: 100%;
-                                    max-height: 100%;
-                                    object-fit: contain;
-                                    /* 🔥 IMPORTANT */
-                                    display: none;
-                                }
-
-                                #placeholderText {
-                                    color: #888;
-                                    font-size: 14px;
-                                }
-                            </style>
-                            <script>
-                                const fileInput = document.getElementById("brandImage");
-                                const preview = document.getElementById("previewImage");
-                                const placeholder = document.getElementById("placeholderText");
-
-                                fileInput.addEventListener("change", function () {
-                                    const file = this.files[0];
-
-                                    if (file) {
-                                        const reader = new FileReader();
-
-                                        reader.onload = function (e) {
-                                            preview.src = e.target.result;
-                                            preview.style.display = "block";
-                                            placeholder.style.display = "none";
-                                        };
-
-                                        reader.readAsDataURL(file);
-                                    }
-                                });
-                            </script>
-                            <!-- <div class="mb-3">
-                                <h4 class="mt-0">Images</h4>
-
-                                <input type="file" data-plugins="dropify" data-height="300" />
-                            </div> -->
-
-                            <!-- Toggle -->
-                            <div class="form-check form-switch mt-3">
-                                <input class="form-check-input" type="checkbox" id="isActive" checked>
-                                <label class="form-check-label" id="toggleLabel" for="isActive">
-                                    Active
+                            <!-- Checkbox -->
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="isSubcategory">
+                                <label class="form-check-label" for="isSubcategory">
+                                    Add as Subcategory
                                 </label>
                             </div>
 
+                            <!-- Dynamic Dropdown Container -->
+                            <div id="dynamicParentContainer" class="mb-3"></div>
+
+                            <!-- Image Upload -->
+                            <div class="mb-3">
+                                <h4>Category Image</h4>
+                                <div id="imageBox" class="image-box">
+                                    <span id="placeholderText">Click to upload image</span>
+                                    <img id="previewImage" src="" alt="Preview" />
+                                    <input type="file" id="categoryImage" name="image" accept="image/*" />
+                                </div>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="form-check form-switch mt-3">
+                                <input class="form-check-input" type="checkbox" id="isActive" checked>
+                                <label class="form-check-label" for="isActive">Active</label>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="btn btn-primary mt-4">
+                                Add Category
+                            </button>
                         </form>
+
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                        <style>
+                            .image-box {
+                                position: relative;
+                                width: 100%;
+                                height: 220px;
+                                border: 2px dashed #ccc;
+                                border-radius: 10px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                cursor: pointer;
+                                overflow: hidden;
+                                background: #fafafa;
+                            }
+
+                            .image-box input {
+                                position: absolute;
+                                width: 100%;
+                                height: 100%;
+                                opacity: 0;
+                                cursor: pointer;
+                            }
+
+                            .image-box img {
+                                max-width: 100%;
+                                max-height: 100%;
+                                object-fit: contain;
+                                display: none;
+                            }
+
+                            #placeholderText {
+                                color: #888;
+                                font-size: 15px;
+                            }
+
+                            .dynamic-select {
+                                margin-bottom: 15px;
+                            }
+                        </style>
+
+                    
 
 
                         <script>
                             const toggle = document.getElementById("isActive");
                             const label = document.getElementById("toggleLabel");
 
-                            toggle.addEventListener("change", function () {
+                            toggle.addEventListener("change", function() {
                                 label.textContent = this.checked ? "Active" : "Inactive";
                             });
                             const style = document.createElement("style");
@@ -154,19 +138,18 @@
     box-shadow: none;
 }`;
                             document.head.appendChild(style);
-
                         </script>
 
                     </div>
 
                 </div>
             </div>
-            <div class="d-flex justify-content-end mb-3">
-                <!-- IMPORTANT: type="button" -->
+            <!-- <div class="d-flex justify-content-end mb-3">
+                
                 <button type="button" class="btn btn-dark" id="addCategoryBtn">
                     Add Category
                 </button>
-            </div>
+            </div> -->
 
 
 
