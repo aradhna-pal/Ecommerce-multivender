@@ -52,7 +52,7 @@
                                     </th>
 
 
-                                    <th>Category Image</th>
+                                   
 
                                     <th>Category</th>
                                     <th> Sub Category</th>

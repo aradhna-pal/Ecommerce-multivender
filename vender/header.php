@@ -132,11 +132,7 @@
                                     </a>
                                 </li>
 
-                                <li class="menu-item">
-                                    <a href="main-category.php" class="menu-link">
-                                        <span class="menu-text">main category </span>
-                                    </a>
-                                </li>
+                               
                                 <li class="menu-item">
                                     <a href="category.php" class="menu-link">
                                         <span class="menu-text"> Category</span>

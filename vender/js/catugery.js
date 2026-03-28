@@ -1,255 +1,281 @@
 // Get category list, render table, handle delete, and manage add category form with dynamic dropdowns and image preview.
-document.addEventListener("DOMContentLoaded", function () {
-    const token = localStorage.getItem("superadminToken") || localStorage.getItem("vendorToken") || "";
-    const categoryTableBody = document.getElementById("allcategory");
+if (!window.categoryPageInitialized) {
+    window.categoryPageInitialized = true;
 
-    const BASE_URL = "http://multivendor_backend.workarya.com/api/category";
-    const IMAGE_BASE_URL = "http://multivendor_backend.workarya.com";
+    document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("superadminToken") || localStorage.getItem("vendorToken") || "";
+        const categoryTableBody = document.getElementById("allcategory");
 
-    // =========================
-    // LOAD CATEGORY LIST
-    // =========================
-    async function loadCategoriess() {
-        categoryTableBody.innerHTML = `
-            <tr>
-                <td colspan="8" class="text-center">Loading categories...</td>
-            </tr>
-        `;
+        if (!categoryTableBody) return;
 
-        try {
-            const response = await fetch(`${BASE_URL}/list`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    ...(token ? { "Authorization": `Bearer ${token}` } : {})
-                }
-            });
+        const BASE_URL = "http://multivendor_backend.workarya.com/api/category";
+        const IMAGE_BASE_URL = "http://multivendor_backend.workarya.com/uploads/";
 
-            const result = await response.json();
-
-            if (!result.success || !result.data || result.data.length === 0) {
-                categoryTableBody.innerHTML = `
-                    <tr>
-                        <td colspan="8" class="text-center text-danger">No category data found</td>
-                    </tr>
-                `;
-                return;
-            }
-
-            renderCategoryRows(result.data);
-        } catch (error) {
-            console.error("Category Load Error:", error);
+        // =========================
+        // LOAD CATEGORY LIST
+        // =========================
+        async function loadCategories() {
             categoryTableBody.innerHTML = `
                 <tr>
-                    <td colspan="8" class="text-center text-danger">Failed to load categories</td>
+                    <td colspan="8" class="text-center">Loading categories...</td>
                 </tr>
             `;
-        }
-    }
 
-    // =========================
-    // RENDER TABLE ROWS
-    // =========================
-    function renderCategoryRows(categories) {
-        let rows = [];
-        let serial = 1;
-
-        categories.forEach(category => {
-            // 1️⃣ Main Category Row
-            rows.push(createRow(serial++, {
-                category: category.name,
-                subCategory: "--",
-                childCategory: "--",
-                image: category.image,
-                isActive: category.isActive,
-                id: category.id,
-                hasChildren: category.children?.length > 0
-            }));
-
-            if (category.children && category.children.length > 0) {
-                category.children.forEach(subCategory => {
-                    // 2️⃣ Main + SubCategory Row
-                    rows.push(createRow(serial++, {
-                        category: category.name,
-                        subCategory: subCategory.name,
-                        childCategory: "--",
-                        image: subCategory.image || category.image,
-                        isActive: subCategory.isActive,
-                        id: subCategory.id,
-                        hasChildren: subCategory.children?.length > 0
-                    }));
-
-                    if (subCategory.children && subCategory.children.length > 0) {
-                        subCategory.children.forEach(child => {
-                            // 3️⃣ Main + SubCategory + Child
-                            rows.push(createRow(serial++, {
-                                category: category.name,
-                                subCategory: subCategory.name,
-                                childCategory: child.name,
-                                image: child.image || subCategory.image || category.image,
-                                isActive: child.isActive,
-                                id: child.id,
-                                hasChildren: child.children?.length > 0
-                            }));
-
-                            if (child.children && child.children.length > 0) {
-                                child.children.forEach(lastChild => {
-                                    // 4️⃣ Shifted Row
-                                    // Tannu हटाओ, Lokendra ko subcategory me lao, Harshit child me
-                                    rows.push(createRow(serial++, {
-                                        category: category.name,
-                                        subCategory: child.name,
-                                        childCategory: lastChild.name,
-                                        image: lastChild.image || child.image || category.image,
-                                        isActive: lastChild.isActive,
-                                        id: lastChild.id,
-                                        hasChildren: lastChild.children?.length > 0
-                                    }));
-                                });
-                            }
-                        });
+            try {
+                const response = await fetch(`${BASE_URL}/list`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        ...(token ? { "Authorization": `Bearer ${token}` } : {})
                     }
                 });
-            }
-        });
 
-        categoryTableBody.innerHTML = rows.length
-            ? rows.join("")
-            : `
-                <tr>
-                    <td colspan="8" class="text-center">No categories found</td>
-                </tr>
-            `;
+                const result = await response.json();
+                console.log("Category List Response:", result);
 
-        attachDeleteEvents();
-    }
-
-    // =========================
-    // CREATE TABLE ROW
-    // =========================
-    function createRow(itemNo, item) {
-        const imageUrl = item.image
-            ? `${IMAGE_BASE_URL}${item.image}`
-            : "assets/images/products/img-1.png";
-
-        const statusBadge = item.isActive
-            ? `<span class="badge bg-success-subtle text-success p-1">Published</span>`
-            : `<span class="badge bg-danger-subtle text-danger p-1">Inactive</span>`;
-
-        return `
-            <tr>
-                <td>${itemNo}</td>
-
-               
-
-                <td>${item.category || "--"}</td>
-                <td>${item.subCategory || "--"}</td>
-                <td>${item.childCategory || "--"}</td>
-
-                <td>${statusBadge}</td>
-
-                <td class="table-action">
-                    <a href="edit-category.php?id=${item.id}" class="action-icon">
-                        <i class="mdi mdi-square-edit-outline"></i>
-                    </a>
-                </td>
-
-                <td class="table-action">
-                    <a href="javascript:void(0);" 
-                       class="action-icon delete-category-btn" 
-                       data-id="${item.id}" 
-                       data-name="${item.childCategory !== '--' ? item.childCategory : (item.subCategory !== '--' ? item.subCategory : item.category)}"
-                       data-has-children="${item.hasChildren}">
-                        <i class="mdi mdi-trash-can text-danger"></i>
-                    </a>
-                </td>
-            </tr>
-        `;
-    }
-
-    // =========================
-    // DELETE BUTTON EVENTS
-    // =========================
-    function attachDeleteEvents() {
-        document.querySelectorAll(".delete-category-btn").forEach(button => {
-            button.addEventListener("click", async function () {
-                const categoryId = this.getAttribute("data-id");
-                const categoryName = this.getAttribute("data-name");
-                const hasChildren = this.getAttribute("data-has-children") === "true";
-
-                if (hasChildren) {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Cannot Delete",
-                        text: `First delete child categories of "${categoryName}"`,
-                        confirmButtonText: "OK"
-                    });
+                if (!result.success || !result.data || result.data.length === 0) {
+                    categoryTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="8" class="text-center text-danger">No category data found</td>
+                        </tr>
+                    `;
                     return;
                 }
 
-                const confirmDelete = await Swal.fire({
-                    title: "Are you sure?",
-                    text: `You want to delete "${categoryName}"`,
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#6c757d",
-                    confirmButtonText: "Yes, Delete it!"
-                });
-
-                if (confirmDelete.isConfirmed) {
-                    deleteCategory(categoryId);
-                }
-            });
-        });
-    }
-
-    // =========================
-    // DELETE CATEGORY
-    // =========================
-    async function deleteCategory(categoryId) {
-        try {
-            const response = await fetch(`${BASE_URL}/delete/${categoryId}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    ...(token ? { "Authorization": `Bearer ${token}` } : {})
-                }
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                Swal.fire({
-                    icon: "success",
-                    title: "Deleted!",
-                    text: result.message || "Category deleted successfully",
-                    timer: 1500,
-                    showConfirmButton: false
-                });
-
-                // Use the correct list reload function for table rendering. 
-                // This avoids unexpected refresh loops due to mixed function names.
-                loadCategoriess();
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Delete Failed",
-                    text: result.message || "Unable to delete category"
-                });
+                renderCategoryRows(result.data);
+            } catch (error) {
+                console.error("Category Load Error:", error);
+                categoryTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="text-center text-danger">Failed to load categories</td>
+                    </tr>
+                `;
             }
-        } catch (error) {
-            console.error("Delete Error:", error);
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Something went wrong while deleting category"
+        }
+
+        // =========================
+        // RENDER TABLE ROWS
+        // =========================
+        function renderCategoryRows(categories) {
+            let rows = [];
+            let serial = 1;
+
+            categories.forEach(category => {
+                // 1. Main Category
+                rows.push(createRow(serial++, {
+                    category: category.name,
+                    subCategory: "--",
+                    childCategory: "--",
+                    image: category.image,
+                    isActive: category.isActive,
+                    id: category.id,
+                    hasChildren: category.children?.length > 0
+                }));
+
+                if (category.children && category.children.length > 0) {
+                    category.children.forEach(subCategory => {
+                        // 2. Main + SubCategory
+                        rows.push(createRow(serial++, {
+                            category: category.name,
+                            subCategory: subCategory.name,
+                            childCategory: "--",
+                            image: subCategory.image || category.image,
+                            isActive: subCategory.isActive,
+                            id: subCategory.id,
+                            hasChildren: subCategory.children?.length > 0
+                        }));
+
+                        if (subCategory.children && subCategory.children.length > 0) {
+                            subCategory.children.forEach(child => {
+                                // 3. Main + SubCategory + Child
+                                rows.push(createRow(serial++, {
+                                    category: category.name,
+                                    subCategory: subCategory.name,
+                                    childCategory: child.name,
+                                    image: child.image || subCategory.image || category.image,
+                                    isActive: child.isActive,
+                                    id: child.id,
+                                    hasChildren: child.children?.length > 0
+                                }));
+
+                                if (child.children && child.children.length > 0) {
+                                    child.children.forEach(lastChild => {
+                                        // 4. Shifted Row
+                                        rows.push(createRow(serial++, {
+                                            category: category.name,
+                                            subCategory: child.name,
+                                            childCategory: lastChild.name,
+                                            image: lastChild.image || child.image || category.image,
+                                            isActive: lastChild.isActive,
+                                            id: lastChild.id,
+                                            hasChildren: lastChild.children?.length > 0
+                                        }));
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+            categoryTableBody.innerHTML = rows.length
+                ? rows.join("")
+                : `
+                    <tr>
+                        <td colspan="8" class="text-center">No categories found</td>
+                    </tr>
+                `;
+
+            attachDeleteEvents();
+        }
+
+        // =========================
+        // CREATE ROW
+        // =========================
+        function createRow(itemNo, item) {
+            const imageUrl = item.image
+                ? `${IMAGE_BASE_URL}${item.image}`
+                : "assets/images/products/img-1.png";
+
+            const statusBadge = item.isActive
+                ? `<span class="badge bg-success-subtle text-success p-1">Published</span>`
+                : `<span class="badge bg-danger-subtle text-danger p-1">Inactive</span>`;
+
+            const displayName =
+                item.childCategory !== "--"
+                    ? item.childCategory
+                    : item.subCategory !== "--"
+                    ? item.subCategory
+                    : item.category;
+
+            return `
+                <tr>
+                    <td>${itemNo}</td>
+
+                  
+
+                    <td>${item.category || "--"}</td>
+                    <td>${item.subCategory || "--"}</td>
+                    <td>${item.childCategory || "--"}</td>
+
+                    <td>${statusBadge}</td>
+
+                    <td class="table-action">
+                        <a href="edit-category.php?id=${item.id}" class="action-icon">
+                            <i class="mdi mdi-square-edit-outline"></i>
+                        </a>
+                    </td>
+
+                    <td class="table-action">
+                        <a href="javascript:void(0);" 
+                           class="action-icon delete-category-btn" 
+                           data-id="${item.id}" 
+                           data-name="${displayName}"
+                           data-has-children="${item.hasChildren}">
+                            <i class="mdi mdi-trash-can text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // =========================
+        // DELETE BUTTON EVENTS
+        // =========================
+        function attachDeleteEvents() {
+            document.querySelectorAll(".delete-category-btn").forEach(button => {
+                button.onclick = async function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const categoryId = this.getAttribute("data-id");
+                    const categoryName = this.getAttribute("data-name");
+                    const hasChildren = this.getAttribute("data-has-children") === "true";
+
+                    if (hasChildren) {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Cannot Delete",
+                            text: `First delete child categories of "${categoryName}"`,
+                            confirmButtonText: "OK"
+                        });
+                        return;
+                    }
+
+                    const confirmDelete = await Swal.fire({
+                        title: "Are you sure?",
+                        text: `You want to delete "${categoryName}"`,
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#d33",
+                        cancelButtonColor: "#6c757d",
+                        confirmButtonText: "Yes, Delete it!"
+                    });
+
+                    if (confirmDelete.isConfirmed) {
+                        deleteCategory(categoryId);
+                    }
+                };
             });
         }
-    }
 
-    loadCategoriess();
-});
+        // =========================
+        // DELETE CATEGORY
+        // =========================
+        async function deleteCategory(categoryId) {
+            try {
+                const response = await fetch(`${BASE_URL}/delete/${categoryId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        ...(token ? { "Authorization": `Bearer ${token}` } : {})
+                    }
+                });
+
+                const result = await response.json();
+                console.log("Delete Response:", result);
+
+                const deleteSuccess =
+                    result?.value?.status === true ||
+                    result?.status === true ||
+                    result?.success === true;
+
+                const deleteMessage =
+                    result?.value?.message ||
+                    result?.message ||
+                    "Category deleted successfully";
+
+                if (response.ok && deleteSuccess) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Deleted!",
+                        text: deleteMessage,
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+
+                    loadCategories();
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Delete Failed",
+                        text: deleteMessage || "Unable to delete category"
+                    });
+                }
+            } catch (error) {
+                console.error("Delete Error:", error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Something went wrong while deleting category"
+                });
+            }
+        }
+
+        // INITIAL LOAD
+        loadCategories();
+    });
+}
 
 
 
