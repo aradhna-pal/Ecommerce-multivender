@@ -16,6 +16,8 @@
     <script src="js/color.js"></script>
     <script src="js/size.js"></script>
     <script src="./js/catugery.js"></script>
+    <script src="./js/brand.js"></script>
+    
 
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page

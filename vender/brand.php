@@ -29,8 +29,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-sm-5">
-                                <a href="javascript:void(0);" class="btn btn-dark"><i
-                                        class="mdi mdi-plus-circle me-2"></i> Add Brand</a>
+                                <a href="add_brand.php" class="btn btn-dark"><i class="mdi mdi-plus-circle me-2"></i>
+                                    Add Brand</a>
                             </div>
                             <div class="col-sm-7">
                                 <div class="text-sm-end">
@@ -48,111 +48,75 @@
                             <thead class="table-light">
                                 <tr>
                                     <th class="all" style="width: 20px;">
-                                        <div class="form-check">
+                                        <!-- <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="customCheck1">
                                             <label class="form-check-label" for="customCheck1">&nbsp;</label>
-                                        </div>
+                                        </div> -->
+                                        S.No
                                     </th>
-                                    <th class="all">Product</th>
-                                    <th>Brand</th>
-                                    <th>Added Date</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
+                                    <th>Brand Image</th>
+                                    <th>Name</th>
+
+
+                                    <th>Description</th>
                                     <th>Status</th>
-                                    <th style="width: 120px;">Action</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="brandTableBody">
                                 <tr>
-                                    <td>
-                                        <div class="form-check">
+                                 
+                                        <!-- <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="customCheck2">
                                             <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
+                                        </div> -->
+                                       <!-- <td>${index + 1}</td>  -->
+
+                                   
                                     <td>
                                         <img src="assets/product-1-eec07e95.jpg" alt="contact-img" title="contact-img"
                                             class="rounded me-3" height="48" />
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="products-details.html" class="text-body">Blue Ndr Tennis Shoe</a>
-                                           
-                                        </p>
+
                                     </td>
                                     <td>
-                                        Wilson
-                                    </td>
-                                    <td>
-                                        09/12/2018
-                                    </td>
-                                    <td>
-                                        $148.66
+
+                                        bbhjnj
+
+
+
                                     </td>
 
                                     <td>
-                                        254
+                                        Power
                                     </td>
+
+                                    <!-- <td>
+                                                    $148.66
+                                                </td> -->
+
+                                    <!-- <td>
+                                                    254
+                                                </td> -->
                                     <td>
                                         <span class="badge bg-success-subtle text-success p-1">Published</span>
                                     </td>
 
                                     <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                class="mdi mdi-eye"></i></a>
+
                                         <a href="javascript:void(0);" class="action-icon"> <i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
 
-                              
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck7">
-                                            <label class="form-check-label" for="customCheck7">&nbsp;</label>
-                                        </div>
                                     </td>
-                                    <td>
-                                        <img src="assets/product-5-81a8b4b8.jpg" alt="contact-img" title="contact-img"
-                                            class="rounded me-3" height="48" />
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="products-details.html" class="text-body">Campus Maxico Running
-                                                Shoes</a>
-                                            <br />
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star"></span>
-                                            <span class="text-warning mdi mdi-star-half"></span>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        Nike
-                                    </td>
-                                    <td>
-                                        17/12/2018
-                                    </td>
-                                    <td>
-                                        $148.66
-                                    </td>
-
-                                    <td>
-                                        485
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-danger-subtle text-danger p-1">Draft</span>
-                                    </td>
-
                                     <td class="table-action">
-                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                class="mdi mdi-eye"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                class="mdi mdi-square-edit-outline"></i></a>
+
                                         <a href="javascript:void(0);" class="action-icon"> <i
                                                 class="mdi mdi-delete"></i></a>
                                     </td>
                                 </tr>
+
+
 
                             </tbody>
                         </table>
