@@ -5,8 +5,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div>
-                                <script>document.write(new Date().getFullYear())</script> © TechUI - <a
-                                    href="#">GetAppUI</a>
+                                <script>document.write(new Date().getFullYear())</script> ©  Hyperscripts.io.  <a
+                                    href="hyperscripts.io"> All rights reserved.
+</a>
                             </div>
                         </div>
                         <div class="col-md-6">

@@ -10,8 +10,8 @@
 
 
                 <ol class="breadcrumb d-lg-flex d-none mb-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">TechUI</a></li>
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                    <li class="breadcrumb-item"><a href="order.php">Order</a></li>
 
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Orders Details</a></li>
                 </ol>
