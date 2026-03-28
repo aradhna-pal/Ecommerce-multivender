@@ -83,7 +83,7 @@
                                     <th>Order Status</th>
                                     <th>Order Detail</th>
                                     <th>Invoice</th>
-                                    <th>Pdf</th>
+                                    <!-- <th>Pdf</th> -->
                                 </tr>
                             </thead>
                             <tbody id="allorder">
