@@ -284,6 +284,8 @@ if (!window.categoryPageInitialized) {
 document.addEventListener("DOMContentLoaded", function () {
 
     // ==================== CONFIG ====================
+    const BASE_URL = "http://multivendor_backend.workarya.com/api/category";
+    const IMAGE_BASE_URL = "http://multivendor_backend.workarya.com/uploads/";
     let token = localStorage.getItem('vendorToken') || '';
     let allCategories = [];
 
@@ -317,6 +319,83 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         return null;
+    }
+
+    function getCategoryIdFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('id');
+    }
+
+    function getParentPath(categoryId, cats = allCategories, path = []) {
+        for (let cat of cats) {
+            if (String(cat.id) === String(categoryId)) {
+                return path;
+            }
+            if (cat.children && cat.children.length > 0) {
+                const result = getParentPath(categoryId, cat.children, [...path, cat.id]);
+                if (result) return result;
+            }
+        }
+        return null;
+    }
+
+    function fillSubcategoryPath(parentId) {
+        const isSubcategoryCheckbox = document.getElementById('isSubcategory');
+        if (!isSubcategoryCheckbox) return;
+
+        const container = document.getElementById('dynamicParentContainer');
+        if (!container) return;
+
+        isSubcategoryCheckbox.checked = true;
+        createDynamicDropdowns();
+
+        const path = getParentPath(parentId) || [];
+        path.forEach((value, level) => {
+            const select = container.querySelector(`select[data-level="${level}"]`);
+            if (select) {
+                select.value = value;
+                select.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        });
+
+        const finalLevel = path.length;
+        const finalSelect = container.querySelector(`select[data-level="${finalLevel}"]`);
+        if (finalSelect) {
+            finalSelect.value = parentId;
+            finalSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    }
+
+    async function loadCategoryForEdit() {
+        const categoryId = getCategoryIdFromUrl();
+        if (!categoryId) return;
+
+        const category = findCategoryById(categoryId);
+        if (!category) {
+            console.error('Category not found for edit id', categoryId);
+            return;
+        }
+
+        const pageTitle = document.getElementById('pageTitle');
+        if (pageTitle) pageTitle.textContent = 'Edit Category';
+
+        const submitBtn = document.getElementById('submitBtn');
+        if (submitBtn) submitBtn.textContent = 'Update Category';
+
+        document.getElementById('categoryId').value = categoryId;
+        document.getElementById('categoryName').value = category.name || '';
+        document.getElementById('isActive').checked = !!category.isActive;
+
+        if (category.image) {
+            preview.src = `${IMAGE_BASE_URL}${category.image}`;
+            preview.style.display = 'block';
+            placeholder.style.display = 'none';
+        }
+
+        const parentId = category.parent_id || category.parentId || '';
+        if (parentId) {
+            fillSubcategoryPath(parentId);
+        }
     }
 
     // ==================== DYNAMIC DROPDOWNS ====================
@@ -432,103 +511,99 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==================== FORM SUBMIT ====================
     const addCategoryForm = document.getElementById('addCategoryForm');
 
-    if (addCategoryForm) {
-        addCategoryForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
+    async function submitCategory(e) {
+        e.preventDefault();
 
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Adding...';
+        const submitBtn = document.getElementById('submitBtn');
+        const isEditMode = !!document.getElementById('categoryId')?.value;
+        submitBtn.disabled = true;
+        submitBtn.textContent = isEditMode ? 'Updating...' : 'Adding...';
 
-            const formData = new FormData();
+        const formData = new FormData();
+        formData.append('category_name', document.getElementById('categoryName').value.trim());
+        formData.append('category_status', document.getElementById('isActive').checked);
 
-            formData.append('category_name', document.getElementById('categoryName').value.trim());
-
-            const imageFile = document.getElementById('categoryImage').files[0];
-            if (imageFile) {
-                formData.append('category_image', imageFile);
-            }
-
-            formData.append('CategoryStatus', document.getElementById('isActive').checked);
-
-            // Get deepest selected parent_id
-            let parentId = '';
-            const allSelects = document.querySelectorAll('#dynamicParentContainer select');
-
-            if (allSelects.length > 0) {
-                for (let i = allSelects.length - 1; i >= 0; i--) {
-                    if (allSelects[i].value) {
-                        parentId = allSelects[i].value;
-                        break;
-                    }
+        let parentId = '';
+        const allSelects = document.querySelectorAll('#dynamicParentContainer select');
+        if (allSelects.length > 0) {
+            for (let i = allSelects.length - 1; i >= 0; i--) {
+                if (allSelects[i].value) {
+                    parentId = allSelects[i].value;
+                    break;
                 }
             }
+        }
+        formData.append('parent_id', parentId);
 
-            formData.append('parent_id', parentId);
+        const imageFile = document.getElementById('categoryImage').files[0];
+        if (imageFile) {
+            formData.append('category_image', imageFile);
+        }
 
-            // Debug
-            console.log("Submitting Category...");
-            console.log("category_name:", document.getElementById('categoryName').value.trim());
-            console.log("parent_id:", parentId);
-            console.log("CategoryStatus:", document.getElementById('isActive').checked);
+        const categoryId = document.getElementById('categoryId')?.value;
+        const url = isEditMode
+            ? `http://multivendor_backend.workarya.com/api/category/update/${categoryId}`
+            : 'http://multivendor_backend.workarya.com/api/category/insert';
+        const method = isEditMode ? 'PUT' : 'POST';
 
-            try {
-                const res = await fetch("http://multivendor_backend.workarya.com/api/category/insert", {
-                    method: "POST",
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    },
-                    body: formData
+        try {
+            const res = await fetch(url, {
+                method,
+                headers: {
+                    ...(token ? { Authorization: `Bearer ${token}` } : {})
+                },
+                body: formData
+            });
+
+            const result = await res.json();
+            const apiSuccess = result?.value?.success === true || result?.success === true;
+            const apiMessage = result?.value?.message || result?.message || (isEditMode ? 'Category updated successfully!' : 'Category added successfully!');
+
+            if (res.ok && apiSuccess) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: apiMessage,
+                    icon: 'success',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
                 });
 
-                const result = await res.json();
-                console.log("Insert API Response:", result);
-
-                // ✅ IMPORTANT FIX HERE
-                const apiSuccess = result?.value?.success === true;
-                const apiMessage = result?.value?.message || result?.message || "Category added successfully!";
-
-                if (res.ok && apiSuccess) {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: apiMessage,
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    });
-
-                    // Reset form
+                if (isEditMode) {
+                    setTimeout(() => {
+                        window.location.href = 'category.php';
+                    }, 3000);
+                } else {
                     this.reset();
-
-                    preview.src = "";
-                    preview.style.display = "none";
-                    placeholder.style.display = "block";
-
+                    preview.src = '';
+                    preview.style.display = 'none';
+                    placeholder.style.display = 'block';
                     document.getElementById('dynamicParentContainer').innerHTML = '';
                     document.getElementById('isSubcategory').checked = false;
-
                     await loadCategories();
-
-                } else {
-                    Swal.fire({
-                        title: 'Failed',
-                        text: apiMessage || 'Failed to add category',
-                        icon: 'error'
-                    });
                 }
-
-            } catch (err) {
-                console.error("Insert Category Error:", err);
-
+            } else {
                 Swal.fire({
-                    title: 'Error',
-                    text: 'Something went wrong!',
+                    title: 'Failed',
+                    text: apiMessage || (isEditMode ? 'Failed to update category' : 'Failed to add category'),
                     icon: 'error'
                 });
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Add Category';
             }
-        });
+        } catch (err) {
+            console.error('Category submission error:', err);
+            Swal.fire({
+                title: 'Error',
+                text: 'Something went wrong!',
+                icon: 'error'
+            });
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = isEditMode ? 'Update Category' : 'Add Category';
+        }
+    }
+
+    if (addCategoryForm) {
+        addCategoryForm.addEventListener('submit', submitCategory);
     }
 
     // ==================== INIT ====================
@@ -538,8 +613,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Single load on DOMContentLoaded; prevents implicit page auto-refresh loops.
         await loadCategories();
+
+        const editCategoryId = getCategoryIdFromUrl();
+        if (editCategoryId) {
+            await loadCategoryForEdit();
+        }
     })();
 
 });
