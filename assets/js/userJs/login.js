@@ -1,4 +1,4 @@
-// alert("Please accept Terms & Conditions");
+// register.js - handles the registration form submission and API interaction for user registration.
 document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.getElementById("registerForm");
@@ -12,18 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Form Submitted ✅");
 
         const firstname = document.getElementById("firstname").value;
-        alert(firstname);
         const lastname = document.getElementById("lastname").value;
-        alert(lastname);
         const email = document.getElementById("emailaddress").value;
-        alert(email);
         const password = document.getElementById("password").value;
-        alert(password);
         const phone = document.getElementById("phone").value;
-        alert(phone);
-
         const checkbox = document.getElementById("checkbox-signUp");
-        alert(checkbox);
 
         if (!checkbox.checked) {
             Swal.fire({
@@ -53,21 +46,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
             console.log("API Response:", data);
 
-           if (data.success === true) {
-    Swal.fire({
-        icon: "success",
-        title: "User Registered Successfully 🎉"
-    }).then(() => {
-        window.location.href = "login.php"; // ✅ redirect here
-    });
+            if (data.success === true) {
+                Swal.fire({
+                    icon: "success",
+                    title: "User Registered Successfully 🎉"
+                }).then(() => {
+                    window.location.href = "login.php"; // ✅ redirect here
+                });
 
-    form.reset();
-} else {
-    Swal.fire({
-        icon: "error",
-        title: data.message || "Registration Failed"
-    });
-}
+                form.reset();
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: data.message || "Registration Failed"
+                });
+            }
 
         } catch (error) {
             console.error("Error:", error);
@@ -81,4 +74,45 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+// login.js - handles the login form submission and API interaction for user authentication.
+document.addEventListener("DOMContentLoaded", function () {
+    alert("Login Script Loaded");
+    const form = document.getElementById("loginForm");
+    form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        try {
+            const formData = new FormData();
+            formData.append("email", email);
+            formData.append("password", password);
+            const response = await fetch("http://multivendor_backend.workarya.com/api/login", {
+                method: "POST",
+                body: formData
+            });
+            const data = await response.json();
+            console.log("API Response:", data);
+
+            if (data.success === true) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Login Successful 🎉"
+                }).then(() => {
+                    window.location.href = "index.php"; // ✅ redirect here
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: data.message || "Login Failed"
+                });
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    });
+});
+
+
 
