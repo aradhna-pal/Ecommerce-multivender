@@ -23,22 +23,22 @@
     <title>Gadget Store</title>
 
     <!-- Google Font Link -->
-    <link rel="stylesheet" type="text/css" href="../assets/fonts/br-hendrix/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/br-hendrix/stylesheet.css">
 
     <!-- Bootstrap Link -->
-    <link rel="stylesheet" id="rtl-link" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <link rel="stylesheet" id="rtl-link" type="text/css" href="assets/css/vendors/bootstrap.css">
 
     <!-- Iconsax Icon Link -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/iconsax.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/iconsax.css">
 
     <!-- Remix Icon Link -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/remixicon.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/remixicon.css">
 
     <!-- Swiper Link -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/swiper.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/swiper.css">
 
     <!-- Style Link -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body class="base-bg-color">
@@ -68,32 +68,32 @@
                             <div class="dropdown theme-form-select">
                                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     id="select-language">
-                                    <img src="../assets/images/country/united-states.png" class="img-fluid" alt="">
+                                    <img src="assets/images/country/united-states.png" class="img-fluid" alt="">
                                     <span>Eng</span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a onclick="setLanguage('en')" class="dropdown-item" href="#!" id="english">
-                                            <img src="../assets/images/country/united-kingdom.png" class="img-fluid"
+                                            <img src="assets/images/country/united-kingdom.png" class="img-fluid"
                                                 alt="">
                                             <span>Eng</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a onclick="setLanguage('ar')" class="dropdown-item" href="#!" id="france">
-                                            <img src="../assets/images/country/arbic.png" class="img-fluid" alt="">
+                                            <img src="assets/images/country/arbic.png" class="img-fluid" alt="">
                                             <span>Ar</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#!" id="germany">
-                                            <img src="../assets/images/country/germany.png" class="img-fluid" alt="">
+                                            <img src="assets/images/country/germany.png" class="img-fluid" alt="">
                                             <span>Ger</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#!" id="chinese">
-                                            <img src="../assets/images/country/turkish.png" class="img-fluid" alt="">
+                                            <img src="assets/images/country/turkish.png" class="img-fluid" alt="">
                                             <span>Tur</span>
                                         </a>
                                     </li>
@@ -303,32 +303,32 @@
                             <ul class="search-list-box">
                                 <li>
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/104.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/104.png" class="img-fluid" alt="">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/58.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/58.png" class="img-fluid" alt="">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/69.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/69.png" class="img-fluid" alt="">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/42.jpg" class="img-fluid" alt="">
+                                        <img src="assets/images/product/42.jpg" class="img-fluid" alt="">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/50.jpg" class="img-fluid" alt="">
+                                        <img src="assets/images/product/50.jpg" class="img-fluid" alt="">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/5.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/5.png" class="img-fluid" alt="">
                                     </a>
                                 </li>
                             </ul>
@@ -414,43 +414,43 @@
                                         <ul class="demo-list">
                                             <li>
                                                 <a href="index.html">
-                                                    <img src="../assets/images/demos/1.jpg" class="img-fluid" alt="">
+                                                    <img src="assets/images/demos/1.jpg" class="img-fluid" alt="">
                                                     <h4>Gadget Store</h4>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="index-2.html">
-                                                    <img src="../assets/images/demos/2.jpg" class="img-fluid" alt="">
+                                                    <img src="assets/images/demos/2.jpg" class="img-fluid" alt="">
                                                     <h4>MegaMart Store</h4>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="index-3.html">
-                                                    <img src="../assets/images/demos/3.jpg" class="img-fluid" alt="">
+                                                    <img src="assets/images/demos/3.jpg" class="img-fluid" alt="">
                                                     <h4>Organic Store</h4>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="index-4.html">
-                                                    <img src="../assets/images/demos/4.jpg" class="img-fluid" alt="">
+                                                    <img src="assets/images/demos/4.jpg" class="img-fluid" alt="">
                                                     <h4>StyleTech Store</h4>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="index-5.html">
-                                                    <img src="../assets/images/demos/5.jpg" class="img-fluid" alt="">
+                                                    <img src="assets/images/demos/5.jpg" class="img-fluid" alt="">
                                                     <h4>Electro Store</h4>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="index-6.html">
-                                                    <img src="../assets/images/demos/6.jpg" class="img-fluid" alt="">
+                                                    <img src="assets/images/demos/6.jpg" class="img-fluid" alt="">
                                                     <h4>BabyShop Store</h4>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="coming-soon.html">
-                                                    <img src="../assets/images/demos/coming-soon.jpg" class="img-fluid"
+                                                    <img src="assets/images/demos/coming-soon.jpg" class="img-fluid"
                                                         alt="">
                                                     <h4>Coming Soon</h4>
                                                 </a>
@@ -702,7 +702,7 @@
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
                                                                 <a href="product-color.html" class="product-image">
-                                                                    <img src="../assets/images/product/1.png"
+                                                                    <img src="assets/images/product/1.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
@@ -735,7 +735,7 @@
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
                                                                 <a href="product-color.html" class="product-image">
-                                                                    <img src="../assets/images/product/2.png"
+                                                                    <img src="assets/images/product/2.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
@@ -768,7 +768,7 @@
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
                                                                 <a href="product-color.html" class="product-image">
-                                                                    <img src="../assets/images/product/3.png"
+                                                                    <img src="assets/images/product/3.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
@@ -801,7 +801,7 @@
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
                                                                 <a href="product-color.html" class="product-image">
-                                                                    <img src="../assets/images/product/4.png"
+                                                                    <img src="assets/images/product/4.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
@@ -834,7 +834,7 @@
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
                                                                 <a href="product-color.html" class="product-image">
-                                                                    <img src="../assets/images/product/5.png"
+                                                                    <img src="assets/images/product/5.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
@@ -866,7 +866,7 @@
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
                                                                 <a href="product-color.html" class="product-image">
-                                                                    <img src="../assets/images/product/6.png"
+                                                                    <img src="assets/images/product/6.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
@@ -899,7 +899,7 @@
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
                                                                 <a href="product-color.html" class="product-image">
-                                                                    <img src="../assets/images/product/7.png"
+                                                                    <img src="assets/images/product/7.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
@@ -1010,7 +1010,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/4.png"
+                                                                            <img src="assets/images/product/4.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1044,7 +1044,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/13.png"
+                                                                            <img src="assets/images/product/13.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1079,7 +1079,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/14.png"
+                                                                            <img src="assets/images/product/14.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1114,7 +1114,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/14.png"
+                                                                            <img src="assets/images/product/14.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1149,7 +1149,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/16.png"
+                                                                            <img src="assets/images/product/16.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1184,7 +1184,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/22.png"
+                                                                            <img src="assets/images/product/22.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1219,7 +1219,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/28.png"
+                                                                            <img src="assets/images/product/28.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1260,7 +1260,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/97.png"
+                                                                            <img src="assets/images/product/97.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1294,7 +1294,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/96.png"
+                                                                            <img src="assets/images/product/96.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1329,7 +1329,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/106.png"
+                                                                            <img src="assets/images/product/106.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1364,7 +1364,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/1.png"
+                                                                            <img src="assets/images/product/1.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1399,7 +1399,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/105.png"
+                                                                            <img src="assets/images/product/105.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1434,7 +1434,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/60.png"
+                                                                            <img src="assets/images/product/60.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1475,7 +1475,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/35-1.png"
+                                                                            <img src="assets/images/product/35-1.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1509,7 +1509,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/6.png"
+                                                                            <img src="assets/images/product/6.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1544,7 +1544,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/category/59.png"
+                                                                            <img src="assets/images/category/59.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1579,7 +1579,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/103.png"
+                                                                            <img src="assets/images/product/103.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1614,7 +1614,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/129.png"
+                                                                            <img src="assets/images/product/129.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1649,7 +1649,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/131.png"
+                                                                            <img src="assets/images/product/131.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1684,7 +1684,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/151.png"
+                                                                            <img src="assets/images/product/151.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1725,7 +1725,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/7.png"
+                                                                            <img src="assets/images/product/7.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1759,7 +1759,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/97.png"
+                                                                            <img src="assets/images/product/97.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1794,7 +1794,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/62.png"
+                                                                            <img src="assets/images/product/62.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1829,7 +1829,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/66.png"
+                                                                            <img src="assets/images/product/66.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1864,7 +1864,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/63.png"
+                                                                            <img src="assets/images/product/63.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1899,7 +1899,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/61.png"
+                                                                            <img src="assets/images/product/61.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1935,7 +1935,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/84.png"
+                                                                            <img src="assets/images/product/84.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -1977,7 +1977,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/77.png"
+                                                                            <img src="assets/images/product/77.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2011,7 +2011,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/167.png"
+                                                                            <img src="assets/images/product/167.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2046,7 +2046,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/170.png"
+                                                                            <img src="assets/images/product/170.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2081,7 +2081,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/176.png"
+                                                                            <img src="assets/images/product/176.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2116,7 +2116,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/173.png"
+                                                                            <img src="assets/images/product/173.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2151,7 +2151,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/185.png"
+                                                                            <img src="assets/images/product/185.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2186,7 +2186,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/182.png"
+                                                                            <img src="assets/images/product/182.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2227,7 +2227,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/5.png"
+                                                                            <img src="assets/images/product/5.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2261,7 +2261,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/8.png"
+                                                                            <img src="assets/images/product/8.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2296,7 +2296,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/11.png"
+                                                                            <img src="assets/images/product/11.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2331,7 +2331,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/12.png"
+                                                                            <img src="assets/images/product/12.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2366,7 +2366,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/18.png"
+                                                                            <img src="assets/images/product/18.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2401,7 +2401,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/20.png"
+                                                                            <img src="assets/images/product/20.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2436,7 +2436,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/21.png"
+                                                                            <img src="assets/images/product/21.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2477,7 +2477,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/27.png"
+                                                                            <img src="assets/images/product/27.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2511,7 +2511,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/29.png"
+                                                                            <img src="assets/images/product/29.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2546,7 +2546,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/41.jpg"
+                                                                            <img src="assets/images/product/41.jpg"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2581,7 +2581,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/115.png"
+                                                                            <img src="assets/images/product/115.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2616,7 +2616,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/108.png"
+                                                                            <img src="assets/images/product/108.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2651,7 +2651,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/112.png"
+                                                                            <img src="assets/images/product/112.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2686,7 +2686,7 @@
                                                                     <div class="product-box productMain">
                                                                         <a href="product-color.html"
                                                                             class="product-image">
-                                                                            <img src="../assets/images/product/134.png"
+                                                                            <img src="assets/images/product/134.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
@@ -2865,7 +2865,7 @@
                                             </div>
                                             <div class="col-12 d-xl-block d-none w-100">
                                                 <a href="shop-left-sidebar.html" class="menu-banner">
-                                                    <img src="../assets/images/banner/12.jpg" class="img-fluid" alt="">
+                                                    <img src="assets/images/banner/12.jpg" class="img-fluid" alt="">
                                                 </a>
                                             </div>
                                         </div>
@@ -3000,7 +3000,7 @@
                                 <li>
                                     <div class="vertical-product-box">
                                         <a href="product-color.html" class="product-image">
-                                            <img src="../assets/images/product/1.png" class="img-fluid" alt="">
+                                            <img src="assets/images/product/1.png" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-content">
                                             <a href="product-color.html">
@@ -3021,7 +3021,7 @@
                                 <li>
                                     <div class="vertical-product-box">
                                         <a href="product-color.html" class="product-image">
-                                            <img src="../assets/images/product/2.png" class="img-fluid" alt="">
+                                            <img src="assets/images/product/2.png" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-content">
                                             <a href="product-color.html">
@@ -3042,7 +3042,7 @@
                                 <li>
                                     <div class="vertical-product-box">
                                         <a href="product-color.html" class="product-image">
-                                            <img src="../assets/images/product/3.png" class="img-fluid" alt="">
+                                            <img src="assets/images/product/3.png" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-content">
                                             <a href="product-color.html">
@@ -3063,7 +3063,7 @@
                                 <li>
                                     <div class="vertical-product-box">
                                         <a href="product-color.html" class="product-image">
-                                            <img src="../assets/images/product/2.png" class="img-fluid" alt="">
+                                            <img src="assets/images/product/2.png" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-content">
                                             <a href="product-color.html">
@@ -3084,7 +3084,7 @@
                                 <li>
                                     <div class="vertical-product-box">
                                         <a href="product-color.html" class="product-image">
-                                            <img src="../assets/images/product/3.png" class="img-fluid" alt="">
+                                            <img src="assets/images/product/3.png" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-content">
                                             <a href="product-color.html">

@@ -1,4 +1,4 @@
-    <!-- Footer Section Start -->
+  <!-- Footer Section Start -->
     <footer class="footer-section">
         <div class="custom-container">
             <div class="main-footer">
@@ -223,7 +223,7 @@
                 <ul class="product-box-list">
                     <li class="vertical-product-box">
                         <a href="product-color.html" class="product-image">
-                            <img src="../assets/images/product/1.png" class="img-fluid" alt="">
+                            <img src="assets/images/product/1.png" class="img-fluid" alt="">
                         </a>
                         <div class="product-content">
                             <a href="product-color.html">
@@ -268,7 +268,7 @@
 
                     <li class="vertical-product-box">
                         <a href="product-color.html" class="product-image">
-                            <img src="../assets/images/product/2.png" class="img-fluid" alt="">
+                            <img src="assets/images/product/2.png" class="img-fluid" alt="">
                         </a>
                         <div class="product-content">
                             <a href="product-color.html">
@@ -313,7 +313,7 @@
 
                     <li class="vertical-product-box">
                         <a href="product-color.html" class="product-image">
-                            <img src="../assets/images/product/3.png" class="img-fluid" alt="">
+                            <img src="assets/images/product/3.png" class="img-fluid" alt="">
                         </a>
                         <div class="product-content">
                             <a href="product-color.html">
@@ -358,7 +358,7 @@
 
                     <li class="vertical-product-box">
                         <a href="product-color.html" class="product-image">
-                            <img src="../assets/images/product/5.png" class="img-fluid" alt="">
+                            <img src="assets/images/product/5.png" class="img-fluid" alt="">
                         </a>
                         <div class="product-content">
                             <a href="product-color.html">
@@ -403,7 +403,7 @@
 
                     <li class="vertical-product-box">
                         <a href="product-color.html" class="product-image">
-                            <img src="../assets/images/product/6.png" class="img-fluid" alt="">
+                            <img src="assets/images/product/6.png" class="img-fluid" alt="">
                         </a>
                         <div class="product-content">
                             <a href="product-color.html">
@@ -488,7 +488,7 @@
                     <li>
                         <div class="vertical-product-box">
                             <a href="product-color.html" class="product-image">
-                                <img src="../assets/images/product/1.png" class="img-fluid" alt="">
+                                <img src="assets/images/product/1.png" class="img-fluid" alt="">
                             </a>
                             <div class="product-content">
                                 <a href="product-color.html">
@@ -508,7 +508,7 @@
                     <li>
                         <div class="vertical-product-box">
                             <a href="product-color.html" class="product-image">
-                                <img src="../assets/images/product/2.png" class="img-fluid" alt="">
+                                <img src="assets/images/product/2.png" class="img-fluid" alt="">
                             </a>
                             <div class="product-content">
                                 <a href="product-color.html">
@@ -528,7 +528,7 @@
                     <li>
                         <div class="vertical-product-box">
                             <a href="product-color.html" class="product-image">
-                                <img src="../assets/images/product/3.png" class="img-fluid" alt="">
+                                <img src="assets/images/product/3.png" class="img-fluid" alt="">
                             </a>
                             <div class="product-content">
                                 <a href="product-color.html">
@@ -548,7 +548,7 @@
                     <li>
                         <div class="vertical-product-box">
                             <a href="product-color.html" class="product-image">
-                                <img src="../assets/images/product/4.png" class="img-fluid" alt="">
+                                <img src="assets/images/product/4.png" class="img-fluid" alt="">
                             </a>
                             <div class="product-content">
                                 <a href="product-color.html">
@@ -568,7 +568,7 @@
                     <li>
                         <div class="vertical-product-box">
                             <a href="product-color.html" class="product-image">
-                                <img src="../assets/images/product/5.png" class="img-fluid" alt="">
+                                <img src="assets/images/product/5.png" class="img-fluid" alt="">
                             </a>
                             <div class="product-content">
                                 <a href="product-color.html">
@@ -587,7 +587,7 @@
                     <li>
                         <div class="vertical-product-box">
                             <a href="product-color.html" class="product-image">
-                                <img src="../assets/images/product/26.png" class="img-fluid" alt="">
+                                <img src="assets/images/product/26.png" class="img-fluid" alt="">
                             </a>
                             <div class="product-content">
                                 <a href="product-color.html">
@@ -606,7 +606,7 @@
                     <li>
                         <div class="vertical-product-box">
                             <a href="product-color.html" class="product-image">
-                                <img src="../assets/images/product/23.png" class="img-fluid" alt="">
+                                <img src="assets/images/product/23.png" class="img-fluid" alt="">
                             </a>
                             <div class="product-content">
                                 <a href="product-color.html">
@@ -671,11 +671,11 @@
                             </div>
                             <div class="social-link">
                                 <a href="https://www.google.com/" class="btn w-100" target="_blank">
-                                    <img src="../assets/images/inner-page/google.png" class="img-fluid" alt="">
+                                    <img src="assets/images/inner-page/google.png" class="img-fluid" alt="">
                                     <span>Sign in with google</span>
                                 </a>
                                 <a href="https://www.facebook.com/" class="btn w-100" target="_blank">
-                                    <img src="../assets/images/inner-page/facebook.png" class="img-fluid" alt="">
+                                    <img src="assets/images/inner-page/facebook.png" class="img-fluid" alt="">
                                     <span>Sign in with facebook</span>
                                 </a>
                             </div>
@@ -712,11 +712,11 @@
                             </div>
                             <div class="social-link">
                                 <a href="https://www.google.com/" class="btn w-100" target="_blank">
-                                    <img src="../assets/images/inner-page/google.png" class="img-fluid" alt="">
+                                    <img src="assets/images/inner-page/google.png" class="img-fluid" alt="">
                                     <span>Sign up with google</span>
                                 </a>
                                 <a href="https://www.facebook.com/" class="btn w-100" target="_blank">
-                                    <img src="../assets/images/inner-page/facebook.png" class="img-fluid" alt="">
+                                    <img src="assets/images/inner-page/facebook.png" class="img-fluid" alt="">
                                     <span>Sign up with facebook</span>
                                 </a>
                             </div>
@@ -764,7 +764,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <img src="../assets/images/product/1.png" alt=""
+                                                <img src="assets/images/product/1.png" alt=""
                                                     class="img-fluid cart-image">
                                             </td>
                                             <td>
@@ -828,7 +828,7 @@
             <i class="iconsax" data-icon-name="add"></i>
         </button>
         <a href="product-color.html">
-            <img src="../assets/images/product/1.png" class="img-fluid" alt="Product Image">
+            <img src="assets/images/product/1.png" class="img-fluid" alt="Product Image">
         </a>
         <div class="recent-content">
             <a href="product-color.html">Smart Watch Series X3</a>
@@ -853,27 +853,27 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="view-image">
-                                                <img src="../assets/images/product/189.png" class="img-fluid" alt="">
+                                                <img src="assets/images/product/189.png" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <div class="view-image">
-                                                <img src="../assets/images/product/190.png" class="img-fluid" alt="">
+                                                <img src="assets/images/product/190.png" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <div class="view-image">
-                                                <img src="../assets/images/product/191.png" class="img-fluid" alt="">
+                                                <img src="assets/images/product/191.png" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <div class="view-image">
-                                                <img src="../assets/images/product/192.png" class="img-fluid" alt="">
+                                                <img src="assets/images/product/192.png" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <div class="view-image">
-                                                <img src="../assets/images/product/193.png" class="img-fluid" alt="">
+                                                <img src="assets/images/product/193.png" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -889,27 +889,27 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="image-box">
-                                                <img src="../assets/images/product/189.png" class="img-fluid" alt="">
+                                                <img src="assets/images/product/189.png" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <div class="image-box">
-                                                <img src="../assets/images/product/190.png" class="img-fluid" alt="">
+                                                <img src="assets/images/product/190.png" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <div class="image-box">
-                                                <img src="../assets/images/product/191.png" class="img-fluid" alt="">
+                                                <img src="assets/images/product/191.png" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <div class="image-box">
-                                                <img src="../assets/images/product/192.png" class="img-fluid" alt="">
+                                                <img src="assets/images/product/192.png" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-slide">
                                             <div class="image-box">
-                                                <img src="../assets/images/product/193.png" class="img-fluid" alt="" >
+                                                <img src="assets/images/product/193.png" class="img-fluid" alt="" >
                                             </div>
                                         </div>
                                     </div>
@@ -1055,7 +1055,7 @@
                             </div>
                             <div class="col-sm-6 order-sm-2 order-1">
                                 <div class="exit-right-box">
-                                    <img src="../assets/images/exit-modal/1.jpg" class="img-fluid" alt="">
+                                    <img src="assets/images/exit-modal/1.jpg" class="img-fluid" alt="">
                                 </div>
                             </div>
                         </div>
@@ -1079,7 +1079,7 @@
                         <i class="ri-close-line"></i>
                     </button>
                     <div class="newsletter-box">
-                        <img src="../assets/images/newsletter.jpg" alt="" class="img-fluid newsletter-image">
+                        <img src="assets/images/newsletter.jpg" alt="" class="img-fluid newsletter-image">
 
                         <div class="newsletter-content">
                             <h3>Your Direct Line to Offers</h3>
@@ -1118,46 +1118,47 @@
     <!-- Bg Overlay End -->
 
     <!-- Bootstrap Js -->
-    <script src="../assets/js/bootstrap/bootstrap.bundle.js"></script>
-    <script src="../assets/js/bootstrap/bootstrap-validation.js"></script>
+    <script src="assets/js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="assets/js/bootstrap/bootstrap-validation.js"></script>
 
     <!-- Lazyload Js -->
-    <script src="../assets/js/lazyload.js"></script>
+    <script src="assets/js/lazyload.js"></script>
 
     <!-- Swiper Js -->
-    <script src="../assets/js/swiper.js"></script>
-    <script src="../assets/js/custom-swiper.js"></script>
+    <script src="assets/js/swiper.js"></script>
+    <script src="assets/js/custom-swiper.js"></script>
 
     <!-- Iconsax js -->
-    <script src="../assets/js/iconsax.js"></script>
+    <script src="assets/js/iconsax.js"></script>
 
     <!-- Category Hide Show js -->
-    <script src="../assets/js/category-hide-show.js"></script>
+    <script src="assets/js/category-hide-show.js"></script>
 
     <!-- Timer js -->
-    <script src="../assets/js/timer.js"></script>
-    <script src="../assets/js/timer-2.js"></script>
+    <script src="assets/js/timer.js"></script>
+    <script src="assets/js/timer-2.js"></script>
 
     <!-- Quantity js -->
-    <script src="../assets/js/qty.js"></script>
+    <script src="assets/js/qty.js"></script>
 
     <!-- Wishlist Notification Js -->
-    <script src="../assets/js/wishlist-notify.js"></script>
+    <script src="assets/js/wishlist-notify.js"></script>
 
     <!-- Cookie Js -->
-    <script src="../assets/js/cookie.js"></script>
+    <script src="assets/js/cookie.js"></script>
 
     <!-- Template Setting Js -->
-    <script src="../assets/js/theme-setting.js"></script>
+    <script src="assets/js/theme-setting.js"></script>
 
     <!-- GSAP & SplitType -->
-    <script src="../assets/js/gsap/gsap.min.js"></script>
-    <script src="../assets/js/gsap/split-type.js"></script>
+    <script src="assets/js/gsap/gsap.min.js"></script>
+    <script src="assets/js/gsap/split-type.js"></script>
 
     <!-- Script js -->
-    <script src="../assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 
 <!-- Mirrored from themes.pixelstrap.net/kartify/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 Mar 2026 10:20:54 GMT -->
 </html>
+

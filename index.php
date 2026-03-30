@@ -1,7 +1,4 @@
-
-
-
-    <?php include 'header.php'; ?>
+<?php include 'header.php'; ?>
 
     <!-- Home Section Start -->
     <section class="home-section">
@@ -119,19 +116,19 @@
                     <div class="row g-0">
                         <div class="col-xl-8 col-12">
                             <a href="shop-left-sidebar.html" class="banner-box b-left">
-                                <img src="../assets/images/banner/1.jpg" class="img-fluid ratio-8x5" alt="">
+                                <img src="assets/images/banner/1.jpg" class="img-fluid ratio-8x5" alt="">
                             </a>
                         </div>
                         <div class="col-4 d-xl-block d-none">
                             <div class="row m-0 h-100">
                                 <div class="col-12 p-0">
                                     <a href="shop-left-sidebar.html" class="banner-box">
-                                        <img src="../assets/images/banner/2.jpg" class="img-fluid ratio-8x5" alt="">
+                                        <img src="assets/images/banner/2.jpg" class="img-fluid ratio-8x5" alt="">
                                     </a>
                                 </div>
                                 <div class="col-12 p-0">
                                     <a href="shop-left-sidebar.html" class="banner-box">
-                                        <img src="../assets/images/banner/3.jpg" class="img-fluid ratio-8x5" alt="">
+                                        <img src="assets/images/banner/3.jpg" class="img-fluid ratio-8x5" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -140,22 +137,22 @@
                     <div class="row g-0 ratio_82">
                         <div class="col-lg-3 col-sm-6 h-100">
                             <a href="shop-left-sidebar.html" class="banner-box">
-                                <img src="../assets/images/banner/4.jpg" alt="" class="bg-img">
+                                <img src="assets/images/banner/4.jpg" alt="" class="bg-img">
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 h-100">
                             <a href="shop-left-sidebar.html" class="banner-box">
-                                <img src="../assets/images/banner/5.jpg" alt="" class="bg-img">
+                                <img src="assets/images/banner/5.jpg" alt="" class="bg-img">
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 h-100">
                             <a href="shop-left-sidebar.html" class="banner-box">
-                                <img src="../assets/images/banner/6.jpg" alt="" class="bg-img">
+                                <img src="assets/images/banner/6.jpg" alt="" class="bg-img">
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 h-100">
                             <a href="shop-left-sidebar.html" class="banner-box">
-                                <img src="../assets/images/banner/7.jpg" alt="" class="bg-img">
+                                <img src="assets/images/banner/7.jpg" alt="" class="bg-img">
                             </a>
                         </div>
                     </div>
@@ -194,7 +191,7 @@
                         <div class="swiper-slide">
                             <div class="product-box productMain">
                                 <a href="product-color.html" class="product-image">
-                                    <img src="../assets/images/product/1.png" class="img-fluid productImage" alt="">
+                                    <img src="assets/images/product/1.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
                                     <a href="product-color.html">
@@ -246,7 +243,7 @@
                         <div class="swiper-slide">
                             <div class="product-box productMain">
                                 <a href="product-color.html" class="product-image">
-                                    <img src="../assets/images/product/2.png" class="img-fluid productImage" alt="">
+                                    <img src="assets/images/product/2.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
                                     <a href="product-color.html">
@@ -298,7 +295,7 @@
                         <div class="swiper-slide">
                             <div class="product-box productMain">
                                 <a href="product-color.html" class="product-image">
-                                    <img src="../assets/images/product/3.png" class="img-fluid productImage" alt="">
+                                    <img src="assets/images/product/3.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
                                     <a href="product-color.html">
@@ -350,7 +347,7 @@
                         <div class="swiper-slide">
                             <div class="product-box productMain">
                                 <a href="product-color.html" class="product-image">
-                                    <img src="../assets/images/product/4.png" class="img-fluid productImage" alt="">
+                                    <img src="assets/images/product/4.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
                                     <a href="product-color.html">
@@ -402,7 +399,7 @@
                         <div class="swiper-slide">
                             <div class="product-box productMain">
                                 <a href="product-color.html" class="product-image">
-                                    <img src="../assets/images/product/5.png" class="img-fluid productImage" alt="">
+                                    <img src="assets/images/product/5.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
                                     <a href="product-color.html">
@@ -454,7 +451,7 @@
                         <div class="swiper-slide">
                             <div class="product-box productMain">
                                 <a href="product-color.html" class="product-image">
-                                    <img src="../assets/images/product/6.png" class="img-fluid productImage" alt="">
+                                    <img src="assets/images/product/6.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
                                     <a href="product-color.html">
@@ -506,7 +503,7 @@
                         <div class="swiper-slide">
                             <div class="product-box productMain">
                                 <a href="product-color.html" class="product-image">
-                                    <img src="../assets/images/product/7.png" class="img-fluid productImage" alt="">
+                                    <img src="assets/images/product/7.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
                                     <a href="product-color.html">
@@ -576,7 +573,7 @@
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/8.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/8.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>kitchen utensils</h4>
                                 </div>
@@ -584,7 +581,7 @@
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/9.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/9.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>Vacuum Coffee Mug</h4>
                                 </div>
@@ -592,7 +589,7 @@
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/10.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/10.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>6 Pcs Set Stainless</h4>
                                 </div>
@@ -600,7 +597,7 @@
                             <div class="col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/11.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/11.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>stainless dishware</h4>
                                 </div>
@@ -608,7 +605,7 @@
                             <div class="col-xxl-6 col-lg-12 col-sm-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/12.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/12.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>Wholesale Cheap Square Des..</h4>
                                 </div>
@@ -627,7 +624,7 @@
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/13.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/13.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>One plus Nord CE</h4>
                                 </div>
@@ -635,7 +632,7 @@
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/14.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/14.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>Samsung Galaxy M14</h4>
                                 </div>
@@ -643,7 +640,7 @@
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/15.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/15.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>iPhone 14 Pro</h4>
                                 </div>
@@ -651,7 +648,7 @@
                             <div class="col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/16.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/16.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>Realme 10 PRO</h4>
                                 </div>
@@ -659,7 +656,7 @@
                             <div class="col-xxl-6 col-lg-12 col-sm-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/17.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/17.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>MacBook Pro 14-inch and 16-inch</h4>
                                 </div>
@@ -678,7 +675,7 @@
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/18.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/18.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>Stainless Steel Over</h4>
                                 </div>
@@ -686,7 +683,7 @@
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/21.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/21.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>FridgeFrost Innovations</h4>
                                 </div>
@@ -694,7 +691,7 @@
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/20.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/20.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>BakeMaster Professional Ovens</h4>
                                 </div>
@@ -702,7 +699,7 @@
                             <div class="col-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/19.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/19.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>BrewMaster Coffee Systems</h4>
                                 </div>
@@ -710,7 +707,7 @@
                             <div class="col-xxl-6 col-lg-12 col-sm-6">
                                 <div class="latest-product-box">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/18.png" class="img-fluid" alt="">
+                                        <img src="assets/images/product/18.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>RoastRite Culinary Ovens</h4>
                                 </div>
@@ -729,12 +726,12 @@
             <div class="row g-sm-4 g-3">
                 <div class="col-xl-8">
                     <a href="shop-left-sidebar.html" class="banner-box">
-                        <img src="../assets/images/banner/8.jpg" class="img-fluid" alt="">
+                        <img src="assets/images/banner/8.jpg" class="img-fluid" alt="">
                     </a>
                 </div>
                 <div class="col-xl-4">
                     <a href="shop-left-sidebar.html" class="banner-box h-100">
-                        <img src="../assets/images/banner/9.jpg" class="img-fluid" alt="">
+                        <img src="assets/images/banner/9.jpg" class="img-fluid" alt="">
                     </a>
                 </div>
             </div>
@@ -755,67 +752,67 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/1.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/1.png" class="img-fluid" alt="">
                                 <h4>Electronic</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/2.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/2.png" class="img-fluid" alt="">
                                 <h4>Home</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/3.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/3.png" class="img-fluid" alt="">
                                 <h4>Sport & Outdoor</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/4.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/4.png" class="img-fluid" alt="">
                                 <h4>Toys</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/5.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/5.png" class="img-fluid" alt="">
                                 <h4>Grocery</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/6.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/6.png" class="img-fluid" alt="">
                                 <h4>Man's Fashion</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/7.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/7.png" class="img-fluid" alt="">
                                 <h4>Woman's Fashion</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/8.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/8.png" class="img-fluid" alt="">
                                 <h4>Baby</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/9.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/9.png" class="img-fluid" alt="">
                                 <h4>Health & Wellness</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/10.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/10.png" class="img-fluid" alt="">
                                 <h4>Auto & Tires</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="shop-left-sidebar.html" class="category-box">
-                                <img src="../assets/images/category/11.png" class="img-fluid" alt="">
+                                <img src="assets/images/category/11.png" class="img-fluid" alt="">
                                 <h4>Household Essentials</h4>
                             </a>
                         </div>
@@ -832,7 +829,7 @@
             <div class="row g-4">
                 <div class="col-xxl-3-1 col-xl-4 d-xl-block d-none">
                     <a href="shop-left-sidebar.html" class="banner-box b-left h-100">
-                        <img src="../assets/images/banner/10.jpg" class="img-fluid" alt="">
+                        <img src="assets/images/banner/10.jpg" class="img-fluid" alt="">
                     </a>
                 </div>
 
@@ -866,7 +863,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/22.png" class="img-fluid"
+                                                            <img src="assets/images/product/22.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -898,7 +895,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/23.png" class="img-fluid"
+                                                            <img src="assets/images/product/23.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -930,7 +927,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/24.png" class="img-fluid"
+                                                            <img src="assets/images/product/24.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -967,7 +964,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/25.png" class="img-fluid"
+                                                            <img src="assets/images/product/25.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1000,7 +997,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/26.png" class="img-fluid"
+                                                            <img src="assets/images/product/26.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1033,7 +1030,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/27.png" class="img-fluid"
+                                                            <img src="assets/images/product/27.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1071,7 +1068,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/28.png" class="img-fluid"
+                                                            <img src="assets/images/product/28.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1104,7 +1101,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/29.png" class="img-fluid"
+                                                            <img src="assets/images/product/29.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1137,7 +1134,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/30.png" class="img-fluid"
+                                                            <img src="assets/images/product/30.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1180,7 +1177,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/22.png" class="img-fluid"
+                                                            <img src="assets/images/product/22.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1212,7 +1209,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/23.png" class="img-fluid"
+                                                            <img src="assets/images/product/23.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1244,7 +1241,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/24.png" class="img-fluid"
+                                                            <img src="assets/images/product/24.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1281,7 +1278,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/25.png" class="img-fluid"
+                                                            <img src="assets/images/product/25.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1314,7 +1311,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/26.png" class="img-fluid"
+                                                            <img src="assets/images/product/26.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1347,7 +1344,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/27.png" class="img-fluid"
+                                                            <img src="assets/images/product/27.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1385,7 +1382,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/28.png" class="img-fluid"
+                                                            <img src="assets/images/product/28.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1418,7 +1415,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/29.png" class="img-fluid"
+                                                            <img src="assets/images/product/29.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1451,7 +1448,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/30.png" class="img-fluid"
+                                                            <img src="assets/images/product/30.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1494,7 +1491,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/22.png" class="img-fluid"
+                                                            <img src="assets/images/product/22.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1526,7 +1523,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/23.png" class="img-fluid"
+                                                            <img src="assets/images/product/23.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1558,7 +1555,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/24.png" class="img-fluid"
+                                                            <img src="assets/images/product/24.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1595,7 +1592,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/25.png" class="img-fluid"
+                                                            <img src="assets/images/product/25.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1628,7 +1625,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/26.png" class="img-fluid"
+                                                            <img src="assets/images/product/26.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1661,7 +1658,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/27.png" class="img-fluid"
+                                                            <img src="assets/images/product/27.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1699,7 +1696,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/28.png" class="img-fluid"
+                                                            <img src="assets/images/product/28.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1732,7 +1729,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/29.png" class="img-fluid"
+                                                            <img src="assets/images/product/29.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1765,7 +1762,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/30.png" class="img-fluid"
+                                                            <img src="assets/images/product/30.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1815,7 +1812,7 @@
                 <div class="col-xxl-3-1 col-xl-3 d-xl-block d-none">
                     <div class="bg-white h-100 ratio_50">
                         <a href="shop-left-sidebar.html" class="banner-box b-left">
-                            <img src="../assets/images/banner/11.jpg" class="bg-img" alt="">
+                            <img src="assets/images/banner/11.jpg" class="bg-img" alt="">
                         </a>
                         <div class="left-banner-content">
                             <div class="accessories-computer-box">
@@ -1884,7 +1881,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/31.png" class="img-fluid"
+                                                            <img src="assets/images/product/31.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1919,7 +1916,7 @@
                                                 <li class="mt-md-5 mt-sm-4 mt-3">
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/32.png" class="img-fluid"
+                                                            <img src="assets/images/product/32.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1958,7 +1955,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/33.png" class="img-fluid"
+                                                            <img src="assets/images/product/33.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -1993,7 +1990,7 @@
                                                 <li class="mt-md-5 mt-sm-4 mt-3">
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/34.png" class="img-fluid"
+                                                            <img src="assets/images/product/34.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -2031,7 +2028,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/31.png" class="img-fluid"
+                                                            <img src="assets/images/product/31.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -2066,7 +2063,7 @@
                                                 <li class="mt-md-5 mt-sm-4 mt-3">
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/32.png" class="img-fluid"
+                                                            <img src="assets/images/product/32.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -2105,7 +2102,7 @@
                                                 <li>
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/33.png" class="img-fluid"
+                                                            <img src="assets/images/product/33.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -2140,7 +2137,7 @@
                                                 <li class="mt-md-5 mt-sm-4 mt-3">
                                                     <div class="vertical-product-box">
                                                         <a href="product-color.html" class="product-image">
-                                                            <img src="../assets/images/product/34.png" class="img-fluid"
+                                                            <img src="assets/images/product/34.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
@@ -2201,19 +2198,19 @@
                                                         <div class="swiper-wrapper">
                                                             <div class="swiper-slide">
                                                                 <a href="product-color.html" class="main-image-box">
-                                                                    <img src="../assets/images/product/35-1.png"
+                                                                    <img src="assets/images/product/35-1.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="swiper-slide">
                                                                 <a href="product-color.html" class="main-image-box">
-                                                                    <img src="../assets/images/product/35-2.png"
+                                                                    <img src="assets/images/product/35-2.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="swiper-slide">
                                                                 <a href="product-color.html" class="main-image-box">
-                                                                    <img src="../assets/images/product/35-3.png"
+                                                                    <img src="assets/images/product/35-3.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
                                                             </div>
@@ -2257,19 +2254,19 @@
                                                         <div class="swiper-wrapper">
                                                             <div class="swiper-slide">
                                                                 <div class="thumbnail-image">
-                                                                    <img src="../assets/images/product/35-1.png"
+                                                                    <img src="assets/images/product/35-1.png"
                                                                         class="img-fluid" alt="">
                                                                 </div>
                                                             </div>
                                                             <div class="swiper-slide">
                                                                 <div class="thumbnail-image">
-                                                                    <img src="../assets/images/product/35-2.png"
+                                                                    <img src="assets/images/product/35-2.png"
                                                                         class="img-fluid" alt="">
                                                                 </div>
                                                             </div>
                                                             <div class="swiper-slide">
                                                                 <div class="thumbnail-image">
-                                                                    <img src="../assets/images/product/35-3.png"
+                                                                    <img src="assets/images/product/35-3.png"
                                                                         class="img-fluid" alt="">
                                                                 </div>
                                                             </div>
@@ -2317,19 +2314,19 @@
                                                         <div class="swiper-wrapper">
                                                             <div class="swiper-slide">
                                                                 <a href="product-color.html" class="main-image-box">
-                                                                    <img src="../assets/images/product/23.png"
+                                                                    <img src="assets/images/product/23.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="swiper-slide">
                                                                 <a href="product-color.html" class="main-image-box">
-                                                                    <img src="../assets/images/product/24.png"
+                                                                    <img src="assets/images/product/24.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="swiper-slide">
                                                                 <a href="product-color.html" class="main-image-box">
-                                                                    <img src="../assets/images/product/27.png"
+                                                                    <img src="assets/images/product/27.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
                                                             </div>
@@ -2373,19 +2370,19 @@
                                                         <div class="swiper-wrapper">
                                                             <div class="swiper-slide">
                                                                 <div class="thumbnail-image">
-                                                                    <img src="../assets/images/product/23.png"
+                                                                    <img src="assets/images/product/23.png"
                                                                         class="img-fluid" alt="">
                                                                 </div>
                                                             </div>
                                                             <div class="swiper-slide">
                                                                 <div class="thumbnail-image">
-                                                                    <img src="../assets/images/product/24.png"
+                                                                    <img src="assets/images/product/24.png"
                                                                         class="img-fluid" alt="">
                                                                 </div>
                                                             </div>
                                                             <div class="swiper-slide">
                                                                 <div class="thumbnail-image">
-                                                                    <img src="../assets/images/product/27.png"
+                                                                    <img src="assets/images/product/27.png"
                                                                         class="img-fluid" alt="">
                                                                 </div>
                                                             </div>
@@ -2441,7 +2438,7 @@
     <section class="section-t-space">
         <div class="custom-container">
             <a href="shop-left-sidebar.html" class="banner-box-9 brand-banner">
-                <img src="../assets/images/banner/12.jpg" class="img-fluid" alt="">
+                <img src="assets/images/banner/12.jpg" class="img-fluid" alt="">
             </a>
         </div>
     </section>
@@ -2563,22 +2560,22 @@
                 <div class="row g-sm-4 g-3">
                     <div class="col-xxl-3 col-sm-6">
                         <a href="shop-left-sidebar.html" class="offer-product-box">
-                            <img src="../assets/images/banner/13.png" class="img-fluid" alt="">
+                            <img src="assets/images/banner/13.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="col-xxl-3 col-sm-6">
                         <a href="shop-left-sidebar.html" class="offer-product-box">
-                            <img src="../assets/images/banner/14.png" class="img-fluid" alt="">
+                            <img src="assets/images/banner/14.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="col-xxl-3 col-sm-6">
                         <a href="shop-left-sidebar.html" class="offer-product-box">
-                            <img src="../assets/images/banner/15.png" class="img-fluid" alt="">
+                            <img src="assets/images/banner/15.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="col-xxl-3 col-sm-6">
                         <a href="shop-left-sidebar.html" class="offer-product-box">
-                            <img src="../assets/images/banner/16.png" class="img-fluid" alt="">
+                            <img src="assets/images/banner/16.png" class="img-fluid" alt="">
                         </a>
                     </div>
                 </div>
@@ -2620,6 +2617,4 @@
     </section>
     <!-- News-letter Section End -->
 
-
-
-    <?php include 'footer.php'; ?>
+  <?php include 'footer.php'; ?>
