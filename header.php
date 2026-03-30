@@ -46,28 +46,30 @@
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> -->
+
+
     <script src="./assets/js/userJs/login.js"></script>
     <Script src="./assets/js/userJs/blog.js"></Script>
+    <script src="./assets/js/userJs/allproduct.js"></script>
 </head>
 
 <body class="base-bg-color">
     <!-- Page Loader Start -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="progress-container">
             <div class="progress-bar preloader-progress-bar"></div>
         </div>
         <div class="text-container">
             <div class="loading-text initial">Loading</div>
             <div class="loading-text complete mt-2">
-                <!-- <span>Welcome</span>
             
-                <span>Kartify</span> -->
                 <span>Welcome<br>HyperScripts</span>
             </div>
         </div>
         <div class="percentage">0</div>
-    </div>
+    </div> -->
     <!-- Page Loader End -->
 
     <!-- Header Start -->
