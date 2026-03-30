@@ -10,8 +10,8 @@
     <meta name="description" content="Kartify">
     <meta name="keywords" content="Kartify">
     <meta name="author" content="Kartify">
-    <link rel="icon" href="https://themes.pixelstrap.net/kartify/assets/images/favicon/1.svg" type="image/x-icon">
-    <link rel="apple-touch-icon" href="https://themes.pixelstrap.net/kartify/assets/images/favicon/1.svg">
+    <link rel="icon" href="assets/images/img/favicon.webp" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/images/img/favicon.webp">
     <meta name="title-color" content="#ff9900">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -20,7 +20,7 @@
     <meta name="msapplication-TileColor" content="#FFFFFF">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Gadget Store</title>
+    <title>HyperScripts | E-commerce </title>
 
     <!-- Google Font Link -->
     <link rel="stylesheet" type="text/css" href="assets/fonts/br-hendrix/stylesheet.css">
