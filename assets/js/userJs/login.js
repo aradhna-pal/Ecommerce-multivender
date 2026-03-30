@@ -82,37 +82,58 @@ document.addEventListener("DOMContentLoaded", function () {
 // login.js - handles the login form submission and API interaction for user authentication.
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("loginForm");
+
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        const email = document.getElementById("loginEmail").value;
-        const password = document.getElementById("loginPassword").value;
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+
         try {
             const formData = new FormData();
             formData.append("email", email);
             formData.append("password", password);
+
             const response = await fetch("http://multivendor_backend.workarya.com/api/login", {
                 method: "POST",
                 body: formData
             });
+
             const data = await response.json();
             console.log("API Response:", data);
 
             if (data.success === true) {
+                // ✅ Token save in localStorage
+                localStorage.setItem("userToken", data.token);
+
+                // ✅ Optional: user info bhi save kar sakte ho
+                if (data.user) {
+                    localStorage.setItem("userData", JSON.stringify(data.user));
+                }
+
                 Swal.fire({
                     icon: "success",
-                    title: "Login Successful 🎉"
+                    title: "Login Successful 🎉",
+                    text: data.message || "Welcome back!"
                 }).then(() => {
-                    window.location.href = "index.php"; // ✅ redirect here
+                    window.location.href = "index.php";
                 });
+
             } else {
                 Swal.fire({
                     icon: "error",
                     title: data.message || "Login Failed"
                 });
             }
+
         } catch (error) {
             console.error("Error:", error);
+
+            Swal.fire({
+                icon: "error",
+                title: "Something went wrong",
+                text: "Please try again later."
+            });
         }
     });
 });

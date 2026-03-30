@@ -34,43 +34,7 @@
                 </div>
                 <div class="col-xxl-3 col-xl-4 col-lg-5">
                     <div class="left-sidebar-box">
-                        <div class="blog-user-box">
-                            <div class="user-image">
-                                <img src="../assets/images/review/1.jpg" class="img-fluid" alt="">
-                                <h3 class="h4 name">Doris J. Masters</h3>
-                            </div>
-                            <div class="user-content">
-                                <p>Please contact <a href="mailto:pixelstrap@contact.com">pixelstrap@company.com</a>
-                                    with your story to be added.</p>
-                                <ul class="user-social-link">
-                                    <li>
-                                        <a href="https://www.facebook.com/">
-                                            <i class="ri-facebook-fill"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/">
-                                            <i class="ri-twitter-x-line"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://in.pinterest.com/">
-                                            <i class="ri-pinterest-fill"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.behance.net/">
-                                            <i class="ri-behance-fill"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/">
-                                            <i class="ri-instagram-fill"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        
 
                         <div class="accordion left-accordion-box" id="accordionPanelsStayOpenExample">
                             <div class="accordion-item">
@@ -82,10 +46,10 @@
                                 </h2>
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                                     <div class="accordion-body">
-                                        <div class="recent-post-box">
+                                        <div class="recent-post-box" id="blog-recent-sidebar">
                                             <div class="recent-box">
                                                 <a href="blog-detail.html" class="recent-image">
-                                                    <img src="../assets/images/inner-page/blog/2.jpg" class="img-fluid"
+                                                    <img src="./assets/images/inner-page/blog/2.jpg" class="img-fluid"
                                                         alt="">
                                                 </a>
 
@@ -100,7 +64,7 @@
 
                                             <div class="recent-box">
                                                 <a href="blog-detail.html" class="recent-image">
-                                                    <img src="../assets/images/inner-page/blog/3.jpg" class="img-fluid"
+                                                    <img src="./assets/images/inner-page/blog/3.jpg" class="img-fluid"
                                                         alt="">
                                                 </a>
 
@@ -115,7 +79,7 @@
 
                                             <div class="recent-box">
                                                 <a href="blog-detail.html" class="recent-image">
-                                                    <img src="../assets/images/inner-page/blog/1.jpg" class="img-fluid"
+                                                    <img src="./assets/images/inner-page/blog/1.jpg" class="img-fluid"
                                                         alt="">
                                                 </a>
 
@@ -130,7 +94,7 @@
 
                                             <div class="recent-box">
                                                 <a href="blog-detail.html" class="recent-image">
-                                                    <img src="../assets/images/inner-page/blog/4.jpg" class="img-fluid"
+                                                    <img src="./assets/images/inner-page/blog/4.jpg" class="img-fluid"
                                                         alt="">
                                                 </a>
 
@@ -146,123 +110,19 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#panelsStayOpen-collapseTwo">
-                                        Category <i class="iconsax" data-icon-name="chevron-down"></i>
-                                    </button>
-                                </h2>
-                                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse collapse show">
-                                    <div class="accordion-body">
-                                        <div class="category-list-box">
-                                            <ul class="custom-height custom-padding">
-                                                <li>
-                                                    <a href="blog-3-grid.html" class="category-name">
-                                                        <h3>Electronic Gadgets</h3>
-                                                        <span>(10)</span>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html" class="category-name">
-                                                        <h3>Diet Food</h3>
-                                                        <span>(6)</span>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html" class="category-name">
-                                                        <h3>Wooden Toys</h3>
-                                                        <span>(8)</span>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html" class="category-name">
-                                                        <h3>Furniture</h3>
-                                                        <span>(9)</span>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html" class="category-name">
-                                                        <h3>Organic Vegetables</h3>
-                                                        <span>(12)</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#panelsStayOpen-collapseThree">
-                                        Product Tags <i class="iconsax" data-icon-name="chevron-down"></i>
-                                    </button>
-                                </h2>
-                                <div id="panelsStayOpen-collapseThree"
-                                    class="accordion-collapse collapse collapse show">
-                                    <div class="accordion-body">
-                                        <div class="product-tags-box">
-                                            <ul>
-                                                <li>
-                                                    <a href="blog-3-grid.html">Organic</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html">Health</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html">Skincare</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html">Electronic</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html">Agriculture</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html">Furniture</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html">ModernDesign</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html">WoodenTable</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-3-grid.html">SmartGadgets</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-xxl-9 col-xl-8 ratio_45">
                     <div class="blog-deatils-box">
-                        <div class="blog-detail-image mb-4">
-                            <img src="../assets/images/inner-page/blog/1.jpg" class="img-fluid" alt="">
+                        <div class="blog-detail-image mb-4" id="blog-detail-image">
+                            <img src="./assets/images/inner-page/blog/1.jpg" class="img-fluid" alt="">
                         </div>
                         <div class="blog-image-contain">
-                            <h2>Pop top sporty stripe trims mesh inserts denim turtle neck casual white cotton button
+                            <h2 id="blog-detail-title">Pop top sporty stripe trims mesh inserts denim turtle neck casual white cotton button
                                 silver.</h2>
-                            <ul class="blog-list-box">
+                            <ul class="blog-list-box" id="blog-meta">
                                 <li>Productivity</li>
                                 <li>Published on January 02, 2025</li>
                                 <li>
@@ -274,7 +134,7 @@
                             </ul>
                         </div>
 
-                        <div class="blog-detail-contain">
+                        <div class="blog-detail-contain" id="blog-detail-content">
                             <p>Elegance is not the prerogative of those who have just escaped from adolescence, but of
                                 those who have already taken possession of their future. Fashion is always of the time
                                 in which you live. It is not something standing alone. But the grand problem, the most
@@ -330,7 +190,7 @@
                                     <div class="people-box">
                                         <div>
                                             <div class="people-image">
-                                                <img src="../assets/images/review/1.jpg" class="img-fluid" alt="">
+                                                <img src="./assets/images/review/1.jpg" class="img-fluid" alt="">
                                             </div>
                                         </div>
 
@@ -392,7 +252,7 @@
                                             <div class="people-box">
                                                 <div>
                                                     <div class="people-image">
-                                                        <img src="../assets/images/review/2.jpg" class="img-fluid"
+                                                        <img src="./assets/images/review/2.jpg" class="img-fluid"
                                                             alt="">
                                                     </div>
                                                 </div>
@@ -457,7 +317,7 @@
                                     <div class="people-box">
                                         <div>
                                             <div class="people-image">
-                                                <img src="../assets/images/review/5.jpg" class="img-fluid" alt="">
+                                                <img src="./assets/images/review/5.jpg" class="img-fluid" alt="">
                                             </div>
                                         </div>
 
@@ -518,7 +378,7 @@
                                     <div class="people-box">
                                         <div>
                                             <div class="people-image">
-                                                <img src="../assets/images/review/6.jpg" class="img-fluid" alt="">
+                                                <img src="./assets/images/review/6.jpg" class="img-fluid" alt="">
                                             </div>
                                         </div>
 
@@ -623,17 +483,17 @@
             </div>
 
             <div class="swiper recent-blog-slider">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper" id="related-blog-slider">
                     <div class="swiper-slide">
                         <div class="blog-box h-100 sticky-blog-box">
                             <div class="blog-image">
                                 <a href="blog-detail.html">
-                                    <img src="../assets/images/inner-page/blog/1.jpg" class="img-fluid" alt="">
+                                    <img src="./assets/images/inner-page/blog/1.jpg" class="img-fluid" alt="">
                                 </a>
                                 <i class="ri-pushpin-fill pinned"></i>
                                 <div class="blog-profile-box">
                                     <a href="#!" class="blog-image">
-                                        <img class="img-fluid" src="../assets/images/user/2.jpg" alt="user">
+                                        <img class="img-fluid" src="./assets/images/user/2.jpg" alt="user">
                                     </a>
                                     <div class="blog-name">
                                         <a href="#!">
@@ -664,12 +524,12 @@
                         <div class="blog-box h-100 sticky-blog-box">
                             <div class="blog-image">
                                 <a href="blog-detail.html">
-                                    <img src="../assets/images/inner-page/blog/6.jpg" class="img-fluid" alt="">
+                                    <img src="./assets/images/inner-page/blog/6.jpg" class="img-fluid" alt="">
                                 </a>
                                 <i class="ri-pushpin-fill pinned"></i>
                                 <div class="blog-profile-box">
                                     <a href="#!" class="blog-image">
-                                        <img class="img-fluid" src="../assets/images/user/10.jpg" alt="user">
+                                        <img class="img-fluid" src="./assets/images/user/10.jpg" alt="user">
                                     </a>
                                     <div class="blog-name">
                                         <a href="#!">
@@ -698,12 +558,12 @@
                         <div class="blog-box h-100 sticky-blog-box">
                             <div class="blog-image">
                                 <a href="blog-detail.html">
-                                    <img src="../assets/images/inner-page/blog/5.jpg" class="img-fluid" alt="">
+                                    <img src="./assets/images/inner-page/blog/5.jpg" class="img-fluid" alt="">
                                 </a>
                                 <i class="ri-pushpin-fill pinned"></i>
                                 <div class="blog-profile-box">
                                     <a href="#!" class="blog-image">
-                                        <img class="img-fluid" src="../assets/images/user/6.jpg" alt="user">
+                                        <img class="img-fluid" src="./assets/images/user/6.jpg" alt="user">
                                     </a>
                                     <div class="blog-name">
                                         <a href="#!">
@@ -732,11 +592,11 @@
                         <div class="blog-box h-100">
                             <div class="blog-image">
                                 <a href="blog-detail.html">
-                                    <img src="../assets/images/inner-page/blog/3.jpg" class="img-fluid" alt="">
+                                    <img src="./assets/images/inner-page/blog/3.jpg" class="img-fluid" alt="">
                                 </a>
                                 <div class="blog-profile-box">
                                     <a href="#!" class="blog-image">
-                                        <img class="img-fluid" src="../assets/images/user/3.jpg" alt="user">
+                                        <img class="img-fluid" src="./assets/images/user/3.jpg" alt="user">
                                     </a>
                                     <div class="blog-name">
                                         <a href="#!">
@@ -765,11 +625,11 @@
                         <div class="blog-box h-100">
                             <div class="blog-image">
                                 <a href="blog-detail.html">
-                                    <img src="../assets/images/inner-page/blog/2.jpg" class="img-fluid" alt="">
+                                    <img src="./assets/images/inner-page/blog/2.jpg" class="img-fluid" alt="">
                                 </a>
                                 <div class="blog-profile-box">
                                     <a href="#!" class="blog-image">
-                                        <img class="img-fluid" src="../assets/images/user/4.jpg" alt="user">
+                                        <img class="img-fluid" src="./assets/images/user/4.jpg" alt="user">
                                     </a>
                                     <div class="blog-name">
                                         <a href="#!">

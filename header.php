@@ -48,6 +48,7 @@
 
     
     <script src="./assets/js/userJs/login.js"></script>
+    <Script src="./assets/js/userJs/blog.js"></Script>
 </head>
 
 <body class="base-bg-color">
@@ -2865,8 +2866,8 @@
                                 </li>
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#!" data-bs-toggle="dropdown">Blog</a>
-                                    <ul class="dropdown-menu">
+                                    <a class="nav-link dropdown-toggle" href="blog.php">Blog</a>
+                                    <!-- <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="blog-2-grid.php">Blog grid 2</a>
                                         </li>
@@ -2885,7 +2886,7 @@
                                         <li>
                                             <a class="dropdown-item" href="blog-detail.php">Blog details</a>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </li>
                             </ul>
                         </div>
