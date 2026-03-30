@@ -19,6 +19,7 @@
     <meta name="msapplication-TileImage" content="assets/images/favicon/1.html">
     <meta name="msapplication-TileColor" content="#FFFFFF">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
     
     <title>HyperScripts | E-commerce </title>
 
