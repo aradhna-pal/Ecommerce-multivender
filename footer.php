@@ -178,7 +178,7 @@
 
           <div class="sub-footer">
               <a href="index.html" class="sub-footer-logo">
-                  <img src="https://themes.pixelstrap.net/kartify/assets/images/logo/1-dark.svg" class="img-fluid" alt="">
+                  <img src="assets/images/img/logo1.png" class="img-fluid" alt="">
               </a>
               <ul class="payment-list">
                   <li>
