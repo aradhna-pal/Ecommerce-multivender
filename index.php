@@ -15,7 +15,7 @@
                         <div class="category-menu-list">
                             <ul class="top-menu-list">
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <svg>
                                             <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/category.svg#daily"></use>
                                         </svg>
@@ -23,7 +23,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <svg>
                                             <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/category.svg#top"></use>
                                         </svg>
@@ -31,7 +31,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <svg>
                                             <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/category.svg#trending"></use>
                                         </svg>
@@ -42,67 +42,67 @@
 
                             <ul class="sub-menu-list">
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-macbook-line"></i>
                                         <h5>Mobiles, Computers</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-plug-2-line"></i>
                                         <h5>TV, Appliances, Electronics</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-men-line"></i>
                                         <h5>Men's Fashion</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-women-line"></i>
                                         <h5>Women's Fashion <span class="success-bg-color">New</span></h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-knife-line"></i>
                                         <h5>Home, Kitchen, Pets</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-empathize-line"></i>
                                         <h5>Beauty, Health, Grocery</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-boxing-line"></i>
                                         <h5>Sports, Fitness, Bags, Luggage</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-open-arm-line"></i>
                                         <h5>Toys, Baby Products, Kid's Fashion</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-car-line"></i>
                                         <h5>Car, Motorbike, Industrial</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-book-open-line"></i>
                                         <h5>Books</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html" class="sub-category-box">
+                                    <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-gamepad-line"></i>
                                         <h5>Game Consoles</h5>
                                     </a>
@@ -115,19 +115,19 @@
                 <div class="custom-xxl-9">
                     <div class="row g-0">
                         <div class="col-xl-8 col-12">
-                            <a href="shop-left-sidebar.html" class="banner-box b-left">
+                            <a href="shop-left-sidebar.php" class="banner-box b-left">
                                 <img src="assets/images/banner/1.jpg" class="img-fluid ratio-8x5" alt="">
                             </a>
                         </div>
                         <div class="col-4 d-xl-block d-none">
                             <div class="row m-0 h-100">
                                 <div class="col-12 p-0">
-                                    <a href="shop-left-sidebar.html" class="banner-box">
+                                    <a href="shop-left-sidebar.php" class="banner-box">
                                         <img src="assets/images/banner/2.jpg" class="img-fluid ratio-8x5" alt="">
                                     </a>
                                 </div>
                                 <div class="col-12 p-0">
-                                    <a href="shop-left-sidebar.html" class="banner-box">
+                                    <a href="shop-left-sidebar.php" class="banner-box">
                                         <img src="assets/images/banner/3.jpg" class="img-fluid ratio-8x5" alt="">
                                     </a>
                                 </div>
@@ -136,22 +136,22 @@
                     </div>
                     <div class="row g-0 ratio_82">
                         <div class="col-lg-3 col-sm-6 h-100">
-                            <a href="shop-left-sidebar.html" class="banner-box">
+                            <a href="shop-left-sidebar.php" class="banner-box">
                                 <img src="assets/images/banner/4.jpg" alt="" class="bg-img">
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 h-100">
-                            <a href="shop-left-sidebar.html" class="banner-box">
+                            <a href="shop-left-sidebar.php" class="banner-box">
                                 <img src="assets/images/banner/5.jpg" alt="" class="bg-img">
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 h-100">
-                            <a href="shop-left-sidebar.html" class="banner-box">
+                            <a href="shop-left-sidebar.php" class="banner-box">
                                 <img src="assets/images/banner/6.jpg" alt="" class="bg-img">
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 h-100">
-                            <a href="shop-left-sidebar.html" class="banner-box">
+                            <a href="shop-left-sidebar.php" class="banner-box">
                                 <img src="assets/images/banner/7.jpg" alt="" class="bg-img">
                             </a>
                         </div>
@@ -183,18 +183,18 @@
                         </div>
                         <p>Hot items, Affordable price, Daily updates.</p>
                     </div>
-                    <a href="shop-left-sidebar.html">See all deals <i class="ri-arrow-right-s-line"></i></a>
+                    <a href="shop-left-sidebar.php">See all deals <i class="ri-arrow-right-s-line"></i></a>
                 </div>
 
                 <div class="swiper product-slider-7 product-box-slider">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="product-box productMain">
-                                <a href="product-color.html" class="product-image">
+                                <a href="product-color.php" class="product-image">
                                     <img src="assets/images/product/1.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <h4 class="productName">Smart Watch Series X3</h4>
                                     </a>
                                     <ul class="rating">
@@ -242,11 +242,11 @@
                         </div>
                         <div class="swiper-slide">
                             <div class="product-box productMain">
-                                <a href="product-color.html" class="product-image">
+                                <a href="product-color.php" class="product-image">
                                     <img src="assets/images/product/2.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <h4 class="productName">Slim 3 Intel Core i4</h4>
                                     </a>
                                     <ul class="rating">
@@ -294,11 +294,11 @@
                         </div>
                         <div class="swiper-slide">
                             <div class="product-box productMain">
-                                <a href="product-color.html" class="product-image">
+                                <a href="product-color.php" class="product-image">
                                     <img src="assets/images/product/3.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <h4 class="productName">Portable Laptop Table</h4>
                                     </a>
                                     <ul class="rating">
@@ -346,11 +346,11 @@
                         </div>
                         <div class="swiper-slide">
                             <div class="product-box productMain">
-                                <a href="product-color.html" class="product-image">
+                                <a href="product-color.php" class="product-image">
                                     <img src="assets/images/product/4.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <h4 class="productName">Smart Watch Series X3</h4>
                                     </a>
                                     <ul class="rating">
@@ -398,11 +398,11 @@
                         </div>
                         <div class="swiper-slide">
                             <div class="product-box productMain">
-                                <a href="product-color.html" class="product-image">
+                                <a href="product-color.php" class="product-image">
                                     <img src="assets/images/product/5.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <h4 class="productName">Kitchen Accessories</h4>
                                     </a>
                                     <ul class="rating">
@@ -450,11 +450,11 @@
                         </div>
                         <div class="swiper-slide">
                             <div class="product-box productMain">
-                                <a href="product-color.html" class="product-image">
+                                <a href="product-color.php" class="product-image">
                                     <img src="assets/images/product/6.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <h4 class="productName">Smart Watch Series X3</h4>
                                     </a>
                                     <ul class="rating">
@@ -502,11 +502,11 @@
                         </div>
                         <div class="swiper-slide">
                             <div class="product-box productMain">
-                                <a href="product-color.html" class="product-image">
+                                <a href="product-color.php" class="product-image">
                                     <img src="assets/images/product/7.png" class="img-fluid productImage" alt="">
                                 </a>
                                 <div class="product-content">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <h4 class="productName">Rockerz 458 Bluetooth</h4>
                                     </a>
                                     <ul class="rating">
@@ -572,7 +572,7 @@
                         <div class="row g-3">
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/8.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>kitchen utensils</h4>
@@ -580,7 +580,7 @@
                             </div>
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/9.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>Vacuum Coffee Mug</h4>
@@ -588,7 +588,7 @@
                             </div>
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/10.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>6 Pcs Set Stainless</h4>
@@ -596,7 +596,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/11.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>stainless dishware</h4>
@@ -604,7 +604,7 @@
                             </div>
                             <div class="col-xxl-6 col-lg-12 col-sm-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/12.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>Wholesale Cheap Square Des..</h4>
@@ -623,7 +623,7 @@
                         <div class="row g-3">
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/13.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>One plus Nord CE</h4>
@@ -631,7 +631,7 @@
                             </div>
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/14.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>Samsung Galaxy M14</h4>
@@ -639,7 +639,7 @@
                             </div>
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/15.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>iPhone 14 Pro</h4>
@@ -647,7 +647,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/16.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>Realme 10 PRO</h4>
@@ -655,7 +655,7 @@
                             </div>
                             <div class="col-xxl-6 col-lg-12 col-sm-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/17.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>MacBook Pro 14-inch and 16-inch</h4>
@@ -674,7 +674,7 @@
                         <div class="row g-3">
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/18.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>Stainless Steel Over</h4>
@@ -682,7 +682,7 @@
                             </div>
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/21.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>FridgeFrost Innovations</h4>
@@ -690,7 +690,7 @@
                             </div>
                             <div class="col-xxl-4 col-lg-6 col-sm-4 col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/20.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>BakeMaster Professional Ovens</h4>
@@ -698,7 +698,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/19.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>BrewMaster Coffee Systems</h4>
@@ -706,7 +706,7 @@
                             </div>
                             <div class="col-xxl-6 col-lg-12 col-sm-6">
                                 <div class="latest-product-box">
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/18.png" class="img-fluid" alt="">
                                     </a>
                                     <h4>RoastRite Culinary Ovens</h4>
@@ -725,12 +725,12 @@
         <div class="custom-container">
             <div class="row g-sm-4 g-3">
                 <div class="col-xl-8">
-                    <a href="shop-left-sidebar.html" class="banner-box">
+                    <a href="shop-left-sidebar.php" class="banner-box">
                         <img src="assets/images/banner/8.jpg" class="img-fluid" alt="">
                     </a>
                 </div>
                 <div class="col-xl-4">
-                    <a href="shop-left-sidebar.html" class="banner-box h-100">
+                    <a href="shop-left-sidebar.php" class="banner-box h-100">
                         <img src="assets/images/banner/9.jpg" class="img-fluid" alt="">
                     </a>
                 </div>
@@ -745,73 +745,73 @@
             <div class="light-bg-color overflow-hidden">
                 <div class="title title-timer justify-content-between">
                     <h3>Get it all right here</h3>
-                    <a href="shop-left-sidebar.html">See all deals <i class="ri-arrow-right-s-line"></i></a>
+                    <a href="shop-left-sidebar.php">See all deals <i class="ri-arrow-right-s-line"></i></a>
                 </div>
 
                 <div class="swiper category-box-slide">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/1.png" class="img-fluid" alt="">
                                 <h4>Electronic</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/2.png" class="img-fluid" alt="">
                                 <h4>Home</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/3.png" class="img-fluid" alt="">
                                 <h4>Sport & Outdoor</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/4.png" class="img-fluid" alt="">
                                 <h4>Toys</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/5.png" class="img-fluid" alt="">
                                 <h4>Grocery</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/6.png" class="img-fluid" alt="">
                                 <h4>Man's Fashion</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/7.png" class="img-fluid" alt="">
                                 <h4>Woman's Fashion</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/8.png" class="img-fluid" alt="">
                                 <h4>Baby</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/9.png" class="img-fluid" alt="">
                                 <h4>Health & Wellness</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/10.png" class="img-fluid" alt="">
                                 <h4>Auto & Tires</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.html" class="category-box">
+                            <a href="shop-left-sidebar.php" class="category-box">
                                 <img src="assets/images/category/11.png" class="img-fluid" alt="">
                                 <h4>Household Essentials</h4>
                             </a>
@@ -828,7 +828,7 @@
         <div class="custom-container">
             <div class="row g-4">
                 <div class="col-xxl-3-1 col-xl-4 d-xl-block d-none">
-                    <a href="shop-left-sidebar.html" class="banner-box b-left h-100">
+                    <a href="shop-left-sidebar.php" class="banner-box b-left h-100">
                         <img src="assets/images/banner/10.jpg" class="img-fluid" alt="">
                     </a>
                 </div>
@@ -862,12 +862,12 @@
                                             <ul class="recommendations-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/22.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Apple iPhone 14 (128 GB) -
                                                                     Purple</h4>
                                                             </a>
@@ -894,12 +894,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/23.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">BlackBerry Keyone BBB100-7
                                                                     64gb unlocked gSM</h4>
                                                             </a>
@@ -926,12 +926,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/24.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">refurb macbook air space
                                                                     gray m1 202009
                                                                 </h4>
@@ -963,12 +963,12 @@
                                             <ul class="recommendations-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/25.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Apple iPhone 14 - 128 GB
                                                                     Silver Model
                                                                 </h4>
@@ -996,12 +996,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/26.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">EvoFox Game Box 32 GB with
                                                                     Asphalt 8
                                                                 </h4>
@@ -1029,12 +1029,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/27.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Motorola Moto X4 32GB
                                                                     Unlocked
                                                                     Smartphone</h4>
@@ -1067,12 +1067,12 @@
                                             <ul class="recommendations-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/28.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Apple iPhone 13 Mini
                                                                     (512GB) -
                                                                     Starlight</h4>
@@ -1100,12 +1100,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/29.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Fujifilm Instax Mini 9
                                                                     Instant Camera
                                                                 </h4>
@@ -1133,12 +1133,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/30.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Canon EOS 1500D DSLR Camera
                                                                     Body+ 18-55
                                                                     mm</h4>
@@ -1176,12 +1176,12 @@
                                             <ul class="recommendations-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/22.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Apple iPhone 14 (128 GB) -
                                                                     Purple</h5>
                                                             </a>
@@ -1208,12 +1208,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/23.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">BlackBerry Keyone BBB100-7
                                                                     64gb unlocked gSM</h5>
                                                             </a>
@@ -1240,12 +1240,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/24.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">refurb macbook air space
                                                                     gray m1 202009
                                                                 </h5>
@@ -1277,12 +1277,12 @@
                                             <ul class="recommendations-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/25.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Apple iPhone 14 - 128 GB
                                                                     Silver Model
                                                                 </h5>
@@ -1310,12 +1310,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/26.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">EvoFox Game Box 32 GB with
                                                                     Asphalt 8
                                                                 </h5>
@@ -1343,12 +1343,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/27.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Motorola Moto X4 32GB
                                                                     Unlocked
                                                                     Smartphone</h5>
@@ -1381,12 +1381,12 @@
                                             <ul class="recommendations-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/28.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Apple iPhone 13 Mini
                                                                     (512GB) -
                                                                     Starlight</h5>
@@ -1414,12 +1414,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/29.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Fujifilm Instax Mini 9
                                                                     Instant Camera
                                                                 </h5>
@@ -1447,12 +1447,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/30.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Canon EOS 1500D DSLR Camera
                                                                     Body+ 18-55
                                                                     mm</h5>
@@ -1490,12 +1490,12 @@
                                             <ul class="recommendations-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/22.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Apple iPhone 14 (128 GB) -
                                                                     Purple</h5>
                                                             </a>
@@ -1522,12 +1522,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/23.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">BlackBerry Keyone BBB100-7
                                                                     64gb unlocked gSM</h5>
                                                             </a>
@@ -1554,12 +1554,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/24.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">refurb macbook air space
                                                                     gray m1 202009
                                                                 </h5>
@@ -1591,12 +1591,12 @@
                                             <ul class="recommendations-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/25.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Apple iPhone 14 - 128 GB
                                                                     Silver Model
                                                                 </h5>
@@ -1624,12 +1624,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/26.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">EvoFox Game Box 32 GB with
                                                                     Asphalt 8
                                                                 </h5>
@@ -1657,12 +1657,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/27.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Motorola Moto X4 32GB
                                                                     Unlocked
                                                                     Smartphone</h5>
@@ -1695,12 +1695,12 @@
                                             <ul class="recommendations-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/28.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Apple iPhone 13 Mini
                                                                     (512GB) -
                                                                     Starlight</h5>
@@ -1728,12 +1728,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/29.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Fujifilm Instax Mini 9
                                                                     Instant Camera
                                                                 </h5>
@@ -1761,12 +1761,12 @@
                                                 </li>
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/30.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h5 class="name title-color">Canon EOS 1500D DSLR Camera
                                                                     Body+ 18-55
                                                                     mm</h5>
@@ -1811,7 +1811,7 @@
             <div class="row g-3">
                 <div class="col-xxl-3-1 col-xl-3 d-xl-block d-none">
                     <div class="bg-white h-100 ratio_50">
-                        <a href="shop-left-sidebar.html" class="banner-box b-left">
+                        <a href="shop-left-sidebar.php" class="banner-box b-left">
                             <img src="assets/images/banner/11.jpg" class="bg-img" alt="">
                         </a>
                         <div class="left-banner-content">
@@ -1819,22 +1819,22 @@
                                 <h4 class="deal-title">Accessories</h4>
                                 <ul class="deal-list">
                                     <li>
-                                        <a href="shop-left-sidebar.html">Pendrives</a>
+                                        <a href="shop-left-sidebar.php">Pendrives</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html">External Hard Disks</a>
+                                        <a href="shop-left-sidebar.php">External Hard Disks</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html">Laptop Bags</a>
+                                        <a href="shop-left-sidebar.php">Laptop Bags</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html">Mouse</a>
+                                        <a href="shop-left-sidebar.php">Mouse</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html">Computer Table</a>
+                                        <a href="shop-left-sidebar.php">Computer Table</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html">read more</a>
+                                        <a href="shop-left-sidebar.php">read more</a>
                                     </li>
                                 </ul>
                             </div>
@@ -1843,22 +1843,22 @@
                                 <h4 class="deal-title">Computers & Laptops</h4>
                                 <ul class="deal-list">
                                     <li>
-                                        <a href="shop-left-sidebar.html">Laptops</a>
+                                        <a href="shop-left-sidebar.php">Laptops</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html">Desktops</a>
+                                        <a href="shop-left-sidebar.php">Desktops</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html">PC Gaming</a>
+                                        <a href="shop-left-sidebar.php">PC Gaming</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html">Components</a>
+                                        <a href="shop-left-sidebar.php">Components</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html">Mobile</a>
+                                        <a href="shop-left-sidebar.php">Mobile</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.html">read more</a>
+                                        <a href="shop-left-sidebar.php">read more</a>
                                     </li>
                                 </ul>
                             </div>
@@ -1871,7 +1871,7 @@
                             <div class="light-bg-color">
                                 <div class="title title-timer justify-content-between">
                                     <h3>Top Trending</h3>
-                                    <a href="shop-left-sidebar.html">See all<i class="ri-arrow-right-s-line"></i></a>
+                                    <a href="shop-left-sidebar.php">See all<i class="ri-arrow-right-s-line"></i></a>
                                 </div>
 
                                 <div class="swiper slider-2 slider-pagination">
@@ -1880,12 +1880,12 @@
                                             <ul class="top-trending-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/31.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Pro Healthy Lifestyle
                                                                     Edible Oil 5
                                                                     litre Jar | Saffola Gold Refined Oil</h4>
@@ -1909,18 +1909,18 @@
                                                             </ul>
                                                             <h5 class="price">$1309.00 <del>$1525.00</del></h5>
                                                             <a class="btn btn-sm mt-sn-3 mt-2 btn-bg-theme"
-                                                                href="product-color.html">Shop Now</a>
+                                                                href="product-color.php">Shop Now</a>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="mt-md-5 mt-sm-4 mt-3">
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/32.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Cabin Luggage Polycarbonate
                                                                     8 Wheel
                                                                     Trolly Luggage</h4>
@@ -1944,7 +1944,7 @@
                                                             </ul>
                                                             <h5 class="price">$1308.00 <del>$1425.00</del></h5>
                                                             <a class="btn btn-sm mt-sn-3 mt-2 btn-bg-theme"
-                                                                href="product-color.html">Shop Now</a>
+                                                                href="product-color.php">Shop Now</a>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -1954,12 +1954,12 @@
                                             <ul class="top-trending-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/33.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Stainless Steel Premium
                                                                     Vegetable &
                                                                     Onion Chopper</h4>
@@ -1983,18 +1983,18 @@
                                                             </ul>
                                                             <h5 class="price">$1209.00 <del>$1220.00</del></h5>
                                                             <a class="btn btn-sm mt-sn-3 mt-2 btn-bg-theme"
-                                                                href="product-color.html">Shop Now</a>
+                                                                href="product-color.php">Shop Now</a>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="mt-md-5 mt-sm-4 mt-3">
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/34.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Shears Kitchen Spoone
                                                                     6 Piece Set with Wooden Block</h4>
                                                             </a>
@@ -2017,7 +2017,7 @@
                                                             </ul>
                                                             <h5 class="price">$1209.00 <del>$1220.00</del></h5>
                                                             <a class="btn btn-sm mt-sn-3 mt-2 btn-bg-theme"
-                                                                href="product-color.html">Shop Now</a>
+                                                                href="product-color.php">Shop Now</a>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -2027,12 +2027,12 @@
                                             <ul class="top-trending-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/31.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Pro Healthy Lifestyle
                                                                     Edible Oil 5
                                                                     litre Jar | Saffola Gold Refined Oil</h4>
@@ -2056,18 +2056,18 @@
                                                             </ul>
                                                             <h5 class="price">$1309.00 <del>$1525.00</del></h5>
                                                             <a class="btn btn-sm mt-sn-3 mt-2 btn-bg-theme"
-                                                                href="product-color.html">Shop Now</a>
+                                                                href="product-color.php">Shop Now</a>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="mt-md-5 mt-sm-4 mt-3">
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/32.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Cabin Luggage Polycarbonate
                                                                     8 Wheel
                                                                     Trolly Luggage</h4>
@@ -2091,7 +2091,7 @@
                                                             </ul>
                                                             <h5 class="price">$1308.00 <del>$1425.00</del></h5>
                                                             <a class="btn btn-sm mt-sn-3 mt-2 btn-bg-theme"
-                                                                href="product-color.html">Shop Now</a>
+                                                                href="product-color.php">Shop Now</a>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -2101,12 +2101,12 @@
                                             <ul class="top-trending-product-list">
                                                 <li>
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/33.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Stainless Steel Premium
                                                                     Vegetable &
                                                                     Onion Chopper</h4>
@@ -2130,18 +2130,18 @@
                                                             </ul>
                                                             <h5 class="price">$1209.00 <del>$1220.00</del></h5>
                                                             <a class="btn btn-sm mt-sn-3 mt-2 btn-bg-theme"
-                                                                href="product-color.html">Shop Now</a>
+                                                                href="product-color.php">Shop Now</a>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="mt-md-5 mt-sm-4 mt-3">
                                                     <div class="vertical-product-box">
-                                                        <a href="product-color.html" class="product-image">
+                                                        <a href="product-color.php" class="product-image">
                                                             <img src="assets/images/product/34.png" class="img-fluid"
                                                                 alt="">
                                                         </a>
                                                         <div class="product-content">
-                                                            <a href="product-color.html">
+                                                            <a href="product-color.php">
                                                                 <h4 class="name title-color">Shears Kitchen Spoone
                                                                     6 Piece Set with Wooden Block</h4>
                                                             </a>
@@ -2164,7 +2164,7 @@
                                                             </ul>
                                                             <h5 class="price">$1209.00 <del>$1220.00</del></h5>
                                                             <a class="btn btn-sm mt-sn-3 mt-2 btn-bg-theme"
-                                                                href="product-color.html">Shop Now</a>
+                                                                href="product-color.php">Shop Now</a>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -2197,19 +2197,19 @@
                                                     <div class="swiper swiper-main">
                                                         <div class="swiper-wrapper">
                                                             <div class="swiper-slide">
-                                                                <a href="product-color.html" class="main-image-box">
+                                                                <a href="product-color.php" class="main-image-box">
                                                                     <img src="assets/images/product/35-1.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="swiper-slide">
-                                                                <a href="product-color.html" class="main-image-box">
+                                                                <a href="product-color.php" class="main-image-box">
                                                                     <img src="assets/images/product/35-2.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="swiper-slide">
-                                                                <a href="product-color.html" class="main-image-box">
+                                                                <a href="product-color.php" class="main-image-box">
                                                                     <img src="assets/images/product/35-3.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
@@ -2274,7 +2274,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="product-content">
-                                                    <a href="product-color.html">
+                                                    <a href="product-color.php">
                                                         <h3>SonicPulse Pro Studio Headphones - Premium Comfort</h3>
                                                     </a>
                                                     <div class="price-stock">
@@ -2313,19 +2313,19 @@
                                                     <div class="swiper swiper-main1">
                                                         <div class="swiper-wrapper">
                                                             <div class="swiper-slide">
-                                                                <a href="product-color.html" class="main-image-box">
+                                                                <a href="product-color.php" class="main-image-box">
                                                                     <img src="assets/images/product/23.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="swiper-slide">
-                                                                <a href="product-color.html" class="main-image-box">
+                                                                <a href="product-color.php" class="main-image-box">
                                                                     <img src="assets/images/product/24.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
                                                             </div>
                                                             <div class="swiper-slide">
-                                                                <a href="product-color.html" class="main-image-box">
+                                                                <a href="product-color.php" class="main-image-box">
                                                                     <img src="assets/images/product/27.png"
                                                                         class="img-fluid" alt="">
                                                                 </a>
@@ -2390,7 +2390,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="product-content">
-                                                    <a href="product-color.html">
+                                                    <a href="product-color.php">
                                                         <h3>BlackBerry Keyone BBB100-7 64gb unlocked gSM</h3>
                                                     </a>
                                                     <div class="price-stock">
@@ -2437,7 +2437,7 @@
     <!-- Mega Brands Banner Section Start -->
     <section class="section-t-space">
         <div class="custom-container">
-            <a href="shop-left-sidebar.html" class="banner-box-9 brand-banner">
+            <a href="shop-left-sidebar.php" class="banner-box-9 brand-banner">
                 <img src="assets/images/banner/12.jpg" class="img-fluid" alt="">
             </a>
         </div>
@@ -2453,95 +2453,95 @@
                 </div>
                 <ul class="hot-tag-list">
                     <li>
-                        <a href="shop-left-sidebar.html">Nokia</a>
+                        <a href="shop-left-sidebar.php">Nokia</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Acer</a>
+                        <a href="shop-left-sidebar.php">Acer</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Samsung Tablet</a>
+                        <a href="shop-left-sidebar.php">Samsung Tablet</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Apple iPhone</a>
+                        <a href="shop-left-sidebar.php">Apple iPhone</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">HTC</a>
+                        <a href="shop-left-sidebar.php">HTC</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Macbook</a>
+                        <a href="shop-left-sidebar.php">Macbook</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Sony TV</a>
+                        <a href="shop-left-sidebar.php">Sony TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Lenovo</a>
+                        <a href="shop-left-sidebar.php">Lenovo</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">iPhone 12 Pro</a>
+                        <a href="shop-left-sidebar.php">iPhone 12 Pro</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Dell</a>
+                        <a href="shop-left-sidebar.php">Dell</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Samsung LED TV</a>
+                        <a href="shop-left-sidebar.php">Samsung LED TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Accessories</a>
+                        <a href="shop-left-sidebar.php">Accessories</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Desktops</a>
+                        <a href="shop-left-sidebar.php">Desktops</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Acer</a>
+                        <a href="shop-left-sidebar.php">Acer</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">LG LCD TV</a>
+                        <a href="shop-left-sidebar.php">LG LCD TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Sharp LCD TV</a>
+                        <a href="shop-left-sidebar.php">Sharp LCD TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Panasonic TV</a>
+                        <a href="shop-left-sidebar.php">Panasonic TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Electrolux</a>
+                        <a href="shop-left-sidebar.php">Electrolux</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Toshiba</a>
+                        <a href="shop-left-sidebar.php">Toshiba</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Toshiba TV</a>
+                        <a href="shop-left-sidebar.php">Toshiba TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">PC Gaming</a>
+                        <a href="shop-left-sidebar.php">PC Gaming</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">LG LCD TV</a>
+                        <a href="shop-left-sidebar.php">LG LCD TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">LED TV</a>
+                        <a href="shop-left-sidebar.php">LED TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Sony</a>
+                        <a href="shop-left-sidebar.php">Sony</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Windows Tablets</a>
+                        <a href="shop-left-sidebar.php">Windows Tablets</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Mini Refrigerators</a>
+                        <a href="shop-left-sidebar.php">Mini Refrigerators</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Macbook</a>
+                        <a href="shop-left-sidebar.php">Macbook</a>
                     </li>
 
                     <li>
-                        <a href="shop-left-sidebar.html">Windows Tablets</a>
+                        <a href="shop-left-sidebar.php">Windows Tablets</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Apple Accessories</a>
+                        <a href="shop-left-sidebar.php">Apple Accessories</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.html">Blackberry</a>
+                        <a href="shop-left-sidebar.php">Blackberry</a>
                     </li>
                 </ul>
             </div>
@@ -2555,26 +2555,26 @@
             <div class="light-bg-color">
                 <div class="title title-timer justify-content-between">
                     <h3>Don't Miss This Offers</h3>
-                    <a href="shop-left-sidebar.html">See all deals<i class="ri-arrow-right-s-line"></i></a>
+                    <a href="shop-left-sidebar.php">See all deals<i class="ri-arrow-right-s-line"></i></a>
                 </div>
                 <div class="row g-sm-4 g-3">
                     <div class="col-xxl-3 col-sm-6">
-                        <a href="shop-left-sidebar.html" class="offer-product-box">
+                        <a href="shop-left-sidebar.php" class="offer-product-box">
                             <img src="assets/images/banner/13.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="col-xxl-3 col-sm-6">
-                        <a href="shop-left-sidebar.html" class="offer-product-box">
+                        <a href="shop-left-sidebar.php" class="offer-product-box">
                             <img src="assets/images/banner/14.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="col-xxl-3 col-sm-6">
-                        <a href="shop-left-sidebar.html" class="offer-product-box">
+                        <a href="shop-left-sidebar.php" class="offer-product-box">
                             <img src="assets/images/banner/15.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="col-xxl-3 col-sm-6">
-                        <a href="shop-left-sidebar.html" class="offer-product-box">
+                        <a href="shop-left-sidebar.php" class="offer-product-box">
                             <img src="assets/images/banner/16.png" class="img-fluid" alt="">
                         </a>
                     </div>

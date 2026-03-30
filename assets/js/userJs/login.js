@@ -1,12 +1,12 @@
-alert("Please accept Terms & Conditions");
+// alert("Please accept Terms & Conditions");
 document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.getElementById("registerForm");
-    alert(form);
-    alert("Form Element: " + form);
+    // alert(form);
+    // alert("Form Element: " + form);
 
     form.addEventListener("submit", async function (e) {
-        alert("Submit Event Triggered");
+        // alert("Submit Event Triggered");
         e.preventDefault();
 
         console.log("Form Submitted ✅");
