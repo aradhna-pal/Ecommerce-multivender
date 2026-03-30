@@ -1,1164 +1,1177 @@
   <!-- Footer Section Start -->
-    <footer class="footer-section">
-        <div class="custom-container">
-            <div class="main-footer">
-                <div class="row g-sm-4 g-3">
-                    <div class="col-xl-3 col-md-4 col-sm-7">
-                        <div class="footer-title-2">
-                            <h4>Contact Info</h4>
-                        </div>
-                        <ul class="footer-content-list">
-                            <li>
-                                <a href="tel:(603)555-0123" class="content-box">
-                                    <svg>
-                                        <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/footer-icon.svg#contact"></use>
-                                    </svg>
-                                    <h4>(603) 555-0123</h4>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#!" class="content-box">
-                                    <div class="footer-content-icon">
-                                        <svg>
-                                            <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/footer-icon.svg#location"></use>
-                                        </svg>
-                                    </div>
-                                    <h5>3228 Bicetown Road Huntington, NY 11743</h5>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mailto:pixelstrap@contact.com" class="content-box">
-                                    <div class="footer-content-icon">
-                                        <svg>
-                                            <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/footer-icon.svg#mail"></use>
-                                        </svg>
-                                    </div>
-                                    <h5>kartify@contact.com</h5>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="social-icon-box">
-                            <h5 class="content-color">Stay Connected :</h5>
-                            <ul class="social-icon-list">
-                                <li>
-                                    <a href="https://www.facebook.com/" target="_blank">
-                                        <i class="ri-facebook-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://twitter.com/" target="_blank">
-                                        <i class="ri-twitter-x-line"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/" target="_blank">
-                                        <i class="ri-instagram-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.pinterest.ca/" target="_blank">
-                                        <i class="ri-pinterest-fill"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+  <footer class="footer-section">
+      <div class="custom-container">
+          <div class="main-footer">
+              <div class="row g-sm-4 g-3">
+                  <div class="col-xl-3 col-md-4 col-sm-7">
+                      <div class="footer-title-2">
+                          <h4>Contact Info</h4>
+                      </div>
+                      <ul class="footer-content-list">
+                          <li>
+                              <a href="tel:(603)555-0123" class="content-box">
+                                  <svg>
+                                      <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/footer-icon.svg#contact"></use>
+                                  </svg>
+                                  <h4>(603) 555-0123</h4>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="#!" class="content-box">
+                                  <div class="footer-content-icon">
+                                      <svg>
+                                          <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/footer-icon.svg#location"></use>
+                                      </svg>
+                                  </div>
+                                  <h5>3228 Bicetown Road Huntington, NY 11743</h5>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="mailto:pixelstrap@contact.com" class="content-box">
+                                  <div class="footer-content-icon">
+                                      <svg>
+                                          <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/footer-icon.svg#mail"></use>
+                                      </svg>
+                                  </div>
+                                  <h5>kartify@contact.com</h5>
+                              </a>
+                          </li>
+                      </ul>
+                      <div class="social-icon-box">
+                          <h5 class="content-color">Stay Connected :</h5>
+                          <ul class="social-icon-list">
+                              <li>
+                                  <a href="https://www.facebook.com/" target="_blank">
+                                      <i class="ri-facebook-fill"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="https://twitter.com/" target="_blank">
+                                      <i class="ri-twitter-x-line"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="https://www.instagram.com/" target="_blank">
+                                      <i class="ri-instagram-fill"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="https://www.pinterest.ca/" target="_blank">
+                                      <i class="ri-pinterest-fill"></i>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-4">
-                        <div class="footer-title">
-                            <h4>Information</h4>
-                        </div>
-                        <ul class="footer-list">
-                            <li>
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html">Collection</a>
-                            </li>
-                            <li>
-                                <a href="about-us.html">About Us</a>
-                            </li>
-                            <li>
-                                <a href="blog-3-grid.html">Blogs</a>
-                            </li>
-                            <li>
-                                <a href="shop-banner.html">Offer</a>
-                            </li>
-                            <li>
-                                <a href="search.html">Search</a>
-                            </li>
-                            <li>
-                                <a href="faq.html">FAQ's</a>
-                            </li>
-                            <li>
-                                <a href="contact-us.html">Contact us</a>
-                            </li>
-                        </ul>
-                    </div>
+                  <div class="col-lg-2 col-md-3 col-sm-4">
+                      <div class="footer-title">
+                          <h4>Information</h4>
+                      </div>
+                      <ul class="footer-list">
+                          <li>
+                              <a href="index.html">Home</a>
+                          </li>
+                          <li>
+                              <a href="shop-left-sidebar.html">Collection</a>
+                          </li>
+                          <li>
+                              <a href="about-us.html">About Us</a>
+                          </li>
+                          <li>
+                              <a href="blog-3-grid.html">Blogs</a>
+                          </li>
+                          <li>
+                              <a href="shop-banner.html">Offer</a>
+                          </li>
+                          <li>
+                              <a href="search.html">Search</a>
+                          </li>
+                          <li>
+                              <a href="faq.html">FAQ's</a>
+                          </li>
+                          <li>
+                              <a href="contact-us.html">Contact us</a>
+                          </li>
+                      </ul>
+                  </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-4">
-                        <div class="footer-title">
-                            <h4>Our Services</h4>
-                        </div>
-                        <ul class="footer-list">
-                            <li>
-                                <a href="shop-left-sidebar.html">Mobile Phones</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html">Television</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html">Washing Machine</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html">Women Fashion</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html">Laptop</a>
-                            </li>
-                        </ul>
-                    </div>
+                  <div class="col-lg-2 col-md-3 col-sm-4">
+                      <div class="footer-title">
+                          <h4>Our Services</h4>
+                      </div>
+                      <ul class="footer-list">
+                          <li>
+                              <a href="shop-left-sidebar.html">Mobile Phones</a>
+                          </li>
+                          <li>
+                              <a href="shop-left-sidebar.html">Television</a>
+                          </li>
+                          <li>
+                              <a href="shop-left-sidebar.html">Washing Machine</a>
+                          </li>
+                          <li>
+                              <a href="shop-left-sidebar.html">Women Fashion</a>
+                          </li>
+                          <li>
+                              <a href="shop-left-sidebar.html">Laptop</a>
+                          </li>
+                      </ul>
+                  </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-4">
-                        <div class="footer-title">
-                            <h4>My Account</h4>
-                        </div>
-                        <ul class="footer-list">
-                            <li>
-                                <a href="user-dashboard.html">My Account</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html">My Shop</a>
-                            </li>
-                            <li>
-                                <a href="cart.html">My Cart</a>
-                            </li>
-                            <li>
-                                <a href="checkout.html">Checkout</a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html">My Wishlist</a>
-                            </li>
-                            <li>
-                                <a href="order-tracking.html">Tracking Order</a>
-                            </li>
-                        </ul>
-                    </div>
+                  <div class="col-lg-2 col-md-3 col-sm-4">
+                      <div class="footer-title">
+                          <h4>My Account</h4>
+                      </div>
+                      <ul class="footer-list">
+                          <li>
+                              <a href="user-dashboard.html">My Account</a>
+                          </li>
+                          <li>
+                              <a href="shop-left-sidebar.html">My Shop</a>
+                          </li>
+                          <li>
+                              <a href="cart.html">My Cart</a>
+                          </li>
+                          <li>
+                              <a href="checkout.html">Checkout</a>
+                          </li>
+                          <li>
+                              <a href="wishlist.html">My Wishlist</a>
+                          </li>
+                          <li>
+                              <a href="order-tracking.html">Tracking Order</a>
+                          </li>
+                      </ul>
+                  </div>
 
-                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-4">
-                        <div class="footer-title-2">
-                            <h4>Get Shopping App</h4>
-                        </div>
-                        <ul class="footer-list-2">
-                            <li>
-                                <p>Quick & Direct ordering</p>
-                            </li>
-                            <li>
-                                <p>Shop smarter, save time & Simply</p>
-                            </li>
-                            <li>
-                                <p>Save more on app</p>
-                            </li>
-                        </ul>
-                        <ul class="app-store-link">
-                            <li>
-                                <a href="https://play.google.com/store/apps" target="_blank">
-                                    <img src="https://themes.pixelstrap.net/kartify/assets/images/google-play.svg" class="img-fluid" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.apple.com/in/app-store/" target="_blank">
-                                    <img src="https://themes.pixelstrap.net/kartify/assets/images/app-store.svg" class="img-fluid" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                  <div class="col-xl-3 col-lg-4 col-md-5 col-sm-4">
+                      <div class="footer-title-2">
+                          <h4>Get Shopping App</h4>
+                      </div>
+                      <ul class="footer-list-2">
+                          <li>
+                              <p>Quick & Direct ordering</p>
+                          </li>
+                          <li>
+                              <p>Shop smarter, save time & Simply</p>
+                          </li>
+                          <li>
+                              <p>Save more on app</p>
+                          </li>
+                      </ul>
+                      <ul class="app-store-link">
+                          <li>
+                              <a href="https://play.google.com/store/apps" target="_blank">
+                                  <img src="https://themes.pixelstrap.net/kartify/assets/images/google-play.svg" class="img-fluid" alt="">
+                              </a>
+                          </li>
+                          <li>
+                              <a href="https://www.apple.com/in/app-store/" target="_blank">
+                                  <img src="https://themes.pixelstrap.net/kartify/assets/images/app-store.svg" class="img-fluid" alt="">
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
 
-            <div class="sub-footer">
-                <a href="index.html" class="sub-footer-logo">
-                    <img src="https://themes.pixelstrap.net/kartify/assets/images/logo/1-dark.svg" class="img-fluid" alt="">
-                </a>
-                <ul class="payment-list">
-                    <li>
-                        <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/1.svg" class="img-fluid" alt="">
-                    </li>
-                    <li>
-                        <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/2.svg" class="img-fluid" alt="">
-                    </li>
-                    <li>
-                        <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/3.svg" class="img-fluid" alt="">
-                    </li>
-                    <li>
-                        <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/4.svg" class="img-fluid" alt="">
-                    </li>
-                    <li>
-                        <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/5.svg" class="img-fluid" alt="">
-                    </li>
-                    <li>
-                        <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/6.svg" class="img-fluid" alt="">
-                    </li>
-                    <li>
-                        <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/7.svg" class="img-fluid" alt="">
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+          <div class="sub-footer">
+              <a href="index.html" class="sub-footer-logo">
+                  <img src="https://themes.pixelstrap.net/kartify/assets/images/logo/1-dark.svg" class="img-fluid" alt="">
+              </a>
+              <ul class="payment-list">
+                  <li>
+                      <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/1.svg" class="img-fluid" alt="">
+                  </li>
+                  <li>
+                      <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/2.svg" class="img-fluid" alt="">
+                  </li>
+                  <li>
+                      <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/3.svg" class="img-fluid" alt="">
+                  </li>
+                  <li>
+                      <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/4.svg" class="img-fluid" alt="">
+                  </li>
+                  <li>
+                      <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/5.svg" class="img-fluid" alt="">
+                  </li>
+                  <li>
+                      <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/6.svg" class="img-fluid" alt="">
+                  </li>
+                  <li>
+                      <img src="https://themes.pixelstrap.net/kartify/assets/images/payment/7.svg" class="img-fluid" alt="">
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </footer>
+  <!-- Footer Section End -->
 
-    <!-- Cart Offcanvas Start -->
-    <div class="offcanvas offcanvas-end cart-offcanvas" id="cartOffcanvas">
-        <div class="offcanvas-header">
-            <div class="title-offcanvas">
-                <h4>Shopping Cart</h4>
-                <button class="btn close-btn" data-bs-dismiss="offcanvas">
-                    <i class="ri-close-fill"></i>
-                </button>
-            </div>
-        </div>
-        <div class="offcanvas-body">
-            <div class="cart-product-box">
-                <ul class="product-box-list">
-                    <li class="vertical-product-box">
-                        <a href="product-color.html" class="product-image">
-                            <img src="assets/images/product/1.png" class="img-fluid" alt="">
-                        </a>
-                        <div class="product-content">
-                            <a href="product-color.html">
-                                <h5 class="name title-color">Smart Watch Series X3</h5>
-                            </a>
-                            <ul class="rating">
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                            </ul>
-                            <h5 class="price">$202.34 <del>$250.00</del></h5>
-                            <div class="quantity-box qty-container">
-                                <button class="btn qty-btn-minus">
-                                    <i class=" ri-subtract-line"></i>
-                                </button>
-                                <button class="btn btn-trash">
-                                    <i class=" ri-delete-bin-line"></i>
-                                </button>
-                                <input type="number" name="qty" disabled class="quantity form-control input-qty"
-                                    value="1">
-                                <button class="btn qty-btn-plus">
-                                    <i class="ri-add-line"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button class="btn close-button">
-                            <i class="ri-delete-bin-line"></i>
-                        </button>
-                    </li>
+  <!-- Cart Offcanvas Start -->
+  <div class="offcanvas offcanvas-end cart-offcanvas" id="cartOffcanvas">
+      <div class="offcanvas-header">
+          <div class="title-offcanvas">
+              <h4>Shopping Cart</h4>
+              <button class="btn close-btn" data-bs-dismiss="offcanvas">
+                  <i class="ri-close-fill"></i>
+              </button>
+          </div>
+      </div>
+      <div class="offcanvas-body">
+          <div class="cart-product-box">
+              <ul class="product-box-list">
+                  <li class="vertical-product-box">
+                      <a href="product-color.html" class="product-image">
+                          <img src="assets/images/product/1.png" class="img-fluid" alt="">
+                      </a>
+                      <div class="product-content">
+                          <a href="product-color.html">
+                              <h5 class="name title-color">Smart Watch Series X3</h5>
+                          </a>
+                          <ul class="rating">
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                          </ul>
+                          <h5 class="price">$202.34 <del>$250.00</del></h5>
+                          <div class="quantity-box qty-container">
+                              <button class="btn qty-btn-minus">
+                                  <i class=" ri-subtract-line"></i>
+                              </button>
+                              <button class="btn btn-trash">
+                                  <i class=" ri-delete-bin-line"></i>
+                              </button>
+                              <input type="number" name="qty" disabled class="quantity form-control input-qty"
+                                  value="1">
+                              <button class="btn qty-btn-plus">
+                                  <i class="ri-add-line"></i>
+                              </button>
+                          </div>
+                      </div>
+                      <button class="btn close-button">
+                          <i class="ri-delete-bin-line"></i>
+                      </button>
+                  </li>
 
-                    <li class="vertical-product-box">
-                        <a href="product-color.html" class="product-image">
-                            <img src="assets/images/product/2.png" class="img-fluid" alt="">
-                        </a>
-                        <div class="product-content">
-                            <a href="product-color.html">
-                                <h5 class="name title-color">Slim 3 Intel Core i5</h5>
-                            </a>
-                            <ul class="rating">
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill"></i>
-                                </li>
-                            </ul>
-                            <h5 class="price">$700.00 <del>$720.00</del></h5>
-                            <div class="quantity-box qty-container">
-                                <button class="btn qty-btn-minus">
-                                    <i class="ri-subtract-line"></i>
-                                </button>
-                                <button class="btn btn-trash">
-                                    <i class=" ri-delete-bin-line"></i>
-                                </button>
-                                <input type="number" name="qty" disabled class="quantity form-control input-qty"
-                                    value="1">
-                                <button class="btn qty-btn-plus">
-                                    <i class="ri-add-line"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button class="btn close-button">
-                            <i class="ri-delete-bin-line"></i>
-                        </button>
-                    </li>
+                  <li class="vertical-product-box">
+                      <a href="product-color.html" class="product-image">
+                          <img src="assets/images/product/2.png" class="img-fluid" alt="">
+                      </a>
+                      <div class="product-content">
+                          <a href="product-color.html">
+                              <h5 class="name title-color">Slim 3 Intel Core i5</h5>
+                          </a>
+                          <ul class="rating">
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill"></i>
+                              </li>
+                          </ul>
+                          <h5 class="price">$700.00 <del>$720.00</del></h5>
+                          <div class="quantity-box qty-container">
+                              <button class="btn qty-btn-minus">
+                                  <i class="ri-subtract-line"></i>
+                              </button>
+                              <button class="btn btn-trash">
+                                  <i class=" ri-delete-bin-line"></i>
+                              </button>
+                              <input type="number" name="qty" disabled class="quantity form-control input-qty"
+                                  value="1">
+                              <button class="btn qty-btn-plus">
+                                  <i class="ri-add-line"></i>
+                              </button>
+                          </div>
+                      </div>
+                      <button class="btn close-button">
+                          <i class="ri-delete-bin-line"></i>
+                      </button>
+                  </li>
 
-                    <li class="vertical-product-box">
-                        <a href="product-color.html" class="product-image">
-                            <img src="assets/images/product/3.png" class="img-fluid" alt="">
-                        </a>
-                        <div class="product-content">
-                            <a href="product-color.html">
-                                <h5 class="name title-color">Portable Laptop Table</h5>
-                            </a>
-                            <ul class="rating">
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill"></i>
-                                </li>
-                            </ul>
-                            <h5 class="price">$398.00 <del>$450.00</del></h5>
-                            <div class="quantity-box qty-container">
-                                <button class="btn qty-btn-minus">
-                                    <i class="ri-subtract-line"></i>
-                                </button>
-                                <button class="btn btn-trash">
-                                    <i class=" ri-delete-bin-line"></i>
-                                </button>
-                                <input type="number" name="qty" disabled class="quantity form-control input-qty"
-                                    value="1">
-                                <button class="btn qty-btn-plus">
-                                    <i class="ri-add-line"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button class="btn close-button">
-                            <i class="ri-delete-bin-line"></i>
-                        </button>
-                    </li>
+                  <li class="vertical-product-box">
+                      <a href="product-color.html" class="product-image">
+                          <img src="assets/images/product/3.png" class="img-fluid" alt="">
+                      </a>
+                      <div class="product-content">
+                          <a href="product-color.html">
+                              <h5 class="name title-color">Portable Laptop Table</h5>
+                          </a>
+                          <ul class="rating">
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill"></i>
+                              </li>
+                          </ul>
+                          <h5 class="price">$398.00 <del>$450.00</del></h5>
+                          <div class="quantity-box qty-container">
+                              <button class="btn qty-btn-minus">
+                                  <i class="ri-subtract-line"></i>
+                              </button>
+                              <button class="btn btn-trash">
+                                  <i class=" ri-delete-bin-line"></i>
+                              </button>
+                              <input type="number" name="qty" disabled class="quantity form-control input-qty"
+                                  value="1">
+                              <button class="btn qty-btn-plus">
+                                  <i class="ri-add-line"></i>
+                              </button>
+                          </div>
+                      </div>
+                      <button class="btn close-button">
+                          <i class="ri-delete-bin-line"></i>
+                      </button>
+                  </li>
 
-                    <li class="vertical-product-box">
-                        <a href="product-color.html" class="product-image">
-                            <img src="assets/images/product/5.png" class="img-fluid" alt="">
-                        </a>
-                        <div class="product-content">
-                            <a href="product-color.html">
-                                <h5 class="name title-color">Kitchen Accessories</h5>
-                            </a>
-                            <ul class="rating">
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill"></i>
-                                </li>
-                            </ul>
-                            <h5 class="price">$300.00 <del>$312.56</del></h5>
-                            <div class="quantity-box qty-container">
-                                <button class="btn qty-btn-minus">
-                                    <i class="ri-subtract-line"></i>
-                                </button>
-                                <button class="btn btn-trash">
-                                    <i class=" ri-delete-bin-line"></i>
-                                </button>
-                                <input type="number" name="qty" disabled class="quantity form-control input-qty"
-                                    value="1">
-                                <button class="btn qty-btn-plus">
-                                    <i class="ri-add-line"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button class="btn close-button">
-                            <i class="ri-delete-bin-line"></i>
-                        </button>
-                    </li>
+                  <li class="vertical-product-box">
+                      <a href="product-color.html" class="product-image">
+                          <img src="assets/images/product/5.png" class="img-fluid" alt="">
+                      </a>
+                      <div class="product-content">
+                          <a href="product-color.html">
+                              <h5 class="name title-color">Kitchen Accessories</h5>
+                          </a>
+                          <ul class="rating">
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill"></i>
+                              </li>
+                          </ul>
+                          <h5 class="price">$300.00 <del>$312.56</del></h5>
+                          <div class="quantity-box qty-container">
+                              <button class="btn qty-btn-minus">
+                                  <i class="ri-subtract-line"></i>
+                              </button>
+                              <button class="btn btn-trash">
+                                  <i class=" ri-delete-bin-line"></i>
+                              </button>
+                              <input type="number" name="qty" disabled class="quantity form-control input-qty"
+                                  value="1">
+                              <button class="btn qty-btn-plus">
+                                  <i class="ri-add-line"></i>
+                              </button>
+                          </div>
+                      </div>
+                      <button class="btn close-button">
+                          <i class="ri-delete-bin-line"></i>
+                      </button>
+                  </li>
 
-                    <li class="vertical-product-box">
-                        <a href="product-color.html" class="product-image">
-                            <img src="assets/images/product/6.png" class="img-fluid" alt="">
-                        </a>
-                        <div class="product-content">
-                            <a href="product-color.html">
-                                <h5 class="name title-color">Rockerz Bluetooth Headphone</h5>
-                            </a>
-                            <ul class="rating">
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                                <li>
-                                    <i class="ri-star-fill fill"></i>
-                                </li>
-                            </ul>
-                            <h5 class="price">$100.00 <del>$180.00</del></h5>
-                            <div class="quantity-box qty-container">
-                                <button class="btn qty-btn-minus">
-                                    <i class="ri-subtract-line"></i>
-                                </button>
-                                <button class="btn btn-trash">
-                                    <i class=" ri-delete-bin-line"></i>
-                                </button>
-                                <input type="number" name="qty" disabled class="quantity form-control input-qty"
-                                    value="1">
-                                <button class="btn qty-btn-plus">
-                                    <i class="ri-add-line"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button class="btn close-button">
-                            <i class="ri-delete-bin-line"></i>
-                        </button>
-                    </li>
-                    <li class="empty-cart">
-                        <svg>
-                            <use xlink:href="https://themes.pixelstrap.net/kartify/assets/images/inner-page/empty-cart.svg#emptyCart"></use>
-                        </svg>
-                        <h4>Your cart is empty.</h4>
-                    </li>
-                </ul>
+                  <li class="vertical-product-box">
+                      <a href="product-color.html" class="product-image">
+                          <img src="assets/images/product/6.png" class="img-fluid" alt="">
+                      </a>
+                      <div class="product-content">
+                          <a href="product-color.html">
+                              <h5 class="name title-color">Rockerz Bluetooth Headphone</h5>
+                          </a>
+                          <ul class="rating">
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                              <li>
+                                  <i class="ri-star-fill fill"></i>
+                              </li>
+                          </ul>
+                          <h5 class="price">$100.00 <del>$180.00</del></h5>
+                          <div class="quantity-box qty-container">
+                              <button class="btn qty-btn-minus">
+                                  <i class="ri-subtract-line"></i>
+                              </button>
+                              <button class="btn btn-trash">
+                                  <i class=" ri-delete-bin-line"></i>
+                              </button>
+                              <input type="number" name="qty" disabled class="quantity form-control input-qty"
+                                  value="1">
+                              <button class="btn qty-btn-plus">
+                                  <i class="ri-add-line"></i>
+                              </button>
+                          </div>
+                      </div>
+                      <button class="btn close-button">
+                          <i class="ri-delete-bin-line"></i>
+                      </button>
+                  </li>
+                  <li class="empty-cart">
+                      <svg>
+                          <use xlink:href="https://themes.pixelstrap.net/kartify/assets/images/inner-page/empty-cart.svg#emptyCart"></use>
+                      </svg>
+                      <h4>Your cart is empty.</h4>
+                  </li>
+              </ul>
 
-                <div class="total-price-box">
-                    <p class="free">Almost there, add $32.50 more to get <b>FREE SHIPPING!</b></p>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%">
-                            <i class="iconsax" data-icon-name="truck"></i>
-                        </div>
-                    </div>
-                    <h4 class="sub-total">Subtotal <span id="total-price">$1700.00 USD</span></h4>
-                    <p class="tax-text">Tax included <span>shipping</span>calculator at checkout.</p>
-                    <div class="cart-btn-group">
-                        <a href="checkout.html" class="btn check-out-button">Check Out</a>
-                        <a href="cart.html" class="btn cart-button">View Cart</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Cart Offcanvas End -->
+              <div class="total-price-box">
+                  <p class="free">Almost there, add $32.50 more to get <b>FREE SHIPPING!</b></p>
+                  <div class="progress">
+                      <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%">
+                          <i class="iconsax" data-icon-name="truck"></i>
+                      </div>
+                  </div>
+                  <h4 class="sub-total">Subtotal <span id="total-price">$1700.00 USD</span></h4>
+                  <p class="tax-text">Tax included <span>shipping</span>calculator at checkout.</p>
+                  <div class="cart-btn-group">
+                      <a href="checkout.html" class="btn check-out-button">Check Out</a>
+                      <a href="cart.html" class="btn cart-button">View Cart</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Cart Offcanvas End -->
 
-    <!-- Wishlist Offcanvas Start -->
-    <div class="offcanvas offcanvas-end wishlist-offcanvas cart-offcanvas" id="wishlistOffcanvas">
-        <div class="offcanvas-header">
-            <div class="title-offcanvas">
-                <h4>Wishlist</h4>
-                <button class="btn close-btn" data-bs-dismiss="offcanvas">
-                    <i class="ri-close-fill"></i>
-                </button>
-            </div>
-        </div>
-        <div class="offcanvas-body">
-            <div class="cart-product-box">
-                <ul class="product-box-list">
-                    <li>
-                        <div class="vertical-product-box">
-                            <a href="product-color.html" class="product-image">
-                                <img src="assets/images/product/1.png" class="img-fluid" alt="">
-                            </a>
-                            <div class="product-content">
-                                <a href="product-color.html">
-                                    <h5 class="name title-color">Smart Watch Series X3</h5>
-                                </a>
-                                <h5 class="price">$239.00 <del>$250.00</del></h5>
-                                <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                    <span>Move to cart</span>
-                                </button>
-                            </div>
-                            <button class="btn wishlist-btn">
-                                <i class="ri-delete-bin-line"></i>
-                            </button>
-                        </div>
-                    </li>
+  <!-- Wishlist Offcanvas Start -->
+  <div class="offcanvas offcanvas-end wishlist-offcanvas cart-offcanvas" id="wishlistOffcanvas">
+      <div class="offcanvas-header">
+          <div class="title-offcanvas">
+              <h4>Wishlist</h4>
+              <button class="btn close-btn" data-bs-dismiss="offcanvas">
+                  <i class="ri-close-fill"></i>
+              </button>
+          </div>
+      </div>
+      <div class="offcanvas-body">
+          <div class="cart-product-box">
+              <ul class="product-box-list">
+                  <li>
+                      <div class="vertical-product-box">
+                          <a href="product-color.html" class="product-image">
+                              <img src="assets/images/product/1.png" class="img-fluid" alt="">
+                          </a>
+                          <div class="product-content">
+                              <a href="product-color.html">
+                                  <h5 class="name title-color">Smart Watch Series X3</h5>
+                              </a>
+                              <h5 class="price">$239.00 <del>$250.00</del></h5>
+                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
+                                  <span>Move to cart</span>
+                              </button>
+                          </div>
+                          <button class="btn wishlist-btn">
+                              <i class="ri-delete-bin-line"></i>
+                          </button>
+                      </div>
+                  </li>
 
-                    <li>
-                        <div class="vertical-product-box">
-                            <a href="product-color.html" class="product-image">
-                                <img src="assets/images/product/2.png" class="img-fluid" alt="">
-                            </a>
-                            <div class="product-content">
-                                <a href="product-color.html">
-                                    <h5 class="name title-color">Slim 3 Intel Core i5</h5>
-                                </a>
-                                <h5 class="price">$700.00 <del>$720.00</del></h5>
-                                <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                    <span>Move to cart</span>
-                                </button>
-                            </div>
-                            <button class="btn wishlist-btn">
-                                <i class="ri-delete-bin-line"></i>
-                            </button>
-                        </div>
-                    </li>
+                  <li>
+                      <div class="vertical-product-box">
+                          <a href="product-color.html" class="product-image">
+                              <img src="assets/images/product/2.png" class="img-fluid" alt="">
+                          </a>
+                          <div class="product-content">
+                              <a href="product-color.html">
+                                  <h5 class="name title-color">Slim 3 Intel Core i5</h5>
+                              </a>
+                              <h5 class="price">$700.00 <del>$720.00</del></h5>
+                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
+                                  <span>Move to cart</span>
+                              </button>
+                          </div>
+                          <button class="btn wishlist-btn">
+                              <i class="ri-delete-bin-line"></i>
+                          </button>
+                      </div>
+                  </li>
 
-                    <li>
-                        <div class="vertical-product-box">
-                            <a href="product-color.html" class="product-image">
-                                <img src="assets/images/product/3.png" class="img-fluid" alt="">
-                            </a>
-                            <div class="product-content">
-                                <a href="product-color.html">
-                                    <h5 class="name title-color">Portable Laptop Table</h5>
-                                </a>
-                                <h5 class="price">$199.00 <del>$200.00</del></h5>
-                                <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                    <span>Move to cart</span>
-                                </button>
-                            </div>
-                            <button class="btn wishlist-btn">
-                                <i class="ri-delete-bin-line"></i>
-                            </button>
-                        </div>
-                    </li>
+                  <li>
+                      <div class="vertical-product-box">
+                          <a href="product-color.html" class="product-image">
+                              <img src="assets/images/product/3.png" class="img-fluid" alt="">
+                          </a>
+                          <div class="product-content">
+                              <a href="product-color.html">
+                                  <h5 class="name title-color">Portable Laptop Table</h5>
+                              </a>
+                              <h5 class="price">$199.00 <del>$200.00</del></h5>
+                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
+                                  <span>Move to cart</span>
+                              </button>
+                          </div>
+                          <button class="btn wishlist-btn">
+                              <i class="ri-delete-bin-line"></i>
+                          </button>
+                      </div>
+                  </li>
 
-                    <li>
-                        <div class="vertical-product-box">
-                            <a href="product-color.html" class="product-image">
-                                <img src="assets/images/product/4.png" class="img-fluid" alt="">
-                            </a>
-                            <div class="product-content">
-                                <a href="product-color.html">
-                                    <h5 class="name title-color">Kitchen Accessories</h5>
-                                </a>
-                                <h5 class="price">$300.00 <del>$312.56</del></h5>
-                                <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                    <span>Move to cart</span>
-                                </button>
-                            </div>
-                            <button class="btn wishlist-btn">
-                                <i class="ri-delete-bin-line"></i>
-                            </button>
-                        </div>
-                    </li>
+                  <li>
+                      <div class="vertical-product-box">
+                          <a href="product-color.html" class="product-image">
+                              <img src="assets/images/product/4.png" class="img-fluid" alt="">
+                          </a>
+                          <div class="product-content">
+                              <a href="product-color.html">
+                                  <h5 class="name title-color">Kitchen Accessories</h5>
+                              </a>
+                              <h5 class="price">$300.00 <del>$312.56</del></h5>
+                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
+                                  <span>Move to cart</span>
+                              </button>
+                          </div>
+                          <button class="btn wishlist-btn">
+                              <i class="ri-delete-bin-line"></i>
+                          </button>
+                      </div>
+                  </li>
 
-                    <li>
-                        <div class="vertical-product-box">
-                            <a href="product-color.html" class="product-image">
-                                <img src="assets/images/product/5.png" class="img-fluid" alt="">
-                            </a>
-                            <div class="product-content">
-                                <a href="product-color.html">
-                                    <h5 class="name title-color">Rockerz 558 Bluetooth</h5>
-                                </a>
-                                <h5 class="price">$86.00 <del>$96.00</del></h5>
-                                <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                    <span>Move to cart</span>
-                                </button>
-                            </div>
-                            <button class="btn wishlist-btn">
-                                <i class="ri-delete-bin-line"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="vertical-product-box">
-                            <a href="product-color.html" class="product-image">
-                                <img src="assets/images/product/26.png" class="img-fluid" alt="">
-                            </a>
-                            <div class="product-content">
-                                <a href="product-color.html">
-                                    <h5 class="name title-color">EvoFox Game Box 32 GB with Asphalt 8</h5>
-                                </a>
-                                <h5 class="price">$130.00 <del>$153.00</del></h5>
-                                <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                    <span>Move to cart</span>
-                                </button>
-                            </div>
-                            <button class="btn wishlist-btn">
-                                <i class="ri-delete-bin-line"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="vertical-product-box">
-                            <a href="product-color.html" class="product-image">
-                                <img src="assets/images/product/23.png" class="img-fluid" alt="">
-                            </a>
-                            <div class="product-content">
-                                <a href="product-color.html">
-                                    <h5 class="name title-color">BlackBerry Keyone BBB100-7 64gb unlocked gSM</h5>
-                                </a>
-                                <h5 class="price">$1920.36 <del>$2000.95</del></h5>
-                                <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                    <span>Move to cart</span>
-                                </button>
-                            </div>
-                            <button class="btn wishlist-btn">
-                                <i class="ri-delete-bin-line"></i>
-                            </button>
-                        </div>
-                    </li>
-                </ul>
+                  <li>
+                      <div class="vertical-product-box">
+                          <a href="product-color.html" class="product-image">
+                              <img src="assets/images/product/5.png" class="img-fluid" alt="">
+                          </a>
+                          <div class="product-content">
+                              <a href="product-color.html">
+                                  <h5 class="name title-color">Rockerz 558 Bluetooth</h5>
+                              </a>
+                              <h5 class="price">$86.00 <del>$96.00</del></h5>
+                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
+                                  <span>Move to cart</span>
+                              </button>
+                          </div>
+                          <button class="btn wishlist-btn">
+                              <i class="ri-delete-bin-line"></i>
+                          </button>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="vertical-product-box">
+                          <a href="product-color.html" class="product-image">
+                              <img src="assets/images/product/26.png" class="img-fluid" alt="">
+                          </a>
+                          <div class="product-content">
+                              <a href="product-color.html">
+                                  <h5 class="name title-color">EvoFox Game Box 32 GB with Asphalt 8</h5>
+                              </a>
+                              <h5 class="price">$130.00 <del>$153.00</del></h5>
+                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
+                                  <span>Move to cart</span>
+                              </button>
+                          </div>
+                          <button class="btn wishlist-btn">
+                              <i class="ri-delete-bin-line"></i>
+                          </button>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="vertical-product-box">
+                          <a href="product-color.html" class="product-image">
+                              <img src="assets/images/product/23.png" class="img-fluid" alt="">
+                          </a>
+                          <div class="product-content">
+                              <a href="product-color.html">
+                                  <h5 class="name title-color">BlackBerry Keyone BBB100-7 64gb unlocked gSM</h5>
+                              </a>
+                              <h5 class="price">$1920.36 <del>$2000.95</del></h5>
+                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
+                                  <span>Move to cart</span>
+                              </button>
+                          </div>
+                          <button class="btn wishlist-btn">
+                              <i class="ri-delete-bin-line"></i>
+                          </button>
+                      </div>
+                  </li>
+              </ul>
 
-                <div class="total-price-box">
-                    <p class="tax-text">Now that you have products in your wishlist, remember to put them in your cart
-                        later.</p>
-                    <div class="cart-btn-group">
-                        <button onclick="location.href = 'wishlist.html';" class="btn check-out-button">View
-                            Wishlist</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Wishlist Offcanvas End -->
+              <div class="total-price-box">
+                  <p class="tax-text">Now that you have products in your wishlist, remember to put them in your cart
+                      later.</p>
+                  <div class="cart-btn-group">
+                      <button onclick="location.href = 'wishlist.html';" class="btn check-out-button">View
+                          Wishlist</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Wishlist Offcanvas End -->
 
-    <!-- Authentication Modal Start -->
-    <div class="modal authentication-modal fade" id="authenticationModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body p-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        <i class="ri-close-fill"></i>
-                    </button>
-                    <div class="authentication-box login-box">
-                        <div class="auth-title">
-                            <h4>Log in</h4>
-                            <p>Welcome! To access your account, please enter your username and password.</p>
-                        </div>
-                        <form class="auth-form">
-                            <div class="mb-3">
-                                <input type="email" class="form-control" placeholder="Enter your email">
-                            </div>
-                            <div class="mb-3">
-                                <input type="password" class="form-control" placeholder="Enter your password">
-                            </div>
-                            <div class="forgot-box">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Remember for 30
-                                        days</label>
-                                </div>
-                                <a href="#!" class="forgot-pass">Forgot Password</a>
-                            </div>
-                            <a href="index.html" class="btn btn-bg-theme mt-3 w-100">Log In</a>
-                            <div class="divider">
-                                <span>OR</span>
-                            </div>
-                            <div class="social-link">
-                                <a href="https://www.google.com/" class="btn w-100" target="_blank">
-                                    <img src="assets/images/inner-page/google.png" class="img-fluid" alt="">
-                                    <span>Sign in with google</span>
-                                </a>
-                                <a href="https://www.facebook.com/" class="btn w-100" target="_blank">
-                                    <img src="assets/images/inner-page/facebook.png" class="img-fluid" alt="">
-                                    <span>Sign in with facebook</span>
-                                </a>
-                            </div>
-                            <h5 class="sign-up-next">Don't have an account? <button class="next-button btn">Sign up
-                                    now</button></h5>
-                        </form>
-                    </div>
+  <!-- Authentication Modal Start -->
+  <div class="modal authentication-modal fade" id="authenticationModal">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-body p-0">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal">
+                      <i class="ri-close-fill"></i>
+                  </button>
+                  <div class="authentication-box login-box">
+                      <div class="auth-title">
+                          <h4>Log in</h4>
+                          <p>Welcome! To access your account, please enter your username and password.</p>
+                      </div>
+                      <form class="auth-form">
+                          <div class="mb-3">
+                              <input type="email" class="form-control" placeholder="Enter your email">
+                          </div>
+                          <div class="mb-3">
+                              <input type="password" class="form-control" placeholder="Enter your password">
+                          </div>
+                          <div class="forgot-box">
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Remember for 30
+                                      days</label>
+                              </div>
+                              <a href="#!" class="forgot-pass">Forgot Password</a>
+                          </div>
+                          <a href="index.html" class="btn btn-bg-theme mt-3 w-100">Log In</a>
+                          <div class="divider">
+                              <span>OR</span>
+                          </div>
+                          <div class="social-link">
+                              <a href="https://www.google.com/" class="btn w-100" target="_blank">
+                                  <img src="assets/images/inner-page/google.png" class="img-fluid" alt="">
+                                  <span>Sign in with google</span>
+                              </a>
+                              <a href="https://www.facebook.com/" class="btn w-100" target="_blank">
+                                  <img src="assets/images/inner-page/facebook.png" class="img-fluid" alt="">
+                                  <span>Sign in with facebook</span>
+                              </a>
+                          </div>
+                          <h5 class="sign-up-next">Don't have an account? <button class="next-button btn">Sign up
+                                  now</button></h5>
+                      </form>
+                  </div>
 
-                    <div class="authentication-box signup-box">
-                        <div class="auth-title">
-                            <h4>Sign Up</h4>
-                            <p>Welcome! To access your account, please enter your username and password.</p>
-                        </div>
-                        <form class="auth-form">
-                            <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Enter full name">
-                            </div>
-                            <div class="mb-3">
-                                <input type="email" class="form-control" placeholder="Enter your email">
-                            </div>
-                            <div class="mb-3">
-                                <input type="password" class="form-control" placeholder="Create your password">
-                            </div>
-                            <div class="forgot-box">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                    <label class="form-check-label" for="exampleCheck2">I agree with all text in the
-                                        agreement.</label>
-                                </div>
-                            </div>
-                            <a href="index.html" class="btn btn-bg-theme mt-3 w-100">Sing up</a>
-                            <div class="divider">
-                                <span>OR</span>
-                            </div>
-                            <div class="social-link">
-                                <a href="https://www.google.com/" class="btn w-100" target="_blank">
-                                    <img src="assets/images/inner-page/google.png" class="img-fluid" alt="">
-                                    <span>Sign up with google</span>
-                                </a>
-                                <a href="https://www.facebook.com/" class="btn w-100" target="_blank">
-                                    <img src="assets/images/inner-page/facebook.png" class="img-fluid" alt="">
-                                    <span>Sign up with facebook</span>
-                                </a>
-                            </div>
-                            <h5 class="sign-up-next">I am already member. <button class="btn next-button2">Sign
-                                    in</button>
-                            </h5>
-                        </form>
-                    </div>
+                  <div class="authentication-box signup-box">
+                      <div class="auth-title">
+                          <h4>Sign Up</h4>
+                          <p>Welcome! To access your account, please enter your username and password.</p>
+                      </div>
+                      <form action="#" id="registerForm" class="auth-form">
+                          <div class="mb-3">
+                              <input type="text" class="form-control" id="firstname" placeholder="Enter first name">
+                          </div>
+                          <div class="mb-3">
+                              <input type="text" class="form-control" id="lastname" placeholder="Enter last name">
+                          </div>
+                          <div class="mb-3">
+                              <input type="email" class="form-control" id="emailaddress" placeholder="Enter your email">
+                          </div>
+                          <div class="mb-3">
+                              <input type="number" class="form-control" id="phone" placeholder="Enter your phone number">
+                          </div>
+                          <div class="mb-3">
+                              <input type="password" class="form-control" id="password" placeholder="Create your password">
+                          </div>
 
-                    <div class="authentication-box forgot-password-box">
-                        <div class="auth-title">
-                            <h4>Reset Password</h4>
-                            <p>Have you forgotten your password? Kindly provide your email address. An email with a link
-                                to establish a new password will be sent to you.</p>
-                        </div>
-                        <form class="auth-form">
-                            <input type="email" class="form-control" placeholder="Enter Your Email Address">
-                            <div class="d-flex flex-wrap-nowrap mt-3 gap-3">
-                                <button class="btn btn-bg-theme w-100">Submit</button>
-                                <a href="#!" class="btn btn-bg-theme w-100 cancel-btn">Cancel</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Authentication Modal End -->
+                          <div class="forgot-box">
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="checkbox-signUp">
+                                  <label class="form-check-label" for="checkbox-signUp">
+                                      I agree with all text in the agreement.
+                                  </label>
+                              </div>
+                          </div>
 
-    <!-- Add To Cart Modal Start -->
-    <div class="modal theme-modal add-cart-modal fade" id="addCartModal">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">Modal title</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                            <i class="ri-close-line"></i>
-                        </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-7">
-                            <div class="table-responsive">
-                                <table class="table add-to-cart-table">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <img src="assets/images/product/1.png" alt=""
-                                                    class="img-fluid cart-image">
-                                            </td>
-                                            <td>
-                                                <div class="name">
-                                                    <h4>Smart Watch Series X3</h4>
-                                                    <h5>White</h5>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <h5 class="sub-total">$693.66 <del>$710.63</del></h5>
-                                            </td>
-                                            <td>
-                                                <div class="quantity-box">
-                                                    <button class="btn decrementButton">-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button class="btn incrementButton">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <h6 class="total-price">$693.66</h6>
-                                            </td>
-                                            <td>
-                                                <i class="ri-delete-bin-5-line delete-box"></i>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-6"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Add To Cart Modal End -->
+                          <button type="submit" id="submitBtn" class="btn btn-bg-theme mt-3 w-100">Sign up</button>
 
-    <!-- Tap To Top Button Start -->
-    <div class="tap-top-button">
-        <button class="btn">
-            <i class="iconsax" data-icon-name="arrow-up"></i>
-        </button>
-    </div>
-    <!-- Tap To Top Button End -->
+                          <div class="divider">
+                              <span>OR</span>
+                          </div>
 
-    <!-- Alert Box Start -->
-    <div id="alertBox" class="alert-box">
-        <div class="alert-message" id="alertMessage"></div>
-        <div class="alert-progressbar" id="progressBar"></div>
-        <div class="button-group">
-            <button class="remove-wishlist btn">remove wishlist</button>
-            <button class="add-cart-btn btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">Add to
-                cart</button>
-        </div>
-    </div>
-    <!-- Alert Box End -->
+                          <div class="social-link">
+                              <a href="https://www.google.com/" class="btn w-100" target="_blank">
+                                  <img src="assets/images/inner-page/google.png" class="img-fluid" alt="">
+                                  <span>Sign up with google</span>
+                              </a>
+                              <a href="https://www.facebook.com/" class="btn w-100" target="_blank">
+                                  <img src="assets/images/inner-page/facebook.png" class="img-fluid" alt="">
+                                  <span>Sign up with facebook</span>
+                              </a>
+                          </div>
 
-    <!-- Recent Product View Box Start -->
-    <div class="recently-product-box">
-        <button class="btn recent-close">
-            <i class="iconsax" data-icon-name="add"></i>
-        </button>
-        <a href="product-color.html">
-            <img src="assets/images/product/1.png" class="img-fluid" alt="Product Image">
-        </a>
-        <div class="recent-content">
-            <a href="product-color.html">Smart Watch Series X3</a>
-            <h5 class="price">$239.00 <del>$250.00</del></h5>
-            <h6 class="timer">1 minutes ago</h6>
-        </div>
-    </div>
-    <!-- Recent Product View Box End -->
+                          <h5 class="sign-up-next">
+                              I am already member.
+                              <button type="button" class="btn next-button2">Sign in</button>
+                          </h5>
+                      </form>
+                  </div>
 
-    <!-- Quick View Modal Start -->
-    <div class="modal fade quick-view-modal theme-modal" id="quickViewModal">
-        <div class="modal-dialog modal-custom-size modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        <i class="ri-close-line"></i>
-                    </button>
-                    <div class="row g-sm-4 g-3">
-                        <div class="col-md-6">
-                            <div class="left-box-contain">
-                                <div class="swiper quick-main-slider quick-slider-product-box">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="view-image">
-                                                <img src="assets/images/product/189.png" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="view-image">
-                                                <img src="assets/images/product/190.png" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="view-image">
-                                                <img src="assets/images/product/191.png" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="view-image">
-                                                <img src="assets/images/product/192.png" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="view-image">
-                                                <img src="assets/images/product/193.png" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next">
-                                        <i class="ri-arrow-right-s-line"></i>
-                                    </div>
-                                    <div class="swiper-button-prev">
-                                        <i class="ri-arrow-left-s-line"></i>
-                                    </div>
-                                </div>
+                  <div class="authentication-box forgot-password-box">
+                      <div class="auth-title">
+                          <h4>Reset Password</h4>
+                          <p>Have you forgotten your password? Kindly provide your email address. An email with a link
+                              to establish a new password will be sent to you.</p>
+                      </div>
+                      <form class="auth-form">
+                          <input type="email" class="form-control" placeholder="Enter Your Email Address">
+                          <div class="d-flex flex-wrap-nowrap mt-3 gap-3">
+                              <button class="btn btn-bg-theme w-100">Submit</button>
+                              <a href="#!" class="btn btn-bg-theme w-100 cancel-btn">Cancel</a>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Authentication Modal End -->
 
-                                <div class="swiper quick-thumbnail-product-box quick-thumbnail-slider">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="image-box">
-                                                <img src="assets/images/product/189.png" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="image-box">
-                                                <img src="assets/images/product/190.png" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="image-box">
-                                                <img src="assets/images/product/191.png" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="image-box">
-                                                <img src="assets/images/product/192.png" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="image-box">
-                                                <img src="assets/images/product/193.png" class="img-fluid" alt="" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+  <!-- Add To Cart Modal Start -->
+  <div class="modal theme-modal add-cart-modal fade" id="addCartModal">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h3 class="modal-title">Modal title</h3>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal">
+                      <i class="ri-close-line"></i>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-7">
+                          <div class="table-responsive">
+                              <table class="table add-to-cart-table">
+                                  <tbody>
+                                      <tr>
+                                          <td>
+                                              <img src="assets/images/product/1.png" alt=""
+                                                  class="img-fluid cart-image">
+                                          </td>
+                                          <td>
+                                              <div class="name">
+                                                  <h4>Smart Watch Series X3</h4>
+                                                  <h5>White</h5>
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <h5 class="sub-total">$693.66 <del>$710.63</del></h5>
+                                          </td>
+                                          <td>
+                                              <div class="quantity-box">
+                                                  <button class="btn decrementButton">-</button>
+                                                  <span class="quantity">0</span>
+                                                  <button class="btn incrementButton">+</button>
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <h6 class="total-price">$693.66</h6>
+                                          </td>
+                                          <td>
+                                              <i class="ri-delete-bin-5-line delete-box"></i>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                      <div class="col-6"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Add To Cart Modal End -->
 
-                        <div class="col-md-6">
-                            <div class="product-right-box">
-                                <div class="right-box-contain">
-                                    <a href="seller-details-2.html" class="offer-top">Visit Thirfting_store</a>
-                                    <h2 class="name">Marks & Spencer Pure Cotton Embroidered Round Neck Dress</h2>
-                                    <div class="price-rating">
-                                        <ul class="rating-review-sold-box">
-                                            <li>
-                                                <h3><i class="ri-star-fill"></i> 4.9 Ratings</h3>
-                                            </li>
-                                            <li></li>
-                                            <li>
-                                                <h3>2.3k+ Reviews</h3>
-                                            </li>
-                                            <li></li>
-                                            <li>
-                                                <h3>2.9k+ Sold</h3>
-                                            </li>
-                                        </ul>
-                                    </div>
+  <!-- Tap To Top Button Start -->
+  <div class="tap-top-button">
+      <button class="btn">
+          <i class="iconsax" data-icon-name="arrow-up"></i>
+      </button>
+  </div>
+  <!-- Tap To Top Button End -->
 
-                                    <div class="product-contain">
-                                        <p>A piece of clothing that covers both legs independently from the waist to
-                                            somewhere between the knees and ankles is called a pant, slacks, or
-                                            trousers. In the UK, the term "pants" usually refers to undergarments rather
-                                            than pants.</p>
-                                    </div>
+  <!-- Alert Box Start -->
+  <div id="alertBox" class="alert-box">
+      <div class="alert-message" id="alertMessage"></div>
+      <div class="alert-progressbar" id="progressBar"></div>
+      <div class="button-group">
+          <button class="remove-wishlist btn">remove wishlist</button>
+          <button class="add-cart-btn btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">Add to
+              cart</button>
+      </div>
+  </div>
+  <!-- Alert Box End -->
 
-                                    <div class="product-package product-spacing">
-                                        <div class="product-title">
-                                            <h4>Choose Color :</h4>
-                                        </div>
-                                        <form class="select-package color-product">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="6" checked style="background-color: #d5dde0;">
-                                                <label class="form-check-label bg-transparent" for="6"></label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="7" style="background-color: #edd4d7;">
-                                                <label class="form-check-label bg-transparent" for="7"></label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="8" style="background-color: #ece7c9;">
-                                                <label class="form-check-label bg-transparent" for="8"></label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="9" style="background-color: #d4ddce;">
-                                                <label class="form-check-label bg-transparent" for="9"></label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                    id="10" style="background-color: #4d5154;">
-                                                <label class="form-check-label bg-transparent" for="10"></label>
-                                            </div>
-                                        </form>
-                                    </div>
+  <!-- Recent Product View Box Start -->
+  <div class="recently-product-box">
+      <button class="btn recent-close">
+          <i class="iconsax" data-icon-name="add"></i>
+      </button>
+      <a href="product-color.html">
+          <img src="assets/images/product/1.png" class="img-fluid" alt="Product Image">
+      </a>
+      <div class="recent-content">
+          <a href="product-color.html">Smart Watch Series X3</a>
+          <h5 class="price">$239.00 <del>$250.00</del></h5>
+          <h6 class="timer">1 minutes ago</h6>
+      </div>
+  </div>
+  <!-- Recent Product View Box End -->
 
-                                    <div class="hurry-up-box">
-                                        <h5>There are just <span class="theme-color">5</span> left in stock, so please
-                                            act immediately.</h5>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                style="width: 50%"></div>
-                                        </div>
-                                    </div>
+  <!-- Quick View Modal Start -->
+  <div class="modal fade quick-view-modal theme-modal" id="quickViewModal">
+      <div class="modal-dialog modal-custom-size modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal">
+                      <i class="ri-close-line"></i>
+                  </button>
+                  <div class="row g-sm-4 g-3">
+                      <div class="col-md-6">
+                          <div class="left-box-contain">
+                              <div class="swiper quick-main-slider quick-slider-product-box">
+                                  <div class="swiper-wrapper">
+                                      <div class="swiper-slide">
+                                          <div class="view-image">
+                                              <img src="assets/images/product/189.png" class="img-fluid" alt="">
+                                          </div>
+                                      </div>
+                                      <div class="swiper-slide">
+                                          <div class="view-image">
+                                              <img src="assets/images/product/190.png" class="img-fluid" alt="">
+                                          </div>
+                                      </div>
+                                      <div class="swiper-slide">
+                                          <div class="view-image">
+                                              <img src="assets/images/product/191.png" class="img-fluid" alt="">
+                                          </div>
+                                      </div>
+                                      <div class="swiper-slide">
+                                          <div class="view-image">
+                                              <img src="assets/images/product/192.png" class="img-fluid" alt="">
+                                          </div>
+                                      </div>
+                                      <div class="swiper-slide">
+                                          <div class="view-image">
+                                              <img src="assets/images/product/193.png" class="img-fluid" alt="">
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="swiper-button-next">
+                                      <i class="ri-arrow-right-s-line"></i>
+                                  </div>
+                                  <div class="swiper-button-prev">
+                                      <i class="ri-arrow-left-s-line"></i>
+                                  </div>
+                              </div>
 
-                                    <div class="about-item-box product-spacing border-top-space">
-                                        <div class="product-title">
-                                            <h4>About Item :</h4>
-                                        </div>
+                              <div class="swiper quick-thumbnail-product-box quick-thumbnail-slider">
+                                  <div class="swiper-wrapper">
+                                      <div class="swiper-slide">
+                                          <div class="image-box">
+                                              <img src="assets/images/product/189.png" class="img-fluid" alt="">
+                                          </div>
+                                      </div>
+                                      <div class="swiper-slide">
+                                          <div class="image-box">
+                                              <img src="assets/images/product/190.png" class="img-fluid" alt="">
+                                          </div>
+                                      </div>
+                                      <div class="swiper-slide">
+                                          <div class="image-box">
+                                              <img src="assets/images/product/191.png" class="img-fluid" alt="">
+                                          </div>
+                                      </div>
+                                      <div class="swiper-slide">
+                                          <div class="image-box">
+                                              <img src="assets/images/product/192.png" class="img-fluid" alt="">
+                                          </div>
+                                      </div>
+                                      <div class="swiper-slide">
+                                          <div class="image-box">
+                                              <img src="assets/images/product/193.png" class="img-fluid" alt="">
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
 
-                                        <ul class="about-item-list">
-                                            <li>Brand : <span>Women's fashion</span></li>
-                                            <li>Category : <span>Cloths</span></li>
-                                            <li>Condition : <span>New</span></li>
-                                            <li>Color : <span>Black</span></li>
-                                            <li>Pattern : <span>All Over Print</span></li>
-                                            <li>Style : <span>Fit And Flare</span></li>
-                                        </ul>
-                                    </div>
+                      <div class="col-md-6">
+                          <div class="product-right-box">
+                              <div class="right-box-contain">
+                                  <a href="seller-details-2.html" class="offer-top">Visit Thirfting_store</a>
+                                  <h2 class="name">Marks & Spencer Pure Cotton Embroidered Round Neck Dress</h2>
+                                  <div class="price-rating">
+                                      <ul class="rating-review-sold-box">
+                                          <li>
+                                              <h3><i class="ri-star-fill"></i> 4.9 Ratings</h3>
+                                          </li>
+                                          <li></li>
+                                          <li>
+                                              <h3>2.3k+ Reviews</h3>
+                                          </li>
+                                          <li></li>
+                                          <li>
+                                              <h3>2.9k+ Sold</h3>
+                                          </li>
+                                      </ul>
+                                  </div>
 
-                                    <div class="qty-stock-box">
-                                        <div class="qty-box h-100 qty-container quantity-box-2">
-                                            <button class="btn qty-btn qty-btn-minus">
-                                                <i class="ri-subtract-line"></i>
-                                            </button>
-                                            <input type="number" readonly="" name="qty" value="0"
-                                                class="qty-input form-control input-qty">
-                                            <button class="btn qty-btn qty-btn-plus">
-                                                <i class="ri-add-line"></i>
-                                            </button>
-                                        </div>
+                                  <div class="product-contain">
+                                      <p>A piece of clothing that covers both legs independently from the waist to
+                                          somewhere between the knees and ankles is called a pant, slacks, or
+                                          trousers. In the UK, the term "pants" usually refers to undergarments rather
+                                          than pants.</p>
+                                  </div>
 
-                                        <button onclick="location.href = 'cart.html';"
-                                            class="btn buy-btn theme-border fw-500">
-                                            <i class="ri-shopping-bag-line"></i> Add to bag</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Quick View Modal End -->
+                                  <div class="product-package product-spacing">
+                                      <div class="product-title">
+                                          <h4>Choose Color :</h4>
+                                      </div>
+                                      <form class="select-package color-product">
+                                          <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                  id="6" checked style="background-color: #d5dde0;">
+                                              <label class="form-check-label bg-transparent" for="6"></label>
+                                          </div>
+                                          <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                  id="7" style="background-color: #edd4d7;">
+                                              <label class="form-check-label bg-transparent" for="7"></label>
+                                          </div>
+                                          <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                  id="8" style="background-color: #ece7c9;">
+                                              <label class="form-check-label bg-transparent" for="8"></label>
+                                          </div>
+                                          <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                  id="9" style="background-color: #d4ddce;">
+                                              <label class="form-check-label bg-transparent" for="9"></label>
+                                          </div>
+                                          <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                  id="10" style="background-color: #4d5154;">
+                                              <label class="form-check-label bg-transparent" for="10"></label>
+                                          </div>
+                                      </form>
+                                  </div>
 
-    <!-- Exit Modal Start -->
-    <div class="modal fade exit-modal theme-modal" id="exitModal">
-        <div class="modal-dialog modal-custom-size modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="exit-box">
-                        <div class="row g-0">
-                            <div class="col-sm-6 order-sm-1 order-2">
-                                <div class="exit-left-box">
-                                    <h3>HEY YOU</h3>
-                                    <h4>Don't leave now!</h4>
-                                    <h5>OFFER68</h5>
-                                    <h6>Use this coupon code to get 68% off</h6>
-                                    <ul class="clock-list">
-                                        <li>
-                                            <div class="digits minutes" id="minutes"></div>
-                                        </li>
-                                        <li class="dots">:</li>
-                                        <li>
-                                            <div class="digits seconds" id="seconds"></div>
-                                        </li>
-                                    </ul>
-                                    <h6>This coupon code expires in</h6>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 order-sm-2 order-1">
-                                <div class="exit-right-box">
-                                    <img src="assets/images/exit-modal/1.jpg" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Exit Modal End -->
+                                  <div class="hurry-up-box">
+                                      <h5>There are just <span class="theme-color">5</span> left in stock, so please
+                                          act immediately.</h5>
+                                      <div class="progress">
+                                          <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                              style="width: 50%"></div>
+                                      </div>
+                                  </div>
 
-    <!-- Bg Overlay Start -->
-    <div id="overlay" class="bg-overlay"></div>
-    <!-- Bg Overlay End -->
+                                  <div class="about-item-box product-spacing border-top-space">
+                                      <div class="product-title">
+                                          <h4>About Item :</h4>
+                                      </div>
 
-    <!-- Newsletter Modal Start -->
-    <div class="modal fade theme-modal newsletter-modal" id="newsletterModal">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        <i class="ri-close-line"></i>
-                    </button>
-                    <div class="newsletter-box">
-                        <img src="assets/images/newsletter.jpg" alt="" class="img-fluid newsletter-image">
+                                      <ul class="about-item-list">
+                                          <li>Brand : <span>Women's fashion</span></li>
+                                          <li>Category : <span>Cloths</span></li>
+                                          <li>Condition : <span>New</span></li>
+                                          <li>Color : <span>Black</span></li>
+                                          <li>Pattern : <span>All Over Print</span></li>
+                                          <li>Style : <span>Fit And Flare</span></li>
+                                      </ul>
+                                  </div>
 
-                        <div class="newsletter-content">
-                            <h3>Your Direct Line to Offers</h3>
-                            <p>Subscribe now and enjoy insider tips, special rewards, and early access to our latest
-                                products.</p>
-                            <div class="newsletter-form-box">
-                                <input type="email" class="form-control" placeholder="Your Email">
-                                <button class="newsletter-button btn">Sign Up</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Newsletter Modal End -->
+                                  <div class="qty-stock-box">
+                                      <div class="qty-box h-100 qty-container quantity-box-2">
+                                          <button class="btn qty-btn qty-btn-minus">
+                                              <i class="ri-subtract-line"></i>
+                                          </button>
+                                          <input type="number" readonly="" name="qty" value="0"
+                                              class="qty-input form-control input-qty">
+                                          <button class="btn qty-btn qty-btn-plus">
+                                              <i class="ri-add-line"></i>
+                                          </button>
+                                      </div>
 
-    <!-- Cookie Box Start -->
-    <div class="cookie-bar-section cookie">
-        <div class="cookie-bar-box">
-            <svg>
-                <use xlink:href="https://themes.pixelstrap.net/kartify/assets/images/cookie/1.svg#one"></use>
-            </svg>
-            <p>We use cookies to ensure that we give you the best experience on our website. <a href="#!">Read cookies
-                    policies.</a></p>
-            <div class="cookie-buttons">
-                <button class="btn decline-btn">Decline</button>
-                <button class="btn allow-btn">Allow</button>
-            </div>
-        </div>
-    </div>
-    <!-- Cookie Box End -->
+                                      <button onclick="location.href = 'cart.html';"
+                                          class="btn buy-btn theme-border fw-500">
+                                          <i class="ri-shopping-bag-line"></i> Add to bag</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Quick View Modal End -->
 
-    <!-- Bg Overlay Start -->
-    <!-- <div id="overlay" class="bg-overlay"></div> -->
-    <!-- Bg Overlay End -->
+  <!-- Exit Modal Start -->
+  <div class="modal fade exit-modal theme-modal" id="exitModal">
+      <div class="modal-dialog modal-custom-size modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <div class="exit-box">
+                      <div class="row g-0">
+                          <div class="col-sm-6 order-sm-1 order-2">
+                              <div class="exit-left-box">
+                                  <h3>HEY YOU</h3>
+                                  <h4>Don't leave now!</h4>
+                                  <h5>OFFER68</h5>
+                                  <h6>Use this coupon code to get 68% off</h6>
+                                  <ul class="clock-list">
+                                      <li>
+                                          <div class="digits minutes" id="minutes"></div>
+                                      </li>
+                                      <li class="dots">:</li>
+                                      <li>
+                                          <div class="digits seconds" id="seconds"></div>
+                                      </li>
+                                  </ul>
+                                  <h6>This coupon code expires in</h6>
+                              </div>
+                          </div>
+                          <div class="col-sm-6 order-sm-2 order-1">
+                              <div class="exit-right-box">
+                                  <img src="assets/images/exit-modal/1.jpg" class="img-fluid" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Exit Modal End -->
 
-    <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap/bootstrap.bundle.js"></script>
-    <script src="assets/js/bootstrap/bootstrap-validation.js"></script>
+  <!-- Bg Overlay Start -->
+  <div id="overlay" class="bg-overlay"></div>
+  <!-- Bg Overlay End -->
 
-    <!-- Lazyload Js -->
-    <script src="assets/js/lazyload.js"></script>
+  <!-- Newsletter Modal Start -->
+  <div class="modal fade theme-modal newsletter-modal" id="newsletterModal">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal">
+                      <i class="ri-close-line"></i>
+                  </button>
+                  <div class="newsletter-box">
+                      <img src="assets/images/newsletter.jpg" alt="" class="img-fluid newsletter-image">
 
-    <!-- Swiper Js -->
-    <script src="assets/js/swiper.js"></script>
-    <script src="assets/js/custom-swiper.js"></script>
+                      <div class="newsletter-content">
+                          <h3>Your Direct Line to Offers</h3>
+                          <p>Subscribe now and enjoy insider tips, special rewards, and early access to our latest
+                              products.</p>
+                          <div class="newsletter-form-box">
+                              <input type="email" class="form-control" placeholder="Your Email">
+                              <button class="newsletter-button btn">Sign Up</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Newsletter Modal End -->
 
-    <!-- Iconsax js -->
-    <script src="assets/js/iconsax.js"></script>
+  <!-- Cookie Box Start -->
+  <div class="cookie-bar-section cookie">
+      <div class="cookie-bar-box">
+          <svg>
+              <use xlink:href="https://themes.pixelstrap.net/kartify/assets/images/cookie/1.svg#one"></use>
+          </svg>
+          <p>We use cookies to ensure that we give you the best experience on our website. <a href="#!">Read cookies
+                  policies.</a></p>
+          <div class="cookie-buttons">
+              <button class="btn decline-btn">Decline</button>
+              <button class="btn allow-btn">Allow</button>
+          </div>
+      </div>
+  </div>
+  <!-- Cookie Box End -->
 
-    <!-- Category Hide Show js -->
-    <script src="assets/js/category-hide-show.js"></script>
+  <!-- Bg Overlay Start -->
+  <!-- <div id="overlay" class="bg-overlay"></div> -->
+  <!-- Bg Overlay End -->
 
-    <!-- Timer js -->
-    <script src="assets/js/timer.js"></script>
-    <script src="assets/js/timer-2.js"></script>
+  <!-- Bootstrap Js -->
+  <script src="assets/js/bootstrap/bootstrap.bundle.js"></script>
+  <script src="assets/js/bootstrap/bootstrap-validation.js"></script>
 
-    <!-- Quantity js -->
-    <script src="assets/js/qty.js"></script>
+  <!-- Lazyload Js -->
+  <script src="assets/js/lazyload.js"></script>
 
-    <!-- Wishlist Notification Js -->
-    <script src="assets/js/wishlist-notify.js"></script>
+  <!-- Swiper Js -->
+  <script src="assets/js/swiper.js"></script>
+  <script src="assets/js/custom-swiper.js"></script>
 
-    <!-- Cookie Js -->
-    <script src="assets/js/cookie.js"></script>
+  <!-- Iconsax js -->
+  <script src="assets/js/iconsax.js"></script>
 
-    <!-- Template Setting Js -->
-    <script src="assets/js/theme-setting.js"></script>
+  <!-- Category Hide Show js -->
+  <script src="assets/js/category-hide-show.js"></script>
 
-    <!-- GSAP & SplitType -->
-    <script src="assets/js/gsap/gsap.min.js"></script>
-    <script src="assets/js/gsap/split-type.js"></script>
+  <!-- Timer js -->
+  <script src="assets/js/timer.js"></script>
+  <script src="assets/js/timer-2.js"></script>
 
-    <!-- Script js -->
-    <script src="assets/js/script.js"></script>
-</body>
+  <!-- Quantity js -->
+  <script src="assets/js/qty.js"></script>
+
+  <!-- Wishlist Notification Js -->
+  <script src="assets/js/wishlist-notify.js"></script>
+
+  <!-- Cookie Js -->
+  <script src="assets/js/cookie.js"></script>
+
+  <!-- Template Setting Js -->
+  <script src="assets/js/theme-setting.js"></script>
+
+  <!-- GSAP & SplitType -->
+  <script src="assets/js/gsap/gsap.min.js"></script>
+  <script src="assets/js/gsap/split-type.js"></script>
+
+  <!-- Script js -->
+  <script src="assets/js/script.js"></script>
+  </body>
 
 
-<!-- Mirrored from themes.pixelstrap.net/kartify/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 Mar 2026 10:20:54 GMT -->
-</html>
+  <!-- Mirrored from themes.pixelstrap.net/kartify/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 Mar 2026 10:20:54 GMT -->
 
+  </html>
