@@ -43,8 +43,10 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
     <script src="./assets/js/userJs/login.js"></script>
 </head>
 
@@ -74,7 +76,8 @@
                 <div class="dropdown-box">
                     <ul>
                         <li class="contact-list">
-                            <a href="tel:+918586084450" style="display:flex; align-items:center; gap:8px; color: white;">
+                            <a href="tel:+918586084450"
+                                style="display:flex; align-items:center; gap:8px; color: white;">
                                 <i class="fa-solid fa-phone"></i>
                                 <span>Call us now: +91 8586084450</span>
 
@@ -529,8 +532,8 @@
                                                                     class="dropdown-item">Product review</a>
                                                             </li>
                                                             <li>
-                                                                <a class="dropdown-item"
-                                                                    href="product-dropdown.php">ask an expert</a>
+                                                                <a class="dropdown-item" href="product-dropdown.php">ask
+                                                                    an expert</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -552,8 +555,8 @@
                                                                     class="dropdown-item">Out of stock 2</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-zoom.php"
-                                                                    class="dropdown-item">Product zoom</a>
+                                                                <a href="product-zoom.php" class="dropdown-item">Product
+                                                                    zoom</a>
                                                             </li>
                                                             <li>
                                                                 <a href="product-zoom-gallery.php"
