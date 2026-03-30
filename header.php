@@ -52,7 +52,7 @@
         </div>
         <div class="text-container">
             <div class="loading-text initial">Loading</div>
-            <div class="loading-text complete">
+            <div class="loading-text complete mt-2">
                 <!-- <span>Welcome</span>
             
                 <span>Kartify</span> -->
