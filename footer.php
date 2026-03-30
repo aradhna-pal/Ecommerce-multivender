@@ -652,10 +652,10 @@
                       </div>
                       <form class="auth-form" id="loginForm" action="#">
                           <div class="mb-3">
-                              <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                              <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
                           </div>
                           <div class="mb-3">
-                              <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                              <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password">
                           </div>
                           <div class="forgot-box">
                               <div class="form-check">

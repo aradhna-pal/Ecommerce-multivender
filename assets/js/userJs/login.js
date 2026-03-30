@@ -2,14 +2,17 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.getElementById("registerForm");
-    // alert(form);
-    // alert("Form Element: " + form);
+    
+   
+    
+
 
     form.addEventListener("submit", async function (e) {
         // alert("Submit Event Triggered");
         e.preventDefault();
 
         console.log("Form Submitted ✅");
+        
 
         const firstname = document.getElementById("firstname").value;
         const lastname = document.getElementById("lastname").value;
@@ -34,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("email", email);
             formData.append("password", password);
             formData.append("phone", phone);
-            formData.append("role", "SUPERADMIN");
+            formData.append("role", "USER");
 
             // API call
             const response = await fetch("http://multivendor_backend.workarya.com/register", {
@@ -50,9 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 Swal.fire({
                     icon: "success",
                     title: "User Registered Successfully 🎉"
-                }).then(() => {
-                    window.location.href = "login.php"; // ✅ redirect here
-                });
+                })
+                // .then(() => {
+                //     window.location.href = "login.php"; 
+                // });
 
                 form.reset();
             } else {
@@ -77,13 +81,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // login.js - handles the login form submission and API interaction for user authentication.
 document.addEventListener("DOMContentLoaded", function () {
-    alert("Login Script Loaded");
     const form = document.getElementById("loginForm");
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
         try {
             const formData = new FormData();
             formData.append("email", email);
