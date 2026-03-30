@@ -650,12 +650,12 @@
                           <h4>Log in</h4>
                           <p>Welcome! To access your account, please enter your username and password.</p>
                       </div>
-                      <form class="auth-form">
+                      <form class="auth-form" id="loginForm" action="#">
                           <div class="mb-3">
-                              <input type="email" class="form-control" placeholder="Enter your email">
+                              <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
                           </div>
                           <div class="mb-3">
-                              <input type="password" class="form-control" placeholder="Enter your password">
+                              <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password">
                           </div>
                           <div class="forgot-box">
                               <div class="form-check">
@@ -665,7 +665,7 @@
                               </div>
                               <a href="#!" class="forgot-pass">Forgot Password</a>
                           </div>
-                          <a href="index.html" class="btn btn-bg-theme mt-3 w-100">Log In</a>
+                          <button type="submit" id="submitBtn" class="btn btn-bg-theme mt-3 w-100">Log In</button>
                           <div class="divider">
                               <span>OR</span>
                           </div>
