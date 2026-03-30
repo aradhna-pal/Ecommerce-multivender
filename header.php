@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from themes.pixelstrap.net/kartify/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 Mar 2026 10:19:55 GMT -->
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +21,7 @@
     <meta name="msapplication-TileColor" content="#FFFFFF">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
-    
+
     <title>HyperScripts | E-commerce </title>
 
     <!-- Google Font Link -->
@@ -40,6 +41,7 @@
 
     <!-- Style Link -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body class="base-bg-color">
@@ -65,67 +67,12 @@
             <div class="left-header">
                 <div class="dropdown-box">
                     <ul>
-                        <li>
-                            <div class="dropdown theme-form-select">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    id="select-language">
-                                    <img src="assets/images/country/united-states.png" class="img-fluid" alt="">
-                                    <span>Eng</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li>
-                                        <a onclick="setLanguage('en')" class="dropdown-item" href="#!" id="english">
-                                            <img src="assets/images/country/united-kingdom.png" class="img-fluid"
-                                                alt="">
-                                            <span>Eng</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a onclick="setLanguage('ar')" class="dropdown-item" href="#!" id="france">
-                                            <img src="assets/images/country/arbic.png" class="img-fluid" alt="">
-                                            <span>Ar</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#!" id="germany">
-                                            <img src="assets/images/country/germany.png" class="img-fluid" alt="">
-                                            <span>Ger</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#!" id="chinese">
-                                            <img src="assets/images/country/turkish.png" class="img-fluid" alt="">
-                                            <span>Tur</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                        <li class="contact-list">
+                            <a href="tel:+918586084450" style="display:flex; align-items:center; gap:8px; color: white;">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>Call us now: +91 8586084450</span>
 
-                        <li>
-                            <div class="dropdown theme-form-select">
-                                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button"
-                                    id="select-language1">
-                                    <span>USD</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li>
-                                        <a class="dropdown-item" href="#!" id="english1">
-                                            <span>AUD</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#!" id="france1">
-                                            <span>EUR</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#!" id="chinese1">
-                                            <span>CNY</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -157,6 +104,7 @@
                             <br>
                             FREE RETURNS. STANDARD SHIPPING ORDERS $99+</span>
                     </p>
+
                 </div>
             </div>
 
@@ -345,15 +293,7 @@
                             <i class="iconsax search-btn" data-icon-name="search-normal-2"></i>
                         </a>
                     </li>
-                    <li class="contact-list">
-                        <a href="tel:+19173768944">
-                            <i class="iconsax" data-icon-name="phone-calling"></i>
-                            <div>
-                                <h5>Call us now</h5>
-                                <h6 class="h5">+1 917 376 8944</h6>
-                            </div>
-                        </a>
-                    </li>
+
                     <li class="dropdown-box">
                         <a href="#!">
                             <i class="iconsax" data-icon-name="user-2"></i>
@@ -410,8 +350,8 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown mega-dropdown">
-                                    <a class="nav-link dropdown-toggle" href="index.php" data-bs-toggle="dropdown">Home</a>
-                                  
+                                    <a class="nav-link " href="index.php" data-bs-toggle="dropdown">Home</a>
+
                                 </li>
 
                                 <li class="nav-item dropdown mega-dropdown">
@@ -991,7 +931,8 @@
                                                                                 </li>
                                                                             </ul>
                                                                             <h5 class="price mb-0">$239.00
-                                                                                <del>$250.00</del></h5>
+                                                                                <del>$250.00</del>
+                                                                            </h5>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1241,7 +1182,8 @@
                                                                                 </li>
                                                                             </ul>
                                                                             <h5 class="price mb-0">$210.00
-                                                                                <del>$250.00</del></h5>
+                                                                                <del>$250.00</del>
+                                                                            </h5>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1456,7 +1398,8 @@
                                                                                 </li>
                                                                             </ul>
                                                                             <h5 class="price mb-0">$670.00
-                                                                                <del>$900.00</del></h5>
+                                                                                <del>$900.00</del>
+                                                                            </h5>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1706,7 +1649,8 @@
                                                                                 </li>
                                                                             </ul>
                                                                             <h5 class="price mb-0">$246.36
-                                                                                <del>$506.24</del></h5>
+                                                                                <del>$506.24</del>
+                                                                            </h5>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1958,7 +1902,8 @@
                                                                                 </li>
                                                                             </ul>
                                                                             <h5 class="price mb-0">$169.00
-                                                                                <del>$180.00</del></h5>
+                                                                                <del>$180.00</del>
+                                                                            </h5>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2208,7 +2153,8 @@
                                                                                 </li>
                                                                             </ul>
                                                                             <h5 class="price mb-0">$587.31
-                                                                                <del>$896.45</del></h5>
+                                                                                <del>$896.45</del>
+                                                                            </h5>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2458,7 +2404,8 @@
                                                                                 </li>
                                                                             </ul>
                                                                             <h5 class="price mb-0">$1220.24
-                                                                                <del>$1520.98</del></h5>
+                                                                                <del>$1520.98</del>
+                                                                            </h5>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -3060,7 +3007,9 @@
 
                             <div class="empty-message">
                                 <svg>
-                                    <use xlink:href="https://themes.pixelstrap.net/kartify/assets/images/no-recent.svg#noRecent"></use>
+                                    <use
+                                        xlink:href="https://themes.pixelstrap.net/kartify/assets/images/no-recent.svg#noRecent">
+                                    </use>
                                 </svg>
                                 <h6>No products available</h6>
                             </div>

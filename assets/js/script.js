@@ -273,7 +273,7 @@ window.addEventListener("focus", function () {
 });
 
 window.addEventListener("blur", function () {
-    document.title = "Come Back :(";
+    document.title = "HyperScripts | E-commerce";
 });
 
 let accordionEnabled = false;
