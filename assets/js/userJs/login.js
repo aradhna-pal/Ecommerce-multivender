@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("email", email);
             formData.append("password", password);
             formData.append("phone", phone);
-            formData.append("role", "SUPERADMIN");
+            formData.append("role", "USER");
 
             // API call
             const response = await fetch("http://multivendor_backend.workarya.com/register", {

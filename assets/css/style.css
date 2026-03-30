@@ -2852,9 +2852,9 @@ body.dark .form-select {
 /**=====================
     2.7 Lazy Load css Start
 ==========================**/
-img {
+/* img {
   filter: blur(10px);
-}
+} */
 img.loaded {
   filter: blur(0);
   opacity: 1;
@@ -25800,3 +25800,4 @@ body.dark .seller-details-section-2 .seller-main-box .brand-related-product .top
 #rtlBtn{
   display: none;
 }
+
