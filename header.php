@@ -2,7 +2,7 @@
 <html lang="en">
 
 
-<!-- Mirrored from themes.pixelstrap.net/kartify/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 Mar 2026 10:19:55 GMT -->
+<!-- Mirrored from themes.pixelstrap.net/kartify/template/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 Mar 2026 10:19:55 GMT -->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -53,8 +53,10 @@
         <div class="text-container">
             <div class="loading-text initial">Loading</div>
             <div class="loading-text complete">
-                <span>Welcome</span>
-                <span>Kartify</span>
+                <!-- <span>Welcome</span>
+            
+                <span>Kartify</span> -->
+                <span>Welcome<br>HyperScripts</span>
             </div>
         </div>
         <div class="percentage">0</div>
@@ -111,19 +113,19 @@
             <div class="right-header">
                 <ul class="content-list">
                     <li>
-                        <a href="user-dashboard.html">My Account</a>
+                        <a href="user-dashboard.php">My Account</a>
                     </li>
                     <li>
-                        <a href="contact-us.html">Contact Us</a>
+                        <a href="contact-us.php">Contact Us</a>
                     </li>
                     <li>
-                        <a href="blog-3-grid.html">Blog</a>
+                        <a href="blog-3-grid.php">Blog</a>
                     </li>
                     <li>
-                        <a href="wishlist.html">Wishlist</a>
+                        <a href="wishlist.php">Wishlist</a>
                     </li>
                     <li>
-                        <a href="cart.html">Cart</a>
+                        <a href="cart.php">Cart</a>
                     </li>
                     <li>
                         <a href="#authenticationModal" class="login-btn" data-bs-toggle="modal">Log In</a>
@@ -200,28 +202,28 @@
                             </div>
                             <ul class="result-list-box">
                                 <li>
-                                    <a href="product-color.html">iPhone 14</a>
+                                    <a href="product-color.php">iPhone 14</a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">kitchen utensils</a>
+                                    <a href="product-color.php">kitchen utensils</a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">Realme 10 PRO</a>
+                                    <a href="product-color.php">Realme 10 PRO</a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">Sport & Outdoor</a>
+                                    <a href="product-color.php">Sport & Outdoor</a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">Samsung Gal. M14</a>
+                                    <a href="product-color.php">Samsung Gal. M14</a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">Office Wear Perfume</a>
+                                    <a href="product-color.php">Office Wear Perfume</a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">Handmade table</a>
+                                    <a href="product-color.php">Handmade table</a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">mini projector</a>
+                                    <a href="product-color.php">mini projector</a>
                                 </li>
                             </ul>
                         </div>
@@ -232,16 +234,16 @@
                             </div>
                             <ul class="search-list-box">
                                 <li>
-                                    <a href="shop-left-sidebar.html">iPhone 14</a>
+                                    <a href="shop-left-sidebar.php">iPhone 14</a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html">kitchen utensils</a>
+                                    <a href="shop-left-sidebar.php">kitchen utensils</a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html">Realme 10 PRO</a>
+                                    <a href="shop-left-sidebar.php">Realme 10 PRO</a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.html">Samsung Galaxy M14</a>
+                                    <a href="shop-left-sidebar.php">Samsung Galaxy M14</a>
                                 </li>
                             </ul>
                         </div>
@@ -251,32 +253,32 @@
                             </div>
                             <ul class="search-list-box">
                                 <li>
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/104.png" class="img-fluid" alt="">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/58.png" class="img-fluid" alt="">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/69.png" class="img-fluid" alt="">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/42.jpg" class="img-fluid" alt="">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/50.jpg" class="img-fluid" alt="">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="product-color.html">
+                                    <a href="product-color.php">
                                         <img src="assets/images/product/5.png" class="img-fluid" alt="">
                                     </a>
                                 </li>
@@ -362,16 +364,16 @@
                                             <a class="dropdown-item" href="#!">Shop grid</a>
                                             <ul class="sub-menu">
                                                 <li>
-                                                    <a href="shop-grid-5.html">Shop grid 5</a>
+                                                    <a href="shop-grid-5.php">Shop grid 5</a>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-grid-4.html">Shop grid 4</a>
+                                                    <a href="shop-grid-4.php">Shop grid 4</a>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-grid-3.html">Shop grid 3</a>
+                                                    <a href="shop-grid-3.php">Shop grid 3</a>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-grid-2.html">Shop grid 2</a>
+                                                    <a href="shop-grid-2.php">Shop grid 2</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -379,53 +381,53 @@
                                             <a class="dropdown-item" href="#!">Shop collection</a>
                                             <ul class="sub-menu">
                                                 <li>
-                                                    <a href="shop-collection-grid-5.html">Shop collection 5</a>
+                                                    <a href="shop-collection-grid-5.php">Shop collection 5</a>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-collection-grid-4.html">Shop collection 4</a>
+                                                    <a href="shop-collection-grid-4.php">Shop collection 4</a>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-collection-grid-3.html">Shop collection 3</a>
+                                                    <a href="shop-collection-grid-3.php">Shop collection 3</a>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-collection-grid-2.html">Shop collection 2</a>
+                                                    <a href="shop-collection-grid-2.php">Shop collection 2</a>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-collection-list.html">Shop collection list</a>
+                                                    <a href="shop-collection-list.php">Shop collection list</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="shop-left-sidebar.html">Shop Left sidebar</a>
+                                            <a class="dropdown-item" href="shop-left-sidebar.php">Shop Left sidebar</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="shop-right-sidebar.html">Shop right
+                                            <a class="dropdown-item" href="shop-right-sidebar.php">Shop right
                                                 sidebar</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="shop-list-infinite.html">Shop List
+                                            <a class="dropdown-item" href="shop-list-infinite.php">Shop List
                                                 Infinite</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="shop-banner.html">Shop banner</a>
+                                            <a class="dropdown-item" href="shop-banner.php">Shop banner</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="shop-category.html">Shop
+                                            <a class="dropdown-item" href="shop-category.php">Shop
                                                 category</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="shop-full-width.html">Shop full
+                                            <a class="dropdown-item" href="shop-full-width.php">Shop full
                                                 width</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="shop-grid-infinite.html">shop
+                                            <a class="dropdown-item" href="shop-grid-infinite.php">shop
                                                 grid infinite</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="shop-list.html">Shop List</a>
+                                            <a class="dropdown-item" href="shop-list.php">Shop List</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="shop-recent-view.html">Shop
+                                            <a class="dropdown-item" href="shop-recent-view.php">Shop
                                                 recent view</a>
                                         </li>
                                     </ul>
@@ -445,23 +447,23 @@
                                                         </div>
                                                         <ul class="menu-list">
                                                             <li>
-                                                                <a href="product-sticky.html"
+                                                                <a href="product-sticky.php"
                                                                     class="dropdown-item">Product thumbnail</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-4-images.html"
+                                                                <a href="product-4-images.php"
                                                                     class="dropdown-item">Product image</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-slider.html"
+                                                                <a href="product-slider.php"
                                                                     class="dropdown-item">Product slider</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-sticky.html"
+                                                                <a href="product-sticky.php"
                                                                     class="dropdown-item">Product sticky</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-full-width.html"
+                                                                <a href="product-full-width.php"
                                                                     class="dropdown-item">Product full width</a>
                                                             </li>
                                                         </ul>
@@ -472,27 +474,27 @@
                                                         </div>
                                                         <ul class="menu-list">
                                                             <li>
-                                                                <a href="product-rectangle.html"
+                                                                <a href="product-rectangle.php"
                                                                     class="dropdown-item">variants rectangle</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-circle.html"
+                                                                <a href="product-circle.php"
                                                                     class="dropdown-item">variants circle</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-image-swatch.html"
+                                                                <a href="product-image-swatch.php"
                                                                     class="dropdown-item">variants image swatch</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-color.html"
+                                                                <a href="product-color.php"
                                                                     class="dropdown-item">variants color</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-radio-button.html"
+                                                                <a href="product-radio-button.php"
                                                                     class="dropdown-item">variants radio</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-dropdown.html"
+                                                                <a href="product-dropdown.php"
                                                                     class="dropdown-item">variants dropdown</a>
                                                             </li>
                                                         </ul>
@@ -504,27 +506,27 @@
                                                         <ul class="menu-list">
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    href="product-color.html">Product simple</a>
+                                                                    href="product-color.php">Product simple</a>
                                                             </li>
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    href="product-sticky.html">Product classified</a>
+                                                                    href="product-sticky.php">Product classified</a>
                                                             </li>
                                                             <li>
-                                                                <a class="dropdown-item" href="product-circle.html">size
+                                                                <a class="dropdown-item" href="product-circle.php">size
                                                                     chart</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-color.html"
+                                                                <a href="product-color.php"
                                                                     class="dropdown-item">delivery & return</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-full-width.html"
+                                                                <a href="product-full-width.php"
                                                                     class="dropdown-item">Product review</a>
                                                             </li>
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    href="product-dropdown.html">ask an expert</a>
+                                                                    href="product-dropdown.php">ask an expert</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -534,27 +536,27 @@
                                                         </div>
                                                         <ul class="menu-list">
                                                             <li>
-                                                                <a href="product-bundle.html"
+                                                                <a href="product-bundle.php"
                                                                     class="dropdown-item">Product bundle</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-out-stock.html"
+                                                                <a href="product-out-stock.php"
                                                                     class="dropdown-item">Out of stock</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-out-stock-2.html"
+                                                                <a href="product-out-stock-2.php"
                                                                     class="dropdown-item">Out of stock 2</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-zoom.html"
+                                                                <a href="product-zoom.php"
                                                                     class="dropdown-item">Product zoom</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-zoom-gallery.html"
+                                                                <a href="product-zoom-gallery.php"
                                                                     class="dropdown-item">Product light zoom</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-sticky.html"
+                                                                <a href="product-sticky.php"
                                                                     class="dropdown-item">Product sticky checkout</a>
                                                             </li>
                                                         </ul>
@@ -565,24 +567,24 @@
                                                         </div>
                                                         <ul class="menu-list">
                                                             <li>
-                                                                <a class="dropdown-item" href="product-circle.html">
+                                                                <a class="dropdown-item" href="product-circle.php">
                                                                     Sticky Checkout</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-circle.html"
+                                                                <a href="product-circle.php"
                                                                     class="dropdown-item">Secure Checkout</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-4-images.html"
+                                                                <a href="product-4-images.php"
                                                                     class="dropdown-item">Social share</a>
                                                             </li>
                                                             <li>
-                                                                <a href="product-color.html"
+                                                                <a href="product-color.php"
                                                                     class="dropdown-item">Related products</a>
                                                             </li>
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    href="product-slider.html">Wishlist & compare</a>
+                                                                    href="product-slider.php">Wishlist & compare</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -596,12 +598,12 @@
                                                     <div class="swiper-wrapper">
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
-                                                                <a href="product-color.html" class="product-image">
+                                                                <a href="product-color.php" class="product-image">
                                                                     <img src="assets/images/product/1.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
-                                                                    <a href="product-color.html">
+                                                                    <a href="product-color.php">
                                                                         <h4 class="productName ">Smart Watch Series X3
                                                                         </h4>
                                                                     </a>
@@ -629,12 +631,12 @@
                                                         </div>
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
-                                                                <a href="product-color.html" class="product-image">
+                                                                <a href="product-color.php" class="product-image">
                                                                     <img src="assets/images/product/2.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
-                                                                    <a href="product-color.html">
+                                                                    <a href="product-color.php">
                                                                         <h4 class="productName">Slim 3 Intel Core i4
                                                                         </h4>
                                                                     </a>
@@ -662,12 +664,12 @@
                                                         </div>
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
-                                                                <a href="product-color.html" class="product-image">
+                                                                <a href="product-color.php" class="product-image">
                                                                     <img src="assets/images/product/3.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
-                                                                    <a href="product-color.html">
+                                                                    <a href="product-color.php">
                                                                         <h4 class="productName">Portable Laptop Table
                                                                         </h4>
                                                                     </a>
@@ -695,12 +697,12 @@
                                                         </div>
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
-                                                                <a href="product-color.html" class="product-image">
+                                                                <a href="product-color.php" class="product-image">
                                                                     <img src="assets/images/product/4.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
-                                                                    <a href="product-color.html">
+                                                                    <a href="product-color.php">
                                                                         <h4 class="productName">Smart Watch Series X3
                                                                         </h4>
                                                                     </a>
@@ -728,12 +730,12 @@
                                                         </div>
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
-                                                                <a href="product-color.html" class="product-image">
+                                                                <a href="product-color.php" class="product-image">
                                                                     <img src="assets/images/product/5.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
-                                                                    <a href="product-color.html">
+                                                                    <a href="product-color.php">
                                                                         <h4 class="productName">Kitchen Accessories</h4>
                                                                     </a>
                                                                     <ul class="rating">
@@ -760,12 +762,12 @@
                                                         </div>
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
-                                                                <a href="product-color.html" class="product-image">
+                                                                <a href="product-color.php" class="product-image">
                                                                     <img src="assets/images/product/6.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
-                                                                    <a href="product-color.html">
+                                                                    <a href="product-color.php">
                                                                         <h4 class="productName">Smart Watch Series X3
                                                                         </h4>
                                                                     </a>
@@ -793,12 +795,12 @@
                                                         </div>
                                                         <div class="swiper-slide">
                                                             <div class="product-box productMain">
-                                                                <a href="product-color.html" class="product-image">
+                                                                <a href="product-color.php" class="product-image">
                                                                     <img src="assets/images/product/7.png"
                                                                         class="img-fluid productImage" alt="">
                                                                 </a>
                                                                 <div class="product-content">
-                                                                    <a href="product-color.html">
+                                                                    <a href="product-color.php">
                                                                         <h4 class="productName">Rockerz 458 Bluetooth
                                                                         </h4>
                                                                     </a>
@@ -903,13 +905,13 @@
                                                             <div class="swiper-wrapper">
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/4.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Smart Watch
                                                                                     Series X3</h5>
                                                                             </a>
@@ -938,13 +940,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/13.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">One plus Nord CE
                                                                                 </h5>
                                                                             </a>
@@ -973,13 +975,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/14.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Samsung Galaxy
                                                                                     M14</h5>
                                                                             </a>
@@ -1008,13 +1010,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/14.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">iPhone 14 Pro
                                                                                 </h5>
                                                                             </a>
@@ -1043,13 +1045,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/16.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Realme 10 PRO
                                                                                 </h5>
                                                                             </a>
@@ -1078,13 +1080,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/22.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Apple iPhone 14
                                                                                     (128 GB) - Purple</h5>
                                                                             </a>
@@ -1113,13 +1115,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/28.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Apple iPhone 13
                                                                                     Mini (512GB) - Starlight</h5>
                                                                             </a>
@@ -1154,13 +1156,13 @@
                                                             <div class="swiper-wrapper">
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/97.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Fresh Apricot
                                                                                     Scrub</h5>
                                                                             </a>
@@ -1189,13 +1191,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/96.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Cleansers Beauty
                                                                                     Product</h5>
                                                                             </a>
@@ -1224,13 +1226,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/106.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Brawn boys
                                                                                     analog watch</h5>
                                                                             </a>
@@ -1259,13 +1261,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/1.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Smart Watch
                                                                                     Series X3</h5>
                                                                             </a>
@@ -1294,13 +1296,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/105.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Handmade Table
                                                                                 </h5>
                                                                             </a>
@@ -1329,13 +1331,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/60.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Pluto SW250
                                                                                     Smart Watch</h5>
                                                                             </a>
@@ -1370,13 +1372,13 @@
                                                             <div class="swiper-wrapper">
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/35-1.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Herschel Leather
                                                                                     duffle bag in brown color</h5>
                                                                             </a>
@@ -1405,13 +1407,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/6.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Smart Watch
                                                                                     Series X3</h5>
                                                                             </a>
@@ -1440,13 +1442,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/category/59.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">dolby Atoms
                                                                                     yellow headphone</h5>
                                                                             </a>
@@ -1475,13 +1477,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/103.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Wireless Black
                                                                                     Headphone</h5>
                                                                             </a>
@@ -1510,13 +1512,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/129.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Wireless in Ear
                                                                                     Earphones with Mic</h5>
                                                                             </a>
@@ -1545,13 +1547,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/131.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Samsung Galaxy
                                                                                     Book3 Pro Intel 13th Gen i5</h5>
                                                                             </a>
@@ -1580,13 +1582,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/151.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Infinix Smart
                                                                                     headphone</h5>
                                                                             </a>
@@ -1621,13 +1623,13 @@
                                                             <div class="swiper-wrapper">
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/7.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Combo Face Care
                                                                                     cream</h5>
                                                                             </a>
@@ -1656,13 +1658,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/97.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Fresh Apricot
                                                                                     Scrub</h5>
                                                                             </a>
@@ -1691,13 +1693,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/62.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Fresho Signature
                                                                                     Garlic & Herb Toast, 100 g</h5>
                                                                             </a>
@@ -1726,13 +1728,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/66.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Popped Potato
                                                                                     Chips Healthy Snack, Assorted</h5>
                                                                             </a>
@@ -1761,13 +1763,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/63.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Fresho Signature
                                                                                     Garlic & Herb Toast, 100 g</h5>
                                                                             </a>
@@ -1796,13 +1798,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/61.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Organic
                                                                                     Himalayan Multiflower Honey, 500 g
                                                                                 </h5>
@@ -1832,13 +1834,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/84.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">kotaliya Brown
                                                                                     flax seeds(Alsi) Brown Flax Seeds
                                                                                 </h5>
@@ -1874,13 +1876,13 @@
                                                             <div class="swiper-wrapper">
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/77.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Baby Pacifier
                                                                                 </h5>
                                                                             </a>
@@ -1909,13 +1911,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/167.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">all-in-one
                                                                                     pyjamas</h5>
                                                                             </a>
@@ -1944,13 +1946,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/170.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Baby skincare
                                                                                     product</h5>
                                                                             </a>
@@ -1979,13 +1981,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/176.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Baby little
                                                                                     trolley</h5>
                                                                             </a>
@@ -2014,13 +2016,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/173.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Cotton Baby
                                                                                     Pillow</h5>
                                                                             </a>
@@ -2049,13 +2051,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/185.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Dusting Powder
                                                                                 </h5>
                                                                             </a>
@@ -2084,13 +2086,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/182.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Natural Milk
                                                                                     Powder</h5>
                                                                             </a>
@@ -2125,13 +2127,13 @@
                                                             <div class="swiper-wrapper">
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/5.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Kitchen
                                                                                     Accessories</h5>
                                                                             </a>
@@ -2160,13 +2162,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/8.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">kitchen utensils
                                                                                 </h5>
                                                                             </a>
@@ -2195,13 +2197,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/11.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">stainless
                                                                                     dishware</h5>
                                                                             </a>
@@ -2230,13 +2232,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/12.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Wholesale Cheap
                                                                                     Square</h5>
                                                                             </a>
@@ -2265,13 +2267,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/18.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">RoastRite
                                                                                     Culinary Ovens</h5>
                                                                             </a>
@@ -2300,13 +2302,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/20.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">BakeMaster
                                                                                     Professional Ovens</h5>
                                                                             </a>
@@ -2335,13 +2337,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/21.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">FridgeFrost
                                                                                     Innovations</h5>
                                                                             </a>
@@ -2376,13 +2378,13 @@
                                                             <div class="swiper-wrapper">
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/27.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Motorola Moto X4
                                                                                     32GB Unlocked Smartphone</h5>
                                                                             </a>
@@ -2411,13 +2413,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/29.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Fujifilm Instax
                                                                                     Mini 9 Instant Camera</h5>
                                                                             </a>
@@ -2446,13 +2448,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/41.jpg"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Samsung Galaxy
                                                                                     Book3 Pro Intel 13th Gen i5</h5>
                                                                             </a>
@@ -2481,13 +2483,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/115.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Retro movie film
                                                                                     cinema</h5>
                                                                             </a>
@@ -2516,13 +2518,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/108.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Apple Smart HD
                                                                                     TV</h5>
                                                                             </a>
@@ -2551,13 +2553,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/112.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">mini projector
                                                                                 </h5>
                                                                             </a>
@@ -2586,13 +2588,13 @@
                                                                 </div>
                                                                 <div class="swiper-slide">
                                                                     <div class="product-box productMain">
-                                                                        <a href="product-color.html"
+                                                                        <a href="product-color.php"
                                                                             class="product-image">
                                                                             <img src="assets/images/product/134.png"
                                                                                 class="img-fluid productImage" alt="">
                                                                         </a>
                                                                         <div class="product-content">
-                                                                            <a href="product-color.html">
+                                                                            <a href="product-color.php">
                                                                                 <h5 class="productName">Best Accessories
                                                                                     SteelSeries NIMBUS</h5>
                                                                             </a>
@@ -2639,32 +2641,32 @@
                                                 </div>
                                                 <ul class="menu-list">
                                                     <li>
-                                                        <a class="dropdown-item" href="portfolio-2-grid.html">Portfolio
+                                                        <a class="dropdown-item" href="portfolio-2-grid.php">Portfolio
                                                             grid 2</a>
                                                     </li>
                                                     <li>
-                                                        <a href="portfolio-3-grid.html" class="dropdown-item">Portfolio
+                                                        <a href="portfolio-3-grid.php" class="dropdown-item">Portfolio
                                                             grid 3</a>
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item" href="portfolio-4-grid.html">Portfolio
+                                                        <a class="dropdown-item" href="portfolio-4-grid.php">Portfolio
                                                             grid 4</a>
                                                     </li>
                                                     <li>
-                                                        <a href="portfolio-2-grid-masonary.html"
+                                                        <a href="portfolio-2-grid-masonary.php"
                                                             class="dropdown-item">Portfolio Masonary 2</a>
                                                     </li>
                                                     <li>
-                                                        <a href="portfolio-3-grid-masonary.html"
+                                                        <a href="portfolio-3-grid-masonary.php"
                                                             class="dropdown-item">Portfolio Masonary 3</a>
                                                     </li>
                                                     <li>
                                                         <a class="dropdown-item"
-                                                            href="portfolio-4-grid-masonary.html">Portfolio Masonary
+                                                            href="portfolio-4-grid-masonary.php">Portfolio Masonary
                                                             4</a>
                                                     </li>
                                                     <li>
-                                                        <a href="portfolio-full-width-masonary.html"
+                                                        <a href="portfolio-full-width-masonary.php"
                                                             class="dropdown-item">Portfolio Masonary full width</a>
                                                     </li>
                                                 </ul>
@@ -2675,15 +2677,15 @@
                                                 </div>
                                                 <ul class="menu-list">
                                                     <li>
-                                                        <a href="https://themes.pixelstrap.net/kartify/invoice/invoice-1.html"
+                                                        <a href="https://themes.pixelstrap.net/kartify/invoice/invoice-1.php"
                                                             class="dropdown-item">Invoice 1</a>
                                                     </li>
                                                     <li>
-                                                        <a href="https://themes.pixelstrap.net/kartify/invoice/invoice-2.html"
+                                                        <a href="https://themes.pixelstrap.net/kartify/invoice/invoice-2.php"
                                                             class="dropdown-item">Invoice 2</a>
                                                     </li>
                                                     <li>
-                                                        <a href="https://themes.pixelstrap.net/kartify/invoice/invoice-3.html"
+                                                        <a href="https://themes.pixelstrap.net/kartify/invoice/invoice-3.php"
                                                             class="dropdown-item">Invoice 3</a>
                                                     </li>
                                                 </ul>
@@ -2694,23 +2696,23 @@
                                                 </div>
                                                 <ul class="menu-list">
                                                     <li>
-                                                        <a href="https://themes.pixelstrap.net/kartify/email-templete/black-friday.html"
+                                                        <a href="https://themes.pixelstrap.net/kartify/email-templete/black-friday.php"
                                                             class="dropdown-item">Black friday</a>
                                                     </li>
                                                     <li>
-                                                        <a href="https://themes.pixelstrap.net/kartify/email-templete/leave-feedback.html"
+                                                        <a href="https://themes.pixelstrap.net/kartify/email-templete/leave-feedback.php"
                                                             class="dropdown-item">Leave feedback</a>
                                                     </li>
                                                     <li>
-                                                        <a href="https://themes.pixelstrap.net/kartify/email-templete/order-tracking.html"
+                                                        <a href="https://themes.pixelstrap.net/kartify/email-templete/order-tracking.php"
                                                             class="dropdown-item">Order tracking</a>
                                                     </li>
                                                     <li>
-                                                        <a href="https://themes.pixelstrap.net/kartify/email-templete/reset-password.html"
+                                                        <a href="https://themes.pixelstrap.net/kartify/email-templete/reset-password.php"
                                                             class="dropdown-item">Reset password</a>
                                                     </li>
                                                     <li>
-                                                        <a href="https://themes.pixelstrap.net/kartify/email-templete/welcome.html"
+                                                        <a href="https://themes.pixelstrap.net/kartify/email-templete/welcome.php"
                                                             class="dropdown-item">Welcome</a>
                                                     </li>
                                                 </ul>
@@ -2721,27 +2723,27 @@
                                                 </div>
                                                 <ul class="menu-list">
                                                     <li>
-                                                        <a href="index.html" class="dropdown-item">Cookie bar bottom
+                                                        <a href="index.php" class="dropdown-item">Cookie bar bottom
                                                             1</a>
                                                     </li>
                                                     <li>
-                                                        <a href="index-2.html" class="dropdown-item">Cookie bar bottom
+                                                        <a href="index-2.php" class="dropdown-item">Cookie bar bottom
                                                             2</a>
                                                     </li>
                                                     <li>
-                                                        <a href="index-3.html" class="dropdown-item">Cookie bar bottom
+                                                        <a href="index-3.php" class="dropdown-item">Cookie bar bottom
                                                             3</a>
                                                     </li>
                                                     <li>
-                                                        <a href="index-4.html" class="dropdown-item">Cookie bar Right
+                                                        <a href="index-4.php" class="dropdown-item">Cookie bar Right
                                                             1</a>
                                                     </li>
                                                     <li>
-                                                        <a href="index-5.html" class="dropdown-item">Cookie bar Right
+                                                        <a href="index-5.php" class="dropdown-item">Cookie bar Right
                                                             2</a>
                                                     </li>
                                                     <li>
-                                                        <a href="index-6.html" class="dropdown-item">Cookie bar Right
+                                                        <a href="index-6.php" class="dropdown-item">Cookie bar Right
                                                             3</a>
                                                     </li>
                                                 </ul>
@@ -2766,7 +2768,7 @@
                                                 </ul>
                                             </div>
                                             <div class="col-12 d-xl-block d-none w-100">
-                                                <a href="shop-left-sidebar.html" class="menu-banner">
+                                                <a href="shop-left-sidebar.php" class="menu-banner">
                                                     <img src="assets/images/banner/12.jpg" class="img-fluid" alt="">
                                                 </a>
                                             </div>
@@ -2778,52 +2780,52 @@
                                     <a class="nav-link dropdown-toggle" href="#!" data-bs-toggle="dropdown">Pages</a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="400.html">400</a>
+                                            <a class="dropdown-item" href="400.php">400</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="404.html">404</a>
+                                            <a class="dropdown-item" href="404.php">404</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="500.html">500</a>
+                                            <a class="dropdown-item" href="500.php">500</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="about-us.html">About us</a>
+                                            <a class="dropdown-item" href="about-us.php">About us</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="cart.html">Cart</a>
+                                            <a class="dropdown-item" href="cart.php">Cart</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
+                                            <a class="dropdown-item" href="checkout.php">Checkout</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
+                                            <a class="dropdown-item" href="coming-soon.php">Coming Soon</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="compare.html">Compare</a>
+                                            <a class="dropdown-item" href="compare.php">Compare</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="contact-us.html">Contact us</a>
+                                            <a class="dropdown-item" href="contact-us.php">Contact us</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="faq.html">FAQ's</a>
+                                            <a class="dropdown-item" href="faq.php">FAQ's</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="maintenance.html">Maintenance</a>
+                                            <a class="dropdown-item" href="maintenance.php">Maintenance</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="order-success.html">Order success</a>
+                                            <a class="dropdown-item" href="order-success.php">Order success</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="order-tracking.html">Order tracking</a>
+                                            <a class="dropdown-item" href="order-tracking.php">Order tracking</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="search.html">Search</a>
+                                            <a class="dropdown-item" href="search.php">Search</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="user-dashboard.html">User dashboard</a>
+                                            <a class="dropdown-item" href="user-dashboard.php">User dashboard</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="wishlist.html">Wishlist</a>
+                                            <a class="dropdown-item" href="wishlist.php">Wishlist</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -2832,25 +2834,25 @@
                                     <a class="nav-link dropdown-toggle" href="#!" data-bs-toggle="dropdown">Seller</a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="seller-become.html">Become a Seller</a>
+                                            <a class="dropdown-item" href="seller-become.php">Become a Seller</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="seller-grid.html">Seller grid</a>
+                                            <a class="dropdown-item" href="seller-grid.php">Seller grid</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="seller-grid-2.html">Seller grid 2</a>
+                                            <a class="dropdown-item" href="seller-grid-2.php">Seller grid 2</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="seller-list.html">Seller list</a>
+                                            <a class="dropdown-item" href="seller-list.php">Seller list</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="seller-list-2.html">Seller list 2</a>
+                                            <a class="dropdown-item" href="seller-list-2.php">Seller list 2</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="seller-details.html">Seller details</a>
+                                            <a class="dropdown-item" href="seller-details.php">Seller details</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="seller-details-2.html">Seller details 2</a>
+                                            <a class="dropdown-item" href="seller-details-2.php">Seller details 2</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -2859,22 +2861,22 @@
                                     <a class="nav-link dropdown-toggle" href="#!" data-bs-toggle="dropdown">Blog</a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="blog-2-grid.html">Blog grid 2</a>
+                                            <a class="dropdown-item" href="blog-2-grid.php">Blog grid 2</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="blog-3-grid.html">Blog grid 3</a>
+                                            <a class="dropdown-item" href="blog-3-grid.php">Blog grid 3</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="blog-list.html">Blog list</a>
+                                            <a class="dropdown-item" href="blog-list.php">Blog list</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="blog-masonary.html">blog masonary</a>
+                                            <a class="dropdown-item" href="blog-masonary.php">blog masonary</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="blog-no-sidebar.html">Blog no sidebar</a>
+                                            <a class="dropdown-item" href="blog-no-sidebar.php">Blog no sidebar</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="blog-detail.html">Blog details</a>
+                                            <a class="dropdown-item" href="blog-detail.php">Blog details</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -2901,11 +2903,11 @@
                             <ul class="product-box-list">
                                 <li>
                                     <div class="vertical-product-box">
-                                        <a href="product-color.html" class="product-image">
+                                        <a href="product-color.php" class="product-image">
                                             <img src="assets/images/product/1.png" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-content">
-                                            <a href="product-color.html">
+                                            <a href="product-color.php">
                                                 <h5 class="name title-color">Smart Watch Series X3</h5>
                                             </a>
                                             <h5 class="price">$239.00 <del>$250.00</del></h5>
@@ -2922,11 +2924,11 @@
 
                                 <li>
                                     <div class="vertical-product-box">
-                                        <a href="product-color.html" class="product-image">
+                                        <a href="product-color.php" class="product-image">
                                             <img src="assets/images/product/2.png" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-content">
-                                            <a href="product-color.html">
+                                            <a href="product-color.php">
                                                 <h5 class="name title-color">Slim 3 Intel Core i5</h5>
                                             </a>
                                             <h5 class="price">$700.00 <del>$720.00</del></h5>
@@ -2943,11 +2945,11 @@
 
                                 <li>
                                     <div class="vertical-product-box">
-                                        <a href="product-color.html" class="product-image">
+                                        <a href="product-color.php" class="product-image">
                                             <img src="assets/images/product/3.png" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-content">
-                                            <a href="product-color.html">
+                                            <a href="product-color.php">
                                                 <h5 class="name title-color">Portable Laptop Table</h5>
                                             </a>
                                             <h5 class="price">$199.00 <del>$200.00</del></h5>
@@ -2964,11 +2966,11 @@
 
                                 <li>
                                     <div class="vertical-product-box">
-                                        <a href="product-color.html" class="product-image">
+                                        <a href="product-color.php" class="product-image">
                                             <img src="assets/images/product/2.png" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-content">
-                                            <a href="product-color.html">
+                                            <a href="product-color.php">
                                                 <h5 class="name title-color">Slim 3 Intel Core i5</h5>
                                             </a>
                                             <h5 class="price">$700.00 <del>$720.00</del></h5>
@@ -2985,11 +2987,11 @@
 
                                 <li>
                                     <div class="vertical-product-box">
-                                        <a href="product-color.html" class="product-image">
+                                        <a href="product-color.php" class="product-image">
                                             <img src="assets/images/product/3.png" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-content">
-                                            <a href="product-color.html">
+                                            <a href="product-color.php">
                                                 <h5 class="name title-color">Portable Laptop Table</h5>
                                             </a>
                                             <h5 class="price">$199.00 <del>$200.00</del></h5>
@@ -3016,7 +3018,7 @@
                         </div>
                     </li>
                     <li class="order-tracking d-xxl-inline-block d-none">
-                        <a href="order-tracking.html" class="product-link">Order Tracking</a>
+                        <a href="order-tracking.php" class="product-link">Order Tracking</a>
                     </li>
                 </ul>
             </div>
@@ -3028,7 +3030,7 @@
     <div class="mobile-menu d-sm-none">
         <ul>
             <li class="active">
-                <a href="index.html">
+                <a href="index.php">
                     <i class="ri-home-2-line"></i>
                     <span>Home</span>
                 </a>
@@ -3056,7 +3058,7 @@
             </li>
 
             <li>
-                <a href="user-dashboard.html">
+                <a href="user-dashboard.php">
                     <i class="ri-user-3-line"></i>
                     <span>Account</span>
                 </a>
