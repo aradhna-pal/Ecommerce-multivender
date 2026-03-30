@@ -191,8 +191,8 @@
                         <i class="ri-menu-line"></i>
                     </span>
                 </button>
-                <a href="index.html" class="header-logo">
-                    <img src="https://themes.pixelstrap.net/kartify/assets/images/logo/1.svg" class="img-fluid" alt="">
+                <a href="index.php" class="header-logo">
+                    <img src="assets/images/img/logo.png" class="img-fluid" alt="">
                 </a>
             </div>
             <div class="middle-header searchInput" id="searchOffcanvas">
@@ -409,54 +409,8 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown mega-dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#!" data-bs-toggle="dropdown">Home</a>
-                                    <div class="dropdown-menu mega-menu">
-                                        <ul class="demo-list">
-                                            <li>
-                                                <a href="index.html">
-                                                    <img src="assets/images/demos/1.jpg" class="img-fluid" alt="">
-                                                    <h4>Gadget Store</h4>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="index-2.html">
-                                                    <img src="assets/images/demos/2.jpg" class="img-fluid" alt="">
-                                                    <h4>MegaMart Store</h4>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="index-3.html">
-                                                    <img src="assets/images/demos/3.jpg" class="img-fluid" alt="">
-                                                    <h4>Organic Store</h4>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="index-4.html">
-                                                    <img src="assets/images/demos/4.jpg" class="img-fluid" alt="">
-                                                    <h4>StyleTech Store</h4>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="index-5.html">
-                                                    <img src="assets/images/demos/5.jpg" class="img-fluid" alt="">
-                                                    <h4>Electro Store</h4>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="index-6.html">
-                                                    <img src="assets/images/demos/6.jpg" class="img-fluid" alt="">
-                                                    <h4>BabyShop Store</h4>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="coming-soon.html">
-                                                    <img src="assets/images/demos/coming-soon.jpg" class="img-fluid"
-                                                        alt="">
-                                                    <h4>Coming Soon</h4>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <a class="nav-link dropdown-toggle" href="index.php" data-bs-toggle="dropdown">Home</a>
+                                  
                                 </li>
 
                                 <li class="nav-item dropdown mega-dropdown">
