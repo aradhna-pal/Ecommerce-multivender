@@ -522,46 +522,15 @@ product_details_array.forEach((item) => {
 });
 
 /*=====================
-    16. Disable Inspect Js
+    16. Disable Inspect Js (removed)
 ==========================*/
-document.addEventListener("contextmenu", (e) => e.preventDefault());
+// Removed inspect blocking for development and debugging compatibility.
+// Previously blocked: right-click, F12, Ctrl+Shift+I/J/C, Ctrl+U, and DevTools detection.
 
-/* Disable specific keys */
-document.onkeydown = function (e) {
-    /* F12 */
-    if (e.keyCode == 123) {
-        return false;
-    }
-    /* Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C */
-    if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) {
-        return false;
-    }
-    /* Ctrl+U (View Source) */
-    if (e.ctrlKey && e.keyCode == 85) {
-        return false;
-    }
-};
-
-/* Detect if DevTools open */
-(function () {
-    let devtoolsOpen = false;
-    const element = new Image();
-    Object.defineProperty(element, "id", {
-        get: function () {
-            devtoolsOpen = true;
-            alert("Developer Tools are disabled 🚫");
-            window.location.href = "about:blank";
-        }
-    });
-    setInterval(function () {
-        devtoolsOpen = false;
-        console.log(element);
-        if (devtoolsOpen) {
-            /* extra safety */
-            window.location.href = "about:blank";
-        }
-    }, 1000);
-})();
+/* Optional: re-enable if you intentionally want to disable inspect */
+// document.addEventListener("contextmenu", (e) => e.preventDefault());
+// document.onkeydown = function (e) { ... }
+// (function () { ... })();
 
 /*=====================
     17. Quantity Js
