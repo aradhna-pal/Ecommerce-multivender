@@ -54,6 +54,7 @@
     <Script src="./assets/js/userJs/blog.js"></Script>
     <script src="./assets/js/userJs/allproduct.js"></script>
     <script src="./assets/js/userJs/category.js"></script>
+    <script src="./assets/js/userJs/user-order.js"></script>
 </head>
 
 <body class="base-bg-color">

@@ -187,7 +187,7 @@
                                                     <th>Price</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="order-table-body">
                                                 <tr>
                                                     <td>#366947</td>
                                                     <td>

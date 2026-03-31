@@ -329,25 +329,27 @@
             </div>
         </div>
 
-        <style>#qvThumbs{
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
-    scroll-behavior:smooth;
-}
+        <style>
+            #qvThumbs {
+                display: flex;
+                gap: 10px;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+            }
 
-.thumb-img{
-    width:70px;
-    height:70px;
-    object-fit:cover;
-    border:2px solid transparent;
-}
+            .thumb-img {
+                width: 70px;
+                height: 70px;
+                object-fit: cover;
+                border: 2px solid transparent;
+            }
 
-.thumb-img.active{
-    border:2px solid #000;
-}</style>
-         
-        
+            .thumb-img.active {
+                border: 2px solid #000;
+            }
+        </style>
+
+
         <nav class="custom-pagination">
             <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
@@ -859,7 +861,6 @@
     </div>
 </div>
 <!-- Product Filter Offcanvas End -->
-
 
 
 <?php include 'footer.php'; ?>
