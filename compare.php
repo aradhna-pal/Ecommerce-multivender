@@ -35,7 +35,7 @@
                                         <i class="ri-close-line"></i>
                                     </button>
                                     <a href="product-left-thumbnail.html">
-                                        <img src="../assets/images/product/22.png" class="img-fluid" alt="">
+                                        <img src="./assets/images/product/22.png" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <a href="product-4-images.html">
@@ -50,7 +50,7 @@
                                         <i class="ri-close-line"></i>
                                     </button>
                                     <a href="product-left-thumbnail.html">
-                                        <img src="../assets/images/product/28.png" class="img-fluid" alt="">
+                                        <img src="./assets/images/product/28.png" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <a href="product-4-images.html">
@@ -65,7 +65,7 @@
                                         <i class="ri-close-line"></i>
                                     </button>
                                     <a href="product-left-thumbnail.html">
-                                        <img src="../assets/images/product/98.png" class="img-fluid" alt="">
+                                        <img src="./assets/images/product/98.png" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <a href="product-4-images.html">
@@ -80,7 +80,7 @@
                                         <i class="ri-close-line"></i>
                                     </button>
                                     <a href="product-left-thumbnail.html">
-                                        <img src="../assets/images/product/146.png" class="img-fluid" alt="">
+                                        <img src="./assets/images/product/146.png" class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <a href="product-4-images.html">
