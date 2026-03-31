@@ -13,34 +13,9 @@
                             </button>
                         </div>
                         <div class="category-menu-list">
-                            <ul class="top-menu-list">
-                                <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
-                                        <svg>
-                                            <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/category.svg#daily"></use>
-                                        </svg>
-                                        <h5>Daily Deals</h5>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
-                                        <svg>
-                                            <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/category.svg#top"></use>
-                                        </svg>
-                                        <h5>Top Promotions</h5>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
-                                        <svg>
-                                            <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/category.svg#trending"></use>
-                                        </svg>
-                                        <h5>Now Trending <span class="theme-bg-color2 text-white">Hot</span></h5>
-                                    </a>
-                                </li>
-                            </ul>
+                          
 
-                            <ul class="sub-menu-list">
+                            <ul class="sub-menu-list" id="categoryList">
                                 <li>
                                     <a href="shop-left-sidebar.php" class="sub-category-box">
                                         <i class="ri-macbook-line"></i>
@@ -71,42 +46,7 @@
                                         <h5>Home, Kitchen, Pets</h5>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
-                                        <i class="ri-empathize-line"></i>
-                                        <h5>Beauty, Health, Grocery</h5>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
-                                        <i class="ri-boxing-line"></i>
-                                        <h5>Sports, Fitness, Bags, Luggage</h5>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
-                                        <i class="ri-open-arm-line"></i>
-                                        <h5>Toys, Baby Products, Kid's Fashion</h5>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
-                                        <i class="ri-car-line"></i>
-                                        <h5>Car, Motorbike, Industrial</h5>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
-                                        <i class="ri-book-open-line"></i>
-                                        <h5>Books</h5>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
-                                        <i class="ri-gamepad-line"></i>
-                                        <h5>Game Consoles</h5>
-                                    </a>
-                                </li>
+                               
                             </ul>
                         </div>
                     </div>

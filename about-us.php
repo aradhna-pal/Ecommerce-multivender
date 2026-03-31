@@ -39,7 +39,7 @@
                         meets execution. Let's create something exceptional together.</p>
                 </div>
                 <div>
-                    <img src="../assets/images/inner-page/contact-us.jpg" alt="contact us" class="img-fluid">
+                    <img src="./assets/images/inner-page/contact-us.jpg" alt="contact us" class="img-fluid">
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                     <div class="swiper-slide">
                         <div class="team-box">
                             <div class="team-image">
-                                <img src="../assets/images/user/12.jpg" class="img-fluid" alt="user">
+                                <img src="./assets/images/user/12.jpg" class="img-fluid" alt="user">
                                 <ul class="team-media">
                                     <li>
                                         <a href="https://www.facebook.com/" class="fb-bg" target="_blank">
@@ -119,7 +119,7 @@
                     <div class="swiper-slide">
                         <div class="team-box">
                             <div class="team-image">
-                                <img src="../assets/images/user/11.jpg" class="img-fluid" alt="user">
+                                <img src="./assets/images/user/11.jpg" class="img-fluid" alt="user">
                                 <ul class="team-media">
                                     <li>
                                         <a href="https://www.facebook.com/" class="fb-bg" target="_blank">
@@ -156,7 +156,7 @@
                     <div class="swiper-slide">
                         <div class="team-box">
                             <div class="team-image">
-                                <img src="../assets/images/user/13.jpg" class="img-fluid" alt="user">
+                                <img src="./assets/images/user/13.jpg" class="img-fluid" alt="user">
                                 <ul class="team-media">
                                     <li>
                                         <a href="https://www.facebook.com/" class="fb-bg" target="_blank">
@@ -193,7 +193,7 @@
                     <div class="swiper-slide">
                         <div class="team-box">
                             <div class="team-image">
-                                <img src="../assets/images/user/14.jpg" class="img-fluid" alt="user">
+                                <img src="./assets/images/user/14.jpg" class="img-fluid" alt="user">
                                 <ul class="team-media">
                                     <li>
                                         <a href="https://www.facebook.com/" class="fb-bg" target="_blank">
@@ -230,7 +230,7 @@
                     <div class="swiper-slide">
                         <div class="team-box">
                             <div class="team-image">
-                                <img src="../assets/images/user/15.jpg" class="img-fluid" alt="user">
+                                <img src="./assets/images/user/15.jpg" class="img-fluid" alt="user">
                                 <ul class="team-media">
                                     <li>
                                         <a href="https://www.facebook.com/" class="fb-bg" target="_blank">
@@ -266,7 +266,7 @@
                     <div class="swiper-slide">
                         <div class="team-box">
                             <div class="team-image">
-                                <img src="../assets/images/user/16.jpg" class="img-fluid" alt="user">
+                                <img src="./assets/images/user/16.jpg" class="img-fluid" alt="user">
                                 <ul class="team-media">
                                     <li>
                                         <a href="https://www.facebook.com/" class="fb-bg" target="_blank">
@@ -338,7 +338,7 @@
                                         high-performing. The site runs smoothly, loads fast, and has greatly improved
                                         our conversion rates. Truly a professional and dependable partner.</p>
                                     <div class="testimonial-user">
-                                        <img src="../assets/images/user/9.jpg" alt="user" class="img-fluid">
+                                        <img src="./assets/images/user/9.jpg" alt="user" class="img-fluid">
                                         <div>
                                             <h3>Jack marckno</h3>
                                             <h4>Head of Marketing Department</h4>
@@ -356,7 +356,7 @@
                                         the project. Our new website not only looks better but also performs far more
                                         efficiently. A great experience overall!</p>
                                     <div class="testimonial-user">
-                                        <img src="../assets/images/user/10.jpg" alt="user" class="img-fluid">
+                                        <img src="./assets/images/user/10.jpg" alt="user" class="img-fluid">
                                         <div>
                                             <h3>Blaine Perez</h3>
                                             <h4>Head of BDE Department</h4>
@@ -374,7 +374,7 @@
                                         step effortless. We’re extremely satisfied with the outcome and the positive
                                         feedback from our customers.</p>
                                     <div class="testimonial-user">
-                                        <img src="../assets/images/user/1.jpg" alt="user" class="img-fluid">
+                                        <img src="./assets/images/user/1.jpg" alt="user" class="img-fluid">
                                         <div>
                                             <h3>Nicholas Spears</h3>
                                             <h4>Head of Web Designer</h4>
@@ -392,7 +392,7 @@
                                         perfectly fits our brand. We’ve already seen a noticeable improvement in user
                                         engagement and sales.</p>
                                     <div class="testimonial-user">
-                                        <img src="../assets/images/user/2.jpg" alt="user" class="img-fluid">
+                                        <img src="./assets/images/user/2.jpg" alt="user" class="img-fluid">
                                         <div>
                                             <h3>Loretta Harrison</h3>
                                             <h4>Head of Python Developer</h4>
@@ -410,7 +410,7 @@
                                         product is fast, responsive, and built to perform — exactly what we needed for
                                         our online business.</p>
                                     <div class="testimonial-user">
-                                        <img src="../assets/images/user/3.jpg" alt="user" class="img-fluid">
+                                        <img src="./assets/images/user/3.jpg" alt="user" class="img-fluid">
                                         <div>
                                             <h3>Edith Bullock</h3>
                                             <h4>Head of HR department</h4>
@@ -429,7 +429,7 @@
                                         said the Dormouse: 'not in that ridiculous fashion.' And he got up this morning?
                                     </p>
                                     <div class="testimonial-user">
-                                        <img src="../assets/images/user/5.jpg" alt="user" class="img-fluid">
+                                        <img src="./assets/images/user/5.jpg" alt="user" class="img-fluid">
                                         <div>
                                             <h3>Noa Ruiz</h3>
                                             <h4>Head of Security Engineer</h4>
