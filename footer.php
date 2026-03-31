@@ -13,7 +13,7 @@
                                   <svg>
                                       <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/footer-icon.svg#contact"></use>
                                   </svg>
-                                  <h4>(603) 555-0123</h4>
+                                  <h4>+91 8586084450</h4>
                               </a>
                           </li>
                           <li>
@@ -23,7 +23,7 @@
                                           <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/footer-icon.svg#location"></use>
                                       </svg>
                                   </div>
-                                  <h5>3228 Bicetown Road Huntington, NY 11743</h5>
+                                  <h5>Unit -1105, Tower A, ATS Bouquet, sector -132, Noida , Uttar Pradesh</h5>
                               </a>
                           </li>
                           <li>
@@ -33,7 +33,7 @@
                                           <use xlink:href="https://themes.pixelstrap.net/kartify/assets/svg/footer-icon.svg#mail"></use>
                                       </svg>
                                   </div>
-                                  <h5>kartify@contact.com</h5>
+                                  <h5>support@hyperscripts.io</h5>
                               </a>
                           </li>
                       </ul>
