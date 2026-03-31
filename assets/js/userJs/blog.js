@@ -184,9 +184,9 @@ const createBlogCardHTML = (blog) => {
         .slice(0, 180) + "...";
 
     const blogUrl = blog.slug
-        ? `blog-details.php?slug=${encodeURIComponent(blog.slug)}`
+        ? `blog-detail.php?slug=${encodeURIComponent(blog.slug)}`
         : blog.id
-            ? `blog-details.php?id=${encodeURIComponent(blog.id)}`
+            ? `blog-detail.php?id=${encodeURIComponent(blog.id)}`
             : "#";
 
     return `
@@ -285,7 +285,7 @@ const renderBlogListingPage = async () => {
 
         if (sidebarRecent) {
             sidebarRecent.innerHTML = sortedBlogs.slice(0, 4).map((blog) => {
-                const link = blog.slug ? `blog-details.php?slug=${encodeURIComponent(blog.slug)}` : `blog-details.php?id=${encodeURIComponent(blog.id)}`;
+                const link = blog.slug ? `blog-detail.php?slug=${encodeURIComponent(blog.slug)}` : `blog-detail.php?id=${encodeURIComponent(blog.id)}`;
                 const img = blog.image ? `${imageBaseUrl}${blog.image}` : "./assets/images/inner-page/blog/1.jpg";
                 return `
                     <div class="recent-box">

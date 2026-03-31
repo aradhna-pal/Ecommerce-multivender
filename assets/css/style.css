@@ -9503,8 +9503,16 @@ body.dark .header-style-1 .top-header .right-header .content-list li a {
   z-index: 2;
   flex-wrap: nowrap;
 }
+#searchInputBox{
+  border-radius: 10px 0 0 10px !important;
+  /* padding: 15px;
+  font-weight: 400;
+  font-size: 14px;
+  width: 780px;
+  color: rgba(var(--title-color), 1); */
+}
 .header-style-1 .main-header .middle-header .search-form .input-group .form-control {
-  border: none;
+  border-radius: none;
   padding: 15px;
   font-weight: 400;
   font-size: 14px;
@@ -9513,6 +9521,7 @@ body.dark .header-style-1 .top-header .right-header .content-list li a {
   z-index: 0;
 }
 .header-style-1 .main-header .middle-header .search-form .input-group .form-control::placeholder {
+  
   color: rgba(var(--content-color), 1);
 }
 body.dark .header-style-1 .main-header .middle-header .search-form .input-group .form-control {
