@@ -723,8 +723,7 @@ function populateProduct(p) {
                             <li>Category : <span>${p.categoryName || ""}</span></li>
                             <li>Condition : <span>Brand new</span></li>
                             <li>Color : <span>${(p.colors || [])[0] || ""}</span></li>
-                            <li>Material : <span>Model name</span></li>
-                            <li>Operating system : <span>iOS</span></li>`;
+                            `;
     console.log("Updated about item list");
   } else {
     console.warn("About item list not found");
