@@ -173,8 +173,8 @@
                     </div>
                     <div class="productMain product-box-4 pro-bg-white">
                         <div class="product-image">
-                            <a href="product-color.html">
-                                <img src="../assets/images/product/106.png" class="img-fluid productImage" alt="">
+                            <a href="">
+                                <img src="./assets/images/product/106.png" class="img-fluid productImage" alt="">
                             </a>
                             <div class="quick-view-button-box">
                                 <button class="btn view-btn" data-bs-target="#quickViewModal"
@@ -183,7 +183,7 @@
                         </div>
                         <div class="product-content">
                             <h5 class="sub-name productName">Apple Product</h5>
-                            <a href="product-color.html" class="name">
+                            <a href="" class="name">
                                 <h5>Apple iPhone 13 (128GB)</h5>
                             </a>
                             <ul class="rating">
@@ -329,6 +329,17 @@
             </div>
         </div>
 
+        <!-- Alert Box Start -->
+        <div id="alertBox" class="alert-box">
+            <div class="alert-message" id="alertMessage"></div>
+            <div class="alert-progressbar" id="progressBar"></div>
+            <div class="button-group">
+                <button class="remove-wishlist btn">remove wishlist</button>
+                <button class="add-cart-btn btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">Add to
+                    cart</button>
+            </div>
+        </div>
+        <!-- Alert Box End -->
         <style>
             #qvThumbs {
                 display: flex;

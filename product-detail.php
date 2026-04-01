@@ -37,31 +37,31 @@
                                                 <div class="swiper-wrapper">
                                                     <div class="swiper-slide">
                                                         <div class="slider-image">
-                                                            <img src="../assets/images/product/15.png" class="img-fluid"
+                                                            <img src="./assets/images/product/15.png" class="img-fluid"
                                                                 alt="">
                                                         </div>
                                                     </div>
                                                     <div class="swiper-slide">
                                                         <div class="slider-image">
-                                                            <img src="../assets/images/product/22.png" class="img-fluid"
+                                                            <img src="./assets/images/product/22.png" class="img-fluid"
                                                                 alt="">
                                                         </div>
                                                     </div>
                                                     <div class="swiper-slide">
                                                         <div class="slider-image">
-                                                            <img src="../assets/images/product/28.png" class="img-fluid"
+                                                            <img src="./assets/images/product/28.png" class="img-fluid"
                                                                 alt="">
                                                         </div>
                                                     </div>
                                                     <div class="swiper-slide">
                                                         <div class="slider-image">
-                                                            <img src="../assets/images/product/98.png" class="img-fluid"
+                                                            <img src="./assets/images/product/98.png" class="img-fluid"
                                                                 alt="">
                                                         </div>
                                                     </div>
                                                     <div class="swiper-slide">
                                                         <div class="slider-image">
-                                                            <img src="../assets/images/product/146.png"
+                                                            <img src="./assets/images/product/146.png"
                                                                 class="img-fluid" alt="">
                                                         </div>
                                                     </div>
@@ -74,31 +74,31 @@
                                                 <div class="swiper-wrapper">
                                                     <div class="swiper-slide">
                                                         <div class="sidebar-image">
-                                                            <img src="../assets/images/product/15.png" class="img-fluid"
+                                                            <img src="./assets/images/product/15.png" class="img-fluid"
                                                                 alt="">
                                                         </div>
                                                     </div>
                                                     <div class="swiper-slide">
                                                         <div class="sidebar-image">
-                                                            <img src="../assets/images/product/22.png" class="img-fluid"
+                                                            <img src="./assets/images/product/22.png" class="img-fluid"
                                                                 alt="">
                                                         </div>
                                                     </div>
                                                     <div class="swiper-slide">
                                                         <div class="sidebar-image">
-                                                            <img src="../assets/images/product/28.png" class="img-fluid"
+                                                            <img src="./assets/images/product/28.png" class="img-fluid"
                                                                 alt="">
                                                         </div>
                                                     </div>
                                                     <div class="swiper-slide">
                                                         <div class="sidebar-image">
-                                                            <img src="../assets/images/product/98.png" class="img-fluid"
+                                                            <img src="./assets/images/product/98.png" class="img-fluid"
                                                                 alt="">
                                                         </div>
                                                     </div>
                                                     <div class="swiper-slide">
                                                         <div class="sidebar-image">
-                                                            <img src="../assets/images/product/146.png"
+                                                            <img src="./assets/images/product/146.png"
                                                                 class="img-fluid" alt="">
                                                         </div>
                                                     </div>
@@ -111,7 +111,7 @@
 
                             <div class="col-xxl-6 border-left-cls">
                                 <div class="right-box-contain">
-                                    <div class="product-count">
+                                    <!-- <div class="product-count">
                                         <ul>
                                             <li>
                                                 <i class="ri-flashlight-line"></i>
@@ -122,8 +122,8 @@
                                                 <h3 class="lang">22 Active View in this item</h3>
                                             </li>
                                         </ul>
-                                    </div>
-                                    <a href="seller-details-2.html" class="offer-top">Visit Thirfting_store</a>
+                                    </div> -->
+                                    <!-- <a href="seller-details-2.html" class="offer-top">Visit Thirfting_store</a> -->
                                     <h4 class="name">Apple iPhone 14 - 512 GB Sliver Model</h4>
                                     <h5 class="product-price">$2,193.45 <del>$2,548.69</del></h5>
                                     <div class="price-rating">
@@ -151,7 +151,7 @@
 
                                     <div class="product-package product-spacing">
                                         <div class="product-title">
-                                            <h4>Choose Storage :</h4>
+                                            <h4>Size :</h4>
                                         </div>
                                         <form class="select-package">
                                             <div class="form-check">
@@ -215,16 +215,16 @@
                                         </form>
                                     </div>
 
-                                    <div class="hurry-up-box">
+                                    <!-- <div class="hurry-up-box">
                                         <h5>There are just <span class="theme-color">5</span> left in stock, so please
                                             act immediately.</h5>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated"
                                                 style="width: 50%"></div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="text-md-start text-center">
+                                    <!-- <div class="text-md-start text-center">
                                         <div class="qty-box h-100 qty-container quantity-box-2">
                                             <button class="btn qty-btn qty-btn-minus" disabled="">
                                                 <i class="ri-subtract-line"></i>
@@ -235,7 +235,7 @@
                                                 <i class="ri-add-line"></i>
                                             </button>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="button-group d-lg-none">
                                         <button onclick="location.href = 'checkout.html';"
@@ -245,7 +245,7 @@
                                             <i class="ri-shopping-bag-line"></i> Add to bag</button>
                                     </div>
 
-                                    <ul class="size-delivery-info">
+                                    <!-- <ul class="size-delivery-info">
                                         <li>
                                             <button type="button" class="btn" data-bs-toggle="modal"
                                                 data-bs-target="#deliveryModal">
@@ -260,9 +260,9 @@
                                                 <span>Ask a question</span>
                                             </button>
                                         </li>
-                                    </ul>
+                                    </ul> -->
 
-                                    <div class="about-item-box product-spacing border-top-space">
+                                    <div class="about-item-box product-spacing ">
                                         <div class="product-title">
                                             <h4>About Item :</h4>
                                         </div>
@@ -282,15 +282,10 @@
                                             <h4>Description :</h4>
                                         </div>
 
-                                        <ul class="description-list">
-                                            <li>15.40 cm (6.1-inch) Super Retina XDR display</li>
-                                            <li>Advanced camera system for better photos in any light</li>
-                                            <li>Cinematic mode now in 4K Dolby Vision up to 30 fps</li>
-                                            <li>Action mode for smooth, steady, handheld videos</li>
-                                        </ul>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur reiciendis fuga, ipsa libero eum inventore placeat suscipit ad, rem iure eaque consectetur assumenda! Assumenda modi quos enim, possimus vel ea?</p>
                                     </div>
 
-                                    <div class="shipping-info-box product-spacing border-top-space">
+                                    <!-- <div class="shipping-info-box product-spacing border-top-space">
                                         <div class="product-title">
                                             <h4>Shipping Information</h4>
                                         </div>
@@ -299,9 +294,9 @@
                                             <li>Shipping: <span>Free international shipping</span></li>
                                             <li>Arrive: <span>Estimated arrival on 25 - 27 Oct 2025</span></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="delivery-info product-spacing border-top-space">
+                                    <!-- <div class="delivery-info product-spacing border-top-space">
                                         <div class="product-title">
                                             <h4>Delivery Details</h4>
                                         </div>
@@ -315,7 +310,7 @@
                                                 <span>This product is non-returnable.</span>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> -->
 
                                     <div class="payment-option product-spacing border-top-space">
                                         <div class="product-title">
@@ -397,7 +392,7 @@
 
                             <div class="side-product-box">
                                 <div class="product-image">
-                                    <img src="../assets/images/product/15.png" class="img-fluid" alt="">
+                                    <img src="./assets/images/product/15.png" class="img-fluid" alt="">
                                 </div>
                                 <div class="product-contain">
                                     <h5>Selected Option</h5>
@@ -425,13 +420,7 @@
                                 <h4><span>Total Price:</span> $2,193.45</h4>
                             </div>
 
-                            <div class="button-group">
-                                <button onclick="location.href = 'checkout.html';"
-                                    class="btn buy-btn theme-bg-color text-white">Buy now</button>
-                                <button onclick="location.href = 'cart.html';" class="btn buy-btn theme-border fw-500">
-                                    <i class="ri-shopping-bag-line"></i> Add to bag</button>
-                            </div>
-
+                            
                             <div class="seller-product">
                                 <h5>
                                     <a href="#!"><i class="ri-message-2-fill"></i> Chat Seller</a>
@@ -444,7 +433,7 @@
                         </div>
 
                         <a href="shop-left-sidebar.html" class="banner-box">
-                            <img src="../assets/images/banner/44.jpg" class="img-fluid" alt="">
+                            <img src="./assets/images/banner/44.jpg" class="img-fluid" alt="">
                         </a>
                     </div>
                 </div>
@@ -737,7 +726,7 @@
                                             <div class="people-box">
                                                 <div>
                                                     <div class="people-image">
-                                                        <img src="../assets/images/review/1.jpg" class="img-fluid"
+                                                        <img src="./assets/images/review/1.jpg" class="img-fluid"
                                                             alt="">
                                                     </div>
                                                 </div>
@@ -800,7 +789,7 @@
                                                     <div class="people-box">
                                                         <div>
                                                             <div class="people-image">
-                                                                <img src="../assets/images/review/2.jpg"
+                                                                <img src="./assets/images/review/2.jpg"
                                                                     class="img-fluid" alt="">
                                                             </div>
                                                         </div>
@@ -878,7 +867,7 @@
                                                     <div class="people-box">
                                                         <div>
                                                             <div class="people-image">
-                                                                <img src="../assets/images/review/4.jpg"
+                                                                <img src="./assets/images/review/4.jpg"
                                                                     class="img-fluid" alt="">
                                                             </div>
                                                         </div>
@@ -958,7 +947,7 @@
                                             <div class="people-box">
                                                 <div>
                                                     <div class="people-image">
-                                                        <img src="../assets/images/review/5.jpg" class="img-fluid"
+                                                        <img src="./assets/images/review/5.jpg" class="img-fluid"
                                                             alt="">
                                                     </div>
                                                 </div>
@@ -1021,7 +1010,7 @@
                                             <div class="people-box">
                                                 <div>
                                                     <div class="people-image">
-                                                        <img src="../assets/images/review/6.jpg" class="img-fluid"
+                                                        <img src="./assets/images/review/6.jpg" class="img-fluid"
                                                             alt="">
                                                     </div>
                                                 </div>
@@ -1150,7 +1139,7 @@
                             <div class="productMain product-box-4 pro-bg-white">
                                 <div class="product-image">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/106.png" class="img-fluid productImage"
+                                        <img src="./assets/images/product/106.png" class="img-fluid productImage"
                                             alt="">
                                     </a>
                                     <div class="quick-view-button-box">
@@ -1252,7 +1241,7 @@
                             <div class="productMain product-box-4 pro-bg-white">
                                 <div class="product-image">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/114.png" class="img-fluid productImage"
+                                        <img src="./assets/images/product/114.png" class="img-fluid productImage"
                                             alt="">
                                     </a>
                                     <div class="quick-view-button-box">
@@ -1354,7 +1343,7 @@
                             <div class="productMain product-box-4 pro-bg-white">
                                 <div class="product-image">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/113.png" class="img-fluid productImage"
+                                        <img src="./assets/images/product/113.png" class="img-fluid productImage"
                                             alt="">
                                     </a>
                                     <div class="quick-view-button-box">
@@ -1456,7 +1445,7 @@
                             <div class="productMain product-box-4 pro-bg-white">
                                 <div class="product-image">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/112.png" class="img-fluid productImage"
+                                        <img src="./assets/images/product/112.png" class="img-fluid productImage"
                                             alt="">
                                     </a>
                                     <div class="quick-view-button-box">
@@ -1558,7 +1547,7 @@
                             <div class="productMain product-box-4 pro-bg-white">
                                 <div class="product-image">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/111.png" class="img-fluid productImage"
+                                        <img src="./assets/images/product/111.png" class="img-fluid productImage"
                                             alt="">
                                     </a>
                                     <div class="quick-view-button-box">
@@ -1660,7 +1649,7 @@
                             <div class="productMain product-box-4 pro-bg-white">
                                 <div class="product-image">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/110.png" class="img-fluid productImage"
+                                        <img src="./assets/images/product/110.png" class="img-fluid productImage"
                                             alt="">
                                     </a>
                                     <div class="quick-view-button-box">
@@ -1762,7 +1751,7 @@
                             <div class="productMain product-box-4 pro-bg-white">
                                 <div class="product-image">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/109.png" class="img-fluid productImage"
+                                        <img src="./assets/images/product/109.png" class="img-fluid productImage"
                                             alt="">
                                     </a>
                                     <div class="quick-view-button-box">
@@ -1864,7 +1853,7 @@
                             <div class="productMain product-box-4 pro-bg-white">
                                 <div class="product-image">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/108.png" class="img-fluid productImage"
+                                        <img src="./assets/images/product/108.png" class="img-fluid productImage"
                                             alt="">
                                     </a>
                                     <div class="quick-view-button-box">
@@ -1966,7 +1955,7 @@
                             <div class="productMain product-box-4 pro-bg-white">
                                 <div class="product-image">
                                     <a href="product-color.html">
-                                        <img src="../assets/images/product/107.png" class="img-fluid productImage"
+                                        <img src="./assets/images/product/107.png" class="img-fluid productImage"
                                             alt="">
                                     </a>
                                     <div class="quick-view-button-box">
@@ -2055,5 +2044,8 @@
         </div>
     </section>
     <!-- News-letter Section End -->
+
+  
+
 
     <?php include 'footer.php'; ?>
