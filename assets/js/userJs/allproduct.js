@@ -616,6 +616,56 @@ function populateProduct(p) {
     console.warn("Thumbnail swiper wrapper not found");
   }
 
+  // Reinitialize Swiper instances for proper thumbs functionality
+  if (typeof Swiper !== 'undefined') {
+    // Destroy existing instances if they exist
+    const existingMainSwiper = document.querySelector('.product-original-slider').swiper;
+    const existingThumbSwiper = document.querySelector('.thumbnail-product-slider').swiper;
+    
+    if (existingMainSwiper) {
+      existingMainSwiper.destroy();
+    }
+    if (existingThumbSwiper) {
+      existingThumbSwiper.destroy();
+    }
+
+    // Initialize thumbnail swiper first
+    const thumbSwiper = new Swiper('.thumbnail-product-slider', {
+      spaceBetween: 15,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+
+    // Initialize main swiper with thumbs
+    const mainSwiper = new Swiper('.product-original-slider', {
+      spaceBetween: 10,
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      thumbs: {
+        swiper: thumbSwiper,
+      },
+    });
+
+    // Add click handlers to thumbnail slides to change main image
+    thumbSwiper.slides.forEach((slide, index) => {
+      slide.style.cursor = 'pointer';
+      slide.addEventListener('click', () => {
+        mainSwiper.slideTo(index);
+      });
+    });
+
+    console.log("Reinitialized Swiper instances with thumbs and click handlers");
+  } else {
+    console.warn("Swiper library not loaded");
+  }
+
   // Product details
   const productNameEl = document.querySelector(".right-box-contain .name");
   if (productNameEl) {
