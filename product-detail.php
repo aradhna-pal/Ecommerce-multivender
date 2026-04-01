@@ -237,12 +237,13 @@
                                         </div>
                                     </div> -->
 
-                                    <div class="button-group d-lg-none">
-                                        <button onclick="location.href = 'checkout.html';"
-                                            class="btn buy-btn theme-bg-color text-white">Buy now</button>
-                                        <button onclick="location.href = 'cart.html';"
-                                            class="btn buy-btn-2 theme-border fw-500">
-                                            <i class="ri-shopping-bag-line"></i> Add to bag</button>
+                                    <div class="button-group d-lg-none" id="mobileButtonGroup">
+                                        <button class="btn buy-btn-mobile theme-bg-color text-white" data-action="buy-now">
+                                            Buy now
+                                        </button>
+                                        <button class="btn add-to-bag-btn-mobile buy-btn-2 theme-border fw-500" data-action="add-to-cart">
+                                            <i class="ri-shopping-bag-line"></i> Add to bag
+                                        </button>
                                     </div>
 
                                     <!-- <ul class="size-delivery-info">

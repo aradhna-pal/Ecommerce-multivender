@@ -135,7 +135,74 @@ async function openQuickView(productId) {
 
 const BASE = "http://multivendor_backend.workarya.com";
 
-document.addEventListener("DOMContentLoaded", loadProducts);
+// Add to Cart Function
+async function addToCart(productId, quantity = 1, price) {
+  try {
+    const payload = {
+      productId: productId,
+      quantity: quantity,
+      price: price
+    };
+
+    console.log("Adding to cart with payload:", payload);
+
+    const response = await fetch(`${BASE}/api/cart/add`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Add to cart response:", data);
+
+    if (data.success || data.message) {
+      // Use SweetAlert if available, otherwise use regular alert
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Product added to cart successfully!',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK'
+        });
+      } else {
+        alert("Product added to cart successfully!");
+      }
+    } else {
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Error adding to cart',
+          confirmButtonColor: '#d33',
+          confirmButtonText: 'OK'
+        });
+      } else {
+        alert("Error adding to cart");
+      }
+    }
+
+  } catch (error) {
+    console.error("Error adding to cart:", error);
+    if (typeof Swal !== 'undefined') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Error adding to cart: ' + error.message,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'OK'
+      });
+    } else {
+      alert("Error adding to cart: " + error.message);
+    }
+  }
+}
 
 async function loadProducts() {
   const res = await fetch(`${BASE}/api/products/list`);
@@ -151,6 +218,8 @@ async function loadProducts() {
 
   bindCardEvents();
 }
+
+document.addEventListener("DOMContentLoaded", loadProducts);
 
 function cardHTML(p) {
   const id = p._id || p.id;
@@ -250,19 +319,61 @@ function cardHTML(p) {
 }
 
 function bindCardEvents() {
-  document.querySelectorAll(".select-btn").forEach((btn) => {
-    btn.onclick = () => {
+  const container = document.getElementById("productsContainer");
+  
+  if (!container) {
+    console.warn("Products container not found");
+    return;
+  }
+
+  // Use event delegation for all button clicks
+  container.addEventListener("click", (e) => {
+    // Select Options button
+    if (e.target.closest(".select-btn")) {
+      const btn = e.target.closest(".select-btn");
       const card = btn.closest(".col");
       const id = btn.dataset.id;
       openOptions(card, id);
-    };
-  });
+    }
 
-  document.querySelectorAll(".view-btn").forEach((btn) => {
-    btn.onclick = () => {
+    // Quick View button
+    if (e.target.closest(".view-btn")) {
+      const btn = e.target.closest(".view-btn");
       const id = btn.dataset.id;
       openQuickView(id);
-    };
+    }
+
+    // Add to Cart button
+    if (e.target.closest(".add-cart-btn")) {
+      e.preventDefault();
+      const btn = e.target.closest(".add-cart-btn");
+      const card = btn.closest(".col") || btn.closest(".select-box");
+      const productId = btn.getAttribute("data-id");
+      
+      if (!card) {
+        console.error("Product card not found");
+        return;
+      }
+
+      // Get price from the card
+      const priceEl = card.closest(".col")?.querySelector(".price") || 
+                      card.querySelector(".price") ||
+                      card.closest(".product-box-4-main")?.querySelector(".price");
+      
+      let price = 0;
+      if (priceEl) {
+        const priceText = priceEl.innerText;
+        const priceMatch = priceText.match(/[\d.]+/);
+        price = priceMatch ? parseFloat(priceMatch[0]) : 0;
+      }
+
+      if (!productId) {
+        console.error("Product ID not found");
+        return;
+      }
+
+      addToCart(productId, 1, price);
+    }
   });
 }
 
@@ -663,12 +774,13 @@ function populateProduct(p) {
     // Add new button group
     buttonContainer.insertAdjacentHTML("beforeend", `
       <div class="button-group">
-        <button onclick="location.href = 'checkout.php';" class="btn buy-btn theme-bg-color text-white">Buy now</button>
-        <button onclick="location.href = 'cart.php';" class="btn buy-btn theme-border fw-500">
+        <button class="btn buy-btn-desktop theme-bg-color text-white" data-action="buy-now" data-product-id="${p.id}">Buy now</button>
+        <button class="btn add-to-bag-btn buy-btn-2 theme-border fw-500" data-product-id="${p.id}" data-product-price="${p.discountPrice}">
           <i class="ri-shopping-bag-line"></i> Add to bag
         </button>
       </div>
     `);
+
     console.log("Added button group");
   } else {
     console.warn("Button container not found");
@@ -676,3 +788,70 @@ function populateProduct(p) {
 
   console.log("Product population completed");
 }
+
+// Event delegation for buttons on product detail page
+document.addEventListener("click", (e) => {
+  // Desktop "Add to bag" button
+  if (e.target.closest(".add-to-bag-btn")) {
+    e.preventDefault();
+    const btn = e.target.closest(".add-to-bag-btn");
+    const productId = btn.getAttribute("data-product-id");
+    const price = parseFloat(btn.getAttribute("data-product-price"));
+
+    if (!productId) {
+      console.error("Product ID not found");
+      return;
+    }
+
+    addToCart(productId, 1, price);
+  }
+
+  // Desktop "Buy now" button
+  if (e.target.closest(".buy-btn-desktop")) {
+    e.preventDefault();
+    const btn = e.target.closest(".buy-btn-desktop");
+    const productId = btn.getAttribute("data-product-id");
+
+    if (!productId) {
+      console.error("Product ID not found");
+      return;
+    }
+
+    window.location.href = `checkout.php?id=${productId}`;
+  }
+
+  // Mobile buttons
+  if (e.target.closest(".buy-btn-mobile") || e.target.closest(".add-to-bag-btn-mobile")) {
+    e.preventDefault();
+    const btn = e.target.closest(".buy-btn-mobile") || e.target.closest(".add-to-bag-btn-mobile");
+    const action = btn.getAttribute("data-action");
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+
+    if (!productId) {
+      console.error("Product ID not found in URL");
+      alert("Product ID not found");
+      return;
+    }
+
+    if (action === "buy-now") {
+      // Redirect to checkout page with product ID
+      window.location.href = `checkout.php?id=${productId}`;
+    } else if (action === "add-to-cart") {
+      // Get the price from the DOM
+      const priceEl = document.querySelector(".product-price");
+      let price = 0;
+      if (priceEl) {
+        const priceText = priceEl.innerText;
+        const priceMatch = priceText.match(/[\d.]+/);
+        price = priceMatch ? parseFloat(priceMatch[0]) : 0;
+      }
+
+      if (price === 0) {
+        console.warn("Could not extract price from page");
+      }
+
+      addToCart(productId, 1, price);
+    }
+  }
+});
