@@ -127,7 +127,7 @@
 
             <div class="right-header">
                 <ul class="content-list">
-                    <li>
+                    <li id="my-account-nav" style="display: none;">
                         <a href="user-dashboard.php">My Account</a>
                     </li>
                     <li>
@@ -142,8 +142,11 @@
                     <li>
                         <a href="cart.php">Cart</a>
                     </li>
-                    <li>
+                    <li id="login-nav">
                         <a href="#authenticationModal" class="login-btn" data-bs-toggle="modal">Log In</a>
+                    </li>
+                    <li id="logout-nav" style="display: none;">
+                        <a href="#!" class="logout-btn">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -281,13 +284,19 @@
                             <i class="iconsax" data-icon-name="user-2"></i>
                         </a>
                         <ul class="dropdown-list user-dropdown">
-                            <li>
+                            <li class="guest-action">
                                 <a href="#authenticationModal" class="btn login-btn" data-bs-toggle="modal">Log In</a>
                             </li>
-                            <li>
+                            <li class="guest-action">
                                 <span>New customer?</span>
                                 <button class="btn signup-btn" data-bs-toggle="modal"
                                     data-bs-target="#authenticationModal">Start here.</button>
+                            </li>
+                            <li class="user-action" style="display: none;">
+                                <a href="user-dashboard.php" class="btn login-btn">Profile</a>
+                            </li>
+                            <li class="user-action" style="display: none;">
+                                <button class="btn signup-btn logout-btn">Logout</button>
                             </li>
                         </ul>
                     </li>
@@ -2345,3 +2354,35 @@
         </ul>
     </div>
     <!-- Mobile Menu End -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userToken = localStorage.getItem('userToken');
+            
+            const myAccountNav = document.getElementById('my-account-nav');
+            const loginNav = document.getElementById('login-nav');
+            const logoutNav = document.getElementById('logout-nav');
+            
+            const guestActions = document.querySelectorAll('.guest-action');
+            const userActions = document.querySelectorAll('.user-action');
+
+            if (userToken) {
+                if (myAccountNav) myAccountNav.style.display = '';
+                if (loginNav) loginNav.style.display = 'none';
+                if (logoutNav) logoutNav.style.display = '';
+                
+                guestActions.forEach(el => el.style.display = 'none');
+                userActions.forEach(el => el.style.display = '');
+            }
+
+            // Handle Logout
+            const logoutBtns = document.querySelectorAll('.logout-btn');
+            logoutBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('userToken');
+                    window.location.href = 'index.php'; // Redirect to home page
+                });
+            });
+        });
+    </script>
