@@ -40,14 +40,14 @@
                 <div class="col-xxl-9 col-xl-8 col-lg-7">
                     <div class="cart-table2">
                         <div class="table-title">
-                            <h2>Cart <span>(3)</span></h2>
+                            <h2 id="cartCount">Cart <span>(0)</span></h2>
                             <button class="clear-btn btn">
                                 <span>Clear All</span>
                             </button>
                         </div>
                         <div class="table-responsive">
                             <table class="table cart-table-box">
-                                <tbody>
+                                <tbody id="cartTableBody">
                                     <tr class="table-row">
                                         <td>
                                             <div class="cart-box">
@@ -91,100 +91,7 @@
                                             <h4 class="h5">$202.34</h4>
                                         </td>
                                     </tr>
-                                    <tr class="table-row">
-                                        <td>
-                                            <div class="cart-box">
-                                                <div class="cart-image">
-                                                    <a href="product-color.html">
-                                                        <img src="../assets/images/product/58.png" class="img-fluid"
-                                                            alt="">
-                                                    </a>
-                                                    <i class="ri-heart-3-line"></i>
-                                                    <i class="ri-heart-3-fill"></i>
-                                                </div>
-                                                <div class="cart-contain">
-                                                    <a href="product-color.html">
-                                                        <h3>Fresho Mushrooms Approx .180g - 200 gm</h3>
-                                                    </a>
-                                                    <span>Food</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h3 class="price">$89.00<del class="del-price">$95.45</del></h3>
-                                        </td>
-                                        <td>
-                                            <div class="quantity-box qty-container quantity-box-2">
-                                                <button class="btn qty-btn-minus">
-                                                    <i class="ri-subtract-line"></i>
-                                                </button>
-                                                <input type="number" name="qty" disabled
-                                                    class="quantity form-control input-qty" value="2">
-                                                <button class="btn qty-btn-plus">
-                                                    <i class="ri-add-line"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button class="remove-row btn">
-                                                <i class="ri-delete-bin-7-line"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <h4 class="h5">$178.00</h4>
-                                        </td>
-                                    </tr>
-                                    <tr class="table-row">
-                                        <td>
-                                            <div class="cart-box">
-                                                <div class="cart-image">
-                                                    <a href="product-color.html">
-                                                        <img src="../assets/images/product/95.png" class="img-fluid"
-                                                            alt="">
-                                                    </a>
-                                                    <i class="ri-heart-3-line"></i>
-                                                    <i class="ri-heart-3-fill"></i>
-                                                </div>
-                                                <div class="cart-contain">
-                                                    <a href="product-color.html">
-                                                        <h3>Southern Lemon Fresh juice without sugar</h3>
-                                                    </a>
-                                                    <span>Soft Drinks</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h3 class="price">$120.00<del class="del-price">$250.00</del></h3>
-                                        </td>
-                                        <td>
-                                            <div class="quantity-box qty-container quantity-box-2">
-                                                <button class="btn qty-btn-minus">
-                                                    <i class="ri-subtract-line"></i>
-                                                </button>
-                                                <input type="number" name="qty" disabled
-                                                    class="quantity form-control input-qty" value="1">
-                                                <button class="btn qty-btn-plus">
-                                                    <i class="ri-add-line"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button class="remove-row btn">
-                                                <i class="ri-delete-bin-7-line"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <h4 class="h5">$120.00</h4>
-                                        </td>
-                                    </tr>
-                                    <tr class="empty-card">
-                                        <td>
-                                            <svg>
-                                                <use xlink:href="https://themes.pixelstrap.net/kartify/assets/images/inner-page/empty-cart.svg#emptyCart">
-                                                </use>
-                                            </svg>
-                                        </td>
-                                    </tr>
+                                   
                                 </tbody>
                             </table>
                         </div>
