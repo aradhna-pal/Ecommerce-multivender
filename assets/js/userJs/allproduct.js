@@ -1,10 +1,4 @@
-// // let quickModal;
-// let qvImages = [];
-// let qvIndex = 0;
 
-// const BASE = "http://multivendor_backend.workarya.com";
-
-// Quick View Modal Variables
 let qvName, qvDesc, qvPrice, qvImages, qvIndex, qvMainImg, qvThumbs, qvColors, qvSizes, quickModal;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -560,6 +554,12 @@ if (window.location.pathname.includes('product-detail.php')) {
   });
 }
 
+function stripHtml(html) {
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+  return tempDiv.textContent || tempDiv.innerText || "";
+}
+
 function populateProduct(p) {
   console.log("Populating product with data:", p);
   // Breadcrumb
@@ -643,7 +643,7 @@ function populateProduct(p) {
   // Description box
   const descriptionBoxEl = document.querySelector(".description-box p");
   if (descriptionBoxEl) {
-    descriptionBoxEl.innerText = p.description || "";
+    descriptionBoxEl.innerText = stripHtml(p.description || "");
     console.log("Updated description box");
   } else {
     console.warn("Description box element not found");
@@ -709,7 +709,7 @@ function populateProduct(p) {
   // Description tab
   const descTabEl = document.querySelector("#description .nav-desh p");
   if (descTabEl) {
-    descTabEl.innerHTML = p.description;
+    descTabEl.innerText = stripHtml(p.description || "");
     console.log("Updated description tab");
   } else {
     console.warn("Description tab element not found");
