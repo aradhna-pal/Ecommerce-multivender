@@ -74,24 +74,36 @@ function renderTable(items) {
   bindEvents();
 }
 
-function bindEvents() {
-  document.querySelectorAll(".qty-btn-plus").forEach((btn) => {
-    btn.onclick = () => handleQty(btn, 1);
-  });
+// function bindEvents() {
+//   document.querySelectorAll(".qty-btn-plus").forEach((btn) => {
+//     btn.onclick = () => handleQty(btn, 1);
+//   });
 
-  document.addEventListener("click", async (e) => {
+//   document.addEventListener("click", async (e) => {
+//   const plus = e.target.closest(".qty-btn-plus");
+//   const minus = e.target.closest(".qty-btn-minus");
+
+//   if (!plus && !minus) return;
+
+//   const btn = plus || minus;
+//   const action = plus ? "ADD" : "REMOVE";
+//   const productId = btn.dataset.id;
+
+//   await updateQty(productId, action, btn);
+// });
+// }
+document.addEventListener("click", async (e) => {
   const plus = e.target.closest(".qty-btn-plus");
   const minus = e.target.closest(".qty-btn-minus");
-
   if (!plus && !minus) return;
 
   const btn = plus || minus;
   const action = plus ? "ADD" : "REMOVE";
   const productId = btn.dataset.id;
 
-  await updateQty(productId, action, btn);
+  await updateQtyAndRefreshRow(productId, action, btn);
 });
-}
+
 
 // function handleQty(btn, change) {
 //   const tr = btn.closest("tr");
@@ -110,27 +122,28 @@ function bindEvents() {
 //   updateQty(btn.dataset.id, change);
 // }
 
-async function updateQty(productId, action, btn) {
+async function updateQtyAndRefreshRow(productId, action, btn) {
   try {
-    const res = await fetch(
+    await fetch(
       "http://multivendor_backend.workarya.com/api/cart/update-quantity",
       {
-        method: "POST",
+        method: "POST", // change to PUT if your API expects
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productId, action }),
       }
     );
 
-    const data = await res.json();
-    if (!res.ok) return alert(data.message || "Update failed");
+    // 🔥 get latest cart data
+    const res = await fetch("http://multivendor_backend.workarya.com/api/cart/list");
+    const items = await res.json();
 
-    // 🔥 Update only this row from API response
+    const item = items.find(x => x.productId === productId);
+    if (!item) return;
+
+    // 🔥 update only this row
     const tr = btn.closest("tr");
-    const qtyInput = tr.querySelector(".input-qty");
-    const totalEl = tr.querySelector(".row-total");
-
-    qtyInput.value = data.quantity;     // API se new qty
-    totalEl.textContent = "₹" + data.total; // API se new total
+    tr.querySelector(".input-qty").value = item.quantity;
+    tr.querySelector(".row-total").textContent = "₹" + item.total;
 
   } catch (err) {
     console.error(err);
