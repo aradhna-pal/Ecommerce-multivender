@@ -158,11 +158,17 @@ async function addToCart(productId, quantity = 1, price) {
 
     console.log("Adding to cart with payload:", payload);
 
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const userToken = localStorage.getItem("userToken");
+    if (userToken) {
+      headers['Authorization'] = `Bearer ${userToken}`;
+    }
+
     const response = await fetch(`${BASE}/api/cart/add`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: headers,
       body: JSON.stringify(payload)
     });
 
