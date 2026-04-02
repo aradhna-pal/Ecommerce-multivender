@@ -220,7 +220,7 @@
       </div>
       <div class="offcanvas-body">
           <div class="cart-product-box">
-              <ul class="product-box-list">
+              <ul class="product-box-list"  id="offcanvasCartList">
                   <li class="vertical-product-box">
                       <a href="product-color.php" class="product-image">
                           <img src="assets/images/product/1.png" class="img-fluid" alt="">
@@ -276,7 +276,10 @@
                           <i class="iconsax" data-icon-name="truck"></i>
                       </div>
                   </div>
-                  <h4 class="sub-total">Subtotal <span id="total-price">$1700.00 USD</span></h4>
+                  <!-- <h4 class="sub-total">Subtotal <span id="total-price">$1700.00 USD</span></h4> -->
+                   <h4 class="sub-total">
+  Subtotal <span id="offcanvasSubtotal">₹0.00</span>
+</h4>
                   <p class="tax-text">Tax included <span>shipping</span>calculator at checkout.</p>
                   <div class="cart-btn-group">
                       <a href="checkout.php" class="btn check-out-button">Check Out</a>

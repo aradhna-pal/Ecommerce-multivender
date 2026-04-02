@@ -309,9 +309,7 @@
                     <li>
                         <a data-bs-toggle="offcanvas" href="#cartOffcanvas">
                             <i class="iconsax" data-icon-name="basket-2"></i>
-                            <span class="label">
-                                <span>5</span>
-                            </span>
+                            <span class="label"><span id="cartCount">0</span></span>
                         </a>
                     </li>
                 </ul>
