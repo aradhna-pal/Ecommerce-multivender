@@ -95,22 +95,6 @@ function bindEvents() {
   });
 }
 
-function handleQty(btn, change) {
-  const tr = btn.closest("tr");
-  const input = tr.querySelector(".input-qty");
-  const totalEl = tr.querySelector(".row-total");
-  const price = parseFloat(tr.dataset.price);
-
-  let qty = parseInt(input.value);
-  if (qty + change < 1) return;
-
-  qty += change;
-  input.value = qty;
-
-  totalEl.textContent = "₹" + (price * qty).toFixed(2);
-
-  updateQty(btn.dataset.id, change);
-}
 
 async function updateQty(productId, change) {
   const headers = { "Content-Type": "application/json" };
@@ -139,3 +123,59 @@ async function removeItem(productId) {
   });
   initCart();
 }
+
+
+
+// ****************************************** clear cart ******************************************
+document.addEventListener("click", function (e) {
+  const btn = e.target.closest(".clear-btn");
+  if (!btn) return;
+  clearCart();
+});
+async function clearCart() {
+  const userToken = localStorage.getItem("userToken");
+
+  const confirm = await Swal.fire({
+    title: "Clear entire cart?",
+    text: "All items will be removed from your cart.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, clear it",
+  });
+
+  if (!confirm.isConfirmed) return;
+
+  try {
+    const headers = { "Content-Type": "application/json" };
+
+    // ✅ only add token if exists
+    if (userToken) {
+      headers["Authorization"] = `Bearer ${userToken}`;
+    }
+
+    const res = await fetch(
+      "http://multivendor_backend.workarya.com/api/cart/clear",
+      {
+        method: "DELETE",
+        headers,
+      }
+    );
+
+    if (res.ok) {
+      await Swal.fire({
+        icon: "success",
+        title: "Cart Cleared!",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+      initCart();
+    } else {
+      Swal.fire("Failed", "Unable to clear cart", "error");
+    }
+  } catch (err) {
+    Swal.fire("Error", "Something went wrong", "error");
+  }
+}
+
+
+// ****************************************** clear cart end ******************************************
