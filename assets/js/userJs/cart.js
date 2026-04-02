@@ -81,20 +81,19 @@ function renderTable(items) {
   bindEvents();
 }
 
-function bindEvents() {
-  document.querySelectorAll(".qty-btn-plus").forEach(btn => {
-    btn.onclick = () => handleQty(btn, 1);
-  });
+// function bindEvents() {
+//   document.querySelectorAll(".qty-btn-plus").forEach(btn => {
+//     btn.onclick = () => handleQty(btn, 1);
+//   });
 
-  document.querySelectorAll(".qty-btn-minus").forEach(btn => {
-    btn.onclick = () => handleQty(btn, -1);
-  });
+//   document.querySelectorAll(".qty-btn-minus").forEach(btn => {
+//     btn.onclick = () => handleQty(btn, -1);
+//   });
 
-  document.querySelectorAll(".remove-row").forEach(btn => {
-    btn.onclick = () => removeItem(btn.dataset.id);
-  });
-}
-
+//   document.querySelectorAll(".remove-row").forEach(btn => {
+//     btn.onclick = () => removeItem(btn.dataset.id);
+//   });
+// }
 
 async function updateQty(productId, change) {
   const headers = { "Content-Type": "application/json" };
@@ -110,21 +109,72 @@ async function updateQty(productId, change) {
   });
 }
 
-async function removeItem(productId) {
-  const headers = {};
-  const token = localStorage.getItem("userToken");
-  if (token) {
-    headers["Authorization"] = `Bearer ${token}`;
-  }
 
-  await fetch(BASE + "/api/cart/remove/" + productId, {
-    method: "DELETE",
-    headers: headers
+// ********************************************* rmeove cart *********************************************
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".remove-row");
+  if (!btn) return;
+
+  removeItem(btn.dataset.id);
+});
+
+
+
+
+async function removeItem(productId) {
+  const userToken = localStorage.getItem("userToken");
+
+  const confirm = await Swal.fire({
+    title: "Remove item?",
+    text: "This product will be removed from your cart.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, remove it",
   });
-  initCart();
+
+  if (!confirm.isConfirmed) return;
+
+  try {
+    const headers = { "Content-Type": "application/json" };
+    if (userToken) headers["Authorization"] = `Bearer ${userToken}`;
+
+    const res = await fetch(
+      "http://multivendor_backend.workarya.com/api/cart/remove",
+      {
+        method: "DELETE",
+        headers,
+        body: JSON.stringify({ ProductId: productId }),
+      }
+    );
+
+    const data = await res.json();
+
+    if (res.ok) {
+      await Swal.fire({
+        icon: "success",
+        title: "Item removed!",
+        timer: 1200,
+        showConfirmButton: false,
+      });
+
+      // remove row instantly (no full reload)
+      document
+        .querySelector(`.remove-row[data-id="${productId}"]`)
+        .closest("tr")
+        .remove();
+
+      // optional: refresh count / totals
+      initCart();
+    } else {
+      Swal.fire("Failed", data.message || "Unable to remove item", "error");
+    }
+  } catch (err) {
+    Swal.fire("Error", "Something went wrong", "error");
+  }
 }
 
 
+// ********************************************* rmeove cart end *********************************************
 
 // ****************************************** clear cart ******************************************
 document.addEventListener("click", function (e) {
