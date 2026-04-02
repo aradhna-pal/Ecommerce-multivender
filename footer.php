@@ -70,28 +70,28 @@
                       </div>
                       <ul class="footer-list">
                           <li>
-                              <a href="index.html">Home</a>
+                              <a href="index.php">Home</a>
                           </li>
                           <li>
-                              <a href="shop-left-sidebar.html">Collection</a>
+                              <a href="shop-left-sidebar.php">Collection</a>
                           </li>
                           <li>
-                              <a href="about-us.html">About Us</a>
+                              <a href="about-us.php">About Us</a>
                           </li>
                           <li>
-                              <a href="blog-3-grid.html">Blogs</a>
+                              <a href="blog-3-grid.php">Blogs</a>
                           </li>
                           <li>
-                              <a href="shop-banner.html">Offer</a>
+                              <a href="shop-banner.php">Offer</a>
                           </li>
                           <li>
-                              <a href="search.html">Search</a>
+                              <a href="search.php">Search</a>
                           </li>
                           <li>
-                              <a href="faq.html">FAQ's</a>
+                              <a href="faq.php">FAQ's</a>
                           </li>
                           <li>
-                              <a href="contact-us.html">Contact us</a>
+                              <a href="contact-us.php">Contact us</a>
                           </li>
                       </ul>
                   </div>
@@ -102,19 +102,19 @@
                       </div>
                       <ul class="footer-list">
                           <li>
-                              <a href="shop-left-sidebar.html">Mobile Phones</a>
+                              <a href="shop-left-sidebar.php">Mobile Phones</a>
                           </li>
                           <li>
-                              <a href="shop-left-sidebar.html">Television</a>
+                              <a href="shop-left-sidebar.php">Television</a>
                           </li>
                           <li>
-                              <a href="shop-left-sidebar.html">Washing Machine</a>
+                              <a href="shop-left-sidebar.php">Washing Machine</a>
                           </li>
                           <li>
-                              <a href="shop-left-sidebar.html">Women Fashion</a>
+                              <a href="shop-left-sidebar.php">Women Fashion</a>
                           </li>
                           <li>
-                              <a href="shop-left-sidebar.html">Laptop</a>
+                              <a href="shop-left-sidebar.php">Laptop</a>
                           </li>
                       </ul>
                   </div>
@@ -125,22 +125,22 @@
                       </div>
                       <ul class="footer-list">
                           <li>
-                              <a href="user-dashboard.html">My Account</a>
+                              <a href="user-dashboard.php">My Account</a>
                           </li>
                           <li>
-                              <a href="shop-left-sidebar.html">My Shop</a>
+                              <a href="shop-left-sidebar.php">My Shop</a>
                           </li>
                           <li>
-                              <a href="cart.html">My Cart</a>
+                              <a href="cart.php">My Cart</a>
                           </li>
                           <li>
-                              <a href="checkout.html">Checkout</a>
+                              <a href="checkout.php">Checkout</a>
                           </li>
                           <li>
-                              <a href="wishlist.html">My Wishlist</a>
+                              <a href="wishlist.php">My Wishlist</a>
                           </li>
                           <li>
-                              <a href="order-tracking.html">Tracking Order</a>
+                              <a href="order-tracking.php">Tracking Order</a>
                           </li>
                       </ul>
                   </div>
@@ -177,7 +177,7 @@
           </div>
 
           <div class="sub-footer">
-              <a href="index.html" class="sub-footer-logo">
+              <a href="index.php" class="sub-footer-logo">
                   <img src="assets/images/img/logo1.png" class="img-fluid" alt="">
               </a>
               <ul class="payment-list">
@@ -222,11 +222,11 @@
           <div class="cart-product-box">
               <ul class="product-box-list">
                   <li class="vertical-product-box">
-                      <a href="product-color.html" class="product-image">
+                      <a href="product-color.php" class="product-image">
                           <img src="assets/images/product/1.png" class="img-fluid" alt="">
                       </a>
                       <div class="product-content">
-                          <a href="product-color.html">
+                          <a href="product-color.php">
                               <h5 class="name title-color">Smart Watch Series X3</h5>
                           </a>
                           <ul class="rating">
@@ -267,11 +267,11 @@
                   </li>
 
                   <li class="vertical-product-box">
-                      <a href="product-color.html" class="product-image">
+                      <a href="product-color.php" class="product-image">
                           <img src="assets/images/product/2.png" class="img-fluid" alt="">
                       </a>
                       <div class="product-content">
-                          <a href="product-color.html">
+                          <a href="product-color.php">
                               <h5 class="name title-color">Slim 3 Intel Core i5</h5>
                           </a>
                           <ul class="rating">
@@ -312,11 +312,11 @@
                   </li>
 
                   <li class="vertical-product-box">
-                      <a href="product-color.html" class="product-image">
+                      <a href="product-color.php" class="product-image">
                           <img src="assets/images/product/3.png" class="img-fluid" alt="">
                       </a>
                       <div class="product-content">
-                          <a href="product-color.html">
+                          <a href="product-color.php">
                               <h5 class="name title-color">Portable Laptop Table</h5>
                           </a>
                           <ul class="rating">
@@ -357,11 +357,11 @@
                   </li>
 
                   <li class="vertical-product-box">
-                      <a href="product-color.html" class="product-image">
+                      <a href="product-color.php" class="product-image">
                           <img src="assets/images/product/5.png" class="img-fluid" alt="">
                       </a>
                       <div class="product-content">
-                          <a href="product-color.html">
+                          <a href="product-color.php">
                               <h5 class="name title-color">Kitchen Accessories</h5>
                           </a>
                           <ul class="rating">
@@ -402,11 +402,11 @@
                   </li>
 
                   <li class="vertical-product-box">
-                      <a href="product-color.html" class="product-image">
+                      <a href="product-color.php" class="product-image">
                           <img src="assets/images/product/6.png" class="img-fluid" alt="">
                       </a>
                       <div class="product-content">
-                          <a href="product-color.html">
+                          <a href="product-color.php">
                               <h5 class="name title-color">Rockerz Bluetooth Headphone</h5>
                           </a>
                           <ul class="rating">
@@ -463,8 +463,8 @@
                   <h4 class="sub-total">Subtotal <span id="total-price">$1700.00 USD</span></h4>
                   <p class="tax-text">Tax included <span>shipping</span>calculator at checkout.</p>
                   <div class="cart-btn-group">
-                      <a href="checkout.html" class="btn check-out-button">Check Out</a>
-                      <a href="cart.html" class="btn cart-button">View Cart</a>
+                      <a href="checkout.php" class="btn check-out-button">Check Out</a>
+                      <a href="cart.php" class="btn cart-button">View Cart</a>
                   </div>
               </div>
           </div>
@@ -487,11 +487,11 @@
               <ul class="product-box-list">
                   <li>
                       <div class="vertical-product-box">
-                          <a href="product-color.html" class="product-image">
+                          <a href="product-color.php" class="product-image">
                               <img src="assets/images/product/1.png" class="img-fluid" alt="">
                           </a>
                           <div class="product-content">
-                              <a href="product-color.html">
+                              <a href="product-color.php">
                                   <h5 class="name title-color">Smart Watch Series X3</h5>
                               </a>
                               <h5 class="price">$239.00 <del>$250.00</del></h5>
@@ -507,11 +507,11 @@
 
                   <li>
                       <div class="vertical-product-box">
-                          <a href="product-color.html" class="product-image">
+                          <a href="product-color.php" class="product-image">
                               <img src="assets/images/product/2.png" class="img-fluid" alt="">
                           </a>
                           <div class="product-content">
-                              <a href="product-color.html">
+                              <a href="product-color.php">
                                   <h5 class="name title-color">Slim 3 Intel Core i5</h5>
                               </a>
                               <h5 class="price">$700.00 <del>$720.00</del></h5>
@@ -527,11 +527,11 @@
 
                   <li>
                       <div class="vertical-product-box">
-                          <a href="product-color.html" class="product-image">
+                          <a href="product-color.php" class="product-image">
                               <img src="assets/images/product/3.png" class="img-fluid" alt="">
                           </a>
                           <div class="product-content">
-                              <a href="product-color.html">
+                              <a href="product-color.php">
                                   <h5 class="name title-color">Portable Laptop Table</h5>
                               </a>
                               <h5 class="price">$199.00 <del>$200.00</del></h5>
@@ -547,11 +547,11 @@
 
                   <li>
                       <div class="vertical-product-box">
-                          <a href="product-color.html" class="product-image">
+                          <a href="product-color.php" class="product-image">
                               <img src="assets/images/product/4.png" class="img-fluid" alt="">
                           </a>
                           <div class="product-content">
-                              <a href="product-color.html">
+                              <a href="product-color.php">
                                   <h5 class="name title-color">Kitchen Accessories</h5>
                               </a>
                               <h5 class="price">$300.00 <del>$312.56</del></h5>
@@ -567,11 +567,11 @@
 
                   <li>
                       <div class="vertical-product-box">
-                          <a href="product-color.html" class="product-image">
+                          <a href="product-color.php" class="product-image">
                               <img src="assets/images/product/5.png" class="img-fluid" alt="">
                           </a>
                           <div class="product-content">
-                              <a href="product-color.html">
+                              <a href="product-color.php">
                                   <h5 class="name title-color">Rockerz 558 Bluetooth</h5>
                               </a>
                               <h5 class="price">$86.00 <del>$96.00</del></h5>
@@ -586,11 +586,11 @@
                   </li>
                   <li>
                       <div class="vertical-product-box">
-                          <a href="product-color.html" class="product-image">
+                          <a href="product-color.php" class="product-image">
                               <img src="assets/images/product/26.png" class="img-fluid" alt="">
                           </a>
                           <div class="product-content">
-                              <a href="product-color.html">
+                              <a href="product-color.php">
                                   <h5 class="name title-color">EvoFox Game Box 32 GB with Asphalt 8</h5>
                               </a>
                               <h5 class="price">$130.00 <del>$153.00</del></h5>
@@ -605,11 +605,11 @@
                   </li>
                   <li>
                       <div class="vertical-product-box">
-                          <a href="product-color.html" class="product-image">
+                          <a href="product-color.php" class="product-image">
                               <img src="assets/images/product/23.png" class="img-fluid" alt="">
                           </a>
                           <div class="product-content">
-                              <a href="product-color.html">
+                              <a href="product-color.php">
                                   <h5 class="name title-color">BlackBerry Keyone BBB100-7 64gb unlocked gSM</h5>
                               </a>
                               <h5 class="price">$1920.36 <del>$2000.95</del></h5>
@@ -628,7 +628,7 @@
                   <p class="tax-text">Now that you have products in your wishlist, remember to put them in your cart
                       later.</p>
                   <div class="cart-btn-group">
-                      <button onclick="location.href = 'wishlist.html';" class="btn check-out-button">View
+                      <button onclick="location.href = 'wishlist.php';" class="btn check-out-button">View
                           Wishlist</button>
                   </div>
               </div>
@@ -840,11 +840,11 @@
       <button class="btn recent-close">
           <i class="iconsax" data-icon-name="add"></i>
       </button>
-      <a href="product-color.html">
+      <a href="product-color.php">
           <img src="assets/images/product/1.png" class="img-fluid" alt="Product Image">
       </a>
       <div class="recent-content">
-          <a href="product-color.html">Smart Watch Series X3</a>
+          <a href="product-color.php">Smart Watch Series X3</a>
           <h5 class="price">$239.00 <del>$250.00</del></h5>
           <h6 class="timer">1 minutes ago</h6>
       </div>
@@ -933,7 +933,7 @@
                       <div class="col-md-6">
                           <div class="product-right-box">
                               <div class="right-box-contain">
-                                  <a href="seller-details-2.html" class="offer-top">Visit Thirfting_store</a>
+                                  <a href="seller-details-2.php" class="offer-top">Visit Thirfting_store</a>
                                   <h2 class="name">Marks & Spencer Pure Cotton Embroidered Round Neck Dress</h2>
                                   <div class="price-rating">
                                       <ul class="rating-review-sold-box">
@@ -1027,7 +1027,7 @@
                                           </button>
                                       </div>
 
-                                      <button onclick="location.href = 'cart.html';"
+                                      <button onclick="location.href = 'cart.php';"
                                           class="btn buy-btn theme-border fw-500">
                                           <i class="ri-shopping-bag-line"></i> Add to bag</button>
                                   </div>
@@ -1172,6 +1172,6 @@
   </body>
 
 
-  <!-- Mirrored from themes.pixelstrap.net/kartify/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 Mar 2026 10:20:54 GMT -->
+  <!-- Mirrored from themes.pixelstrap.net/kartify/template/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 Mar 2026 10:20:54 GMT -->
 
   </html>

@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> -->
@@ -346,7 +347,7 @@
                                 </li>
 
                                 <li class="nav-item dropdown mega-dropdown">
-                                    <a class="nav-link " href="shop-collection-grid-5.php" data-bs-auto-close="outside"
+                                    <a class="nav-link " href="shop.php" data-bs-auto-close="outside"
                                         >Shop</a>
                                    
                                 </li>

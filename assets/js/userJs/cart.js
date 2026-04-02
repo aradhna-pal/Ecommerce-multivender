@@ -115,10 +115,46 @@ async function updateQty(productId, change) {
 }
 
 async function removeItem(productId) {
-  await fetch(BASE + "/api/cart/remove/" + productId, {
-    method: "DELETE",
+  const confirm = await Swal.fire({
+    title: "Remove item?",
+    text: "This product will be removed from your cart.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, remove it",
+    cancelButtonText: "Cancel",
   });
-  initCart();
+
+  if (!confirm.isConfirmed) return;
+
+  try {
+    const res = await fetch(
+      "http://multivendor_backend.workarya.com/api/cart/remove",
+      {
+        method: "DELETE", // keep as your API expects
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ProductId: productId }),
+      }
+    );
+
+    const data = await res.json();
+
+    if (res.ok) {
+      await Swal.fire({
+        title: "Removed!",
+        text: "Item removed from cart successfully.",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      initCart(); // refresh cart
+    } else {
+      Swal.fire("Failed", data.message || "Failed to remove item", "error");
+    }
+  } catch (err) {
+    console.error(err);
+    Swal.fire("Error", "Something went wrong while removing item", "error");
+  }
 }
 
 
