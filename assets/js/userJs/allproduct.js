@@ -192,6 +192,14 @@ async function addToCart(productId, quantity = 1, price) {
       } else {
         alert("Product added to cart successfully!");
       }
+
+      // Refresh cart displays after adding an item
+      if (typeof refreshAllCarts === "function") {
+        refreshAllCarts();
+      } else if (typeof loadOffcanvasCart === "function") {
+        // Fallback for pages that might only have offcanvas logic
+        loadOffcanvasCart();
+      }
     } else {
       if (typeof Swal !== 'undefined') {
         Swal.fire({

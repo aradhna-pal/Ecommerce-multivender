@@ -236,6 +236,8 @@ function renderOffcanvasCart(items) {
     list.insertAdjacentHTML("beforeend", li);
   });
 
+
+
   subtotalEl.textContent = "₹" + subtotal.toFixed(2);
   if (countEl) countEl.textContent = items.length;
 
