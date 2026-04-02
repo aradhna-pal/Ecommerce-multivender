@@ -25,7 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==================== MAIN CART ====================
 async function initMainCart() {
   try {
-    const res = await fetch(API.list, { headers: getHeaders() });
+    const res = await fetch(API.list, { 
+      method: "POST",
+      headers: getHeaders(),
+      body: JSON.stringify({ couponCode: "" })
+    });
     const data = await res.json();
     const items = data.items || [];
     renderMainCart(items);
@@ -187,7 +191,11 @@ async function refreshAllCarts() {
 // ==================== OFFCANVAS CART ====================
 async function loadOffcanvasCart() {
   try {
-    const res = await fetch(API.list, { headers: getHeaders() });
+    const res = await fetch(API.list, { 
+      method: "POST",
+      headers: getHeaders(),
+      body: JSON.stringify({ couponCode: "" })
+    });
     const data = await res.json();
     const items = data.items || [];
     renderOffcanvasCart(items);
