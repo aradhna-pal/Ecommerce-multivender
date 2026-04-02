@@ -122,6 +122,18 @@ async function openQuickView(productId) {
       }
     }
 
+    // Configure Quick View Add to Cart button (Overriding footer.php defaults)
+    const quickViewModalEl = document.getElementById("quickViewModal");
+    if (quickViewModalEl) {
+      const addBtn = quickViewModalEl.querySelector(".buy-btn");
+      if (addBtn) {
+        addBtn.removeAttribute("onclick"); // Remove existing redirect to cart.html
+        addBtn.classList.add("qv-add-cart-btn");
+        addBtn.setAttribute("data-id", p._id || p.id);
+        addBtn.setAttribute("data-price", p.discountPrice || p.price || 0);
+      }
+    }
+
     // Show modal
     if (quickModal) {
       quickModal.show();
@@ -218,8 +230,6 @@ async function loadProducts() {
 
   bindCardEvents();
 }
-
-document.addEventListener("DOMContentLoaded", loadProducts);
 
 function cardHTML(p) {
   const id = p._id || p.id;
@@ -325,6 +335,10 @@ function bindCardEvents() {
     console.warn("Products container not found");
     return;
   }
+
+  // Prevent duplicate event bindings if loadProducts is called multiple times
+  if (container.dataset.eventsBound) return;
+  container.dataset.eventsBound = "true";
 
   // Use event delegation for all button clicks
   container.addEventListener("click", (e) => {
@@ -790,68 +804,86 @@ function populateProduct(p) {
 }
 
 // Event delegation for buttons on product detail page
-document.addEventListener("click", (e) => {
-  // Desktop "Add to bag" button
-  if (e.target.closest(".add-to-bag-btn")) {
-    e.preventDefault();
-    const btn = e.target.closest(".add-to-bag-btn");
-    const productId = btn.getAttribute("data-product-id");
-    const price = parseFloat(btn.getAttribute("data-product-price"));
+if (!window.cartGlobalClickBound) {
+  window.cartGlobalClickBound = true;
+  document.addEventListener("click", (e) => {
+    // Desktop "Add to bag" button
+    if (e.target.closest(".add-to-bag-btn")) {
+      e.preventDefault();
+      const btn = e.target.closest(".add-to-bag-btn");
+      const productId = btn.getAttribute("data-product-id");
+      const price = parseFloat(btn.getAttribute("data-product-price"));
 
-    if (!productId) {
-      console.error("Product ID not found");
-      return;
-    }
-
-    addToCart(productId, 1, price);
-  }
-
-  // Desktop "Buy now" button
-  if (e.target.closest(".buy-btn-desktop")) {
-    e.preventDefault();
-    const btn = e.target.closest(".buy-btn-desktop");
-    const productId = btn.getAttribute("data-product-id");
-
-    if (!productId) {
-      console.error("Product ID not found");
-      return;
-    }
-
-    window.location.href = `checkout.php?id=${productId}`;
-  }
-
-  // Mobile buttons
-  if (e.target.closest(".buy-btn-mobile") || e.target.closest(".add-to-bag-btn-mobile")) {
-    e.preventDefault();
-    const btn = e.target.closest(".buy-btn-mobile") || e.target.closest(".add-to-bag-btn-mobile");
-    const action = btn.getAttribute("data-action");
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get("id");
-
-    if (!productId) {
-      console.error("Product ID not found in URL");
-      alert("Product ID not found");
-      return;
-    }
-
-    if (action === "buy-now") {
-      // Redirect to checkout page with product ID
-      window.location.href = `checkout.php?id=${productId}`;
-    } else if (action === "add-to-cart") {
-      // Get the price from the DOM
-      const priceEl = document.querySelector(".product-price");
-      let price = 0;
-      if (priceEl) {
-        const priceText = priceEl.innerText;
-        const priceMatch = priceText.match(/[\d.]+/);
-        price = priceMatch ? parseFloat(priceMatch[0]) : 0;
-      }
-
-      if (price === 0) {
-        console.warn("Could not extract price from page");
+      if (!productId) {
+        console.error("Product ID not found");
+        return;
       }
 
       addToCart(productId, 1, price);
     }
-  }
-});
+
+    // Desktop "Buy now" button
+    if (e.target.closest(".buy-btn-desktop")) {
+      e.preventDefault();
+      const btn = e.target.closest(".buy-btn-desktop");
+      const productId = btn.getAttribute("data-product-id");
+
+      if (!productId) {
+        console.error("Product ID not found");
+        return;
+      }
+
+      window.location.href = `checkout.php?id=${productId}`;
+    }
+
+    // Mobile buttons
+    if (e.target.closest(".buy-btn-mobile") || e.target.closest(".add-to-bag-btn-mobile")) {
+      e.preventDefault();
+      const btn = e.target.closest(".buy-btn-mobile") || e.target.closest(".add-to-bag-btn-mobile");
+      const action = btn.getAttribute("data-action");
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
+
+      if (!productId) {
+        console.error("Product ID not found in URL");
+        alert("Product ID not found");
+        return;
+      }
+
+      if (action === "buy-now") {
+        // Redirect to checkout page with product ID
+        window.location.href = `checkout.php?id=${productId}`;
+      } else if (action === "add-to-cart") {
+        // Get the price from the DOM
+        const priceEl = document.querySelector(".product-price");
+        let price = 0;
+        if (priceEl) {
+          const priceText = priceEl.innerText;
+          const priceMatch = priceText.match(/[\d.]+/);
+          price = priceMatch ? parseFloat(priceMatch[0]) : 0;
+        }
+
+        if (price === 0) {
+          console.warn("Could not extract price from page");
+        }
+
+        addToCart(productId, 1, price);
+      }
+    }
+
+    // Quick View "Add to bag" button
+    if (e.target.closest(".qv-add-cart-btn")) {
+      e.preventDefault();
+      const btn = e.target.closest(".qv-add-cart-btn");
+      const productId = btn.getAttribute("data-id");
+      const price = parseFloat(btn.getAttribute("data-price")) || 0;
+
+      if (!productId) {
+        console.error("Product ID not found");
+        return;
+      }
+
+      addToCart(productId, 1, price);
+    }
+  });
+}
