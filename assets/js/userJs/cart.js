@@ -2,6 +2,7 @@
 // const BASE = "http://multivendor_backend.workarya.com";
 
 const API = {
+  applyCoupon: `${BASE}/api/coupon/apply`,
   list: `${BASE}/api/cart/list`,
   updateQuantity: `${BASE}/api/cart/update-quantity`,
   remove: `${BASE}/api/cart/remove`,
@@ -16,6 +17,9 @@ function getHeaders() {
   return headers;
 }
 
+// ==================== GLOBAL STATE ====================
+let currentCartData = { items: [], subTotal: 0, couponCode: "" };
+
 // ==================== INIT ====================
 document.addEventListener("DOMContentLoaded", () => {
   initMainCart();
@@ -23,14 +27,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==================== MAIN CART ====================
-async function initMainCart() {
+async function initMainCart(coupon = "") {
   try {
     const res = await fetch(API.list, { 
       method: "POST",
       headers: getHeaders(),
-      body: JSON.stringify({ couponCode: "" })
+      body: JSON.stringify({ couponCode: coupon || currentCartData.couponCode || "" })
     });
     const data = await res.json();
+    // Store the latest cart data globally
+    currentCartData = data;
+
     const items = data.items || [];
     renderMainCart(items);
     updateCartSummary(data);   // Update summary box
@@ -92,13 +99,13 @@ function updateCartSummary(data) {
   const shippingEl = document.querySelector(".summery-contain ul li:nth-child(3) .price");
   const finalTotalEl = document.querySelector(".summery-total .price");
 
-  if (subTotalEl) subTotalEl.textContent = `₹${data.subTotal || 0}`;
-  if (couponDiscountEl) couponDiscountEl.textContent = `(-) ₹${data.discount || 0}`;
+  if (subTotalEl) subTotalEl.textContent = `₹${(data.subTotal || 0).toFixed(2)}`;
+  if (couponDiscountEl) couponDiscountEl.textContent = `(-) ₹${(data.discount || 0).toFixed(2)}`;
   
   // Shipping - assuming it's not coming from API yet, keeping static or set to 0
   if (shippingEl) shippingEl.textContent = "₹0.00";
 
-  if (finalTotalEl) finalTotalEl.textContent = `₹${data.finalTotal || data.subTotal || 0}`;
+  if (finalTotalEl) finalTotalEl.textContent = `₹${(data.finalTotal || data.subTotal || 0).toFixed(2)}`;
 }
 
 // ==================== CORE FUNCTIONS ====================
@@ -186,6 +193,50 @@ async function clearCart() {
 async function refreshAllCarts() {
   await initMainCart();        // This will also update summary
   await loadOffcanvasCart();
+}
+
+// ==================== COUPON CODE LOGIC (NEW) ====================
+async function applyCoupon() {
+  const couponInput = document.getElementById("couponCodeInput");
+  const couponCode = couponInput.value.trim();
+
+  if (!couponCode) {
+    Swal.fire("Error", "Please enter a coupon code.", "error");
+    return;
+  }
+
+  if (!currentCartData || currentCartData.items.length === 0) {
+    Swal.fire("Error", "Your cart is empty. Add items before applying a coupon.", "error");
+    return;
+  }
+
+  // API 1: Validate Coupon
+  try {
+    const applyPayload = {
+      couponCode: couponCode,
+      cartAmount: currentCartData.subTotal,
+      productIds: currentCartData.items.map(item => item.productId)
+    };
+
+    const applyRes = await fetch(API.applyCoupon, {
+      method: "POST",
+      headers: getHeaders(),
+      body: JSON.stringify(applyPayload)
+    });
+
+    const applyData = await applyRes.json();
+
+    if (!applyData.success) {
+      throw new Error(applyData.message || "Invalid or expired coupon code.");
+    }
+
+    // API 2: If validation is successful, refresh the cart with the coupon applied
+    await initMainCart(couponCode);
+    Swal.fire("Success!", "Coupon applied successfully.", "success");
+
+  } catch (err) {
+    Swal.fire("Error", err.message, "error");
+  }
 }
 
 // ==================== OFFCANVAS CART ====================
@@ -290,5 +341,11 @@ document.addEventListener("click", async (e) => {
 
   if (e.target.closest(".clear-btn")) {
     await clearCart();
+  }
+
+  // APPLY COUPON BUTTON (NEW)
+  if (e.target.closest("#applyCouponBtn")) {
+    e.preventDefault();
+    await applyCoupon();
   }
 });

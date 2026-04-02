@@ -131,12 +131,12 @@
                                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                                     data-bs-parent="#accordionExample">
                                                     <div class="accordion-body">
-                                                        <form>
+                                                        <form onsubmit="return false;">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Apply code">
-                                                                <button class="input-group-text"
-                                                                    id="basic-addon1">Apply</button>
+                                                                <input type="text" class="form-control" id="couponCodeInput"
+                                                                    placeholder="Apply code" />
+                                                                <button class="input-group-text" type="button"
+                                                                    id="applyCouponBtn">Apply</button>
                                                             </div>
                                                         </form>
                                                     </div>
