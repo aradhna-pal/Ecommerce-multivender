@@ -14090,9 +14090,9 @@ body.dark .vertical-product-box .product-content a .name {
   display: block;
   text-align: center;
 }
-.vertical-product-box .product-content .quantity-box .qty-btn-minus {
+/* .vertical-product-box .product-content .quantity-box .qty-btn-minus {
   display: none;
-}
+} */
 .vertical-product-box .product-content .cart-btn {
   padding: 7px 15px;
   display: flex;
