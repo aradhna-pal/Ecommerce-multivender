@@ -116,10 +116,10 @@
                                         <h4 class="price">(-) 0.00</h4>
                                     </li>
 
-                                    <li>
+                                    <!-- <li>
                                         <h4>Shipping</h4>
                                         <h4 class="price text-end">$6.90</h4>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <div class="accordion promo-code-accordion" id="accordionExample">
                                             <div class="accordion-item">

@@ -29,6 +29,7 @@ async function initMainCart() {
     const data = await res.json();
     const items = data.items || [];
     renderMainCart(items);
+    updateCartSummary(data);   // Update summary box
   } catch (err) {
     console.error("Main cart load error:", err);
   }
@@ -78,6 +79,22 @@ function renderMainCart(items) {
     `;
     tbody.insertAdjacentHTML("beforeend", rowHTML);
   });
+}
+
+// ==================== CART SUMMARY BOX ====================
+function updateCartSummary(data) {
+  const subTotalEl = document.querySelector(".summery-contain ul li:nth-child(1) .price");
+  const couponDiscountEl = document.querySelector(".summery-contain ul li:nth-child(2) .price");
+  const shippingEl = document.querySelector(".summery-contain ul li:nth-child(3) .price");
+  const finalTotalEl = document.querySelector(".summery-total .price");
+
+  if (subTotalEl) subTotalEl.textContent = `₹${data.subTotal || 0}`;
+  if (couponDiscountEl) couponDiscountEl.textContent = `(-) ₹${data.discount || 0}`;
+  
+  // Shipping - assuming it's not coming from API yet, keeping static or set to 0
+  if (shippingEl) shippingEl.textContent = "₹0.00";
+
+  if (finalTotalEl) finalTotalEl.textContent = `₹${data.finalTotal || data.subTotal || 0}`;
 }
 
 // ==================== CORE FUNCTIONS ====================
@@ -163,7 +180,7 @@ async function clearCart() {
 }
 
 async function refreshAllCarts() {
-  await initMainCart();
+  await initMainCart();        // This will also update summary
   await loadOffcanvasCart();
 }
 
@@ -203,7 +220,7 @@ function renderOffcanvasCart(items) {
           <div class="d-flex justify-content-between align-items-start">
             <h5 class="name">${item.productName}</h5>
             
-            <!-- DELETE ICON - Top Right Side of Product Name -->
+            <!-- DELETE ICON - Top Right -->
             <button class="btn btn-trash remove-item" data-id="${item.productId}" style="color: #dc3545; font-size: 18px; padding: 4px;">
               <i class="ri-delete-bin-line"></i>
             </button>
@@ -211,20 +228,16 @@ function renderOffcanvasCart(items) {
           
           <h5 class="price">₹${itemTotal}</h5>
 
-          <!-- Quantity Box: Left Minus | Middle Qty | Right Plus -->
           <div class="quantity-box qty-container d-flex align-items-center gap-2 mt-2">
-            <!-- LEFT: Minus -->
             <button class="btn qty-btn-minus" data-id="${item.productId}">
               <i class="ri-subtract-line"></i>
             </button>
 
-            <!-- MIDDLE: Quantity -->
             <input type="number" disabled 
                    class="quantity form-control input-qty text-center" 
                    value="${item.quantity}" 
                    style="width: 20px;">
 
-            <!-- RIGHT: Plus -->
             <button class="btn qty-btn-plus" data-id="${item.productId}">
               <i class="ri-add-line"></i>
             </button>
@@ -236,32 +249,8 @@ function renderOffcanvasCart(items) {
     list.insertAdjacentHTML("beforeend", li);
   });
 
-
-
   subtotalEl.textContent = "₹" + subtotal.toFixed(2);
   if (countEl) countEl.textContent = items.length;
-
-  initOffcanvasQtyUI();
-}
-
-// ==================== TOGGLE MINUS BUTTON ====================
-function initOffcanvasQtyUI() {
-  document.querySelectorAll(".vertical-product-box").forEach(li => {
-    const qty = parseInt(li.querySelector(".input-qty").value) || 1;
-    toggleOffcanvasQtyUI(li, qty);
-  });
-}
-
-function toggleOffcanvasQtyUI(li, qty) {
-  const minusBtn = li.querySelector(".qty-btn-minus");
-
-  if (!minusBtn) return;
-
-  if (qty <= 1) {
-    minusBtn.style.display = "none";
-  } else {
-    minusBtn.style.display = "inline-flex";
-  }
 }
 
 // ==================== GLOBAL CLICK HANDLER ====================
