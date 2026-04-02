@@ -95,20 +95,54 @@ function renderTable(items) {
 //   });
 // }
 
-async function updateQty(productId, change) {
-  const headers = { "Content-Type": "application/json" };
-  const token = localStorage.getItem("userToken");
-  if (token) {
-    headers["Authorization"] = `Bearer ${token}`;
+document.addEventListener("click", (e) => {
+  const plus = e.target.closest(".qty-btn-plus");
+  const minus = e.target.closest(".qty-btn-minus");
+  if (!plus && !minus) return;
+
+  const btn = plus || minus;
+  const action = plus ? "ADD" : "REMOVE";
+  const productId = btn.dataset.id;
+
+  updateQtyRow(productId, action, btn);
+});
+
+async function updateQtyRow(productId, action, btn) {
+  try {
+    const userToken = localStorage.getItem("userToken");
+
+    const headers = { "Content-Type": "application/json" };
+    if (userToken) headers["Authorization"] = `Bearer ${userToken}`;
+
+    // 1️⃣ update quantity on server
+    await fetch(
+      "http://multivendor_backend.workarya.com/api/cart/update-quantity",
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ productId, action }),
+      }
+    );
+
+    // 2️⃣ get fresh cart
+    const res = await fetch(
+      "http://multivendor_backend.workarya.com/api/cart/list",
+      { headers }
+    );
+    const items = await res.json();
+
+    const item = items.find(x => x.productId === productId);
+    if (!item) return;
+
+    // 3️⃣ update only this row UI
+    const tr = btn.closest("tr");
+    tr.querySelector(".input-qty").value = item.quantity;
+    tr.querySelector(".row-total").textContent = "₹" + item.total;
+
+  } catch (err) {
+    console.error(err);
   }
-
-  await fetch(BASE + "/api/cart/update", {
-    method: "PUT",
-    headers: headers,
-    body: JSON.stringify({ productId, change }),
-  });
 }
-
 
 // ********************************************* rmeove cart *********************************************
 document.addEventListener("click", (e) => {
