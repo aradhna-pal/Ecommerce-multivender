@@ -137,25 +137,26 @@
                         <div class="checkout-title mt-4">
                             <h4>Saved Addresses</h4>
                         </div>
-                       <div class="accordion checkout-payment-accordion mb-4" id="savedAddressAccordion">
-    <!-- Addresses will be loaded dynamically -->
-    <div id="addressListContainer">
-        <!-- Loading -->
-        <div class="text-center py-4" id="addressLoading">
-            <div class="spinner-border text-primary" role="status"></div>
-            <p class="mt-2 mb-0">Loading saved addresses...</p>
-        </div>
-    </div>
-</div>
+                        <div class="accordion checkout-payment-accordion mb-4" id="savedAddressAccordion">
+                            <!-- Addresses will be loaded dynamically -->
+                            <div id="addressListContainer">
+                                <!-- Loading -->
+                                <div class="text-center py-4" id="addressLoading">
+                                    <div class="spinner-border text-primary" role="status"></div>
+                                    <p class="mt-2 mb-0">Loading saved addresses...</p>
+                                </div>
+                            </div>
+                        </div>
 
-<!-- Add New Address Button -->
-<div class="mt-3">
-    <button class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#addAddressModal">
-        <i class="ri-add-line"></i> Add New Address
-    </button>
-</div>
+                        <!-- Add New Address Button -->
+                        <div class="mt-3">
+                            <button class="btn btn-outline-success w-100" data-bs-toggle="modal"
+                                data-bs-target="#addAddressModal">
+                                <i class="ri-add-line"></i> Add New Address
+                            </button>
+                        </div>
 
-                        
+
                     </div>
                 </div>
             </div>
@@ -248,51 +249,54 @@
                         </table>
                     </div>
 
-                   <div class="accordion checkout-payment-accordion section-t-space-2" id="paymentAccordion">
+                    <div class="accordion checkout-payment-accordion section-t-space-2" id="paymentAccordion">
 
-    <!-- 1. Cash on Delivery (COD) -->
-    <div class="accordion-item">
-        <div class="accordion-header" data-bs-toggle="collapse" data-bs-target="#collapseCOD">
-            <div class="form-check">
-                <input class="form-check-input" name="paymentMethod" type="radio" id="cod" checked>
-                <label class="form-check-label" for="cod">
-                    <span class="circle"></span>
-                    Cash on Delivery (COD)
-                </label>
-            </div>
-        </div>
-        <div id="collapseCOD" class="accordion-collapse collapse show" data-bs-parent="#paymentAccordion">
-            <div class="accordion-body">
-                <p class="mb-0">
-                    <i class="ri-check-line text-success"></i> 
-                    Pay cash when your order is delivered.
-                </p>
-            </div>
-        </div>
-    </div>
+                        <!-- 1. Cash on Delivery (COD) -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-bs-toggle="collapse" data-bs-target="#collapseCOD">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="paymentMethod" type="radio" id="cod" checked>
+                                    <label class="form-check-label" for="cod">
+                                        <span class="circle"></span>
+                                        Cash on Delivery (COD)
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="collapseCOD" class="accordion-collapse collapse show"
+                                data-bs-parent="#paymentAccordion">
+                                <div class="accordion-body">
+                                    <p class="mb-0">
+                                        <i class="ri-check-line text-success"></i>
+                                        Pay cash when your order is delivered.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-    <!-- 2. Razorpay -->
-    <div class="accordion-item">
-        <div class="accordion-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseRazorpay">
-            <div class="form-check">
-                <input class="form-check-input" name="paymentMethod" type="radio" id="razorpay">
-                <label class="form-check-label" for="razorpay">
-                    <span class="circle"></span>
-                    Pay with Razorpay (UPI, Card, Netbanking, Wallet)
-                </label>
-            </div>
-        </div>
-        <div id="collapseRazorpay" class="accordion-collapse collapse" data-bs-parent="#paymentAccordion">
-            <div class="accordion-body">
-                <p class="mb-0">
-                    <i class="ri-check-line text-success"></i> 
-                    Secure payment via Razorpay. Supports all major payment methods.
-                </p>
-            </div>
-        </div>
-    </div>
+                        <!-- 2. Razorpay -->
+                        <div class="accordion-item">
+                            <div class="accordion-header collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseRazorpay">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="paymentMethod" type="radio" id="razorpay">
+                                    <label class="form-check-label" for="razorpay">
+                                        <span class="circle"></span>
+                                        Pay with Razorpay 
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="collapseRazorpay" class="accordion-collapse collapse"
+                                data-bs-parent="#paymentAccordion">
+                                <div class="accordion-body">
+                                    <p class="mb-0">
+                                        <i class="ri-check-line text-success"></i>
+                                        Secure payment via Razorpay. Supports all major payment methods.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-</div>
+                    </div>
 
                     <div class="section-t-space-2">
                         <div class="checkout-information">

@@ -152,6 +152,9 @@ function clearAllErrors() {
 }
 
 // ================================================ LOAD SAVED ADDRESSES ================================================
+
+
+
 async function loadSavedAddresses() {
     const container = document.getElementById("addressListContainer");
     const loadingEl = document.getElementById("addressLoading");
@@ -260,3 +263,18 @@ async function loadSavedAddresses() {
 document.addEventListener("DOMContentLoaded", function () {
     loadSavedAddresses();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
