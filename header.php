@@ -63,6 +63,8 @@
     <script src="./assets/js/userJs/checkout.js"></script>
     <script src="./assets/js/userJs/address.js"></script>
     <script src="./assets/js/userJs/createorder.js"></script>
+    <script src="./assets/js/userJs/recentView.js"></script>
+
 </head>
 
 <body class="base-bg-color">
@@ -2192,112 +2194,25 @@
                                 </button>
                             </div>
 
-                            <ul class="product-box-list">
-                                <li>
-                                    <div class="vertical-product-box">
-                                        <a href="product-color.php" class="product-image">
-                                            <img src="assets/images/product/1.png" class="img-fluid" alt="">
-                                        </a>
-                                        <div class="product-content">
-                                            <a href="product-color.php">
-                                                <h5 class="name title-color">Smart Watch Series X3</h5>
-                                            </a>
-                                            <h5 class="price">$239.00 <del>$250.00</del></h5>
-                                            <button class="btn cart-btn">
-                                                <i class="ri-shopping-cart-line"></i>
-                                                <span>Add to cart</span>
-                                            </button>
-                                        </div>
-                                        <button class="btn close-button">
-                                            <i class="ri-delete-bin-line"></i>
-                                        </button>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="vertical-product-box">
-                                        <a href="product-color.php" class="product-image">
-                                            <img src="assets/images/product/2.png" class="img-fluid" alt="">
-                                        </a>
-                                        <div class="product-content">
-                                            <a href="product-color.php">
-                                                <h5 class="name title-color">Slim 3 Intel Core i5</h5>
-                                            </a>
-                                            <h5 class="price">$700.00 <del>$720.00</del></h5>
-                                            <button class="btn cart-btn">
-                                                <i class="ri-shopping-cart-line"></i>
-                                                <span>Add to cart</span>
-                                            </button>
-                                        </div>
-                                        <button class="btn close-button">
-                                            <i class="ri-delete-bin-line"></i>
-                                        </button>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="vertical-product-box">
-                                        <a href="product-color.php" class="product-image">
-                                            <img src="assets/images/product/3.png" class="img-fluid" alt="">
-                                        </a>
-                                        <div class="product-content">
-                                            <a href="product-color.php">
-                                                <h5 class="name title-color">Portable Laptop Table</h5>
-                                            </a>
-                                            <h5 class="price">$199.00 <del>$200.00</del></h5>
-                                            <button class="btn cart-btn">
-                                                <i class="ri-shopping-cart-line"></i>
-                                                <span>Add to cart</span>
-                                            </button>
-                                        </div>
-                                        <button class="btn close-button">
-                                            <i class="ri-delete-bin-line"></i>
-                                        </button>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="vertical-product-box">
-                                        <a href="product-color.php" class="product-image">
-                                            <img src="assets/images/product/2.png" class="img-fluid" alt="">
-                                        </a>
-                                        <div class="product-content">
-                                            <a href="product-color.php">
-                                                <h5 class="name title-color">Slim 3 Intel Core i5</h5>
-                                            </a>
-                                            <h5 class="price">$700.00 <del>$720.00</del></h5>
-                                            <button class="btn cart-btn">
-                                                <i class="ri-shopping-cart-line"></i>
-                                                <span>Add to cart</span>
-                                            </button>
-                                        </div>
-                                        <button class="btn close-button">
-                                            <i class="ri-delete-bin-line"></i>
-                                        </button>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="vertical-product-box">
-                                        <a href="product-color.php" class="product-image">
-                                            <img src="assets/images/product/3.png" class="img-fluid" alt="">
-                                        </a>
-                                        <div class="product-content">
-                                            <a href="product-color.php">
-                                                <h5 class="name title-color">Portable Laptop Table</h5>
-                                            </a>
-                                            <h5 class="price">$199.00 <del>$200.00</del></h5>
-                                            <button class="btn cart-btn">
-                                                <i class="ri-shopping-cart-line"></i>
-                                                <span>Add to cart</span>
-                                            </button>
-                                        </div>
-                                        <button class="btn close-button">
-                                            <i class="ri-delete-bin-line"></i>
-                                        </button>
-                                    </div>
-                                </li>
-                            </ul>
+                       <ul class="product-box-list" id="recentViewProduct">
+    <li>
+        <div class="vertical-product-box">
+            <a href="product-color.php" class="product-image">
+                <img src="assets/images/product/3.png" class="img-fluid" alt="">
+            </a>
+            <div class="product-content">
+                <a href="product-color.php">
+                    <h5 class="name title-color">Portable Laptop Table</h5>
+                </a>
+                <h5 class="price">$199.00 <del>$200.00</del></h5>
+                <button class="btn cart-btn">
+                    <i class="ri-shopping-cart-line"></i>
+                    <span>Add to cart</span>
+                </button>
+            </div>
+        </div>
+    </li>
+</ul>
 
                             <div class="empty-message">
                                 <svg>

@@ -610,12 +610,65 @@ async function openOptions(card, productId) {
   /* const BASE = "http://multivendor_backend.workarya.com"; */
 }
 
+// ==================== RECENT VIEWS API ====================
+async function addToRecentViews(productId) {
+  if (!productId) return;
+
+  try {
+    const userToken = localStorage.getItem("userToken");
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    if (userToken) {
+      headers['Authorization'] = `Bearer ${userToken}`;
+    }
+
+    const response = await fetch(`${BASE}/api/recent/add/${productId}`, {
+      method: 'POST',
+      headers: headers,
+    });
+
+    const data = await response.json();
+
+    console.log("Recent view API response:", data);
+
+    if (response.ok && (data.success || data.message?.toLowerCase().includes("success"))) {
+      console.log(`Product ${productId} added to recent views successfully`);
+
+      // Optional: Show success message (can be removed if you don't want alert every time)
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          icon: 'success',
+          title: 'Recent View Updated',
+          text: 'Product added to Recently Viewed',
+          toast: true,
+          position: 'bottom-end',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true
+        });
+      } else {
+        console.log("Product added to recently viewed");
+      }
+    } else {
+      console.warn("Recent view API did not return success:", data.message || data);
+    }
+
+  } catch (error) {
+    console.error("Error adding to recent views:", error);
+    // Silent fail - don't disturb user experience
+  }
+}
+
+// Product Detail Page Script - Only run on product-detail.php
 // Product Detail Page Script - Only run on product-detail.php
 if (window.location.pathname.includes('product-detail.php')) {
   document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
     console.log("Product ID from URL:", id);
+
     if (!id) {
       alert("No product ID provided");
       return;
@@ -624,20 +677,28 @@ if (window.location.pathname.includes('product-detail.php')) {
     try {
       console.log("Fetching product from:", `${BASE}/api/products/get/${id}`);
       const res = await fetch(`${BASE}/api/products/get/${id}`);
-      console.log("Fetch response status:", res.status);
+      
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
+
       const json = await res.json();
       console.log("Full API response:", json);
+
       let p;
       if (json.success && json.data) {
         p = json.data.data || json.data;
-        console.log("Extracted product data:", p);
+
         if (!p || !p.name) {
           throw new Error("Invalid product data structure");
         }
+
         populateProduct(p);
+
+        // ================ ADD TO RECENT VIEWS ================
+        // Call after successfully loading product data
+        await addToRecentViews(id);
+
       } else {
         alert("Product not found or API error");
       }
