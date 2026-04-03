@@ -282,7 +282,7 @@
 </h4>
                   <p class="tax-text">Tax included <span>shipping</span>calculator at checkout.</p>
                   <div class="cart-btn-group">
-                      <a href="checkout.php" class="btn check-out-button">Check Out</a>
+                      <a href="#!" class="btn check-out-button">Check Out</a>
                       <a href="cart.php" class="btn cart-button">View Cart</a>
                   </div>
               </div>
