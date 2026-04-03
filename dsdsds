@@ -1,0 +1,19 @@
+{
+    "success": true,
+    "userId": "8dba3dd2-92c1-43bd-b984-e8950f85b8fb",
+    "email": "dev70817@gmail.com",
+    "cartItems": [
+        {
+            "productId": "2cdc7757-3226-49db-b308-1cba4c101efb",
+            "productName": "Smart Shophar 2 Pcs 8 inch Stainless Steel Silver F-Type Square Glass Shelf Bracket Set, SHA40SB-FTYS-08SL08-S2 (Pack of 2)",
+            "price": 571,
+            "quantity": 3,
+            "image": "/uploads/products/a444ac03-7933-4363-91c0-548f1df12c64.jpg",
+            "discount": 0
+        }
+    ],
+    "totalAmount": 1713,
+    "discount": 0,
+    "couponCode": null,
+    "finalAmount": 1713
+}
