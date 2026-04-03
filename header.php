@@ -308,6 +308,7 @@
                     <li>
                         <a data-bs-toggle="offcanvas" href="#wishlistOffcanvas">
                             <i class="iconsax" data-icon-name="heart"></i>
+                              <span class="label"><span id="wishlistCount">0</span></span>
                         </a>
                     </li>
                     <li>

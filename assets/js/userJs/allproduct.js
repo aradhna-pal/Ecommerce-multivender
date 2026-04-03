@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
-  loadProducts();
+  loadProducts(1, 50);
 });
 
 
@@ -310,10 +310,15 @@ async function addToCart(productId, quantity = 1, price) {
   }
 }
 
-async function loadProducts() {
+async function loadProducts(page = 1, limit = 50) {
   const res = await fetch(`${BASE}/api/products/list`);
   const json = await res.json();
-  const products = json?.data?.data || [];
+  const allProducts = json?.data?.data || [];
+  const totalProducts = allProducts.length;
+  const totalPages = Math.ceil(totalProducts / limit);
+  const startIndex = (page - 1) * limit;
+  const endIndex = startIndex + limit;
+  const products = allProducts.slice(startIndex, endIndex);
 
   const container = document.getElementById("productsContainer");
   container.innerHTML = "";
@@ -323,6 +328,41 @@ async function loadProducts() {
   });
 
   bindCardEvents();
+  renderPagination(totalPages, page);
+}
+
+function renderPagination(totalPages, currentPage) {
+  const paginationNav = document.querySelector(".custom-pagination .pagination");
+  if (!paginationNav) return;
+
+  paginationNav.innerHTML = "";
+
+  // Previous button
+  const prevLi = document.createElement("li");
+  prevLi.className = `page-item ${currentPage === 1 ? "disabled" : ""}`;
+  prevLi.innerHTML = `<a class="page-link" href="#!"><i class="ri-arrow-left-s-line"></i></a>`;
+  if (currentPage > 1) {
+    prevLi.addEventListener("click", () => loadProducts(currentPage - 1));
+  }
+  paginationNav.appendChild(prevLi);
+
+  // Page numbers
+  for (let i = 1; i <= totalPages; i++) {
+    const pageLi = document.createElement("li");
+    pageLi.className = `page-item ${i === currentPage ? "active" : ""}`;
+    pageLi.innerHTML = `<a class="page-link" href="#!"><span>${i}</span></a>`;
+    pageLi.addEventListener("click", () => loadProducts(i));
+    paginationNav.appendChild(pageLi);
+  }
+
+  // Next button
+  const nextLi = document.createElement("li");
+  nextLi.className = `page-item ${currentPage === totalPages ? "disabled" : ""}`;
+  nextLi.innerHTML = `<a class="page-link" href="#!"><i class="ri-arrow-right-s-line"></i></a>`;
+  if (currentPage < totalPages) {
+    nextLi.addEventListener("click", () => loadProducts(currentPage + 1));
+  }
+  paginationNav.appendChild(nextLi);
 }
 
 function cardHTML(p) {
