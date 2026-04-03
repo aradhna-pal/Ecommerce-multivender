@@ -60,6 +60,7 @@
     <script src="./assets/js/userJs/user-order.js"></script>
     <script src="./assets/js/userJs/cart.js"></script>
     <script src="./assets/js/userJs/checkout.js"></script>
+    <script src="./assets/js/userJs/address.js"></script>
 </head>
 
 <body class="base-bg-color">
