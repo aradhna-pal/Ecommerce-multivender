@@ -137,43 +137,23 @@
                         <div class="checkout-title mt-4">
                             <h4>Saved Addresses</h4>
                         </div>
-                        <div class="accordion checkout-payment-accordion mb-4" id="savedAddressAccordion">
-                            <!-- Example Saved Address 1 -->
-                            <div class="accordion-item">
-                                <div class="accordion-header" data-bs-toggle="collapse" data-bs-target="#savedAddr1">
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="selectedAddressRadio" type="radio" id="addressRadio1" checked>
-                                        <label class="form-check-label" for="addressRadio1"><span class="circle"></span> Home</label>
-                                    </div>
-                                </div>
-                                <div id="savedAddr1" class="accordion-collapse collapse show" data-bs-parent="#savedAddressAccordion">
-                                    <div class="accordion-body">
-                                        <h5 class="fw-bold mb-2">John Doe</h5>
-                                        <p class="mb-1"><i class="ri-map-pin-line"></i> House no 123, Street name, Near Metro Station</p>
-                                        <p class="mb-1">New Delhi, Delhi - 110001, India</p>
-                                        <p class="mb-0"><i class="ri-phone-line"></i> Phone: +91 9876543210</p>
-                                    </div>
-                                </div>
-                            </div>
+                       <div class="accordion checkout-payment-accordion mb-4" id="savedAddressAccordion">
+    <!-- Addresses will be loaded dynamically -->
+    <div id="addressListContainer">
+        <!-- Loading -->
+        <div class="text-center py-4" id="addressLoading">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 mb-0">Loading saved addresses...</p>
+        </div>
+    </div>
+</div>
 
-                            <!-- Example Saved Address 2 -->
-                            <div class="accordion-item">
-                                <div class="accordion-header collapsed" data-bs-toggle="collapse" data-bs-target="#savedAddr2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="selectedAddressRadio" type="radio" id="addressRadio2">
-                                        <label class="form-check-label" for="addressRadio2"><span class="circle"></span> Office</label>
-                                    </div>
-                                </div>
-                                <div id="savedAddr2" class="accordion-collapse collapse" data-bs-parent="#savedAddressAccordion">
-                                    <div class="accordion-body">
-                                        <h5 class="fw-bold mb-2">John Doe</h5>
-                                        <p class="mb-1"><i class="ri-map-pin-line"></i> Tech Park, Phase 1</p>
-                                        <p class="mb-1">Bangalore, Karnataka - 560001, India</p>
-                                        <p class="mb-0"><i class="ri-phone-line"></i> Phone: +91 9876543210</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!-- Add New Address Button -->
+<div class="mt-3">
+    <button class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+        <i class="ri-add-line"></i> Add New Address
+    </button>
+</div>
 
                         
                     </div>

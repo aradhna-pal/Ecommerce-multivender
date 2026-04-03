@@ -70,8 +70,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 timerProgressBar: true
             });
 
+            
             // 🔥 Form Fields Blank Kar Do (Reset)
             clearAddressFormFields();
+            
 
         } catch (error) {
             console.error("API Error:", error);
@@ -147,3 +149,115 @@ function clearAllErrors() {
         el.style.display = 'none';
     });
 }
+
+
+
+// ================================================ get list of addresses for user ================================================
+// ====================== LOAD SAVED ADDRESSES ======================
+async function loadSavedAddresses() {
+    const container = document.getElementById("addressListContainer");
+    const loadingEl = document.getElementById("addressLoading");
+
+    const userToken = localStorage.getItem("userToken");
+    if (!userToken) {
+        container.innerHTML = `<p class="text-danger text-center py-3">Please login to view addresses.</p>`;
+        return;
+    }
+
+    try {
+        const response = await fetch("http://multivendor_backend.workarya.com/api/address/list", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + userToken
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to load addresses");
+        }
+
+        const addresses = await response.json();   // ← Yeh directly array hai
+
+        loadingEl.style.display = "none";
+
+        if (!addresses || addresses.length === 0) {
+            container.innerHTML = `<p class="text-muted text-center py-4">No saved addresses found.</p>`;
+            return;
+        }
+
+        let html = '';
+
+        addresses.forEach((addr, index) => {
+            const collapseId = `savedAddr${index}`;
+            const radioId = `addressRadio${index}`;
+            const isFirst = index === 0;
+
+            // Address ko properly format kar rahe hain
+            const fullAddress = [
+                addr.addressLine1,
+                addr.addressLine2
+            ].filter(Boolean).join(", ");
+
+            html += `
+                <div class="accordion-item">
+                    <div class="accordion-header ${isFirst ? '' : 'collapsed'}" 
+                         data-bs-toggle="collapse" 
+                         data-bs-target="#${collapseId}">
+                        <div class="form-check">
+                            <input class="form-check-input" 
+                                   name="selectedAddressRadio" 
+                                   type="radio" 
+                                   id="${radioId}" 
+                                   ${isFirst ? 'checked' : ''}>
+                            <label class="form-check-label" for="${radioId}">
+                                <span class="circle"></span> 
+                                ${addr.addressType || 'Home'}
+                               
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="${collapseId}" 
+                         class="accordion-collapse collapse ${isFirst ? 'show' : ''}" 
+                         data-bs-parent="#savedAddressAccordion">
+                        <div class="accordion-body">
+                            <h5 class="fw-bold mb-2">${addr.fullName}</h5>
+                            <p class="mb-1">
+                                <i class="ri-map-pin-line"></i> ${fullAddress}
+                            </p>
+                            <p class="mb-1">
+                                ${addr.city}, ${addr.state} - ${addr.postalCode}, ${addr.country}
+                            </p>
+                            <p class="mb-0">
+                                <i class="ri-phone-line"></i> Phone: ${addr.phoneNumber}
+                            </p>
+                            
+                            <div class="mt-3 pt-2 border-top">
+                                <button class="btn btn-sm btn-outline-primary edit-btn" 
+                                        data-id="${addr.id}">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        });
+
+        container.innerHTML = html;
+
+    } catch (error) {
+        console.error("Error:", error);
+        loadingEl.style.display = "none";
+        container.innerHTML = `
+            <p class="text-danger text-center py-4">
+                Failed to load addresses.<br>
+                <small>Please try again later.</small>
+            </p>`;
+    }
+}
+
+// ====================== Call on Page Load ======================
+document.addEventListener("DOMContentLoaded", function () {
+    loadSavedAddresses();
+});
