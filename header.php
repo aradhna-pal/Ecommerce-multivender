@@ -2224,9 +2224,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="order-tracking d-xxl-inline-block d-none">
-                        <a href="order-tracking.php" class="product-link">Order Tracking</a>
-                    </li>
+                   
                 </ul>
             </div>
         </div>
