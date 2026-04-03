@@ -37,9 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Get and remove applied coupon from local storage immediately on page load
   let currentCoupon = localStorage.getItem("appliedCoupon") || "";
-  if (currentCoupon) {
-    localStorage.removeItem("appliedCoupon");
-  }
 
   const placeOrderBtn = document.getElementById("placeOrderBtn");
   
