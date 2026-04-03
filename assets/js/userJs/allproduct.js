@@ -663,7 +663,7 @@ async function addToRecentViews(productId) {
 
 // Product Detail Page Script - Only run on product-detail.php
 // Product Detail Page Script - Only run on product-detail.php
-if (window.location.pathname.includes('product-detail.php')) {
+if (window.location.pathname.includes('product-detail')) {
   document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
