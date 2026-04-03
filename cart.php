@@ -153,7 +153,7 @@
                                     <h4 class="price theme-color">$132.55</h4>
                                 </li>
                             </ul>
-                            <button onclick="location.href = 'checkout.html';" class="btn proceed-btn">Proceed to
+                            <button onclick="location.href = 'checkout.php';" class="btn proceed-btn">Proceed to
                                 checkout</button>
                         </div>
                     </div>

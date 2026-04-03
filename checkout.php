@@ -291,7 +291,7 @@
                         </div>
 
                         <div class="section-t-space-2">
-                            <button onclick="location.href = 'order-success.html';"
+                            <button id="placeOrderBtn"
                                 class="btn theme-bg-color text-white rounded-pill w-100">Place Order</button>
                         </div>
                     </div>
@@ -338,3 +338,4 @@
 
    
     <?php include 'footer.php'; ?>
+    <script src="assets/js/userJs/checkout.js"></script>

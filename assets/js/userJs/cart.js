@@ -22,17 +22,25 @@ let currentCartData = { items: [], subTotal: 0, couponCode: "" };
 
 // ==================== INIT ====================
 document.addEventListener("DOMContentLoaded", () => {
+  // Pre-fill the coupon code input if one is stored
+  const savedCoupon = localStorage.getItem("appliedCoupon");
+  const couponInput = document.getElementById("couponCodeInput");
+  if (savedCoupon && couponInput) {
+    couponInput.value = savedCoupon;
+  }
+
   initMainCart();
   loadOffcanvasCart();
 });
 
 // ==================== MAIN CART ====================
-async function initMainCart(coupon = "") {
+async function initMainCart(coupon = null) {
   try {
+    const activeCoupon = coupon !== null ? coupon : (localStorage.getItem("appliedCoupon") || "");
     const res = await fetch(API.list, { 
       method: "POST",
       headers: getHeaders(),
-      body: JSON.stringify({ couponCode: coupon || currentCartData.couponCode || "" })
+      body: JSON.stringify({ couponCode: activeCoupon })
     });
     const data = await res.json();
     // Store the latest cart data globally
@@ -144,6 +152,9 @@ async function removeCartItem(productId) {
     });
 
     if (res.ok) {
+      // Clear the coupon code locally if the entire cart is cleared
+      localStorage.removeItem("appliedCoupon");
+      
       Swal.fire({
         icon: "success",
         title: "Item removed!",
@@ -230,7 +241,8 @@ async function applyCoupon() {
       throw new Error(applyData.message || "Invalid or expired coupon code.");
     }
 
-    // API 2: If validation is successful, refresh the cart with the coupon applied
+    // API 2: If validation is successful, save it locally and refresh the cart
+    localStorage.setItem("appliedCoupon", couponCode);
     await initMainCart(couponCode);
     Swal.fire("Success!", "Coupon applied successfully.", "success");
 
@@ -242,10 +254,11 @@ async function applyCoupon() {
 // ==================== OFFCANVAS CART ====================
 async function loadOffcanvasCart() {
   try {
+    const activeCoupon = localStorage.getItem("appliedCoupon") || "";
     const res = await fetch(API.list, { 
       method: "POST",
       headers: getHeaders(),
-      body: JSON.stringify({ couponCode: "" })
+      body: JSON.stringify({ couponCode: activeCoupon })
     });
     const data = await res.json();
     const items = data.items || [];
