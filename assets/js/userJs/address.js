@@ -196,6 +196,7 @@ async function loadSavedAddresses() {
             const collapseId = `savedAddr${index}`;
             const radioId = `addressRadio${index}`;
             const isFirst = index === 0;
+            const actualId = addr._id || addr.id;
 
             const fullAddress = [
                 addr.addressLine1,
@@ -212,6 +213,8 @@ async function loadSavedAddresses() {
                                    name="selectedAddressRadio" 
                                    type="radio" 
                                    id="${radioId}" 
+                                   value="${actualId}"
+                                   data-address-id="${actualId}"
                                    ${isFirst ? 'checked' : ''}>
                             <label class="form-check-label" for="${radioId}">
                                 <span class="circle"></span> 
@@ -263,18 +266,3 @@ async function loadSavedAddresses() {
 document.addEventListener("DOMContentLoaded", function () {
     loadSavedAddresses();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

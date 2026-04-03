@@ -7,59 +7,38 @@ document.addEventListener("DOMContentLoaded", function () {
     placeOrderBtn.addEventListener("click", async function () {
       const userToken = localStorage.getItem("userToken");
       if (!userToken) {
-        Swal.fire({
-          title: "Login Required",
-          text: "Please login to place your order",
-          icon: "warning",
-        });
+        Swal.fire({ title: "Login Required", text: "Please login to place your order", icon: "warning" });
         return;
       }
 
       // 1. Selected Address
-      const selectedAddressRadio = document.querySelector(
-        'input[name="selectedAddressRadio"]:checked',
-      );
+      const selectedAddressRadio = document.querySelector('input[name="selectedAddressRadio"]:checked');
       if (!selectedAddressRadio) {
-        Swal.fire({
-          title: "Address Required",
-          text: "Please select a delivery address",
-          icon: "error",
-        });
+        Swal.fire({ title: "Address Required", text: "Please select a delivery address", icon: "error" });
         return;
       }
 
-      const addressId = selectedAddressRadio.getAttribute("data-address-id");
-      if (!addressId) {
+      let addressId = selectedAddressRadio.value || selectedAddressRadio.getAttribute("data-address-id");
+      if (!addressId || addressId === "on") {
         Swal.fire("Error", "Please select a valid address", "error");
         return;
       }
 
       // 2. Selected Payment Method
-      const selectedPaymentRadio = document.querySelector(
-        'input[name="paymentMethod"]:checked',
-      );
+      const selectedPaymentRadio = document.querySelector('input[name="paymentMethod"]:checked');
       if (!selectedPaymentRadio) {
-        Swal.fire({
-          title: "Payment Method Required",
-          text: "Please select COD or Razorpay",
-          icon: "error",
-        });
+        Swal.fire({ title: "Payment Method Required", text: "Please select COD or Razorpay", icon: "error" });
         return;
       }
 
-      const paymentMethod =
-        selectedPaymentRadio.id === "cod" ? "COD" : "RAZORPAY";
+      const paymentMethod = selectedPaymentRadio.id === "cod" ? "COD" : "RAZORPAY";
 
-      // 3. Get Checkout Data from URL
+      // 3. Get Checkout Data
       const urlParams = new URLSearchParams(window.location.search);
       const checkoutDataStr = urlParams.get("checkoutData");
 
       if (!checkoutDataStr) {
-        Swal.fire({
-          title: "Error",
-          text: "Checkout data not found. Please go back and try again.",
-          icon: "error",
-        });
+        Swal.fire({ title: "Error", text: "Checkout data not found.", icon: "error" });
         return;
       }
 
@@ -81,70 +60,168 @@ document.addEventListener("DOMContentLoaded", function () {
       const orderPayload = {
         addressId: addressId,
         paymentMethod: paymentMethod,
-        couponCode: checkoutData.couponCode || "",
+        couponCode: checkoutData.couponCode || null,
         items: itemsArray,
       };
 
       console.log("✅ Final Order Payload:", orderPayload);
 
-      // Button Loading
+      // Button Loading State
       const originalText = placeOrderBtn.innerHTML;
       placeOrderBtn.disabled = true;
       placeOrderBtn.innerHTML = `Placing Order... <span class="spinner-border spinner-border-sm"></span>`;
 
       try {
-        const response = await fetch(
-          "http://multivendor_backend.workarya.com/api/orders/create",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + userToken,
-            },
-            body: JSON.stringify(orderPayload),
+        const response = await fetch("http://multivendor_backend.workarya.com/api/orders/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + userToken,
           },
-        );
+          body: JSON.stringify(orderPayload),
+        });
 
         const result = await response.json();
 
-        if (response.ok && result.success) {
-          // ==================== SUCCESS - Clear LocalStorage ====================
-          localStorage.removeItem("checkoutData"); // Main checkout data
-          localStorage.removeItem("appliedCoupon"); // Applied Coupon Code
-          localStorage.removeItem("couponDiscount"); // Agar extra coupon data save kiya hai to
-
-          Swal.fire({
-            title: "🎉 Order Placed Successfully!",
-            text: "Thank you for your purchase.",
-            icon: "success",
-            confirmButtonText: "View My Orders",
-          }).then(() => {
-            window.location.href = "order-success.php";
-          });
-        } else {
-          Swal.fire({
-            title: "Order Failed",
-            text: result.message || "Something went wrong while placing order",
-            icon: "error",
-          });
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || "Failed to create order");
         }
+
+        // ==================== SUCCESS ====================
+        if (paymentMethod === "RAZORPAY") {
+          if (typeof window.Razorpay === "undefined") {
+            Swal.fire("Error", "Razorpay script not loaded. Please refresh.", "error");
+            resetButton();
+            return;
+          }
+
+          if (!result.razorpayOrderId) {
+            Swal.fire("Error", "Razorpay Order ID not received from server.", "error");
+            resetButton();
+            return;
+          }
+
+          const options = {
+            key: "rzp_test_vMtcxwl3LM65wN",
+            amount: result.amount || Math.round((checkoutData.finalAmount || 0) * 100),
+            currency: "INR",
+            name: "E-Commerce Multivendor",
+            description: "Order Payment",
+            order_id: result.razorpayOrderId,           // ← Important: Using razorpayOrderId from backend
+            handler: async function (response) {
+              // Payment successful → Verify with backend
+              await verifyRazorpayPayment(response, result.orderId || result._id, userToken);
+            },
+            modal: {
+              ondismiss: function () {
+                resetButton();
+              }
+            },
+            prefill: {
+              email: checkoutData.email || "",
+              contact: checkoutData.phone || ""
+            },
+            theme: {
+              color: "#4a4fea"
+            }
+          };
+
+          const rzp = new window.Razorpay(options);
+
+          rzp.on('payment.failed', function (response) {
+            Swal.fire("Payment Failed", response.error.description || "Payment failed", "error");
+            resetButton();
+          });
+
+          rzp.open();
+
+        } else {
+          // COD Success
+          handleOrderSuccess();
+        }
+
       } catch (error) {
         console.error("Order Error:", error);
         Swal.fire({
-          title: "Network Error",
-          text: "Please check your internet connection and try again.",
+          title: "Order Failed",
+          text: error.message || "Something went wrong while placing order",
           icon: "error",
         });
       } finally {
+        if (paymentMethod !== "RAZORPAY") {
+          resetButton();
+        }
+      }
+
+      // Helper function to reset button
+      function resetButton() {
         placeOrderBtn.disabled = false;
         placeOrderBtn.innerHTML = originalText;
       }
     });
   }
 
-  // Load saved addresses
   loadSavedAddresses();
 });
+
+// ====================== VERIFY RAZORPAY PAYMENT ======================
+async function verifyRazorpayPayment(paymentResponse, orderId, userToken) {
+  try {
+    const verifyPayload = {
+      razorpayOrderId: paymentResponse.razorpay_order_id,
+      razorpayPaymentId: paymentResponse.razorpay_payment_id,
+      razorpaySignature: paymentResponse.razorpay_signature,
+      // orderId: orderId   
+    };
+
+    const response = await fetch("http://multivendor_backend.workarya.com/api/orders/verify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + userToken,
+      },
+      body: JSON.stringify(verifyPayload),
+    });
+
+    const result = await response.json();
+
+    if (response.ok && result.success) {
+      localStorage.removeItem("checkoutData");
+      localStorage.removeItem("appliedCoupon");
+      localStorage.removeItem("couponDiscount");
+
+      Swal.fire({
+        title: "🎉 Payment Successful!",
+        text: "Your order has been placed successfully.",
+        icon: "success",
+        confirmButtonText: "View My Orders",
+      }).then(() => {
+        window.location.href = "order-success.php";
+      });
+    } else {
+      Swal.fire("Verification Failed", result.message || "Payment verification failed", "error");
+    }
+  } catch (err) {
+    console.error("Payment Verification Error:", err);
+    Swal.fire("Error", "Payment verification failed. Please contact support.", "error");
+  }
+}
+
+// ====================== COD SUCCESS HANDLER ======================
+function handleOrderSuccess() {
+  localStorage.removeItem("checkoutData");
+  localStorage.removeItem("appliedCoupon");
+  localStorage.removeItem("couponDiscount");
+
+  Swal.fire({
+    title: "🎉 Order Placed Successfully!",
+    text: "Thank you for your purchase.",
+    icon: "success",
+    confirmButtonText: "View My Orders",
+  }).then(() => {
+    window.location.href = "order-success.php";
+  });
+}
 
 // ====================== LOAD SAVED ADDRESSES ======================
 async function loadSavedAddresses() {
@@ -162,16 +239,13 @@ async function loadSavedAddresses() {
   try {
     if (loadingEl) loadingEl.style.display = "block";
 
-    const response = await fetch(
-      "http://multivendor_backend.workarya.com/api/address/list",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + userToken,
-        },
+    const response = await fetch("http://multivendor_backend.workarya.com/api/address/list", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + userToken,
       },
-    );
+    });
 
     if (!response.ok) throw new Error("Failed to fetch addresses");
 
@@ -185,41 +259,28 @@ async function loadSavedAddresses() {
     }
 
     let html = "";
-
     addresses.forEach((addr, index) => {
       const collapseId = `savedAddr${index}`;
       const radioId = `addressRadio${index}`;
       const isFirst = index === 0;
+      const actualId = addr._id || addr.id;
 
-      const fullAddress = [addr.addressLine1, addr.addressLine2]
-        .filter(Boolean)
-        .join(", ");
+      const fullAddress = [addr.addressLine1, addr.addressLine2].filter(Boolean).join(", ");
 
       html += `
 <div class="accordion-item mb-3">
-    <h2 class="accordion-header" id="heading${addr.id}">
+    <h2 class="accordion-header" id="heading${actualId}">
         <button class="accordion-button ${isFirst ? "" : "collapsed"} d-flex align-items-center gap-2" 
-                type="button"
-                data-bs-toggle="collapse" 
-                data-bs-target="#${collapseId}">
-
-            <input class="form-check-input"
-                   name="selectedAddressRadio"
-                   type="radio"
-                   id="${radioId}"
-                   data-address-id="${addr.id}"
+                type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}">
+            <input class="form-check-input" name="selectedAddressRadio" type="radio" 
+                   id="${radioId}" value="${actualId}" data-address-id="${actualId}" 
                    ${isFirst ? "checked" : ""}>
-
             <label class="form-check-label m-0" for="${radioId}">
-                ${addr.addressType || "Home"} 
-                
+                ${addr.addressType || "Home"}
             </label>
-
         </button>
     </h2>
-
-    <div id="${collapseId}" 
-         class="accordion-collapse collapse ${isFirst ? "show" : ""}" 
+    <div id="${collapseId}" class="accordion-collapse collapse ${isFirst ? "show" : ""}" 
          data-bs-parent="#savedAddressAccordion">
         <div class="accordion-body">
             <h5 class="fw-bold mb-2">${addr.fullName}</h5>
@@ -235,22 +296,6 @@ async function loadSavedAddresses() {
   } catch (error) {
     console.error("Error loading addresses:", error);
     if (loadingEl) loadingEl.style.display = "none";
-    if (container) {
-      container.innerHTML = `<p class="text-danger text-center py-4">Failed to load addresses. Please try again.</p>`;
-    }
+    container.innerHTML = `<p class="text-danger text-center py-4">Failed to load addresses. Please try again.</p>`;
   }
 }
-
-// respnse
-
-// {
-//     "addressId": "984cb4b4-10e1-48f4-bb18-dcb28ae93ba3",
-//     "paymentMethod": "COD",
-//     "couponCode": "",
-//     "items": [
-//         {
-//             "productId": "7368857a-70a7-478e-aabd-5f1fff5dbe1c",
-//             "quantity": 1
-//         }
-//     ]
-// }
