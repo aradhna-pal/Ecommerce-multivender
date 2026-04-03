@@ -248,58 +248,51 @@
                         </table>
                     </div>
 
-                    <div class="accordion checkout-payment-accordion section-t-space-2" id="accordionExample">
-                        <div class="accordion-item">
-                            <div class="accordion-header" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                                <div class="form-check">
-                                    <input class="form-check-input" name="flexRadioDefault" type="radio" id="pay"
-                                        checked>
-                                    <label class="form-check-label" for="pay"><span class="circle"></span>
-                                        <span>Buy Now, Pay Later <a href="#!">What is Klarna?</a></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div id="collapseOne" class="accordion-collapse collapse show"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <p><i class="ri-check-line"></i> Enjoy <span>Buyer production</span> with
-                                        Klarna. See <span>Payment options</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <div class="accordion-header" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                                <div class="form-check">
-                                    <input class="form-check-input" name="flexRadioDefault" type="radio" id="pay1">
-                                    <label class="form-check-label" for="pay1"><span class="circle"></span> Paypal
-                                        Express Checkout</label>
-                                </div>
-                            </div>
-                            <div id="collapseTwo" class="accordion-collapse collapse"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <p><i class="ri-check-line"></i> Enjoy <span>Buyer production</span> with
-                                        Klarna. See <span>Payment options</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <div class="accordion-header" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                                <div class="form-check">
-                                    <input class="form-check-input" name="flexRadioDefault" type="radio" id="pay2">
-                                    <label class="form-check-label" for="pay2"><span class="circle"></span> Amazon
-                                        Pay</label>
-                                </div>
-                            </div>
-                            <div id="collapseThree" class="accordion-collapse collapse"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <p><i class="ri-check-line"></i> Enjoy <span>Buyer production</span> with
-                                        Klarna. See <span>Payment options</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   <div class="accordion checkout-payment-accordion section-t-space-2" id="paymentAccordion">
+
+    <!-- 1. Cash on Delivery (COD) -->
+    <div class="accordion-item">
+        <div class="accordion-header" data-bs-toggle="collapse" data-bs-target="#collapseCOD">
+            <div class="form-check">
+                <input class="form-check-input" name="paymentMethod" type="radio" id="cod" checked>
+                <label class="form-check-label" for="cod">
+                    <span class="circle"></span>
+                    Cash on Delivery (COD)
+                </label>
+            </div>
+        </div>
+        <div id="collapseCOD" class="accordion-collapse collapse show" data-bs-parent="#paymentAccordion">
+            <div class="accordion-body">
+                <p class="mb-0">
+                    <i class="ri-check-line text-success"></i> 
+                    Pay cash when your order is delivered.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Razorpay -->
+    <div class="accordion-item">
+        <div class="accordion-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseRazorpay">
+            <div class="form-check">
+                <input class="form-check-input" name="paymentMethod" type="radio" id="razorpay">
+                <label class="form-check-label" for="razorpay">
+                    <span class="circle"></span>
+                    Pay with Razorpay (UPI, Card, Netbanking, Wallet)
+                </label>
+            </div>
+        </div>
+        <div id="collapseRazorpay" class="accordion-collapse collapse" data-bs-parent="#paymentAccordion">
+            <div class="accordion-body">
+                <p class="mb-0">
+                    <i class="ri-check-line text-success"></i> 
+                    Secure payment via Razorpay. Supports all major payment methods.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
 
                     <div class="section-t-space-2">
                         <div class="checkout-information">
