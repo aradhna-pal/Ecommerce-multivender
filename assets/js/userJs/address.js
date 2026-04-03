@@ -44,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
         saveBtn.innerHTML = 'Saving... <span class="spinner-border spinner-border-sm"></span>';
 
         try {
-            const response = await fetch(`http://multivendor_backend.workarya.com/api/address/add`, {
+            // ==================== 1. ADD ADDRESS API ====================
+            const addResponse = await fetch(`http://multivendor_backend.workarya.com/api/address/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -53,14 +54,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: JSON.stringify(payload)
             });
 
-            if (!response.ok) {
-                const text = await response.text();
-                throw new Error(text || "Failed to save address");
+            if (!addResponse.ok) {
+                const errorText = await addResponse.text();
+                throw new Error(errorText || "Failed to save address");
             }
 
-            const result = await response.json();
+            const result = await addResponse.json();
 
-            // ✅ Success Message with Green Tick
+            // ==================== 2. REFRESH ADDRESS LIST ====================
+            await loadSavedAddresses();   // ← This will call the list API again
+
+            // ✅ Success Message
             Swal.fire({
                 title: "Address Saved!",
                 text: "Your address has been saved successfully.",
@@ -70,10 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 timerProgressBar: true
             });
 
-            
-            // 🔥 Form Fields Blank Kar Do (Reset)
+            // Reset Form
             clearAddressFormFields();
-            
 
         } catch (error) {
             console.error("API Error:", error);
@@ -118,7 +120,6 @@ function validateAddressForm() {
 
 // ====================== CLEAR FORM FIELDS ======================
 function clearAddressFormFields() {
-    // Sab fields ko blank kar dete hain
     document.getElementById("fullName").value = "";
     document.getElementById("phoneNumber").value = "";
     document.getElementById("addressLine1").value = "";
@@ -126,12 +127,12 @@ function clearAddressFormFields() {
     document.getElementById("city").value = "";
     document.getElementById("state").value = "";
     document.getElementById("postalCode").value = "";
-    document.getElementById("addressType").value = "";   // dropdown/select
-    
-    // Country ko agar default rakhna hai toh uncomment kar do
+    document.getElementById("addressType").value = "";
+
+    // Optional: Reset country to default
     // document.getElementById("country").value = "India";
 
-    clearAllErrors();   // Error messages bhi hata do
+    clearAllErrors();
 }
 
 // ====================== ERROR FUNCTIONS ======================
@@ -150,10 +151,7 @@ function clearAllErrors() {
     });
 }
 
-
-
-// ================================================ get list of addresses for user ================================================
-// ====================== LOAD SAVED ADDRESSES ======================
+// ================================================ LOAD SAVED ADDRESSES ================================================
 async function loadSavedAddresses() {
     const container = document.getElementById("addressListContainer");
     const loadingEl = document.getElementById("addressLoading");
@@ -163,6 +161,9 @@ async function loadSavedAddresses() {
         container.innerHTML = `<p class="text-danger text-center py-3">Please login to view addresses.</p>`;
         return;
     }
+
+    // Show loading while fetching
+    if (loadingEl) loadingEl.style.display = "block";
 
     try {
         const response = await fetch("http://multivendor_backend.workarya.com/api/address/list", {
@@ -177,9 +178,9 @@ async function loadSavedAddresses() {
             throw new Error("Failed to load addresses");
         }
 
-        const addresses = await response.json();   // ← Yeh directly array hai
+        const addresses = await response.json();
 
-        loadingEl.style.display = "none";
+        if (loadingEl) loadingEl.style.display = "none";
 
         if (!addresses || addresses.length === 0) {
             container.innerHTML = `<p class="text-muted text-center py-4">No saved addresses found.</p>`;
@@ -193,7 +194,6 @@ async function loadSavedAddresses() {
             const radioId = `addressRadio${index}`;
             const isFirst = index === 0;
 
-            // Address ko properly format kar rahe hain
             const fullAddress = [
                 addr.addressLine1,
                 addr.addressLine2
@@ -213,7 +213,6 @@ async function loadSavedAddresses() {
                             <label class="form-check-label" for="${radioId}">
                                 <span class="circle"></span> 
                                 ${addr.addressType || 'Home'}
-                               
                             </label>
                         </div>
                     </div>
@@ -247,8 +246,8 @@ async function loadSavedAddresses() {
         container.innerHTML = html;
 
     } catch (error) {
-        console.error("Error:", error);
-        loadingEl.style.display = "none";
+        console.error("Error loading addresses:", error);
+        if (loadingEl) loadingEl.style.display = "none";
         container.innerHTML = `
             <p class="text-danger text-center py-4">
                 Failed to load addresses.<br>
@@ -257,7 +256,7 @@ async function loadSavedAddresses() {
     }
 }
 
-// ====================== Call on Page Load ======================
+// ====================== Initial Load ======================
 document.addEventListener("DOMContentLoaded", function () {
     loadSavedAddresses();
 });
