@@ -237,14 +237,14 @@
                                         </div>
                                     </div> -->
 
-                                    <div class="button-group d-lg-none" id="mobileButtonGroup">
+                                    <!-- <div class="button-group d-lg-none" id="mobileButtonGroup">
                                         <button class="btn buy-btn-mobile theme-bg-color text-white" data-action="buy-now">
                                             Buy now
                                         </button>
                                         <button class="btn add-to-bag-btn-mobile buy-btn-2 theme-border fw-500" data-action="add-to-cart">
                                             <i class="ri-shopping-bag-line"></i> Add to bag
                                         </button>
-                                    </div>
+                                    </div> -->
 
                                     <!-- <ul class="size-delivery-info">
                                         <li>

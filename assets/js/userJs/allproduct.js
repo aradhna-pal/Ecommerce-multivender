@@ -145,7 +145,83 @@ async function openQuickView(productId) {
 }
 
 
+
+// individual product buy now  ****************************************
+
+
 const BASE = "http://multivendor_backend.workarya.com";
+
+// Proceed to Checkout Function
+async function proceedToCheckout() {
+  const userToken = localStorage.getItem("userToken");
+  if (!userToken) {
+    if (typeof Swal !== 'undefined') {
+      Swal.fire({
+        title: "Login Required",
+        text: "Please login to proceed to checkout.",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonText: "Login",
+        cancelButtonText: "Cancel"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const authModalEl = document.getElementById('authenticationModal');
+          if (authModalEl) {
+            const authModal = bootstrap.Modal.getOrCreateInstance(authModalEl);
+            authModal.show();
+          }
+        }
+      });
+    } else {
+      alert("Login Required. Please login.");
+    }
+    return;
+  }
+
+  const currentCoupon = localStorage.getItem("appliedCoupon") || "";
+  const payload = { couponCode: currentCoupon };
+
+  try {
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    if (userToken) {
+      headers['Authorization'] = `Bearer ${userToken}`;
+    }
+
+    const response = await fetch(`${BASE}/api/orders/checkout`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+
+    console.log("Checkout API Response:", data);
+
+    if (response.ok && data.success === true) {
+      // Pass data to checkout.php via URL
+      const encodedData = encodeURIComponent(JSON.stringify(data));
+      window.location.href = `checkout.php?checkoutData=${encodedData}`;
+    } else {
+      if (typeof Swal !== 'undefined') {
+        Swal.fire("Failed", data.message || "Unable to proceed to checkout.", "error");
+      } else {
+        alert(data.message || "Unable to proceed to checkout.");
+      }
+    }
+  } catch (err) {
+    console.error("Checkout error:", err);
+    if (typeof Swal !== 'undefined') {
+      Swal.fire("Error", "Something went wrong. Please try again later.", "error");
+    } else {
+      alert("Something went wrong. Please try again later.");
+    }
+  }
+}
+
+
+// individual product buy now  end ****************************************
 
 // Add to Cart Function
 async function addToCart(productId, quantity = 1, price) {
@@ -200,6 +276,8 @@ async function addToCart(productId, quantity = 1, price) {
         // Fallback for pages that might only have offcanvas logic
         loadOffcanvasCart();
       }
+
+      return true; // Return success
     } else {
       if (typeof Swal !== 'undefined') {
         Swal.fire({
@@ -212,6 +290,7 @@ async function addToCart(productId, quantity = 1, price) {
       } else {
         alert("Error adding to cart");
       }
+      return false; // Return failure
     }
 
   } catch (error) {
@@ -227,6 +306,7 @@ async function addToCart(productId, quantity = 1, price) {
     } else {
       alert("Error adding to cart: " + error.message);
     }
+    return false; // Return failure
   }
 }
 
@@ -820,7 +900,7 @@ function populateProduct(p) {
 // Event delegation for buttons on product detail page
 if (!window.cartGlobalClickBound) {
   window.cartGlobalClickBound = true;
-  document.addEventListener("click", (e) => {
+  document.addEventListener("click", async (e) => {
     // Desktop "Add to bag" button
     if (e.target.closest(".add-to-bag-btn")) {
       e.preventDefault();
@@ -847,7 +927,25 @@ if (!window.cartGlobalClickBound) {
         return;
       }
 
-      window.location.href = `checkout.php?id=${productId}`;
+      // Get the price from the DOM
+      const priceEl = document.querySelector(".product-price");
+      let price = 0;
+      if (priceEl) {
+        const priceText = priceEl.innerText;
+        const priceMatch = priceText.match(/[\d.]+/);
+        price = priceMatch ? parseFloat(priceMatch[0]) : 0;
+      }
+
+      if (price === 0) {
+        console.warn("Could not extract price from page");
+      }
+
+      // First, add to cart
+      const addToCartSuccess = await addToCart(productId, 1, price);
+      if (addToCartSuccess) {
+        // After adding to cart, proceed to checkout
+        await proceedToCheckout();
+      }
     }
 
     // Mobile buttons
