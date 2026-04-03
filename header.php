@@ -59,6 +59,7 @@
     <script src="./assets/js/userJs/category.js"></script>
     <script src="./assets/js/userJs/user-order.js"></script>
     <script src="./assets/js/userJs/cart.js"></script>
+    <script src="./assets/js/userJs/checkout.js"></script>
 </head>
 
 <body class="base-bg-color">
