@@ -147,7 +147,7 @@
                                         <th>Subtotal</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="checkoutProduct">
                                     <tr>
                                         <td>
                                             <div class="checkout-product-box">
@@ -209,15 +209,15 @@
                                     </tr>
                                     <tr class="price-tb">
                                         <td>Subtotal</td>
-                                        <td>$1210.16</td>
+                                        <td id="subtotalAmount">$1210.16</td>
                                     </tr>
                                     <tr class="price-tb">
                                         <td>Tax</td>
-                                        <td>$0.00</td>
+                                        <td id="discountAmount">$0.00</td>
                                     </tr>
                                     <tr class="price-tb">
                                         <td>Total</td>
-                                        <td>$1210.16</td>
+                                        <td id="totalAmount">$1210.16</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -338,4 +338,4 @@
 
    
     <?php include 'footer.php'; ?>
-    <script src="assets/js/userJs/checkout.js"></script>
+    <!-- <script src="assets/js/userJs/checkout.js"></script> -->
