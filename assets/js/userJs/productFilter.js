@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         brands: [],
         sizes: [],
         colors: [],
-        price: { min: 1000, max: 9000 }
+        price: null
     };
 
     // APIs
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedFilters.sizes.forEach(item => createBadge('sizes', item.name, item.id));
         selectedFilters.colors.forEach(item => createBadge('colors', item.name, item.id));
 
-        if (minRange && maxRange && (selectedFilters.price.min > parseInt(minRange.min) || selectedFilters.price.max < parseInt(maxRange.max))) {
+        if (selectedFilters.price) {
             hasFilters = true;
             if (selectedFiltersContainer) {
                 const badge = document.createElement('span');
@@ -127,19 +127,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.resetPriceFilter = function () {
         if (minRange && maxRange) {
-            minRange.value = minRange.min;
-            maxRange.value = maxRange.max;
+            minRange.value = 1000;
+            maxRange.value = 9000;
             updatePriceDisplay();
+            selectedFilters.price = null;
+            renderSelectedFilters();
         }
     };
 
     window.clearAllFilters = function () {
-        selectedFilters = { categories: [], brands: [], sizes: [], colors: [], price: { min: parseInt(minRange?.min || 0), max: parseInt(maxRange?.max || 100000) } };
+        selectedFilters = { categories: [], brands: [], sizes: [], colors: [], price: null };
         
         document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
         document.querySelectorAll('.filter-color-btn').forEach(btn => btn.classList.remove('active', 'border-dark'));
         
-        resetPriceFilter();
+        if (minRange && maxRange) {
+            minRange.value = 1000;
+            maxRange.value = 9000;
+            updatePriceDisplay();
+        }
         renderSelectedFilters();
     };
 
@@ -277,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function updatePriceDisplay() {
+    function updatePriceDisplay(e) {
         if (!minRange || !maxRange || !minPriceEl || !maxPriceEl) return;
         
         let minVal = parseInt(minRange.value);
@@ -292,15 +298,20 @@ document.addEventListener('DOMContentLoaded', () => {
         minPriceEl.innerText = `₹${minVal}`;
         maxPriceEl.innerText = `₹${maxVal}`;
         
-        selectedFilters.price.min = minVal;
-        selectedFilters.price.max = maxVal;
-        
-        renderSelectedFilters();
+        if (e) { // Only set filter if triggered by user change event
+            selectedFilters.price = { min: minVal, max: maxVal };
+            renderSelectedFilters();
+        }
     }
 
     if (minRange && maxRange) {
-        minRange.addEventListener('input', updatePriceDisplay);
-        maxRange.addEventListener('input', updatePriceDisplay);
+        // Input runs on drag to update numbers visually smoothly
+        minRange.addEventListener('input', () => updatePriceDisplay());
+        maxRange.addEventListener('input', () => updatePriceDisplay());
+        
+        // Change triggers when the user releases the mouse (executes API call)
+        minRange.addEventListener('change', (e) => updatePriceDisplay(e));
+        maxRange.addEventListener('change', (e) => updatePriceDisplay(e));
         
         // Initial setup
         updatePriceDisplay();

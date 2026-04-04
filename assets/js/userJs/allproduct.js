@@ -1,5 +1,11 @@
 
 let qvName, qvDesc, qvPrice, qvImages, qvIndex, qvMainImg, qvThumbs, qvColors, qvSizes, quickModal;
+let currentFilters = null;
+
+window.applyFilters = function (filters) {
+    currentFilters = filters;
+    loadProducts(1, 50);
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize quick view modal elements
@@ -311,21 +317,62 @@ async function addToCart(productId, quantity = 1, price) {
 }
 
 async function loadProducts(page = 1, limit = 50) {
-  const res = await fetch(`${BASE}/api/products/list?page=${page}&pageSize=${limit}`);
-  const json = await res.json();
-  const products = json?.data?.data || [];
-  const totalProducts = json?.data?.total || products.length;
-  const totalPages = json?.data?.totalPages || Math.ceil(totalProducts / limit);
-
   const container = document.getElementById("productsContainer");
+  if (!container) return;
+
+  // Show Spinner Loading State
   container.innerHTML = "";
+  container.innerHTML = `
+    <div class="col-12 d-flex justify-content-center align-items-center py-5 w-100">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+  `;
 
-  products.forEach((p) => {
-    container.insertAdjacentHTML("beforeend", cardHTML(p));
-  });
+  let url = `${BASE}/api/products/list?page=${page}&pageSize=${limit}`;
 
-  bindCardEvents();
+  if (currentFilters) {
+      if (currentFilters.categories?.length > 0) {
+          url += `&categoryIds=${currentFilters.categories.map(c => c.id).join(',')}`;
+      }
+      if (currentFilters.brands?.length > 0) {
+          url += `&brandIds=${currentFilters.brands.map(b => b.id).join(',')}`;
+      }
+      if (currentFilters.colors?.length > 0) {
+          url += `&` + currentFilters.colors.map(c => `colors=${encodeURIComponent(c.name)}`).join('&');
+      }
+      if (currentFilters.sizes?.length > 0) {
+          url += `&` + currentFilters.sizes.map(s => `sizes=${encodeURIComponent(s.name)}`).join('&');
+      }
+      if (currentFilters.price) {
+          url += `&minPrice=${currentFilters.price.min}&maxPrice=${currentFilters.price.max}`;
+      }
+  }
+
+  try {
+      const res = await fetch(url);
+      const json = await res.json();
+      const products = json?.data?.data || json?.data || [];
+      const totalProducts = json?.data?.total || products.length;
+      const totalPages = json?.data?.totalPages || Math.ceil(totalProducts / limit);
+
+      container.innerHTML = "";
+
+      if (products.length === 0) {
+          container.innerHTML = `<div class="col-12 text-center py-5 w-100"><h4 class="text-muted">No products found matching your filters.</h4></div>`;
+      } else {
+          products.forEach((p) => {
+              container.insertAdjacentHTML("beforeend", cardHTML(p));
+          });
+          bindCardEvents();
+      }
+
   renderPagination(totalPages, page);
+  } catch (error) {
+      console.error("Error loading products:", error);
+      container.innerHTML = `<div class="col-12 text-center text-danger py-5 w-100"><h4>Error loading products. Please try again.</h4></div>`;
+  }
 }
 
 function renderPagination(totalPages, currentPage) {
@@ -1097,4 +1144,3 @@ if (!window.cartGlobalClickBound) {
     }
   });
 }
-
