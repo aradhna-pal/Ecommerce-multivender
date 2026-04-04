@@ -303,144 +303,8 @@
       </div>
       <div class="offcanvas-body">
           <div class="cart-product-box">
-              <ul class="product-box-list">
-                  <li>
-                      <div class="vertical-product-box">
-                          <a href="product-color.php" class="product-image">
-                              <img src="assets/images/product/1.png" class="img-fluid" alt="">
-                          </a>
-                          <div class="product-content">
-                              <a href="product-color.php">
-                                  <h5 class="name title-color">Smart Watch Series X3</h5>
-                              </a>
-                              <h5 class="price">$239.00 <del>$250.00</del></h5>
-                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                  <span>Move to cart</span>
-                              </button>
-                          </div>
-                          <button class="btn wishlist-btn">
-                              <i class="ri-delete-bin-line"></i>
-                          </button>
-                      </div>
-                  </li>
-
-                  <li>
-                      <div class="vertical-product-box">
-                          <a href="product-color.php" class="product-image">
-                              <img src="assets/images/product/2.png" class="img-fluid" alt="">
-                          </a>
-                          <div class="product-content">
-                              <a href="product-color.php">
-                                  <h5 class="name title-color">Slim 3 Intel Core i5</h5>
-                              </a>
-                              <h5 class="price">$700.00 <del>$720.00</del></h5>
-                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                  <span>Move to cart</span>
-                              </button>
-                          </div>
-                          <button class="btn wishlist-btn">
-                              <i class="ri-delete-bin-line"></i>
-                          </button>
-                      </div>
-                  </li>
-
-                  <li>
-                      <div class="vertical-product-box">
-                          <a href="product-color.php" class="product-image">
-                              <img src="assets/images/product/3.png" class="img-fluid" alt="">
-                          </a>
-                          <div class="product-content">
-                              <a href="product-color.php">
-                                  <h5 class="name title-color">Portable Laptop Table</h5>
-                              </a>
-                              <h5 class="price">$199.00 <del>$200.00</del></h5>
-                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                  <span>Move to cart</span>
-                              </button>
-                          </div>
-                          <button class="btn wishlist-btn">
-                              <i class="ri-delete-bin-line"></i>
-                          </button>
-                      </div>
-                  </li>
-
-                  <li>
-                      <div class="vertical-product-box">
-                          <a href="product-color.php" class="product-image">
-                              <img src="assets/images/product/4.png" class="img-fluid" alt="">
-                          </a>
-                          <div class="product-content">
-                              <a href="product-color.php">
-                                  <h5 class="name title-color">Kitchen Accessories</h5>
-                              </a>
-                              <h5 class="price">$300.00 <del>$312.56</del></h5>
-                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                  <span>Move to cart</span>
-                              </button>
-                          </div>
-                          <button class="btn wishlist-btn">
-                              <i class="ri-delete-bin-line"></i>
-                          </button>
-                      </div>
-                  </li>
-
-                  <li>
-                      <div class="vertical-product-box">
-                          <a href="product-color.php" class="product-image">
-                              <img src="assets/images/product/5.png" class="img-fluid" alt="">
-                          </a>
-                          <div class="product-content">
-                              <a href="product-color.php">
-                                  <h5 class="name title-color">Rockerz 558 Bluetooth</h5>
-                              </a>
-                              <h5 class="price">$86.00 <del>$96.00</del></h5>
-                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                  <span>Move to cart</span>
-                              </button>
-                          </div>
-                          <button class="btn wishlist-btn">
-                              <i class="ri-delete-bin-line"></i>
-                          </button>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="vertical-product-box">
-                          <a href="product-color.php" class="product-image">
-                              <img src="assets/images/product/26.png" class="img-fluid" alt="">
-                          </a>
-                          <div class="product-content">
-                              <a href="product-color.php">
-                                  <h5 class="name title-color">EvoFox Game Box 32 GB with Asphalt 8</h5>
-                              </a>
-                              <h5 class="price">$130.00 <del>$153.00</del></h5>
-                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                  <span>Move to cart</span>
-                              </button>
-                          </div>
-                          <button class="btn wishlist-btn">
-                              <i class="ri-delete-bin-line"></i>
-                          </button>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="vertical-product-box">
-                          <a href="product-color.php" class="product-image">
-                              <img src="assets/images/product/23.png" class="img-fluid" alt="">
-                          </a>
-                          <div class="product-content">
-                              <a href="product-color.php">
-                                  <h5 class="name title-color">BlackBerry Keyone BBB100-7 64gb unlocked gSM</h5>
-                              </a>
-                              <h5 class="price">$1920.36 <del>$2000.95</del></h5>
-                              <button class="btn cart-btn" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
-                                  <span>Move to cart</span>
-                              </button>
-                          </div>
-                          <button class="btn wishlist-btn">
-                              <i class="ri-delete-bin-line"></i>
-                          </button>
-                      </div>
-                  </li>
+              <ul class="product-box-list" id="offcanvasWishlistList">
+                  <!-- Wishlist items will be rendered dynamically here -->
               </ul>
 
               <div class="total-price-box">
@@ -671,193 +535,96 @@
   <!-- Recent Product View Box End -->
 
   <!-- Quick View Modal Start -->
-  <div class="modal fade quick-view-modal theme-modal" id="quickViewModal">
-      <div class="modal-dialog modal-custom-size modal-dialog-centered">
-          <div class="modal-content">
-              <div class="modal-body">
-                  <button type="button" class="btn-close" data-bs-dismiss="modal">
-                      <i class="ri-close-line"></i>
-                  </button>
-                  <div class="row g-sm-4 g-3">
-                      <div class="col-md-6">
-                          <div class="left-box-contain">
-                              <div class="swiper quick-main-slider quick-slider-product-box">
-                                  <div class="swiper-wrapper">
-                                      <div class="swiper-slide">
-                                          <div class="view-image">
-                                              <img src="assets/images/product/189.png" class="img-fluid" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="swiper-slide">
-                                          <div class="view-image">
-                                              <img src="assets/images/product/190.png" class="img-fluid" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="swiper-slide">
-                                          <div class="view-image">
-                                              <img src="assets/images/product/191.png" class="img-fluid" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="swiper-slide">
-                                          <div class="view-image">
-                                              <img src="assets/images/product/192.png" class="img-fluid" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="swiper-slide">
-                                          <div class="view-image">
-                                              <img src="assets/images/product/193.png" class="img-fluid" alt="">
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="swiper-button-next">
-                                      <i class="ri-arrow-right-s-line"></i>
-                                  </div>
-                                  <div class="swiper-button-prev">
-                                      <i class="ri-arrow-left-s-line"></i>
-                                  </div>
-                              </div>
+    <div class="modal fade quick-view-modal theme-modal" id="quickViewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-custom-size modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        <i class="ri-close-line"></i>
+                    </button>
+                    <div class="row g-sm-4 g-3">
+                        <!-- LEFT : IMAGES -->
+                        <div class="col-md-6">
+                            <div class="left-box-contain">
+                                <!-- MAIN IMAGE SLIDER -->
+                                <div class="swiper quick-main-slider quick-slider-product-box">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="view-image">
+                                                <!-- MAIN IMAGE -->
+                                                <img id="qvMainImg" class="img-fluid" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-button-next"><i class="ri-arrow-right-s-line"></i></div>
+                                    <div class="swiper-button-prev"><i class="ri-arrow-left-s-line"></i></div>
+                                </div>
+                                <!-- THUMBNAILS -->
+                                <div class="swiper quick-thumbnail-product-box quick-thumbnail-slider mt-3">
+                                    <div class="swiper-wrapper" id="qvThumbs">
+                                        <!-- JS will insert thumbs here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                              <div class="swiper quick-thumbnail-product-box quick-thumbnail-slider">
-                                  <div class="swiper-wrapper">
-                                      <div class="swiper-slide">
-                                          <div class="image-box">
-                                              <img src="assets/images/product/189.png" class="img-fluid" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="swiper-slide">
-                                          <div class="image-box">
-                                              <img src="assets/images/product/190.png" class="img-fluid" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="swiper-slide">
-                                          <div class="image-box">
-                                              <img src="assets/images/product/191.png" class="img-fluid" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="swiper-slide">
-                                          <div class="image-box">
-                                              <img src="assets/images/product/192.png" class="img-fluid" alt="">
-                                          </div>
-                                      </div>
-                                      <div class="swiper-slide">
-                                          <div class="image-box">
-                                              <img src="assets/images/product/193.png" class="img-fluid" alt="">
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="col-md-6">
-                          <div class="product-right-box">
-                              <div class="right-box-contain">
-                                  <a href="seller-details-2.php" class="offer-top">Visit Thirfting_store</a>
-                                  <h2 class="name">Marks & Spencer Pure Cotton Embroidered Round Neck Dress</h2>
-                                  <div class="price-rating">
-                                      <ul class="rating-review-sold-box">
-                                          <li>
-                                              <h3><i class="ri-star-fill"></i> 4.9 Ratings</h3>
-                                          </li>
-                                          <li></li>
-                                          <li>
-                                              <h3>2.3k+ Reviews</h3>
-                                          </li>
-                                          <li></li>
-                                          <li>
-                                              <h3>2.9k+ Sold</h3>
-                                          </li>
-                                      </ul>
-                                  </div>
-
-                                  <div class="product-contain">
-                                      <p>A piece of clothing that covers both legs independently from the waist to
-                                          somewhere between the knees and ankles is called a pant, slacks, or
-                                          trousers. In the UK, the term "pants" usually refers to undergarments rather
-                                          than pants.</p>
-                                  </div>
-
-                                  <div class="product-package product-spacing">
-                                      <div class="product-title">
-                                          <h4>Choose Color :</h4>
-                                      </div>
-                                      <form class="select-package color-product">
-                                          <div class="form-check">
-                                              <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                  id="6" checked style="background-color: #d5dde0;">
-                                              <label class="form-check-label bg-transparent" for="6"></label>
-                                          </div>
-                                          <div class="form-check">
-                                              <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                  id="7" style="background-color: #edd4d7;">
-                                              <label class="form-check-label bg-transparent" for="7"></label>
-                                          </div>
-                                          <div class="form-check">
-                                              <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                  id="8" style="background-color: #ece7c9;">
-                                              <label class="form-check-label bg-transparent" for="8"></label>
-                                          </div>
-                                          <div class="form-check">
-                                              <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                  id="9" style="background-color: #d4ddce;">
-                                              <label class="form-check-label bg-transparent" for="9"></label>
-                                          </div>
-                                          <div class="form-check">
-                                              <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                  id="10" style="background-color: #4d5154;">
-                                              <label class="form-check-label bg-transparent" for="10"></label>
-                                          </div>
-                                      </form>
-                                  </div>
-
-                                  <div class="hurry-up-box">
-                                      <h5>There are just <span class="theme-color">5</span> left in stock, so please
-                                          act immediately.</h5>
-                                      <div class="progress">
-                                          <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                              style="width: 50%"></div>
-                                      </div>
-                                  </div>
-
-                                  <div class="about-item-box product-spacing border-top-space">
-                                      <div class="product-title">
-                                          <h4>About Item :</h4>
-                                      </div>
-
-                                      <ul class="about-item-list">
-                                          <li>Brand : <span>Women's fashion</span></li>
-                                          <li>Category : <span>Cloths</span></li>
-                                          <li>Condition : <span>New</span></li>
-                                          <li>Color : <span>Black</span></li>
-                                          <li>Pattern : <span>All Over Print</span></li>
-                                          <li>Style : <span>Fit And Flare</span></li>
-                                      </ul>
-                                  </div>
-
-                                  <div class="qty-stock-box">
-                                      <div class="qty-box h-100 qty-container quantity-box-2">
-                                          <button class="btn qty-btn qty-btn-minus">
-                                              <i class="ri-subtract-line"></i>
-                                          </button>
-                                          <input type="number" readonly="" name="qty" value="0"
-                                              class="qty-input form-control input-qty">
-                                          <button class="btn qty-btn qty-btn-plus">
-                                              <i class="ri-add-line"></i>
-                                          </button>
-                                      </div>
-
-                                      <button onclick="location.href = 'cart.php';"
-                                          class="btn buy-btn theme-border fw-500">
-                                          <i class="ri-shopping-bag-line"></i> Add to bag</button>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+                        <!-- RIGHT : DETAILS -->
+                        <div class="col-md-6">
+                            <div class="product-right-box">
+                                <div class="right-box-contain">
+                                    <!-- PRODUCT NAME -->
+                                    <h2 class="name" id="qvName"></h2>
+                                    <!-- DESCRIPTION -->
+                                    <div class="product-contain">
+                                        <p id="qvDesc"></p>
+                                    </div>
+                                    <!-- PRICE -->
+                                    <div class="price-rating">
+                                        <h3 id="qvPrice"></h3>
+                                    </div>
+                                    <!-- COLOR OPTIONS -->
+                                    <div class="product-package product-spacing">
+                                        <div class="product-title">
+                                            <h4>Choose Color :</h4>
+                                        </div>
+                                        <div class="color-list d-flex gap-2" id="qvColors"></div>
+                                    </div>
+                                    <!-- SIZE OPTIONS -->
+                                    <div class="product-package product-spacing">
+                                        <div class="product-title">
+                                            <h4>Choose Size :</h4>
+                                        </div>
+                                        <div class="size-list d-flex gap-2" id="qvSizes"></div>
+                                    </div>
+                                    <!-- ADD TO CART -->
+                                    <button class="btn buy-btn theme-border fw-500 mt-3">
+                                        <i class="ri-shopping-bag-line"></i> Add to Bag
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        #qvThumbs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+        }
+        .thumb-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border: 2px solid transparent;
+        }
+        .thumb-img.active {
+            border: 2px solid #000;
+        }
+    </style>
   <!-- Quick View Modal End -->
 
   <!-- Exit Modal Start -->
