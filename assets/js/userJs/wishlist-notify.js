@@ -32,6 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderWishlistItems(items, container);
             }
 
+            // Update offcanvas wishlist sidebar
+            const offcanvasList = document.getElementById('offcanvasWishlistList');
+            if (offcanvasList) {
+                renderOffcanvasWishlistItems(items, offcanvasList);
+            }
+
             // Synchronize heart icons globally so they turn red if the product is in the wishlist
             document.querySelectorAll('.wishlistProduct').forEach(icon => {
                 const id = icon.getAttribute('data-id');
@@ -158,6 +164,45 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>
                 </div>
+            `;
+        }).join('');
+    }
+
+    function renderOffcanvasWishlistItems(items, container) {
+        if (!items || items.length === 0) {
+            container.innerHTML = `<li class="w-100 text-center py-4"><h5 class="text-muted">Your wishlist is empty.</h5></li>`;
+            return;
+        }
+
+        container.innerHTML = items.map(item => {
+            const p = item.product || item; 
+            const id = p.productId || p._id || p.id;
+            const img = p.image || p.images?.[0] || p.mainImage || '../assets/images/product/placeholder.png';
+            const name = p.name || 'Product Name';
+            const price = p.discountprice || p.discountPrice || p.price || 0;
+            const originalPrice = p.price || 0;
+            const imageSrc = img.startsWith('http') ? img : BASE_URL + (img.startsWith('/') ? img : '/' + img);
+
+            return `
+                <li>
+                    <div class="vertical-product-box">
+                        <a href="product-detail.php?id=${id}" class="product-image">
+                            <img src="${imageSrc}" class="img-fluid" alt="${name}">
+                        </a>
+                        <div class="product-content">
+                            <a href="product-detail.php?id=${id}">
+                                <h5 class="name title-color">${name}</h5>
+                            </a>
+                            <h5 class="price">₹${price} ${originalPrice > price ? `<del>₹${originalPrice}</del>` : ''}</h5>
+                            <button class="btn cart-btn" onclick="wishlistAddToCart('${id}', 1, ${price})" data-bs-target="#cartOffcanvas" data-bs-toggle="offcanvas">
+                                <span>Move to cart</span>
+                            </button>
+                        </div>
+                        <button class="btn wishlist-btn" onclick="removeFromWishlist('${id}')">
+                            <i class="ri-delete-bin-line"></i>
+                        </button>
+                    </div>
+                </li>
             `;
         }).join('');
     }
