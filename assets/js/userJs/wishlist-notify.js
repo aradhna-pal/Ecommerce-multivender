@@ -5,6 +5,115 @@ document.addEventListener("DOMContentLoaded", () => {
     const BASE_URL = "https://api.workarya.com";
     let fadeOutTimeout;
 
+    window.loadWishlist = async function() {
+        const userToken = localStorage.getItem("userToken");
+        if (!userToken) return;
+
+        try {
+            const response = await fetch(`${BASE_URL}/api/user/list`, {
+                headers: { 'Authorization': `Bearer ${userToken}` }
+            });
+            const data = await response.json();
+            const items = data.data || data || [];
+            
+            // Update wishlist count in header badges
+            const countElements = document.querySelectorAll('#wishlistCount span, .wishlistCount span, #wishlistCount, .wishlistCount, .wishlist-qty');
+            countElements.forEach(el => {
+                if (el.textContent.includes('(')) {
+                    el.textContent = `(${items.length})`;
+                } else {
+                    el.textContent = items.length;
+                }
+            });
+
+            // Update container in wishlist.php if we are on that page
+            const container = document.getElementById('wishlistContainer');
+            if (container) {
+                renderWishlistItems(items, container);
+            }
+
+            // Synchronize heart icons globally so they turn red if the product is in the wishlist
+            document.querySelectorAll('.wishlistProduct').forEach(icon => {
+                const id = icon.getAttribute('data-id');
+                const inWishlist = items.some(item => {
+                    const p = item.product || item;
+                    return (p._id === id || p.id === id || item.productId === id);
+                });
+                
+                const iTag = icon.querySelector('i');
+                if (inWishlist) {
+                    icon.classList.add('show');
+                    if(iTag) {
+                        iTag.classList.replace('ri-heart-3-line', 'ri-heart-3-fill');
+                        iTag.style.color = 'red';
+                    }
+                } else {
+                    icon.classList.remove('show');
+                    if(iTag) {
+                        iTag.classList.replace('ri-heart-3-fill', 'ri-heart-3-line');
+                        iTag.style.color = '';
+                    }
+                }
+            });
+        } catch (err) {
+            console.error("Error loading wishlist:", err);
+        }
+    };
+
+    function renderWishlistItems(items, container) {
+        if (!items || items.length === 0) {
+            container.innerHTML = `<div class="col-12 text-center py-5 w-100"><h4 class="text-muted">Your wishlist is empty.</h4></div>`;
+            return;
+        }
+
+        container.innerHTML = items.map(item => {
+            const p = item.product || item; 
+            const id = p._id || p.id || item.productId;
+            const img = p.images?.[0] || p.mainImage || '../assets/images/product/placeholder.png';
+            const name = p.name || 'Product Name';
+            const price = p.discountPrice || p.price || 0;
+            const originalPrice = p.price || 0;
+
+            return `
+                <div class="col">
+                    <div class="product-box-4-main">
+                        <div class="productMain product-box-4 pro-bg-white p-3 border rounded h-100 d-flex flex-column">
+                            <div class="product-image text-center mb-3">
+                                <a href="product-detail.php?id=${id}">
+                                    <img src="${img.startsWith('http') ? img : BASE_URL + img}" class="img-fluid productImage" alt="${name}" style="max-height:150px; object-fit:contain;">
+                                </a>
+                            </div>
+                            <div class="product-content mt-auto text-center">
+                                <a href="product-detail.php?id=${id}" class="name text-dark fw-bold mb-2 d-block text-truncate">
+                                    <h5>${name}</h5>
+                                </a>
+                                <h5 class="price text-primary mb-3">₹${price} ${price < originalPrice ? `<del class="text-muted fs-6">₹${originalPrice}</del>` : ''}</h5>
+                                <div class="option-box mt-3 d-flex gap-2 justify-content-center">
+                                    <button class="btn btn-sm text-white" onclick="addToCart('${id}', 1, ${price})" style="background-color: var(--theme-color);">Add to Cart</button>
+                                    <button class="btn btn-sm btn-danger" onclick="removeFromWishlist('${id}')">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    window.removeFromWishlist = async function (productId) {
+        const userToken = localStorage.getItem("userToken");
+        if (!userToken) return;
+        try {
+            const response = await fetch(`${BASE_URL}/api/user/delete/${productId}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${userToken}` }
+            });
+            if (response.ok) loadWishlist(); // reload list and counts
+        } catch (err) {
+            console.error("Error removing from wishlist:", err);
+        }
+    };
+
     // Use event delegation so dynamically generated products also work
     document.addEventListener('click', async (e) => {
         const icon = e.target.closest('.wishlistProduct');
@@ -43,20 +152,25 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        // Check if we need to Add or Delete based on current UI state
+        const isCurrentlyAdded = icon.classList.contains('show');
+        const apiUrl = isCurrentlyAdded 
+            ? `${BASE_URL}/api/user/delete/${productId}`
+            : `${BASE_URL}/api/user/add/${productId}`;
+        const apiMethod = isCurrentlyAdded ? 'DELETE' : 'POST';
+
         try {
-            // Call API to add to wishlist
-            const response = await fetch(`${BASE_URL}/api/user/add/${productId}`, {
-                method: 'POST', // POST is standard for inserting data
+            const response = await fetch(apiUrl, {
+                method: apiMethod,
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${userToken}`
                 }
             });
 
-            // Fallback to GET just in case the server expects GET requests for this endpoint
             let data;
-            if (response.status === 405 || response.status === 404) {
-                const getResponse = await fetch(`${BASE_URL}/api/user/add/${productId}`, {
+            if (!response.ok && apiMethod === 'POST' && (response.status === 405 || response.status === 404)) {
+                const getResponse = await fetch(apiUrl, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -70,13 +184,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if ((response.ok || data.success) && !data.error) {
                 // Toggle icon visual state
-                const isAdded = !icon.classList.contains('show');
-                icon.classList.toggle('show');
+                const isAdded = !isCurrentlyAdded;
+                icon.classList.toggle('show', isAdded);
+                
+                const iTag = icon.querySelector('i');
+                if (iTag) {
+                    if (isAdded) {
+                        iTag.classList.replace('ri-heart-3-line', 'ri-heart-3-fill');
+                        iTag.style.color = 'red';
+                    } else {
+                        iTag.classList.replace('ri-heart-3-fill', 'ri-heart-3-line');
+                        iTag.style.color = '';
+                    }
+                }
 
                 // Extract product info for popup
                 const productBox = icon.closest('.productMain') || icon.closest('.product-box-4-main');
                 const productImageEl = productBox ? productBox.querySelector('.productImage') : null;
-                const productNameEl = productBox ? productBox.querySelector('.productName') : null;
+                const productNameEl = productBox ? (productBox.querySelector('.productName') || productBox.querySelector('.name')) : null;
 
                 const productImage = productImageEl ? (productImageEl.src || productImageEl.getAttribute('src')) : '../assets/images/product/placeholder.png';
                 const productName = productNameEl ? productNameEl.textContent.trim() : 'Product';
@@ -184,4 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+    
+    // Load the wishlist and update the badge counts the moment the DOM loads
+    loadWishlist();
 });
