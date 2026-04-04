@@ -67,6 +67,7 @@
     <script src="./assets/js/userJs/createorder.js"></script>
     <script src="./assets/js/userJs/recentView.js"></script>
     <script src="./assets/js/userJs/productFilter.js"></script>
+    <script src="./assets/js/userJs/wishlist-notify.js"></script>
     <script src="./assets/js/userJs/trackorder.js"></script>
     <!-- <script src="./assets/js/userJs/user-order.js"></script> -->
 

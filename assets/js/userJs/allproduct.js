@@ -2,10 +2,13 @@
 let qvName, qvDesc, qvPrice, qvImages, qvIndex, qvMainImg, qvThumbs, qvColors, qvSizes, quickModal;
 let currentFilters = null;
 
+
 window.applyFilters = function (filters) {
     currentFilters = filters;
     loadProducts(1, 50);
 };
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize quick view modal elements
@@ -487,7 +490,7 @@ function cardHTML(p) {
             <button class="btn select-btn" data-id="${id}" onclick="openOptions(this)">Select Options</button>
             <ul class="option-list">
               <li>
-               <a class="wishlistProduct" data-id="${p._id}" style="cursor:pointer">
+               <a class="wishlistProduct" data-id="${id}" style="cursor:pointer">
   <i class="ri-heart-3-line"></i>
 </a>
               </li>
@@ -1143,4 +1146,109 @@ if (!window.cartGlobalClickBound) {
       addToCart(productId, 1, price);
     }
   });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Product detail page scripts initialized");
+  async function loadFlashSaleProducts() {
+  const container = document.getElementById("flashSaleContainer");
+
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${BASE}/api/products/list?page=1&pageSize=7`);
+    const json = await res.json();
+    const products = json?.data?.data || json?.data || [];
+
+    if (!products.length) {
+      container.innerHTML = `<p>No products found</p>`;
+      return;
+    }
+
+    container.innerHTML = "";
+
+    products.forEach((p) => {
+      container.insertAdjacentHTML("beforeend", flashSaleCardHTML(p));
+    });
+
+    // Re-initialize swiper if it exists
+    const swiperEl = document.querySelector(".product-slider-7");
+    if (swiperEl && swiperEl.swiper) {
+      swiperEl.swiper.update();
+    }
+
+    // Add event delegation for "Add to cart" in flash sale
+    if (!container.dataset.eventsBound) {
+      container.dataset.eventsBound = "true";
+      container.addEventListener("click", (e) => {
+        if (e.target.closest(".add-cart-btn")) {
+          e.preventDefault();
+          const btn = e.target.closest(".add-cart-btn");
+          const productId = btn.getAttribute("data-id");
+
+          let price = 0;
+          const card = btn.closest(".product-box");
+          if (card) {
+            const priceEl = card.querySelector(".price");
+            if (priceEl) {
+              const priceText = priceEl.innerText;
+              const priceMatch = priceText.match(/[\d.]+/);
+              price = priceMatch ? parseFloat(priceMatch[0]) : 0;
+            }
+          }
+
+          if (productId) {
+            addToCart(productId, 1, price);
+          }
+        }
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = `<p>Error loading products</p>`;
+  }
+}
+  loadFlashSaleProducts();
+});
+
+
+function flashSaleCardHTML(p) {
+  const id = p._id || p.id;
+  const img = p.images?.[0] || p.mainImage || "assets/images/product/placeholder.png";
+
+  return `
+    <div class="swiper-slide">
+        <div class="product-box productMain">
+            <a href="product-detail.php?id=${id}" class="product-image">
+                <img src="${img.startsWith('http') ? img : BASE + img}" class="img-fluid productImage" alt="">
+            </a>
+            <div class="product-content">
+                <a href="product-detail.php?id=${id}">
+                    <h4 class="productName">${p.name}</h4>
+                </a>
+                <h5 class="price">₹${p.discountPrice || p.price || 0} ${p.discountPrice ? `<del>₹${p.price}</del>` : ""}</h5>
+                <div class="progress">
+                    <div class="progress-bar" style="width: ${p.stockQuantity ? Math.min(100, (Math.floor(p.stockQuantity / 3) / (p.stockQuantity || 12)) * 100) : 30}%"></div>
+                </div>
+            </div>
+            <div class="compare-box">
+                <button class="btn cart-button add-cart-btn" data-id="${id}">Add to cart</button>
+                <ul class="compare-list">
+                    <li>
+                        <a href="#!" class="wishlistProduct" data-id="${id}">
+                            <i class="ri-heart-3-line"></i>
+                            <span>Wishlist</span>
+                        </a>
+                    </li>
+                    <li>
+                        <button class="btn">
+                            <i class="ri-repeat-2-line"></i>
+                            <span>Compare</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  `;
 }

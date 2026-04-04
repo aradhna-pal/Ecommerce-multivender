@@ -17,31 +17,31 @@
 
                             <ul class="sub-menu-list" id="categoryList">
                                 <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
+                                    <a href="shop.php" class="sub-category-box">
                                         <i class="ri-macbook-line"></i>
                                         <h5>Mobiles, Computers</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
+                                    <a href="shop.php" class="sub-category-box">
                                         <i class="ri-plug-2-line"></i>
                                         <h5>TV, Appliances, Electronics</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
+                                    <a href="shop.php" class="sub-category-box">
                                         <i class="ri-men-line"></i>
                                         <h5>Men's Fashion</h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
+                                    <a href="shop.php" class="sub-category-box">
                                         <i class="ri-women-line"></i>
                                         <h5>Women's Fashion <span class="success-bg-color">New</span></h5>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.php" class="sub-category-box">
+                                    <a href="shop.php" class="sub-category-box">
                                         <i class="ri-knife-line"></i>
                                         <h5>Home, Kitchen, Pets</h5>
                                     </a>
@@ -55,19 +55,19 @@
                 <div class="custom-xxl-9">
                     <div class="row g-0">
                         <div class="col-xl-8 col-12">
-                            <a href="shop-left-sidebar.php" class="banner-box b-left">
+                            <a href="shop.php" class="banner-box b-left">
                                 <img src="assets/images/banner/1.jpg" class="img-fluid ratio-8x5" alt="">
                             </a>
                         </div>
                         <div class="col-4 d-xl-block d-none">
                             <div class="row m-0 h-100">
                                 <div class="col-12 p-0">
-                                    <a href="shop-left-sidebar.php" class="banner-box">
+                                    <a href="shop.php" class="banner-box">
                                         <img src="assets/images/banner/2.jpg" class="img-fluid ratio-8x5" alt="">
                                     </a>
                                 </div>
                                 <div class="col-12 p-0">
-                                    <a href="shop-left-sidebar.php" class="banner-box">
+                                    <a href="shop.php" class="banner-box">
                                         <img src="assets/images/banner/3.jpg" class="img-fluid ratio-8x5" alt="">
                                     </a>
                                 </div>
@@ -76,22 +76,22 @@
                     </div>
                     <div class="row g-0 ratio_82">
                         <div class="col-lg-3 col-sm-6 h-100">
-                            <a href="shop-left-sidebar.php" class="banner-box">
+                            <a href="shop.php" class="banner-box">
                                 <img src="assets/images/banner/4.jpg" alt="" class="bg-img">
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 h-100">
-                            <a href="shop-left-sidebar.php" class="banner-box">
+                            <a href="shop.php" class="banner-box">
                                 <img src="assets/images/banner/5.jpg" alt="" class="bg-img">
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 h-100">
-                            <a href="shop-left-sidebar.php" class="banner-box">
+                            <a href="shop.php" class="banner-box">
                                 <img src="assets/images/banner/6.jpg" alt="" class="bg-img">
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 h-100">
-                            <a href="shop-left-sidebar.php" class="banner-box">
+                            <a href="shop.php" class="banner-box">
                                 <img src="assets/images/banner/7.jpg" alt="" class="bg-img">
                             </a>
                         </div>
@@ -123,376 +123,11 @@
                         </div>
                         <p>Hot items, Affordable price, Daily updates.</p>
                     </div>
-                    <a href="shop-left-sidebar.php">See all deals <i class="ri-arrow-right-s-line"></i></a>
+                    <a href="shop.php">See all deals <i class="ri-arrow-right-s-line"></i></a>
                 </div>
 
                 <div class="swiper product-slider-7 product-box-slider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="product-box productMain">
-                                <a href="product-color.php" class="product-image">
-                                    <img src="assets/images/product/1.png" class="img-fluid productImage" alt="">
-                                </a>
-                                <div class="product-content">
-                                    <a href="product-color.php">
-                                        <h4 class="productName">Smart Watch Series X3</h4>
-                                    </a>
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                    </ul>
-                                    <h5 class="price">$68.48 <del>$75.32</del></h5>
-                                    <div class="progress">
-                                        <div class="progress-bar"></div>
-                                    </div>
-                                    <h5 class="sold">Sold : 4/12</h5>
-                                </div>
-                                <div class="compare-box">
-                                    <button class="btn cart-button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#cartOffcanvas">Add to cart</button>
-                                    <ul class="compare-list">
-                                        <li>
-                                            <a href="#!" class="wishlistProduct">
-                                                <i class="ri-heart-3-line"></i>
-                                                <span>Wishlist</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <button class="btn">
-                                                <i class="ri-repeat-2-line"></i>
-                                                <span>Compare</span>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-box productMain">
-                                <a href="product-color.php" class="product-image">
-                                    <img src="assets/images/product/2.png" class="img-fluid productImage" alt="">
-                                </a>
-                                <div class="product-content">
-                                    <a href="product-color.php">
-                                        <h4 class="productName">Slim 3 Intel Core i4</h4>
-                                    </a>
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                    </ul>
-                                    <h5 class="price">$1575.38 <del>$2365.25</del></h5>
-                                    <div class="progress">
-                                        <div class="progress-bar"></div>
-                                    </div>
-                                    <h5 class="sold">Sold : 8/6</h5>
-                                </div>
-                                <div class="compare-box">
-                                    <button class="btn cart-button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#cartOffcanvas">Add to cart</button>
-                                    <ul class="compare-list">
-                                        <li>
-                                            <a href="#!" class="wishlistProduct">
-                                                <i class="ri-heart-3-line"></i>
-                                                <span>Wishlist</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">
-                                                <i class="ri-repeat-2-line"></i>
-                                                <span>Compare</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-box productMain">
-                                <a href="product-color.php" class="product-image">
-                                    <img src="assets/images/product/3.png" class="img-fluid productImage" alt="">
-                                </a>
-                                <div class="product-content">
-                                    <a href="product-color.php">
-                                        <h4 class="productName">Portable Laptop Table</h4>
-                                    </a>
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill"></i>
-                                        </li>
-                                    </ul>
-                                    <h5 class="price">$48.35 <del>$85.24</del></h5>
-                                    <div class="progress">
-                                        <div class="progress-bar"></div>
-                                    </div>
-                                    <h5 class="sold">Sold : 3/7</h5>
-                                </div>
-                                <div class="compare-box">
-                                    <button class="btn cart-button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#cartOffcanvas">Add to cart</button>
-                                    <ul class="compare-list">
-                                        <li>
-                                            <a href="#!" class="wishlistProduct">
-                                                <i class="ri-heart-3-line"></i>
-                                                <span>Wishlist</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">
-                                                <i class="ri-repeat-2-line"></i>
-                                                <span>Compare</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-box productMain">
-                                <a href="product-color.php" class="product-image">
-                                    <img src="assets/images/product/4.png" class="img-fluid productImage" alt="">
-                                </a>
-                                <div class="product-content">
-                                    <a href="product-color.php">
-                                        <h4 class="productName">Smart Watch Series X3</h4>
-                                    </a>
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill"></i>
-                                        </li>
-                                    </ul>
-                                    <h5 class="price">$256.36 <del>$542.31</del></h5>
-                                    <div class="progress">
-                                        <div class="progress-bar"></div>
-                                    </div>
-                                    <h5 class="sold">Sold : 5/9</h5>
-                                </div>
-                                <div class="compare-box">
-                                    <button class="btn cart-button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#cartOffcanvas">Add to cart</button>
-                                    <ul class="compare-list">
-                                        <li>
-                                            <a href="#!" class="wishlistProduct">
-                                                <i class="ri-heart-3-line"></i>
-                                                <span>Wishlist</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">
-                                                <i class="ri-repeat-2-line"></i>
-                                                <span>Compare</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-box productMain">
-                                <a href="product-color.php" class="product-image">
-                                    <img src="assets/images/product/5.png" class="img-fluid productImage" alt="">
-                                </a>
-                                <div class="product-content">
-                                    <a href="product-color.php">
-                                        <h4 class="productName">Kitchen Accessories</h4>
-                                    </a>
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill"></i>
-                                        </li>
-                                    </ul>
-                                    <h5 class="price">$98.36 <del>$105.36</del></h5>
-                                    <div class="progress">
-                                        <div class="progress-bar"></div>
-                                    </div>
-                                    <h5 class="sold">Sold : 7/9</h5>
-                                </div>
-                                <div class="compare-box">
-                                    <button class="btn cart-button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#cartOffcanvas">Add to cart</button>
-                                    <ul class="compare-list">
-                                        <li>
-                                            <a href="#!" class="wishlistProduct">
-                                                <i class="ri-heart-3-line"></i>
-                                                <span>Wishlist</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">
-                                                <i class="ri-repeat-2-line"></i>
-                                                <span>Compare</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-box productMain">
-                                <a href="product-color.php" class="product-image">
-                                    <img src="assets/images/product/6.png" class="img-fluid productImage" alt="">
-                                </a>
-                                <div class="product-content">
-                                    <a href="product-color.php">
-                                        <h4 class="productName">Smart Watch Series X3</h4>
-                                    </a>
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                    </ul>
-                                    <h5 class="price">$78.25 <del>$82.25</del></h5>
-                                    <div class="progress">
-                                        <div class="progress-bar"></div>
-                                    </div>
-                                    <h5 class="sold">Sold : 4/12</h5>
-                                </div>
-                                <div class="compare-box">
-                                    <button class="btn cart-button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#cartOffcanvas">Add to cart</button>
-                                    <ul class="compare-list">
-                                        <li>
-                                            <a href="#!" class="wishlistProduct">
-                                                <i class="ri-heart-3-line"></i>
-                                                <span>Wishlist</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">
-                                                <i class="ri-repeat-2-line"></i>
-                                                <span>Compare</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-box productMain">
-                                <a href="product-color.php" class="product-image">
-                                    <img src="assets/images/product/7.png" class="img-fluid productImage" alt="">
-                                </a>
-                                <div class="product-content">
-                                    <a href="product-color.php">
-                                        <h4 class="productName">Rockerz 458 Bluetooth</h4>
-                                    </a>
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                    </ul>
-                                    <h5 class="price">$58.36 <del>$78.58</del></h5>
-                                    <div class="progress">
-                                        <div class="progress-bar"></div>
-                                    </div>
-                                    <h5 class="sold">Sold : 8/15</h5>
-                                </div>
-                                <div class="compare-box">
-                                    <button class="btn cart-button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#cartOffcanvas">Add to cart</button>
-                                    <ul class="compare-list">
-                                        <li>
-                                            <a href="#!" class="wishlistProduct">
-                                                <i class="ri-heart-3-line"></i>
-                                                <span>Wishlist</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">
-                                                <i class="ri-repeat-2-line"></i>
-                                                <span>Compare</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="swiper-wrapper" id="flashSaleContainer"></div>
                 </div>
             </div>
         </div>
@@ -665,12 +300,12 @@
         <div class="custom-container">
             <div class="row g-sm-4 g-3">
                 <div class="col-xl-8">
-                    <a href="shop-left-sidebar.php" class="banner-box">
+                    <a href="shop.php" class="banner-box">
                         <img src="assets/images/banner/8.jpg" class="img-fluid" alt="">
                     </a>
                 </div>
                 <div class="col-xl-4">
-                    <a href="shop-left-sidebar.php" class="banner-box h-100">
+                    <a href="shop.php" class="banner-box h-100">
                         <img src="assets/images/banner/9.jpg" class="img-fluid" alt="">
                     </a>
                 </div>
@@ -685,73 +320,73 @@
             <div class="light-bg-color overflow-hidden">
                 <div class="title title-timer justify-content-between">
                     <h3>Get it all right here</h3>
-                    <a href="shop-left-sidebar.php">See all deals <i class="ri-arrow-right-s-line"></i></a>
+                    <a href="shop.php">See all deals <i class="ri-arrow-right-s-line"></i></a>
                 </div>
 
                 <div class="swiper category-box-slide">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/1.png" class="img-fluid" alt="">
                                 <h4>Electronic</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/2.png" class="img-fluid" alt="">
                                 <h4>Home</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/3.png" class="img-fluid" alt="">
                                 <h4>Sport & Outdoor</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/4.png" class="img-fluid" alt="">
                                 <h4>Toys</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/5.png" class="img-fluid" alt="">
                                 <h4>Grocery</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/6.png" class="img-fluid" alt="">
                                 <h4>Man's Fashion</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/7.png" class="img-fluid" alt="">
                                 <h4>Woman's Fashion</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/8.png" class="img-fluid" alt="">
                                 <h4>Baby</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/9.png" class="img-fluid" alt="">
                                 <h4>Health & Wellness</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/10.png" class="img-fluid" alt="">
                                 <h4>Auto & Tires</h4>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                            <a href="shop-left-sidebar.php" class="category-box">
+                            <a href="shop.php" class="category-box">
                                 <img src="assets/images/category/11.png" class="img-fluid" alt="">
                                 <h4>Household Essentials</h4>
                             </a>
@@ -768,7 +403,7 @@
         <div class="custom-container">
             <div class="row g-4">
                 <div class="col-xxl-3-1 col-xl-4 d-xl-block d-none">
-                    <a href="shop-left-sidebar.php" class="banner-box b-left h-100">
+                    <a href="shop.php" class="banner-box b-left h-100">
                         <img src="assets/images/banner/10.jpg" class="img-fluid" alt="">
                     </a>
                 </div>
@@ -1751,7 +1386,7 @@
             <div class="row g-3">
                 <div class="col-xxl-3-1 col-xl-3 d-xl-block d-none">
                     <div class="bg-white h-100 ratio_50">
-                        <a href="shop-left-sidebar.php" class="banner-box b-left">
+                        <a href="shop.php" class="banner-box b-left">
                             <img src="assets/images/banner/11.jpg" class="bg-img" alt="">
                         </a>
                         <div class="left-banner-content">
@@ -1759,22 +1394,22 @@
                                 <h4 class="deal-title">Accessories</h4>
                                 <ul class="deal-list">
                                     <li>
-                                        <a href="shop-left-sidebar.php">Pendrives</a>
+                                        <a href="shop.php">Pendrives</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.php">External Hard Disks</a>
+                                        <a href="shop.php">External Hard Disks</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.php">Laptop Bags</a>
+                                        <a href="shop.php">Laptop Bags</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.php">Mouse</a>
+                                        <a href="shop.php">Mouse</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.php">Computer Table</a>
+                                        <a href="shop.php">Computer Table</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.php">read more</a>
+                                        <a href="shop.php">read more</a>
                                     </li>
                                 </ul>
                             </div>
@@ -1783,22 +1418,22 @@
                                 <h4 class="deal-title">Computers & Laptops</h4>
                                 <ul class="deal-list">
                                     <li>
-                                        <a href="shop-left-sidebar.php">Laptops</a>
+                                        <a href="shop.php">Laptops</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.php">Desktops</a>
+                                        <a href="shop.php">Desktops</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.php">PC Gaming</a>
+                                        <a href="shop.php">PC Gaming</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.php">Components</a>
+                                        <a href="shop.php">Components</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.php">Mobile</a>
+                                        <a href="shop.php">Mobile</a>
                                     </li>
                                     <li>
-                                        <a href="shop-left-sidebar.php">read more</a>
+                                        <a href="shop.php">read more</a>
                                     </li>
                                 </ul>
                             </div>
@@ -1811,7 +1446,7 @@
                             <div class="light-bg-color">
                                 <div class="title title-timer justify-content-between">
                                     <h3>Top Trending</h3>
-                                    <a href="shop-left-sidebar.php">See all<i class="ri-arrow-right-s-line"></i></a>
+                                    <a href="shop.php">See all<i class="ri-arrow-right-s-line"></i></a>
                                 </div>
 
                                 <div class="swiper slider-2 slider-pagination">
@@ -2377,7 +2012,7 @@
     <!-- Mega Brands Banner Section Start -->
     <section class="section-t-space">
         <div class="custom-container">
-            <a href="shop-left-sidebar.php" class="banner-box-9 brand-banner">
+            <a href="shop.php" class="banner-box-9 brand-banner">
                 <img src="assets/images/banner/12.jpg" class="img-fluid" alt="">
             </a>
         </div>
@@ -2393,95 +2028,95 @@
                 </div>
                 <ul class="hot-tag-list">
                     <li>
-                        <a href="shop-left-sidebar.php">Nokia</a>
+                        <a href="shop.php">Nokia</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Acer</a>
+                        <a href="shop.php">Acer</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Samsung Tablet</a>
+                        <a href="shop.php">Samsung Tablet</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Apple iPhone</a>
+                        <a href="shop.php">Apple iPhone</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">HTC</a>
+                        <a href="shop.php">HTC</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Macbook</a>
+                        <a href="shop.php">Macbook</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Sony TV</a>
+                        <a href="shop.php">Sony TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Lenovo</a>
+                        <a href="shop.php">Lenovo</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">iPhone 12 Pro</a>
+                        <a href="shop.php">iPhone 12 Pro</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Dell</a>
+                        <a href="shop.php">Dell</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Samsung LED TV</a>
+                        <a href="shop.php">Samsung LED TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Accessories</a>
+                        <a href="shop.php">Accessories</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Desktops</a>
+                        <a href="shop.php">Desktops</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Acer</a>
+                        <a href="shop.php">Acer</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">LG LCD TV</a>
+                        <a href="shop.php">LG LCD TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Sharp LCD TV</a>
+                        <a href="shop.php">Sharp LCD TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Panasonic TV</a>
+                        <a href="shop.php">Panasonic TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Electrolux</a>
+                        <a href="shop.php">Electrolux</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Toshiba</a>
+                        <a href="shop.php">Toshiba</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Toshiba TV</a>
+                        <a href="shop.php">Toshiba TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">PC Gaming</a>
+                        <a href="shop.php">PC Gaming</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">LG LCD TV</a>
+                        <a href="shop.php">LG LCD TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">LED TV</a>
+                        <a href="shop.php">LED TV</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Sony</a>
+                        <a href="shop.php">Sony</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Windows Tablets</a>
+                        <a href="shop.php">Windows Tablets</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Mini Refrigerators</a>
+                        <a href="shop.php">Mini Refrigerators</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Macbook</a>
+                        <a href="shop.php">Macbook</a>
                     </li>
 
                     <li>
-                        <a href="shop-left-sidebar.php">Windows Tablets</a>
+                        <a href="shop.php">Windows Tablets</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Apple Accessories</a>
+                        <a href="shop.php">Apple Accessories</a>
                     </li>
                     <li>
-                        <a href="shop-left-sidebar.php">Blackberry</a>
+                        <a href="shop.php">Blackberry</a>
                     </li>
                 </ul>
             </div>
@@ -2495,26 +2130,26 @@
             <div class="light-bg-color">
                 <div class="title title-timer justify-content-between">
                     <h3>Don't Miss This Offers</h3>
-                    <a href="shop-left-sidebar.php">See all deals<i class="ri-arrow-right-s-line"></i></a>
+                    <a href="shop.php">See all deals<i class="ri-arrow-right-s-line"></i></a>
                 </div>
                 <div class="row g-sm-4 g-3">
                     <div class="col-xxl-3 col-sm-6">
-                        <a href="shop-left-sidebar.php" class="offer-product-box">
+                        <a href="shop.php" class="offer-product-box">
                             <img src="assets/images/banner/13.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="col-xxl-3 col-sm-6">
-                        <a href="shop-left-sidebar.php" class="offer-product-box">
+                        <a href="shop.php" class="offer-product-box">
                             <img src="assets/images/banner/14.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="col-xxl-3 col-sm-6">
-                        <a href="shop-left-sidebar.php" class="offer-product-box">
+                        <a href="shop.php" class="offer-product-box">
                             <img src="assets/images/banner/15.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="col-xxl-3 col-sm-6">
-                        <a href="shop-left-sidebar.php" class="offer-product-box">
+                        <a href="shop.php" class="offer-product-box">
                             <img src="assets/images/banner/16.png" class="img-fluid" alt="">
                         </a>
                     </div>
