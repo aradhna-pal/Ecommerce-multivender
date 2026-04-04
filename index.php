@@ -2092,7 +2092,7 @@
     <div class="custom-container">
         <div class="light-bg-color">
             <div class="title-2 title-timer justify-content-between">
-                <h3>Hot Tag:</h3>
+                <h3>All Brand:</h3>
             </div>
             <ul class="hot-tag-list" id="allBrandList">
                 <li>
