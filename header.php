@@ -64,6 +64,8 @@
     <script src="./assets/js/userJs/address.js"></script>
     <script src="./assets/js/userJs/createorder.js"></script>
     <script src="./assets/js/userJs/recentView.js"></script>
+    <script src="./assets/js/userJs/productFilter.js"></script>
+
 
 </head>
 

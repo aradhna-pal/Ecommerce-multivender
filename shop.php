@@ -121,6 +121,7 @@
                 </div>
             </div>
         </div>
+        <div id="selectedFiltersContainer" class="selected-filters-wrapper mb-3 d-flex flex-wrap gap-2"></div>
         <div class="row g-sm-4 g-3 product-list-section row-cols-xxl-5 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2"
             id="productsContainer">
             <div class="col">
@@ -437,436 +438,136 @@
     <div class="offcanvas-body">
         <div class="left-box">
             <div class="shop-left-sidebar">
-                <div class="filter-category-2">
+                <div class="filter-category-2" id="filterCategory2Container" style="display: none;">
                     <div class="filter-title">
                         <h2>Filters</h2>
-                        <a href="#!">Clear All</a>
+                        <a href="javascript:void(0)" onclick="clearAllFilters()">Clear All</a>
                     </div>
-                    <ul>
-                        <li>
-                            <a href="#!">T-Shirt</a>
-                        </li>
-                        <li>
-                            <a href="#!">Rainwear</a>
-                        </li>
-                        <li>
-                            <a href="#!">Jeans</a>
-                        </li>
-                        <li>
-                            <a href="#!">Shorts</a>
-                        </li>
-                        <li>
-                            <a href="#!">Shirts</a>
-                        </li>
+                    <ul id="sidebarSelectedFilters">
                     </ul>
                 </div>
 
-                <div class="accordion custom-accordion-2">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapseTwo">
-                                <span>Categories</span>
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
-                            <div class="accordion-body">
-                                <div class="search-box">
-                                    <input type="search" class="form-control" id="search" placeholder="Search ..">
-                                    <button class="search-button btn">
-                                        <i class="ri-search-2-line"></i>
-                                    </button>
-                                </div>
+               <div class="accordion custom-accordion-2">
+    
+    <!-- Categories -->
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseTwo">
+                <span>Categories</span>
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+                <div class="search-box">
+                    <input type="search" class="form-control" id="search" placeholder="Search ..">
+                    <button class="search-button btn">
+                        <i class="ri-search-2-line"></i>
+                    </button>
+                </div>
 
-                                <ul class="category-list custom-padding custom-height">
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="fruit">
-                                            <label class="form-check-label" for="fruit">
-                                                <span class="name">T-Shirts & Polos</span>
-                                                <span class="number">(15)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="cake">
-                                            <label class="form-check-label" for="cake">
-                                                <span class="name">Shirts</span>
-                                                <span class="number">(12)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="behe">
-                                            <label class="form-check-label" for="behe">
-                                                <span class="name">Jeans</span>
-                                                <span class="number">(20)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="snacks">
-                                            <label class="form-check-label" for="snacks">
-                                                <span class="name">Snacks & Branded Foods</span>
-                                                <span class="number">(05)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="beauty">
-                                            <label class="form-check-label" for="beauty">
-                                                <span class="name">Suits & Blazers</span>
-                                                <span class="number">(30)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="pets">
-                                            <label class="form-check-label" for="pets">
-                                                <span class="name">Shorts</span>
-                                                <span class="number">(50)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="egg">
-                                            <label class="form-check-label" for="egg">
-                                                <span class="name">Rainwear</span>
-                                                <span class="number">(19)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="food">
-                                            <label class="form-check-label" for="food">
-                                                <span class="name">Trousers</span>
-                                                <span class="number">(30)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="care">
-                                            <label class="form-check-label" for="care">
-                                                <span class="name">Accessories</span>
-                                                <span class="number">(20)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="fish">
-                                            <label class="form-check-label" for="fish">
-                                                <span class="name">Ethnic Wear</span>
-                                                <span class="number">(10)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="marinades">
-                                            <label class="form-check-label" for="marinades">
-                                                <span class="name">Trousers</span>
-                                                <span class="number">(05)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="lamb">
-                                            <label class="form-check-label" for="lamb">
-                                                <span class="name">Unstitched Fabric</span>
-                                                <span class="number">(09)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                <ul class="category-list custom-padding custom-height" id="filterCategoryList">
+                    <li>
+                        <div class="form-check category-list-box">
+                            <input class="checkbox_animated" type="checkbox" id="fruit">
+                            <label class="form-check-label" for="fruit">
+                                <span class="name">T-Shirts & Polos</span>
+                                <span class="number">(15)</span>
+                            </label>
                         </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapseThree">
-                                <span>Price</span>
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show">
-                            <div class="accordion-body">
-                                <div class="price-range-slider">
-                                    <div class="slider-container">
-                                        <div class="range-slider">
-                                            <div class="range-fill"></div>
-                                            <input type="range" id="minRange" min="0" max="10000" value="1000"
-                                                step="100">
-                                            <input type="range" id="maxRange" min="0" max="10000" value="9000"
-                                                step="100">
-                                        </div>
-                                        <div class="price-values">
-                                            <span id="min-price">₹1000</span>
-                                            <span class="dash">-</span>
-                                            <span id="max-price">₹9000</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Price -->
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseThree">
+                <span>Price</span>
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+                <div class="price-range-slider">
+                    <div class="slider-container">
+                        <div class="range-slider">
+                            <div class="range-fill"></div>
+                            <input type="range" id="minRange" min="0" max="100000" value="1000" step="100">
+                            <input type="range" id="maxRange" min="0" max="100000" value="9000" step="100">
                         </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapseFour">
-                                <span>Color</span>
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show">
-                            <div class="accordion-body">
-                                <ul class="color-box-list">
-                                    <li>
-                                        <button class="color-1 btn"></button>
-                                    </li>
-                                    <li>
-                                        <button class="color-2 btn"></button>
-                                    </li>
-                                    <li>
-                                        <button class="color-3 btn"></button>
-                                    </li>
-                                    <li>
-                                        <button class="color-4 btn"></button>
-                                    </li>
-                                    <li>
-                                        <button class="color-5 btn"></button>
-                                    </li>
-                                    <li>
-                                        <button class="color-6 btn"></button>
-                                    </li>
-                                    <li>
-                                        <button class="color-7 btn"></button>
-                                    </li>
-                                    <li>
-                                        <button class="color-8 btn"></button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapseFive">
-                                <span>Customer Review</span>
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show">
-                            <div class="accordion-body">
-                                <ul class="category-list custom-padding">
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox">
-                                            <div class="form-check-label category-rating-box">
-                                                <ul class="rating">
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                </ul>
-                                                <span class="text-content">(31)</span>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox">
-                                            <div class="form-check-label category-rating-box">
-                                                <ul class="rating">
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill"></i>
-                                                    </li>
-                                                </ul>
-                                                <span class="text-content">(15)</span>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox">
-                                            <div class="form-check-label category-rating-box">
-                                                <ul class="rating">
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill"></i>
-                                                    </li>
-                                                </ul>
-                                                <span class="text-content">(24)</span>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox">
-                                            <div class="form-check-label category-rating-box">
-                                                <ul class="rating">
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill"></i>
-                                                    </li>
-                                                </ul>
-                                                <span class="text-content">(10)</span>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox">
-                                            <div class="form-check-label category-rating-box">
-                                                <ul class="rating">
-                                                    <li>
-                                                        <i class="ri-star-fill fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="ri-star-fill"></i>
-                                                    </li>
-                                                </ul>
-                                                <span class="text-content">(08)</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapseSix">
-                                <span>Discount</span>
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse show">
-                            <div class="accordion-body">
-                                <ul class="category-list custom-padding">
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                <span class="name">upto 5%</span>
-                                                <span class="number">(06)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="flexCheckDefault1">
-                                            <label class="form-check-label" for="flexCheckDefault1">
-                                                <span class="name">5% - 10%</span>
-                                                <span class="number">(08)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="flexCheckDefault2">
-                                            <label class="form-check-label" for="flexCheckDefault2">
-                                                <span class="name">10% - 15%</span>
-                                                <span class="number">(10)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="flexCheckDefault3">
-                                            <label class="form-check-label" for="flexCheckDefault3">
-                                                <span class="name">15% - 25%</span>
-                                                <span class="number">(14)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="form-check category-list-box">
-                                            <input class="checkbox_animated" type="checkbox" id="flexCheckDefault4">
-                                            <label class="form-check-label" for="flexCheckDefault4">
-                                                <span class="name">More than 25%</span>
-                                                <span class="number">(13)</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="price-values">
+                            <span id="min-price">₹1000</span>
+                            <span class="dash">-</span>
+                            <span id="max-price">₹9000</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Color -->
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseFour">
+                <span>Color</span>
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+                <ul class="color-box-list" id="filterColorList">
+                    <li>
+                        <button class="color-1 btn"></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Size (New) -->
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseSize">
+                <span>Size</span>
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseSize" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+                <ul class="category-list custom-padding custom-height" id="filterSizeList">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Brand (New) -->
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseBrand">
+                <span>Brand</span>
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseBrand" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+                <div class="search-box">
+                    <input type="search" class="form-control" id="brand-search" placeholder="Search brands..">
+                    <button class="search-button btn">
+                        <i class="ri-search-2-line"></i>
+                    </button>
+                </div>
+
+                <ul class="category-list custom-padding custom-height" id="filterBrandList">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
             </div>
         </div>
     </div>
