@@ -5950,7 +5950,7 @@ body.dark .rating li i.fill {
   .category-full-box.offcanvas {
     position: relative;
     visibility: visible;
-    z-index: 0;
+    /* z-index: 0; */
   }
 }
 @media (max-width: 1399.98px) {
@@ -6095,7 +6095,7 @@ body.demo-5.dark .category-full-box .category-header {
 }
 .category-full-box .category-menu-list .sub-menu-list {
   height: calc(400px + 180 * (100vw - 1399px) / 521);
-  overflow: auto;
+  /* overflow: auto; */
 }
 .category-full-box .category-menu-list .sub-menu-list::-webkit-scrollbar-track {
   border-radius: 100px;

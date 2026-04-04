@@ -231,16 +231,16 @@
                             </div>
                             <ul class="search-list-box">
                                 <li>
-                                    <a href="shop-left-sidebar.php">iPhone 14</a>
+                                    <a href="shop.php">iPhone 14</a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.php">kitchen utensils</a>
+                                    <a href="shop.php">kitchen utensils</a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.php">Realme 10 PRO</a>
+                                    <a href="shop.php">Realme 10 PRO</a>
                                 </li>
                                 <li>
-                                    <a href="shop-left-sidebar.php">Samsung Galaxy M14</a>
+                                    <a href="shop.php">Samsung Galaxy M14</a>
                                 </li>
                             </ul>
                         </div>
@@ -371,7 +371,7 @@
                                  
                                 </li>
 
-                                <li class="nav-item dropdown mega-dropdown">
+                                <!-- <li class="nav-item dropdown mega-dropdown">
                                     <a class="nav-link dropdown-toggle" href="#!" data-bs-toggle="dropdown">Sales</a>
 
                                     <div class="dropdown-menu mega-menu">
@@ -2166,7 +2166,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> -->
 
                             
 
