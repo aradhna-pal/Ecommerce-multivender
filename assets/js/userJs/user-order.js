@@ -1,119 +1,74 @@
-const userOrders = "https://api.workarya.com/api/orders/my-orders";
-const userToken = localStorage.getItem("userToken");
+const API_BASE = "https://api.workarya.com";
+const USER_ORDERS = `${API_BASE}/api/orders/my-orders`;
 
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", loadOrders);
+
+async function loadOrders() {
     const tableBody = document.getElementById("order-table-body");
-
     if (!tableBody) return;
 
-    // Token check
-    if (!userToken) {
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="6" style="text-align:center; color:red;">
-                    User token not found. Please login first.
-                </td>
-            </tr>
-        `;
+    const token = localStorage.getItem("userToken");
+    if (!token) {
+        tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Login required</td></tr>`;
         return;
     }
 
     try {
-        const response = await fetch(userOrders, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${userToken}`,
-                "Content-Type": "application/json"
-            }
+        const res = await fetch(USER_ORDERS, {
+            headers: { Authorization: `Bearer ${token}` }
         });
 
-        const result = await response.json();
-        console.log("Orders API Response:", result);
+        const result = await res.json();
 
-        if (!result.success || !result.data || result.data.length === 0) {
-            tableBody.innerHTML = `
-                <tr>
-                    <td colspan="6" style="text-align:center;">
-                        No orders found.
-                    </td>
-                </tr>
-            `;
+        if (!result.success || !result.orders?.length) {
+            tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No orders found</td></tr>`;
             return;
         }
 
         tableBody.innerHTML = "";
 
-        result.data.forEach((order) => {
-            const firstItem = order.items && order.items.length > 0 ? order.items[0] : null;
+        result.orders.forEach(order => {
+            const firstItem = order.items?.[0];
 
-            const orderId = order.orderId ? "#" + order.orderId.slice(0, 8) : "-";
-            const productName = firstItem?.productName || "No Product";
-            const createdDate = formatDate(order.createdAt);
-            const orderStatus = order.orderStatus || "-";
-            const paymentStatus = order.paymentStatus || "-";
-            const totalAmount = order.totalAmount ? `$${parseFloat(order.totalAmount).toFixed(2)}` : "$0.00";
-
-            const statusClass = getStatusClass(orderStatus);
-
-            const row = `
-                <tr>
-                    <td>${orderId}</td>
-                    <td>
-                        <a href="product-circle.html">${productName}</a>
-                    </td>
-                    <td>${createdDate}</td>
-                    <td>
-                        <span class="${statusClass}">${orderStatus}</span>
-                    </td>
-                    <td>${paymentStatus}</td>
-                    <td>${totalAmount}</td>
-                </tr>
-            `;
-
-            tableBody.innerHTML += row;
+            tableBody.innerHTML += `
+            <tr>
+                <td>#${order.orderId.slice(0,8)}</td>
+                <td>${firstItem?.productName || "No Product"}</td>
+                <td>${formatDate(order.createdAt)}</td>
+                <td><span class="${getStatusClass(order.orderStatus)}">${order.orderStatus}</span></td>
+                <td>${order.paymentStatus}</td>
+                <td>₹${order.finalAmount}</td>
+                <td>
+                  <a href="order-tracking.php?orderId=${order.orderId}" 
+   class="btn btn-sm btn-primary">
+   Track Order
+</a>
+                </td>
+            </tr>`;
         });
 
-    } catch (error) {
-        console.error("Error fetching orders:", error);
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="6" style="text-align:center; color:red;">
-                    Failed to load orders.
-                </td>
-            </tr>
-        `;
+    } catch (e) {
+        tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Error loading orders</td></tr>`;
+    }
+}
+
+document.addEventListener("click", e => {
+    if (e.target.classList.contains("track-order-btn")) {
+        const id = e.target.dataset.id;
+        window.location.href = `order-tracking.php?id=${id}`;
     }
 });
 
-// Date format function
-function formatDate(dateString) {
-    const date = new Date(dateString);
-
-    return date.toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
-    });
+function formatDate(d) {
+    return new Date(d).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
 }
 
-// Status class function
-function getStatusClass(status) {
-    switch (status?.toUpperCase()) {
-        case "PLACED":
-        case "COMPLETED":
-        case "SUCCESS":
-            return "status-success";
-
-        case "PROCESSING":
-        case "PENDING":
-            return "status-process";
-
-        case "CANCELED":
-        case "CANCELLED":
-        case "FAILED":
-            return "status-cancel";
-
-        default:
-            return "status-process";
-    }
+function getStatusClass(s){
+    s=s?.toUpperCase();
+    if(["PLACED","COMPLETED","SUCCESS"].includes(s)) return "status-success";
+    if(["CANCELED","FAILED"].includes(s)) return "status-cancel";
+    return "status-process";
 }
+
+// ********************************************************* track order button click event ********************************************
+
