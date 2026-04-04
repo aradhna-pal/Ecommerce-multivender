@@ -335,6 +335,13 @@ async function loadProducts(page = 1, limit = 50) {
 
   let url = `${BASE}/api/products/list?page=${page}&pageSize=${limit}`;
 
+  // Add search query if present in URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchQuery = urlParams.get('search');
+  if (searchQuery) {
+      url += `&search=${encodeURIComponent(searchQuery)}`;
+  }
+
   if (currentFilters) {
       if (currentFilters.categories?.length > 0) {
           url += `&categoryIds=${currentFilters.categories.map(c => c.id).join(',')}`;
