@@ -54,11 +54,11 @@
                                     data-bs-target="#pills-order" type="button"><i
                                         class="ri-shopping-basket-line"></i>Order</button>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <button class="nav-link" id="pills-card-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-card" type="button"><i class="ri-bank-card-line"></i> Saved
                                     Card</button>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <button class="nav-link" id="pills-address-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-address" type="button"><i
@@ -117,7 +117,7 @@
                                             <p>Every one of your carefully chosen product assortments</p>
                                         </a>
                                     </li>
-                                    <li data-class="pills-card">
+                                    <!-- <li data-class="pills-card">
                                         <a href="#!" class="personal-detail">
                                             <svg>
                                                 <use
@@ -127,7 +127,7 @@
                                             <h4>Saved Card</h4>
                                             <p>Keep your credit cards handy for a quicker checkout.</p>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li data-class="pills-address">
                                         <a href="#!" class="personal-detail">
                                             <svg>
@@ -330,11 +330,11 @@
                             <div class="dashboard-address dashboard-bg-box">
                                 <div class="title address-title dashboard-title justify-content-between flex-wrap">
                                     <h3>My Address Book</h3>
-                                    <button class="btn theme-bg-color text-white">
-                                        <i class="ri-add-line"></i>Add New Address</button>
+                                    <!-- <button class="btn theme-bg-color text-white">
+                                        <i class="ri-add-line"></i>Add New Address</button> -->
                                 </div>
 
-                                <div class="row g-sm-4 g-3">
+                                <div class="row g-sm-4 g-3" id="addressContainer">
                                     <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
                                         <div class="address-box">
                                             <div>
@@ -440,162 +440,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
-                                        <div class="address-box">
-                                            <div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="jack"
-                                                        id="flexRadioDefault4">
-                                                </div>
-
-                                                <div class="label">
-                                                    <label>Neighbor</label>
-                                                </div>
-
-                                                <div class="table-responsive address-table">
-                                                    <table class="table">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td colspan="3">Juan M. McKeon</td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Address</td>
-                                                                <td>:</td>
-                                                                <td>
-                                                                    <p>1703 Carson Street Lexington, KY 40593</p>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Pin Code</td>
-                                                                <td>:</td>
-                                                                <td>+78</td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Phone</td>
-                                                                <td>:</td>
-                                                                <td>+ 859-257-0509</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                            <div class="button-group">
-                                                <button class="btn btn-sm add-button w-100"><i
-                                                        class="ri-edit-box-line"></i>Edit</button>
-                                                <button class="btn btn-sm add-button w-100"><i
-                                                        class="ri-delete-bin-5-line"></i>Remove</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
-                                        <div class="address-box">
-                                            <div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="jack"
-                                                        id="flexRadioDefault5">
-                                                </div>
-
-                                                <div class="label">
-                                                    <label>Home 2</label>
-                                                </div>
-
-                                                <div class="table-responsive address-table">
-                                                    <table class="table">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td colspan="3">Hazel W. Gonzales</td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Address</td>
-                                                                <td>:</td>
-                                                                <td>
-                                                                    <p>3275 School Street Washington, DC 20009</p>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Pin Code</td>
-                                                                <td>:</td>
-                                                                <td>+26</td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Phone</td>
-                                                                <td>:</td>
-                                                                <td>+ 215-335-9916</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                            <div class="button-group">
-                                                <button class="btn btn-sm add-button w-100"><i
-                                                        class="ri-edit-box-line"></i>Edit</button>
-                                                <button class="btn btn-sm add-button w-100"><i
-                                                        class="ri-delete-bin-5-line"></i>Remove</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
-                                        <div class="address-box">
-                                            <div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="jack"
-                                                        id="flexRadioDefault1">
-                                                </div>
-
-                                                <div class="label">
-                                                    <label>Home 2</label>
-                                                </div>
-
-                                                <div class="table-responsive address-table">
-                                                    <table class="table">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td colspan="3">Gary M. Bailey</td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Address</td>
-                                                                <td>:</td>
-                                                                <td>
-                                                                    <p>2135 Burning Memory Lane Philadelphia, PA
-                                                                        19135</p>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Pin Code</td>
-                                                                <td>:</td>
-                                                                <td>+69</td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Phone</td>
-                                                                <td>:</td>
-                                                                <td>+ 365-478-9963</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                            <div class="button-group">
-                                                <button class="btn btn-sm add-button w-100"><i
-                                                        class="ri-edit-box-line"></i>Edit</button>
-                                                <button class="btn btn-sm add-button w-100"><i
-                                                        class="ri-delete-bin-5-line"></i>Remove</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
                                 </div>
                             </div>
                         </div>
