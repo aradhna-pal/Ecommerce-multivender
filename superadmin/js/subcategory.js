@@ -8,7 +8,7 @@ async function subcategoryget() {
     }
 
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/category/list",
+      "https://api.workarya.com/api/category/list",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // API CALL
       const res = await fetch(
-        "http://multivendor_backend.workarya.com/api/category/insert",
+        "https://api.workarya.com/api/category/insert",
         {
           method: "POST",
           headers: {
@@ -221,7 +221,7 @@ async function loadParentCategories() {
     const token = localStorage.getItem("superadminToken");
 
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/category/list",
+      "https://api.workarya.com/api/category/list",
       {
         headers: {
           Authorization: `Bearer ${token}`,

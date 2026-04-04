@@ -19,7 +19,7 @@ async function loadProduct() {
     }
 
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/products/list",
+      "https://api.workarya.com/api/products/list",
       {
         method: "GET",
         headers: {
@@ -45,7 +45,7 @@ async function loadProduct() {
 
           <td class="d-flex align-items-center gap-2">
   <img 
-    src="http://multivendor_backend.workarya.com${product.mainImage}" 
+    src="https://api.workarya.com${product.mainImage}" 
     class="rounded" 
     height="48"
     width="48"
@@ -146,7 +146,7 @@ async function deleteProduct(id) {
     });
 
     const res = await fetch(
-      `http://multivendor_backend.workarya.com/api/products/permanent-delete-product/${id}`,
+      `https://api.workarya.com/api/products/permanent-delete-product/${id}`,
       {
         method: "DELETE",
         headers: {

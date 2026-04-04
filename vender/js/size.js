@@ -1,5 +1,5 @@
 // ****************************************** GET ALL SIZE  START ******************************************
-const BASE_URL = "http://multivendor_backend.workarya.com/api";
+const BASE_URL = "https://api.workarya.com/api";
 
 async function loadSizes() {
   try {

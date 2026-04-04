@@ -1,5 +1,5 @@
 
-const API_URL = "http://multivendor_backend.workarya.com/api/category/list";
+const API_URL = "https://api.workarya.com/api/category/list";
 
 async function loadCategories() {
     try {

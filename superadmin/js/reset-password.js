@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
             formData.append("password", password);
 
 
-            const response = await fetch("http://multivendor_backend.workarya.com/api/resetpasswordadmin", {
+            const response = await fetch("https://api.workarya.com/api/resetpasswordadmin", {
                 method: "POST",
                 body: formData,
                 headers: {

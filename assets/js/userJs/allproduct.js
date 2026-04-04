@@ -149,7 +149,7 @@ async function openQuickView(productId) {
 // individual product buy now  ****************************************
 
 
-const BASE = "http://multivendor_backend.workarya.com";
+const BASE = "https://api.workarya.com";
 
 // Proceed to Checkout Function
 async function proceedToCheckout() {
@@ -311,14 +311,11 @@ async function addToCart(productId, quantity = 1, price) {
 }
 
 async function loadProducts(page = 1, limit = 50) {
-  const res = await fetch(`${BASE}/api/products/list`);
+  const res = await fetch(`${BASE}/api/products/list?page=${page}&pageSize=${limit}`);
   const json = await res.json();
-  const allProducts = json?.data?.data || [];
-  const totalProducts = allProducts.length;
-  const totalPages = Math.ceil(totalProducts / limit);
-  const startIndex = (page - 1) * limit;
-  const endIndex = startIndex + limit;
-  const products = allProducts.slice(startIndex, endIndex);
+  const products = json?.data?.data || [];
+  const totalProducts = json?.data?.total || products.length;
+  const totalPages = json?.data?.totalPages || Math.ceil(totalProducts / limit);
 
   const container = document.getElementById("productsContainer");
   container.innerHTML = "";
@@ -607,7 +604,7 @@ async function openOptions(card, productId) {
 
 // <script>
 {
-  /* const BASE = "http://multivendor_backend.workarya.com"; */
+  /* const BASE = "https://api.workarya.com"; */
 }
 
 // ==================== RECENT VIEWS API ====================

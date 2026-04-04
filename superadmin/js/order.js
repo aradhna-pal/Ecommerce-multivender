@@ -3,7 +3,7 @@ async function loadOrders() {
 
   try {
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/orders/my-orders",
+      "https://api.workarya.com/api/orders/my-orders",
       {
         headers: { Authorization: `Bearer ${token}` },
       },
@@ -27,7 +27,7 @@ async function loadOrders() {
 
           <td>
             <div class="d-flex align-items-center gap-2">
-              <img src="http://multivendor_backend.workarya.com${firstItem.productImage || ""}"
+              <img src="https://api.workarya.com${firstItem.productImage || ""}"
                    width="40" height="40" style="object-fit:cover;border-radius:6px"
                    onerror="this.style.display='none'"/>
               <div>
@@ -126,7 +126,7 @@ function printInvoice(orderId) {
 // ************************************************* pdf download invoce *****************************
 
 
-// const BASE = "http://multivendor_backend.workarya.com";
+// const BASE = "https://api.workarya.com";
 
 // async function downloadInvoice(orderId) {
 //   try {

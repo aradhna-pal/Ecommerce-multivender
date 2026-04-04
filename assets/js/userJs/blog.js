@@ -1,6 +1,6 @@
-const getBlog = "http://multivendor_backend.workarya.com/api/blogs";
-const imageBaseUrl = "http://multivendor_backend.workarya.com";
-const blogDetails = "http://multivendor_backend.workarya.com/api/blogs/"; // Append blog ID for details
+const getBlog = "https://api.workarya.com/api/blogs";
+const imageBaseUrl = "https://api.workarya.com";
+const blogDetails = "https://api.workarya.com/api/blogs/"; // Append blog ID for details
 
 const getQueryParam = (name) => new URLSearchParams(window.location.search).get(name);
 

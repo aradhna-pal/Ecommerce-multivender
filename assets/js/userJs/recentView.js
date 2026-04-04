@@ -7,8 +7,8 @@ async function loadRecentProducts() {
 
     if (!recentViewProduct) return;
 
-    const API_URL = "http://multivendor_backend.workarya.com/api/recent";
-    const BASE_URL = "http://multivendor_backend.workarya.com";
+    const API_URL = "https://api.workarya.com/api/recent";
+    const BASE_URL = "https://api.workarya.com";
     const userToken = localStorage.getItem("userToken");
 
     try {

@@ -1,5 +1,5 @@
 // ==================== CONFIG ====================
-// const BASE = "http://multivendor_backend.workarya.com";
+// const BASE = "https://api.workarya.com";
 
 const API = {
   applyCoupon: `${BASE}/api/coupon/apply`,

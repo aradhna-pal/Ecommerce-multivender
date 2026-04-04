@@ -10,7 +10,7 @@ async function loadBrands() {
     }
 
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/brands/list",
+      "https://api.workarya.com/api/brands/list",
       {
         method: "GET",
         headers: {
@@ -36,7 +36,7 @@ async function loadBrands() {
 
 
                     <td >
-                        <img src="http://multivendor_backend.workarya.com${brand.logo || "https://via.placeholder.com/48"} "
+                        <img src="https://api.workarya.com${brand.logo || "https://via.placeholder.com/48"} "
                              class="rounded" height="78" width="78"
     style="object-fit: contain;" />
                     </td>
@@ -105,7 +105,7 @@ async function deleteBrand(id) {
     const token = localStorage.getItem("superadminToken");
 
     const res = await fetch(
-      `http://multivendor_backend.workarya.com/api/brands/delete/${id}`,
+      `https://api.workarya.com/api/brands/delete/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       const res = await fetch(
-        "http://multivendor_backend.workarya.com/api/brands/insert",
+        "https://api.workarya.com/api/brands/insert",
         {
           method: "POST",
           headers: {
@@ -270,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function loadBrand() {
     try {
       const res = await fetch(
-        `http://multivendor_backend.workarya.com/api/brands/list/${brandId}`,
+        `https://api.workarya.com/api/brands/list/${brandId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -330,7 +330,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       const res = await fetch(
-        `http://multivendor_backend.workarya.com/api/brands/update/${brandId}`,
+        `https://api.workarya.com/api/brands/update/${brandId}`,
         {
           method: "PUT",
           headers: {

@@ -1,4 +1,4 @@
-const uploadExcel = "http://multivendor_backend.workarya.com/api/products/upload-excel";
+const uploadExcel = "https://api.workarya.com/api/products/upload-excel";
 
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("superadminToken");

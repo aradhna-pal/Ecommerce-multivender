@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // ==================== 1. ADD ADDRESS API ====================
-            const addResponse = await fetch(`http://multivendor_backend.workarya.com/api/address/add`, {
+            const addResponse = await fetch(`https://api.workarya.com/api/address/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -169,7 +169,7 @@ async function loadSavedAddresses() {
     if (loadingEl) loadingEl.style.display = "block";
 
     try {
-        const response = await fetch("http://multivendor_backend.workarya.com/api/address/list", {
+        const response = await fetch("https://api.workarya.com/api/address/list", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

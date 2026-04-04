@@ -8,8 +8,8 @@ if (!window.categoryPageInitialized) {
 
         if (!categoryTableBody) return;
 
-        const BASE_URL = "http://multivendor_backend.workarya.com/api/category";
-        const IMAGE_BASE_URL = "http://multivendor_backend.workarya.com/uploads/";
+        const BASE_URL = "https://api.workarya.com/api/category";
+        const IMAGE_BASE_URL = "https://api.workarya.com/uploads/";
 
         // =========================
         // LOAD CATEGORY LIST
@@ -284,15 +284,15 @@ if (!window.categoryPageInitialized) {
 document.addEventListener("DOMContentLoaded", function () {
 
     // ==================== CONFIG ====================
-    const BASE_URL = "http://multivendor_backend.workarya.com/api/category";
-    const IMAGE_BASE_URL = "http://multivendor_backend.workarya.com/uploads/";
+    const BASE_URL = "https://api.workarya.com/api/category";
+    const IMAGE_BASE_URL = "https://api.workarya.com/uploads/";
     let token = localStorage.getItem('vendorToken') || '';
     let allCategories = [];
 
     // ==================== LOAD CATEGORIES ====================
     async function loadCategories() {
         try {
-            const res = await fetch("http://multivendor_backend.workarya.com/api/category/list", {
+            const res = await fetch("https://api.workarya.com/api/category/list", {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -542,8 +542,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const categoryId = document.getElementById('categoryId')?.value;
         const url = isEditMode
-            ? `http://multivendor_backend.workarya.com/api/category/update/${categoryId}`
-            : 'http://multivendor_backend.workarya.com/api/category/insert';
+            ? `https://api.workarya.com/api/category/update/${categoryId}`
+            : 'https://api.workarya.com/api/category/insert';
         const method = isEditMode ? 'PUT' : 'POST';
 
         try {

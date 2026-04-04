@@ -3,7 +3,7 @@
 
 async function loadBlogs() {
   try {
-    const res = await fetch("http://multivendor_backend.workarya.com/api/blogs");
+    const res = await fetch("https://api.workarya.com/api/blogs");
     const blogs = await res.json();
 
     console.log("BLOG API:", blogs);
@@ -18,7 +18,7 @@ async function loadBlogs() {
 
           <td>
             <img 
-              src="http://multivendor_backend.workarya.com${blog.image}"
+              src="https://api.workarya.com${blog.image}"
               height="48"
               width="48"
               class="rounded"
@@ -100,7 +100,7 @@ async function deleteBlog(id) {
 
   try {
     const res = await fetch(
-      `http://multivendor_backend.workarya.com/api/blogs/${id}`,
+      `https://api.workarya.com/api/blogs/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const res = await fetch(
-        "http://multivendor_backend.workarya.com/api/blogs/add",
+        "https://api.workarya.com/api/blogs/add",
         {
           method: "POST",
           headers: {
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     // SAME API you used in loadBlogs()
-    const res = await fetch("http://multivendor_backend.workarya.com/api/blogs");
+    const res = await fetch("https://api.workarya.com/api/blogs");
     const blogs = await res.json();
 
     // find matching blog
@@ -244,7 +244,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (blog.image) {
       const img = document.getElementById("previewImage");
-      img.src = "http://multivendor_backend.workarya.com" + blog.image;
+      img.src = "https://api.workarya.com" + blog.image;
       img.style.display = "block";
       document.getElementById("placeholderText").style.display = "none";
     }
@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const res = await fetch(
-        `http://multivendor_backend.workarya.com/api/blogs/${blogId}`,
+        `https://api.workarya.com/api/blogs/${blogId}`,
         {
           method: "PUT", // if not working change to POST
           headers: { "Authorization": `Bearer ${token}` },

@@ -10,7 +10,7 @@ async function getAllColor() {
     }
 
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/colors/get",
+      "https://api.workarya.com/api/colors/get",
       {
         method: "GET",
         headers: {
@@ -88,7 +88,7 @@ async function deleteColor(colorId) {
     }
 
     const res = await fetch(
-      `http://multivendor_backend.workarya.com/api/colors/delete-color/${colorId}`,
+      `https://api.workarya.com/api/colors/delete-color/${colorId}`,
       {
         method: "DELETE",
         headers: {
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Calling API...");
 
       const res = await fetch(
-        "http://multivendor_backend.workarya.com/api/colors/insert",
+        "https://api.workarya.com/api/colors/insert",
         {
           method: "POST",
           headers: {
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function loadColor() {
     try {
       const res = await fetch(
-        "http://multivendor_backend.workarya.com/api/colors/get",
+        "https://api.workarya.com/api/colors/get",
         {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const res = await fetch(
-        `http://multivendor_backend.workarya.com/api/colors/update-color/${colorId}`,
+        `https://api.workarya.com/api/colors/update-color/${colorId}`,
         {
           method: "PUT",
           headers: {

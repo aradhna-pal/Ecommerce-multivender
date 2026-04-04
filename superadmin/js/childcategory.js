@@ -9,7 +9,7 @@ async function childcategoryget() {
     }
 
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/category/list",
+      "https://api.workarya.com/api/category/list",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -137,7 +137,7 @@ async function loadParentCategories() {
     const token = localStorage.getItem("superadminToken");
 
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/category/list",
+      "https://api.workarya.com/api/category/list",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -168,7 +168,7 @@ async function loadSubCategories(parentId) {
     const token = localStorage.getItem("superadminToken");
 
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/category/list",
+      "https://api.workarya.com/api/category/list",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -231,7 +231,7 @@ async function addChildCategory() {
     }
 
     const res = await fetch(
-      "http://multivendor_backend.workarya.com/api/category/insert",
+      "https://api.workarya.com/api/category/insert",
       {
         method: "POST",
         headers: {

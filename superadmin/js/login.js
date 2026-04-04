@@ -17,7 +17,7 @@ function loginApi() {
   formData.append("email", email);
   formData.append("password", password);
 
-  fetch("http://multivendor_backend.workarya.com/api/login", {
+  fetch("https://api.workarya.com/api/login", {
     method: "POST",
     body: formData
   })

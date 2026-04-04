@@ -1,4 +1,4 @@
-const userOrders = "http://multivendor_backend.workarya.com/api/orders/my-orders";
+const userOrders = "https://api.workarya.com/api/orders/my-orders";
 const userToken = localStorage.getItem("userToken");
 
 document.addEventListener("DOMContentLoaded", async function () {

@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
       placeOrderBtn.innerHTML = `Placing Order... <span class="spinner-border spinner-border-sm"></span>`;
 
       try {
-        const response = await fetch("http://multivendor_backend.workarya.com/api/orders/create", {
+        const response = await fetch("https://api.workarya.com/api/orders/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -174,7 +174,7 @@ async function verifyRazorpayPayment(paymentResponse, orderId, userToken) {
       // orderId: orderId   
     };
 
-    const response = await fetch("http://multivendor_backend.workarya.com/api/orders/verify", {
+    const response = await fetch("https://api.workarya.com/api/orders/verify", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -239,7 +239,7 @@ async function loadSavedAddresses() {
   try {
     if (loadingEl) loadingEl.style.display = "block";
 
-    const response = await fetch("http://multivendor_backend.workarya.com/api/address/list", {
+    const response = await fetch("https://api.workarya.com/api/address/list", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

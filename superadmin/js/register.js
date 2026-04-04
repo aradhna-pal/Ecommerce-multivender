@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("role", "USER");
 
             // API call
-            const response = await fetch("http://multivendor_backend.workarya.com/register", {
+            const response = await fetch("https://api.workarya.com/register", {
                 method: "POST",
                 body: formData
             });
