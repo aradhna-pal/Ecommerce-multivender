@@ -4,35 +4,35 @@ const USER_ORDERS = `${API_BASE}/api/orders/my-orders`;
 document.addEventListener("DOMContentLoaded", loadOrders);
 
 async function loadOrders() {
-    const tableBody = document.getElementById("order-table-body");
-    if (!tableBody) return;
+  const tableBody = document.getElementById("order-table-body");
+  if (!tableBody) return;
 
-    const token = localStorage.getItem("userToken");
-    if (!token) {
-        tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Login required</td></tr>`;
-        return;
+  const token = localStorage.getItem("userToken");
+  if (!token) {
+    tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Login required</td></tr>`;
+    return;
+  }
+
+  try {
+    const res = await fetch(USER_ORDERS, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const result = await res.json();
+
+    if (!result.success || !result.orders?.length) {
+      tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No orders found</td></tr>`;
+      return;
     }
 
-    try {
-        const res = await fetch(USER_ORDERS, {
-            headers: { Authorization: `Bearer ${token}` }
-        });
+    tableBody.innerHTML = "";
 
-        const result = await res.json();
+    result.orders.forEach((order) => {
+      const firstItem = order.items?.[0];
 
-        if (!result.success || !result.orders?.length) {
-            tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No orders found</td></tr>`;
-            return;
-        }
-
-        tableBody.innerHTML = "";
-
-        result.orders.forEach(order => {
-            const firstItem = order.items?.[0];
-
-            tableBody.innerHTML += `
+      tableBody.innerHTML += `
             <tr>
-                <td>#${order.orderId.slice(0,8)}</td>
+                <td>#${order.orderId.slice(0, 8)}</td>
                 <td>${firstItem?.productName || "No Product"}</td>
                 <td>${formatDate(order.createdAt)}</td>
                 <td><span class="${getStatusClass(order.orderStatus)}">${order.orderStatus}</span></td>
@@ -40,35 +40,37 @@ async function loadOrders() {
                 <td>₹${order.finalAmount}</td>
                 <td>
                   <a href="order-tracking.php?orderId=${order.orderId}" 
-   class="btn btn-sm btn-primary">
+   class="nav-link logout-btn theme-bg-color text-light" style="padding: 5px 10px; font-size: 14px; border-radius: 5px;" >
    Track Order
 </a>
                 </td>
             </tr>`;
-        });
-
-    } catch (e) {
-        tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Error loading orders</td></tr>`;
-    }
+    });
+  } catch (e) {
+    tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Error loading orders</td></tr>`;
+  }
 }
 
-document.addEventListener("click", e => {
-    if (e.target.classList.contains("track-order-btn")) {
-        const id = e.target.dataset.id;
-        window.location.href = `order-tracking.php?id=${id}`;
-    }
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("track-order-btn")) {
+    const id = e.target.dataset.id;
+    window.location.href = `order-tracking.php?id=${id}`;
+  }
 });
 
 function formatDate(d) {
-    return new Date(d).toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
+  return new Date(d).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
 }
 
-function getStatusClass(s){
-    s=s?.toUpperCase();
-    if(["PLACED","COMPLETED","SUCCESS"].includes(s)) return "status-success";
-    if(["CANCELED","FAILED"].includes(s)) return "status-cancel";
-    return "status-process";
+function getStatusClass(s) {
+  s = s?.toUpperCase();
+  if (["PLACED", "COMPLETED", "SUCCESS"].includes(s)) return "status-success";
+  if (["CANCELED", "FAILED"].includes(s)) return "status-cancel";
+  return "status-process";
 }
 
 // ********************************************************* track order button click event ********************************************
-
