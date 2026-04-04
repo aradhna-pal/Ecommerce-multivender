@@ -60,6 +60,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    window.wishlistAddToCart = async function(productId, quantity, price) {
+        if (typeof addToCart === 'function') {
+            const success = await addToCart(productId, quantity, price);
+            if (success) {
+                // Remove from wishlist automatically after successful cart addition
+                await removeFromWishlist(productId);
+            }
+        }
+    };
+
     function renderWishlistItems(items, container) {
         if (!items || items.length === 0) {
             container.innerHTML = `<div class="col-12 text-center py-5 w-100"><h4 class="text-muted">Your wishlist is empty.</h4></div>`;
@@ -68,29 +78,81 @@ document.addEventListener("DOMContentLoaded", () => {
 
         container.innerHTML = items.map(item => {
             const p = item.product || item; 
-            const id = p._id || p.id || item.productId;
-            const img = p.images?.[0] || p.mainImage || '../assets/images/product/placeholder.png';
+            const id = p.productId || p._id || p.id;
+            const img = p.image || p.images?.[0] || p.mainImage || '../assets/images/product/placeholder.png';
             const name = p.name || 'Product Name';
-            const price = p.discountPrice || p.price || 0;
+            const price = p.discountprice || p.discountPrice || p.price || 0;
             const originalPrice = p.price || 0;
+            const brand = p.brandName || "";
+            const imageSrc = img.startsWith('http') ? img : BASE_URL + (img.startsWith('/') ? img : '/' + img);
 
             return `
                 <div class="col">
                     <div class="product-box-4-main">
-                        <div class="productMain product-box-4 pro-bg-white p-3 border rounded h-100 d-flex flex-column">
-                            <div class="product-image text-center mb-3">
-                                <a href="product-detail.php?id=${id}">
-                                    <img src="${img.startsWith('http') ? img : BASE_URL + img}" class="img-fluid productImage" alt="${name}" style="max-height:150px; object-fit:contain;">
-                                </a>
+                        <div class="select-option-box">
+                            <div class="select-box">
+                                <div>
+                                    <div class="color-box">
+                                        <h4 class="h5">Colors</h4>
+                                        <ul class="color-list">
+                                            <li><a href="#!" style="background-color:#f4c266;"></a></li>
+                                            <li><a href="#!" style="background-color:#e7e597;"></a></li>
+                                            <li><a href="#!" style="background-color:#6aa473;"></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="size-box">
+                                        <h4 class="h5">Sizes</h4>
+                                        <ul class="size-list">
+                                            <li><a href="#!">xs</a></li>
+                                            <li><a href="#!">s</a></li>
+                                            <li><a href="#!">m</a></li>
+                                            <li><a href="#!">l</a></li>
+                                            <li><a href="#!">xl</a></li>
+                                        </ul>
+                                    </div>
+                                    <button class="btn add-cart-btn" onclick="wishlistAddToCart('${id}', 1, ${price})">add to cart</button>
+                                    <button class="close-btn btn" onclick="closeSidebar()">
+                                        <i class="ri-close-line"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="product-content mt-auto text-center">
-                                <a href="product-detail.php?id=${id}" class="name text-dark fw-bold mb-2 d-block text-truncate">
+                        </div>
+                        <div class="productMain product-box-4 pro-bg-white">
+                            <div class="product-image">
+                                <a href="product-detail.php?id=${id}">
+                                    <img src="${imageSrc}" class="img-fluid productImage" alt="">
+                                </a>
+                                <div class="quick-view-button-box">
+                                    <button class="btn view-btn quickViewBtn" onclick="openQuickView('${id}')">Quick View</button>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h5 class="sub-name productName">${brand}</h5>
+                                <a href="product-detail.php?id=${id}" class="name">
                                     <h5>${name}</h5>
                                 </a>
-                                <h5 class="price text-primary mb-3">₹${price} ${price < originalPrice ? `<del class="text-muted fs-6">₹${originalPrice}</del>` : ''}</h5>
-                                <div class="option-box mt-3 d-flex gap-2 justify-content-center">
-                                    <button class="btn btn-sm text-white" onclick="addToCart('${id}', 1, ${price})" style="background-color: var(--theme-color);">Add to Cart</button>
-                                    <button class="btn btn-sm btn-danger" onclick="removeFromWishlist('${id}')">Remove</button>
+                                <ul class="rating">
+                                    <li><i class="ri-star-fill fill"></i></li>
+                                    <li><i class="ri-star-fill fill"></i></li>
+                                    <li><i class="ri-star-fill fill"></i></li>
+                                    <li><i class="ri-star-fill fill"></i></li>
+                                    <li><i class="ri-star-fill fill"></i></li>
+                                </ul>
+                                <h5 class="price">₹${price} ${price < originalPrice ? `<del>₹${originalPrice}</del>` : ""}</h5>
+                                <div class="option-box">
+                                    <button class="btn select-btn" onclick="openOptions(this.closest('.col'), '${id}')">Select Options</button>
+                                    <ul class="option-list">
+                                        <li>
+                                            <a class="wishlistProduct show" data-id="${id}" style="cursor:pointer">
+                                                <i class="ri-heart-3-fill" style="color:red;"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#!">
+                                                <i class="ri-repeat-2-line"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
