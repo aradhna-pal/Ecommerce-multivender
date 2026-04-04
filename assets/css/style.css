@@ -5326,7 +5326,7 @@ body.dark .offcanvas.cart-offcanvas .offcanvas-body .cart-product-box .total-pri
   cursor: pointer;
   line-height: 1;
   margin-top: -2px;
-  content: "\eb99";
+  /* content: "\eb99"; */
   position: relative;
   font-family: remixicon;
   font-style: normal;
@@ -23659,7 +23659,7 @@ body.dark .custom-height::-webkit-scrollbar-thumb {
   cursor: pointer;
   line-height: 1;
   margin-top: -2px;
-  content: "\eb99";
+  /* content: "\eb99"; */
   position: relative;
   font-family: remixicon;
   font-style: normal;
