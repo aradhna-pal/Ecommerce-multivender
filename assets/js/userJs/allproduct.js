@@ -1,4 +1,3 @@
-
 let qvName, qvDesc, qvPrice, qvImages, qvIndex, qvMainImg, qvThumbs, qvColors, qvSizes, quickModal;
 let currentFilters = null;
 
@@ -342,12 +341,16 @@ async function loadProducts(page = 1, limit = 50) {
       url += `&search=${encodeURIComponent(searchQuery)}`;
   }
 
+  const brandIdQuery = urlParams.get('brandId');
+  let hasBrandFilter = false;
+
   if (currentFilters) {
       if (currentFilters.categories?.length > 0) {
           url += `&categoryIds=${currentFilters.categories.map(c => c.id).join(',')}`;
       }
       if (currentFilters.brands?.length > 0) {
           url += `&brandIds=${currentFilters.brands.map(b => b.id).join(',')}`;
+          hasBrandFilter = true;
       }
       if (currentFilters.colors?.length > 0) {
           url += `&` + currentFilters.colors.map(c => `colors=${encodeURIComponent(c.name)}`).join('&');
@@ -360,12 +363,16 @@ async function loadProducts(page = 1, limit = 50) {
       }
   }
 
+  if (brandIdQuery && !hasBrandFilter) {
+      url += `&brandIds=${encodeURIComponent(brandIdQuery)}`;
+  }
+
   try {
       const res = await fetch(url);
       const json = await res.json();
       const products = json?.data?.data || json?.data || [];
       const totalProducts = json?.data?.total || products.length;
-      const totalPages = json?.data?.totalPages || Math.ceil(totalProducts / limit);
+      const totalPages = json?.data?.totalPages || Math.ceil(totalProducts  / limit);
 
       container.innerHTML = "";
 

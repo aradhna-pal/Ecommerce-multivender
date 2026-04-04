@@ -2094,7 +2094,7 @@
             <div class="title-2 title-timer justify-content-between">
                 <h3>Hot Tag:</h3>
             </div>
-            <ul class="hot-tag-list">
+            <ul class="hot-tag-list" id="allBrandList">
                 <li>
                     <a href="shop.php">Nokia</a>
                 </li>
@@ -2227,6 +2227,8 @@
 </section>
 <!-- Offer Section End -->
 
+
+
 <!-- News-letter Section Start -->
 <section class="section-block-space newsletter-section">
     <div class="custom-container">
@@ -2261,5 +2263,41 @@
     </div>
 </section>
 <!-- News-letter Section End -->
+
+
+<script>
+   document.addEventListener("DOMContentLoaded", async () => {
+       const brandListContainer = document.getElementById("allBrandList");
+       if (brandListContainer) {
+           try {
+               const res = await fetch("https://api.workarya.com/api/brands/list");
+               const json = await res.json();
+               let brands = [];
+               if (json.success && json.data) {
+                   brands = json.data.data || json.data || [];
+               } else if (Array.isArray(json)) {
+                   brands = json;
+               }
+               
+               brandListContainer.innerHTML = "";
+               if (brands.length > 0) {
+                   brands.forEach(brand => {
+                       const brandId = brand._id || brand.id;
+                       const brandName = brand.name;
+                       brandListContainer.insertAdjacentHTML(
+                           "beforeend",
+                           `<li><a href="shop.php?brandId=${brandId}">${brandName}</a></li>`
+                       );
+                   });
+               } else {
+                   brandListContainer.innerHTML = "<li>No brands available</li>";
+               }
+           } catch (error) {
+               console.error("Error loading brands:", error);
+               brandListContainer.innerHTML = "<li>Error loading brands</li>";
+           }
+       }
+   });
+</script>
 
 <?php include 'footer.php'; ?>
