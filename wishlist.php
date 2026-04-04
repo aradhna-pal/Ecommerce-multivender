@@ -126,6 +126,8 @@
                 </div>
 
               
+            <div class="row g-sm-4 g-3 row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-2" id="wishlistContainer">
+                <!-- Dynamic Wishlist Items will be rendered here -->
             </div>
 
             <nav class="custom-pagination">
