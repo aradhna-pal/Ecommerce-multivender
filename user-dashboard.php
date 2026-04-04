@@ -185,6 +185,7 @@
                                                     <th>Status</th>
                                                     <th>Payment</th>
                                                     <th>Price</th>
+                                                    <th>Track Order</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="order-table-body">

@@ -26,7 +26,7 @@
     <section class="tracking-section section-t-space">
         <div class="custom-container">
             <div class="row g-sm-4 g-3 tracking-row">
-                <div class="col-xl-8 col-lg-7">
+                <div class="col-xl-12 col-lg-7">
                     <div class="row g-sm-4 g-3">
                         <div class="col-12">
                             <div class="order-success-box">
@@ -87,180 +87,14 @@
                                     <h3 class="theme-color">Purchasing Success</h3>
                                     <h4 class="text-content">Your order has been successfully completed and is on
                                         its way.</h4>
-                                    <h6>ID for the transaction: 1708031724431131</h6>
+                                    <!-- <h6>ID for the transaction: 1708031724431131</h6> -->
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="tacking-left-box">
-                                <div class="order-tracking-table">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Product</th>
-                                                    <th>Price</th>
-                                                    <th>Quantity</th>
-                                                    <th>Subtotal</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="tracking-order-box">
-                                                            <a href="product-color.html" class="order-images">
-                                                                <img src="../assets/images/product/1.png" alt=""
-                                                                    class="img-fluid order-images">
-                                                            </a>
-                                                            <div class="tracking-product-details">
-                                                                <a href="product-color.html">
-                                                                    <h4>Smart Watch Series X3</h4>
-                                                                </a>
-                                                                <ul class="order-list">
-                                                                    <li>
-                                                                        Color: <span>Black</span>
-                                                                    </li>
-
-                                                                    <li>
-                                                                        Category: <span>Watch</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="price">$239.00
-                                                            <del class="del-price">$250.00</del>
-                                                        </h5>
-                                                    </td>
-                                                    <td>1</td>
-                                                    <td>$239.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="tracking-order-box">
-                                                            <a href="#!" class="order-images">
-                                                                <img src="../assets/images/product/22.png" alt=""
-                                                                    class="img-fluid order-images">
-                                                            </a>
-                                                            <div class="tracking-product-details">
-                                                                <a href="#!">
-                                                                    <h4>Apple iPhone 14 (128 GB) - Purple</h4>
-                                                                </a>
-                                                                <ul class="order-list">
-                                                                    <li>
-                                                                        Color: <span>Black</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        Brand: <span>Apple</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        Category: <span>Mobile</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="price">$1209.05 <del class="del-price">$1200.00</del>
-                                                        </h5>
-                                                    </td>
-                                                    <td>3</td>
-                                                    <td>$1209.05</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <div class="tracking-order-box">
-                                                            <a href="#!" class="order-images">
-                                                                <img src="../assets/images/product/30.png" alt=""
-                                                                    class="img-fluid order-images">
-                                                            </a>
-                                                            <div class="tracking-product-details">
-                                                                <a href="#!">
-                                                                    <h4>Canon EOS 1500D DSLR Camera Body+ 18-55 mm</h4>
-                                                                </a>
-                                                                <ul class="order-list">
-                                                                    <li>
-                                                                        Color: <span>Silver</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        Brand: <span>Sony</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        Category: <span>Camera</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="price">$1209.05 <del class="del-price">$1200.00</del>
-                                                        </h5>
-                                                    </td>
-                                                    <td>1</td>
-                                                    <td>$1209.05</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-5">
-                    <div class="tracking-right-box">
-                        <div class="row g-sm-4 g-3">
-                            <div class="col-12">
-                                <div class="price-details">
-                                    <div class="order-title">
-                                        <h4>Price Details <span class="txt-theme-green">(3 Items)</span></h4>
-                                    </div>
-
-                                    <ul class="order-details-box">
-                                        <li>Electronic total <span>$32.34</span></li>
-                                        <li>Electronic saving <span class="txt-theme-green">$12.32</span></li>
-                                        <li>Coupon discount <span class="txt-danger-color">$6.25</span></li>
-                                    </ul>
-                                    <div class="total-price">
-                                        <h5>Total (USD) <span>$19.28</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="price-details">
-                                    <div class="order-title">
-                                        <h4>Shipping Address</h4>
-                                    </div>
-
-                                    <ul class="order-details-box">
-                                        <li>1419 Kelley Road <br>Biloxi, MS 39531</li>
-                                        <li>Expected date of delivery: <a href="order-tracking.html"
-                                                class="txt-danger-color">Track Order</a></li>
-                                        <li class="total-price">Oct 21, 2025</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="price-details">
-                                    <div class="order-title">
-                                        <h4>Payment Method</h4>
-                                    </div>
-
-                                    <div class="order-details-box">
-                                        <p>Customers should keep the exact amount ready, as delivery agents may not have
-                                            changed. If digital payment options are available, they can be used for
-                                            convenience. Failure to pay may result in order cancellation or reattempted
-                                            delivery per the seller's policy.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </section>

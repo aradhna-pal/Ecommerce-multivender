@@ -9422,6 +9422,10 @@ body.dark .header-style-1 .top-header .right-header .content-list li a {
 }
 .header-style-1 .main-header .left-header .header-logo {
   height: calc(36px + 14 * (100vw - 320px) / 1600);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
 }
 @media (max-width: 991.98px) {
   .header-style-1 .main-header .middle-header {

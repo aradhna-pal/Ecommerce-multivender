@@ -49,7 +49,7 @@ async function proceedToCheckout() {
     if (res.ok && data.success === true) {
 
       // Show full response in alert
-      alert("✅ Checkout API Full Response:\n\n" + JSON.stringify(data, null, 2));
+      // alert("✅ Checkout API Full Response:\n\n" + JSON.stringify(data, null, 2));
 
       // Pass data to checkout.php via URL
       const encodedData = encodeURIComponent(JSON.stringify(data));
