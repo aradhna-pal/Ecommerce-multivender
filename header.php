@@ -180,7 +180,7 @@
             </div>
             <div class="middle-header searchInput" id="searchOffcanvas">
                 <div class="search-overlay" id="searchOverlay"></div>
-                <form class="search-form">
+                <form class="search-form" id="headerSearchForm">
                     <div class="input-group">
                         <div class="close-icon">
                             <i class="ri-close-fill" id="close-btn"></i>
@@ -188,11 +188,11 @@
                        
                         <input id="searchInputBox" type="search" class="form-control"
                             placeholder="I'm searching for...">
-                        <button class="search-button btn">
+                        <button class="search-button btn" type="submit">
                             <i class="ri-search-line"></i>
                         </button>
                     </div>
-                    <div class="result-box" id="resultBox">
+                    <!-- <div class="result-box" id="resultBox">
                         <div class="search-result-box search-border-box">
                             <div class="result-title mb-sm-3 mb-2">
                                 <h4>Popular Product</h4>
@@ -281,7 +281,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                 </form>
             </div>
 
@@ -2309,5 +2309,23 @@
                     window.location.href = 'index.php'; // Redirect to home page
                 });
             });
+            
+            // Handle Global Search Form
+            const searchForm = document.getElementById('headerSearchForm');
+            const searchInput = document.getElementById('searchInputBox');
+            if (searchForm && searchInput) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchQuery = urlParams.get('search');
+                if (searchQuery) {
+                    searchInput.value = searchQuery;
+                }
+                searchForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        window.location.href = 'shop.php?search=' + encodeURIComponent(query);
+                    }
+                });
+            }
         });
     </script>
