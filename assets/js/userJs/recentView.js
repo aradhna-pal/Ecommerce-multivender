@@ -46,7 +46,8 @@ async function loadRecentProducts() {
         result.data.forEach(product => {
             const productId = product.productId || "";
             const productName = product.name || "Product Name";
-            const productPrice = product.price ? `$${parseFloat(product.price).toFixed(2)}` : "$0.00";
+            const productPrice = product.salePrice ? `$${parseFloat(product.salePrice).toFixed(2)}` : "$0.00";
+            const discountPrice = product.originalPrice ? `$${parseFloat(product.originalPrice).toFixed(2)}` : "$0.00";
             const productImage = product.image 
                 ? `${BASE_URL}${product.image}` 
                 : "assets/images/product/3.png";
@@ -61,7 +62,7 @@ async function loadRecentProducts() {
                             <a href="product-detail.php?id=${productId}">
                                 <h5 class="name title-color">${productName}</h5>
                             </a>
-                            <h5 class="price">${productPrice}</h5>
+                            <h5 class="price">${productPrice} <del>${discountPrice}</del></h5>
                             <button class="btn cart-btn" onclick="goToProductDetail('${productId}')">
                                 <i class="ri-shopping-cart-line"></i>
                                 <span>Add to cart</span>
