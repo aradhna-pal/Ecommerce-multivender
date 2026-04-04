@@ -33,7 +33,7 @@
                                 Have any questions or need assistance? Our team is here to help! Reach out to us
                                 anytime, and we'll get back to you ASAP.
                             </p>
-                            <p>contact@kartify.com</p>
+                            <p>support@hyperscripts.com</p>
                             <p>520-245-2465</p>
                             <h2 class="contact-title">CONTACT</h2>
                         </div>
