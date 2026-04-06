@@ -360,7 +360,7 @@
     <div class="custom-container">
         <div class="light-bg-color overflow-hidden">
             <div class="title title-timer justify-content-between">
-                <h3>Get it all right here</h3>
+                <h3>Category</h3>
                 <a href="shop.php">See all deals <i class="ri-arrow-right-s-line"></i></a>
             </div>
 

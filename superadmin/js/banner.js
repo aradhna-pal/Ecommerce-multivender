@@ -209,6 +209,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!res.ok) throw new Error();
 
         const banners = await res.json();
+        
         const banner = banners.find(b => b.id == bannerId);
 
         if (!banner) {

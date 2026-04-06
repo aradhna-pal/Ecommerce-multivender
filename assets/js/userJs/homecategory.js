@@ -1,5 +1,5 @@
-// const BASE = "https://api.workarya.com";
-const FALLBACK_IMG = "https://api.workarya.com/"; // default image if none
+{/* <script> */}
+const FALLBACK_IMG = "https://api.workarya.com/"; // default image
 
 document.addEventListener("DOMContentLoaded", loadCategories);
 
@@ -16,17 +16,15 @@ async function loadCategories() {
         const wrapper = document.getElementById("categoryWrapper");
         wrapper.innerHTML = "";
 
-        // Filter top-level active categories
-        const parents = result.data.filter(c => c.parentId === null && c.isActive);
+        // Only active top-level parents (children presence ignored)
+        const parents = result.data.filter(c => c.isActive && c.parentId === null);
 
-        console.log("=== Parent Categories ===");
+        console.log("=== Active Parent Categories ===");
         parents.forEach(cat => {
-            console.log("Name:", cat.name);
-            console.log("Slug:", cat.slug);
-            console.log("Children Count:", cat.children.length);
-            console.log("------------------------");
+            console.log("Name:", cat.name, "Slug:", cat.slug);
 
             const img = cat.image ? cat.image : FALLBACK_IMG;
+            // alert(img)
 
             const slide = `
                 <div class="swiper-slide">
@@ -38,8 +36,6 @@ async function loadCategories() {
             `;
             wrapper.insertAdjacentHTML("beforeend", slide);
         });
-
-        console.log("Full API Data:", result.data);
 
         initCategorySwiper();
 
