@@ -224,7 +224,7 @@
                                         </div>
                                     </div> -->
 
-                                    <!-- <div class="text-md-start text-center">
+                                    <div class="text-md-start text-center">
                                         <div class="qty-box h-100 qty-container quantity-box-2">
                                             <button class="btn qty-btn qty-btn-minus" disabled="">
                                                 <i class="ri-subtract-line"></i>
@@ -235,18 +235,18 @@
                                                 <i class="ri-add-line"></i>
                                             </button>
                                         </div>
-                                    </div> -->
+                                    </div>
 
-                                    <!-- <div class="button-group d-lg-none" id="mobileButtonGroup">
+                                    <div class="button-group d-lg-none" id="mobileButtonGroup">
                                         <button class="btn buy-btn-mobile theme-bg-color text-white" data-action="buy-now">
                                             Buy now
                                         </button>
                                         <button class="btn add-to-bag-btn-mobile buy-btn-2 theme-border fw-500" data-action="add-to-cart">
                                             <i class="ri-shopping-bag-line"></i> Add to bag
                                         </button>
-                                    </div> -->
+                                    </div>
 
-                                    <!-- <ul class="size-delivery-info">
+                                    <ul class="size-delivery-info">
                                         <li>
                                             <button type="button" class="btn" data-bs-toggle="modal"
                                                 data-bs-target="#deliveryModal">
@@ -261,7 +261,7 @@
                                                 <span>Ask a question</span>
                                             </button>
                                         </li>
-                                    </ul> -->
+                                    </ul>
 
                                     <div class="about-item-box product-spacing ">
                                         <div class="product-title">
