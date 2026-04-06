@@ -768,6 +768,11 @@ if (window.location.pathname.includes('product-detail')) {
         // Call after successfully loading product data
         await addToRecentViews(id);
 
+        // ================ LOAD PRODUCT REVIEWS ================
+        if (typeof loadProductReviews === 'function') {
+          await loadProductReviews(id);
+        }
+
       } else {
         alert("Product not found or API error");
       }
@@ -1276,3 +1281,196 @@ function flashSaleCardHTML(p) {
 }
 
 
+// ==========================================
+// REVIEWS & RATING DYNAMIC LOGIC
+// ==========================================
+async function loadProductReviews(productId) {
+    try {
+        const res = await fetch(`${BASE}/api/review/product/${productId}`);
+        const json = await res.json();
+        let reviews = [];
+        if (json.success && json.data) reviews = json.data;
+        else if (Array.isArray(json)) reviews = json;
+        else if (json.data) reviews = json.data;
+
+        updateReviewStats(reviews);
+
+        const reviewList = document.getElementById("productReviewsList");
+        if (!reviewList) return;
+
+        if (reviews.length === 0) {
+            reviewList.innerHTML = `<li><div class="w-100 text-center py-4"><h5 class="text-muted">No reviews yet. Be the first to review!</h5></div></li>`;
+            return;
+        }
+
+        let html = "";
+        reviews.forEach((review, index) => {
+            let name = "Anonymous";
+            if (review.user && review.user.firstName) {
+                name = review.user.firstName + " " + (review.user.lastName || "");
+            } else if (review.email) {
+                name = review.email.split('@')[0];
+            }
+
+            let starsHtml = "";
+            for (let i = 1; i <= 5; i++) {
+                if (i <= review.rating) {
+                    starsHtml += `<li><i class="ri-star-fill fill"></i></li>`;
+                } else {
+                    starsHtml += `<li><i class="ri-star-line"></i></li>`;
+                }
+            }
+
+            let dateStr = "Recently";
+            if (review.createdAt) {
+                const d = new Date(review.createdAt);
+                dateStr = d.toLocaleDateString();
+            }
+
+            const avatarNum = (index % 6) + 1;
+
+            html += `
+                <li>
+                    <div class="people-box">
+                        <div>
+                           
+                        </div>
+                        <div class="people-comment">
+                            <div class="name">
+                                <a href="#!">${name}</a>
+                                <div class="product-rating">
+                                    <ul class="rating">
+                                        ${starsHtml}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="date-time">
+                                <h5 class="text-content h6">${dateStr}</h5>
+                            </div>
+                            <div class="reply">
+                                <p>${review.comment || ''}</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            `;
+        });
+        reviewList.innerHTML = html;
+    } catch (err) {
+        console.error("Error loading reviews:", err);
+    }
+}
+
+function updateReviewStats(reviews) {
+    const total = reviews.length;
+    let sum = 0;
+    const counts = {1:0, 2:0, 3:0, 4:0, 5:0};
+
+    reviews.forEach(r => {
+        const rating = parseInt(r.rating) || 0;
+        sum += rating;
+        if(counts[rating] !== undefined) counts[rating]++;
+    });
+
+    const avg = total > 0 ? (sum / total).toFixed(1) : 0;
+    
+    const avgDisplay = document.getElementById("avgRatingDisplay");
+    if (avgDisplay) avgDisplay.innerHTML = `${avg} <span>/5</span>`;
+
+    const totalDisplay = document.getElementById("totalRatingsDisplay");
+    if (totalDisplay) totalDisplay.innerText = `${total} ratings`;
+
+    const starsDisplay = document.getElementById("avgStarsDisplay");
+    if (starsDisplay) {
+        let starsHtml = "";
+        const roundedAvg = Math.round(avg);
+        for(let i=1; i<=5; i++) {
+            if (i <= roundedAvg) {
+                starsHtml += `<li class="theme-color"><i class="ri-star-fill fill"></i></li>`;
+            } else {
+                starsHtml += `<li><i class="ri-star-line"></i></li>`;
+            }
+        }
+        starsDisplay.innerHTML = starsHtml;
+    }
+
+    for(let i=1; i<=5; i++) {
+        const bar = document.getElementById(`bar${i}`);
+        if (bar) {
+            const pct = total > 0 ? Math.round((counts[i] / total) * 100) : 0;
+            bar.style.width = `${pct}%`;
+            bar.innerText = `${pct}%`;
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const reviewForm = document.getElementById("addReviewForm");
+    if (reviewForm) {
+        const userToken = localStorage.getItem("userToken");
+        const nameInput = document.getElementById("reviewName");
+        const emailInput = document.getElementById("reviewEmail");
+
+        // Auto-fill user details from decoded JWT token
+        if (userToken) {
+            try {
+                const payload = JSON.parse(atob(userToken.split('.')[1]));
+                const fullName = `${payload.FirstName || ''} ${payload.LastName || ''}`.trim();
+                if (nameInput) nameInput.value = fullName || payload.email || "User";
+                if (emailInput) emailInput.value = payload.email || payload.Email || "";
+            } catch(e) {}
+        }
+
+        reviewForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            if (!userToken) {
+                Swal.fire("Login Required", "Please login to add a review", "info");
+                return;
+            }
+
+            const rating = document.getElementById("reviewRating").value;
+            const comment = document.getElementById("reviewComment").value.trim();
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get("id");
+
+            if (!productId || !rating || !comment) {
+                Swal.fire("Warning", "Please provide a rating and a comment.", "warning");
+                return;
+            }
+
+            const btn = document.getElementById("submitReviewBtn");
+            btn.disabled = true;
+            btn.textContent = "Submitting...";
+
+            const formData = new FormData();
+            formData.append("Rating", rating);
+            formData.append("Comment", comment);
+
+            try {
+                const res = await fetch(`${BASE}/api/review/add/${productId}`, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${userToken}`
+                    },
+                    body: formData
+                });
+                const data = await res.json();
+
+                if (res.ok && (data.success || data.status || (data.message && data.message.toLowerCase().includes("success")))) {
+                    Swal.fire("Success", "Review added successfully!", "success");
+                    document.getElementById("reviewComment").value = "";
+                    document.getElementById("reviewRating").value = "";
+                    loadProductReviews(productId);
+                } else {
+                    Swal.fire("Error", data.message || "Failed to add review", "error");
+                }
+            } catch (err) {
+                console.error(err);
+                Swal.fire("Error", "Something went wrong", "error");
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Submit";
+            }
+        });
+    }
+});
