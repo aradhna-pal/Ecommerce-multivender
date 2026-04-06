@@ -19,6 +19,7 @@
     <script src="./js/brand.js"></script>
     <script src="./js/vender-detail.js"></script>
     <script src="./js/pincode.js"></script>
+    <script src="./js/coupon.js"></script>
     <style id="vendor-status-styles"></style>
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page
