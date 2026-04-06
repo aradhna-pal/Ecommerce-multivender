@@ -17,6 +17,8 @@
     <script src="js/size.js"></script>
     <script src="./js/catugery.js"></script>
     <script src="./js/brand.js"></script>
+    <script src="./js/vender-detail.js"></script>
+    <script src="./js/pincode.js"></script>
     <style id="vendor-status-styles"></style>
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page
@@ -75,8 +77,6 @@
     <link rel="stylesheet" href="assets/app-0f19a312.css">
     <link rel="stylesheet" href="assets/quill-fe58e407.css">
     <link rel="stylesheet" href="assets/dropify-1a8a5c67.css">
-    <script src="./vender/login.js"></script>
-    <script src="./vender/vender-detail.js"></script>
     
 
 
