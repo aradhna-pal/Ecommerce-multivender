@@ -68,6 +68,7 @@
     <script src="js/blog.js"></script>
     <script src="js/order.js"></script>
     <script src="js/vender.js"></script>
+    <script src="js/user.js"></script>
 
     <!-- <script src="js/register.js"></script> -->
 
@@ -146,8 +147,8 @@
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="all.php" class="menu-link">
-                                        <span class="menu-text">All</span>
+                                    <a href="user.php" class="menu-link">
+                                        <span class="menu-text">All Users</span>
                                     </a>
                                 </li>
                             </ul>
