@@ -1493,7 +1493,7 @@
 <!-- Newsletter Modal End -->
 
 <!-- Cookie Box Start -->
-<div class="cookie-bar-section cookie">
+<!-- <div class="cookie-bar-section cookie">
     <div class="cookie-bar-box">
         <svg>
             <use xlink:href="https://themes.pixelstrap.net/kartify/assets/images/cookie/1.svg#one"></use>
@@ -1505,7 +1505,7 @@
             <button class="btn allow-btn">Allow</button>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Cookie Box End -->
 
 <!-- Bg Overlay Start -->
