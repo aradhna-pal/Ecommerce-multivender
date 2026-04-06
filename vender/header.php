@@ -352,8 +352,18 @@
                             <ul class="sub-menu">
 
                                 <li class="menu-item">
-                                    <a href="pages-profile.php" class="menu-link">
+                                    <a href="profile.php" class="menu-link">
                                         <span class="menu-text">Profile</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="business-profile.php" class="menu-link">
+                                        <span class="menu-text">Business Profile</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="bank-details.php" class="menu-link">
+                                        <span class="menu-text">Bank Details</span>
                                     </a>
                                 </li>
 
