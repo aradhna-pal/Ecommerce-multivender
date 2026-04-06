@@ -367,7 +367,7 @@
                           <div class="divider">
                               <span>OR</span>
                           </div>
-                          <div class="social-link">
+                          <!-- <div class="social-link">
                               <a href="https://www.google.com/" class="btn w-100" target="_blank">
                                   <img src="assets/images/inner-page/google.png" class="img-fluid" alt="">
                                   <span>Sign in with google</span>
@@ -376,7 +376,7 @@
                                   <img src="assets/images/inner-page/facebook.png" class="img-fluid" alt="">
                                   <span>Sign in with facebook</span>
                               </a>
-                          </div>
+                          </div> -->
                           <h5 class="sign-up-next">Don't have an account? <button class="next-button btn">Sign up
                                   now</button></h5>
                       </form>
@@ -415,7 +415,7 @@
 
                           <button type="submit" id="submitBtn" class="btn btn-bg-theme mt-3 w-100">Sign up</button>
 
-                          <div class="divider">
+                          <!-- <div class="divider">
                               <span>OR</span>
                           </div>
 
@@ -428,7 +428,7 @@
                                   <img src="assets/images/inner-page/facebook.png" class="img-fluid" alt="">
                                   <span>Sign up with facebook</span>
                               </a>
-                          </div>
+                          </div> -->
 
                           <h5 class="sign-up-next">
                               I am already member.
@@ -1051,7 +1051,7 @@
                         <div class="divider">
                             <span>OR</span>
                         </div>
-                        <div class="social-link">
+                        <!-- <div class="social-link">
                             <a href="https://www.google.com/" class="btn w-100" target="_blank">
                                 <img src="assets/images/inner-page/google.png" class="img-fluid" alt="">
                                 <span>Sign in with google</span>
@@ -1060,7 +1060,7 @@
                                 <img src="assets/images/inner-page/facebook.png" class="img-fluid" alt="">
                                 <span>Sign in with facebook</span>
                             </a>
-                        </div>
+                        </div> -->
                         <h5 class="sign-up-next">Don't have an account? <button class="next-button btn">Sign up
                                 now</button></h5>
                     </form>
@@ -1104,7 +1104,7 @@
                             <span>OR</span>
                         </div>
 
-                        <div class="social-link">
+                        <!-- <div class="social-link">
                             <a href="https://www.google.com/" class="btn w-100" target="_blank">
                                 <img src="assets/images/inner-page/google.png" class="img-fluid" alt="">
                                 <span>Sign up with google</span>
@@ -1113,7 +1113,7 @@
                                 <img src="assets/images/inner-page/facebook.png" class="img-fluid" alt="">
                                 <span>Sign up with facebook</span>
                             </a>
-                        </div>
+                        </div> -->
 
                         <h5 class="sign-up-next">
                             I am already member.
