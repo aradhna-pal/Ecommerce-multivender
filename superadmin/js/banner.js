@@ -124,3 +124,186 @@ document.addEventListener("click", async function (e) {
 
 
 // ============================================================== delte api end ==============================================================
+
+
+
+// ================================================================= Add Banner API ===============================================================
+
+// const BASE = "https://api.workarya.com";
+
+document.addEventListener("click", async function (e) {
+  if (!e.target.closest("#addBannerBtn")) return;
+
+  const token = localStorage.getItem("superadminToken");
+
+  const title = document.getElementById("bannerName").value.trim();
+  const link = document.getElementById("bannerDescription").value.trim();
+  const imageFile = document.getElementById("bannerImage").files[0];
+  const isActive = document.getElementById("isActive").checked;
+
+  if (!title || !imageFile) {
+    Swal.fire("Error", "Title and Image required", "error");
+    return;
+  }
+
+  const fd = new FormData();
+  fd.append("Title", title);
+  fd.append("Link", link);
+  fd.append("Image", imageFile);
+  fd.append("IsActive", isActive);
+
+  try {
+    const res = await fetch(`https://api.workarya.com/api/banner/create`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+      body: fd,
+    });
+
+    if (!res.ok) throw new Error();
+
+    await Swal.fire("Success", "Banner added successfully", "success");
+
+    // ✅ redirect to banners list page
+    window.location.href = "banner.php"; // yaha apna page name do
+
+  } catch (err) {
+    Swal.fire("Error", "Banner create failed", "error");
+  }
+});
+
+
+
+// ============================================================== Add Banner API End ===============================================================
+
+
+// ================================================================ Edit Banner API ===============================================================
+// const BASE = "https://api.workarya.com";
+
+
+// ====================== EDIT BANNER SCRIPT ======================
+
+// const BASE = "https://api.workarya.com";
+
+
+
+const urlParams = new URLSearchParams(window.location.search);
+const bannerId = urlParams.get("id");
+
+if (!bannerId) {
+    Swal.fire({ title: "Error", text: "Banner ID not found!", icon: "error" });
+}
+
+// ================== LOAD EXISTING DATA ==================
+document.addEventListener("DOMContentLoaded", async function () {
+    const token = localStorage.getItem("superadminToken");
+    if (!token) {
+        Swal.fire("Error", "Token not found. Please login again.", "error");
+        return;
+    }
+
+    try {
+        const res = await fetch(`${BASE}/api/banner/list`, {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+
+        if (!res.ok) throw new Error();
+
+        const banners = await res.json();
+        const banner = banners.find(b => b.id == bannerId);
+
+        if (!banner) {
+            Swal.fire("Error", "Banner not found", "error");
+            return;
+        }
+
+        document.getElementById("bannerName").value = banner.title || "";
+        document.getElementById("bannerDescription").value = banner.link || "";
+
+        const isActiveCheckbox = document.getElementById("isActive");
+        isActiveCheckbox.checked = !!banner.isActive;
+
+        const toggleLabel = document.getElementById("toggleLabel");
+        if (toggleLabel) toggleLabel.textContent = banner.isActive ? "Active" : "Inactive";
+
+        if (banner.image) {
+            const preview = document.getElementById("previewImage");
+            const placeholder = document.getElementById("placeholderText");
+            preview.src = BASE + banner.image;
+            preview.style.display = "block";
+            placeholder.style.display = "none";
+        }
+
+    } catch (err) {
+        console.error(err);
+        Swal.fire("Error", "Failed to load banner details", "error");
+    }
+});
+
+// ================== UPDATE BANNER (NO _method) ==================
+document.addEventListener("click", async function (e) {
+    if (!e.target.closest("#editBannerBtn")) return;
+
+    const token = localStorage.getItem("superadminToken");
+    if (!token) return;
+
+    const title = document.getElementById("bannerName").value.trim();
+    const link = document.getElementById("bannerDescription").value.trim();
+    const imageFile = document.getElementById("bannerImage").files[0];
+    const isActive = document.getElementById("isActive").checked;
+
+    if (!title) {
+        Swal.fire("Error", "Banner Name is required", "error");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("id", bannerId);
+    formData.append("Title", title);
+    formData.append("Link", link || "");
+    formData.append("IsActive", isActive ? "true" : "false");
+
+    // Image bhi bhejo agar select ki ho
+    if (imageFile) {
+        formData.append("Image", imageFile);
+        console.log("✅ New image added to FormData:", imageFile.name);
+    } else {
+        console.log("ℹ️ No new image selected");
+    }
+
+
+    // 🔥 Important Fix
+    // formData.append("_method", "PUT");
+
+    try {
+        const res = await fetch(`${BASE}/api/banner/update`, {
+            method: "PUT",                    // ← POST rakho
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Accept": "application/json"
+            },
+            body: formData
+        });
+
+        const text = await res.text();
+        console.log("=== UPDATE RAW RESPONSE ===");
+        console.log("Status:", res.status, res.statusText);
+        console.log("Body:", text);
+
+        let result = {};
+        try { 
+            result = JSON.parse(text); 
+        } catch (e) {}
+
+        if (res.ok || result.success === true || result.status === true) {
+            Swal.fire("Success", "Banner updated successfully", "success")
+                .then(() => window.location.href = "banner.php");
+        } else {
+            const msg = result.message || result.error || text || "Update failed";
+            throw new Error(msg);
+        }
+
+    } catch (err) {
+        console.error("Update Error:", err);
+        Swal.fire("Error", err.message || "Failed to update banner", "error");
+    }
+});
