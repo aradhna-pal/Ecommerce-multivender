@@ -57,7 +57,7 @@
                                               
                                                 <th>Mobile</th>
                                                 <th>Email</th>
-                                                <th>Image</th>
+                                             
                                                 
                                                 <th>Status</th>
                                          
