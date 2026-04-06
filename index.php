@@ -66,10 +66,12 @@
                     list-style: none;
                     margin: 0;
                     padding: 0;
+                    position: relative;
                 }
 
                 .sub-menu-list li {
                     position: relative;
+                    position: static;
                 }
 
                 .sub-menu-list li a {
@@ -107,6 +109,8 @@
                     position: absolute;
                     top: 0;
                     left: 100%;
+                    width: 100%;
+                    min-height: 100%;
                     /* flyout to right */
                     min-width: 200px;
                     background: #fff;
@@ -2288,6 +2292,19 @@
                            "beforeend",
                            `<li><a href="shop.php?brandId=${brandId}">${brandName}</a></li>`
                        );
+                   });
+               } else {
+                   brandListContainer.innerHTML = "<li>No brands available</li>";
+               }
+           } catch (error) {
+               console.error("Error loading brands:", error);
+               brandListContainer.innerHTML = "<li>Error loading brands</li>";
+           }
+       }
+   });
+</script>
+
+<?php include 'footer.php'; ?>
                    });
                } else {
                    brandListContainer.innerHTML = "<li>No brands available</li>";
