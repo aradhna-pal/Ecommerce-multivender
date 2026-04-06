@@ -55,6 +55,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
 
     <script src="./assets/js/userJs/login.js"></script>
     <Script src="./assets/js/userJs/blog.js"></Script>
@@ -69,6 +70,7 @@
     <script src="./assets/js/userJs/productFilter.js"></script>
     <script src="./assets/js/userJs/wishlist-notify.js"></script>
     <script src="./assets/js/userJs/trackorder.js"></script>
+    <script src="./assets/js/userJs/homecategory.js"></script>
     <!-- <script src="./assets/js/userJs/user-order.js"></script> -->
 
 

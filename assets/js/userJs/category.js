@@ -47,3 +47,14 @@ async function loadCategories() {
 }
 
 document.addEventListener("DOMContentLoaded", loadCategories);
+
+
+
+
+
+
+
+
+
+
+// ==================================================== INDEX PAGE CATEOGY SLIDER ====================================================

@@ -365,7 +365,7 @@
             </div>
 
             <div class="swiper category-box-slide">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper" id="categoryWrapper">
                     <div class="swiper-slide">
                         <a href="shop.php" class="category-box">
                             <img src="assets/images/category/1.png" class="img-fluid" alt="">
