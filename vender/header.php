@@ -20,6 +20,7 @@
     <script src="./js/vender-detail.js"></script>
     <script src="./js/pincode.js"></script>
     <script src="./js/coupon.js"></script>
+    <script src="./js/all-article.js"></script>
     <style id="vendor-status-styles"></style>
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page
@@ -243,12 +244,6 @@
                                         <span class="menu-text"> All Articles</span>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="all-press.php" class="menu-link">
-                                        <span class="menu-text"> All Press</span>
-                                    </a>
-                                </li>
-
                             </ul>
                         </div>
                     </li>
