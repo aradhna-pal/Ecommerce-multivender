@@ -1216,7 +1216,7 @@ body.dark .tap-top-button .btn:hover .iconsax {
 
 /* Recent Order Scss */
 .recently-product-box {
-  z-index: 6;
+  z-index: 99999 !important;
   position: fixed;
   bottom: 5px;
   opacity: 0;

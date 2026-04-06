@@ -832,65 +832,7 @@ const box = document.querySelector('.recently-product-box');
 const closeBtn = document.querySelector('.recent-close');
 const timerElement = document.querySelector('.recent-content .timer');
 
-const products = [
-    {
-        imageSrc: '../assets/images/product/1.png',
-        productName: 'Smart Watch Series X3',
-        productLink: 'product-color.html',
-        price: '239.00',
-        originalPrice: '250.00'
-    },
-    {
-        imageSrc: '../assets/images/product/23.png',
-        productName: 'BlackBerry Keyone BBB100-7 64gb unlocked gSM',
-        productLink: 'product-color.html',
-        price: '1920.00',
-        originalPrice: '2000.00'
-    },
-    {
-        imageSrc: '../assets/images/product/30.png',
-        productName: 'Canon EOS 1500D DSLR Camera Body+ 18-55 mm',
-        productLink: 'product-color.html',
-        price: '199.00',
-        originalPrice: '252.00'
-    },
-    {
-        imageSrc: '../assets/images/product/27.png',
-        productName: 'Motorola Moto X4 32GB Unlocked Smartphone',
-        productLink: 'product-color.html',
-        price: '1220.00',
-        originalPrice: '1269.00'
-    },
-    {
-        imageSrc: '../assets/images/product/34.png',
-        productName: 'Shears Kitchen Spoone 6 Piece Set with Wooden Block',
-        productLink: 'product-color.html',
-        price: '1209.00',
-        originalPrice: '1225.00'
-    },
-    {
-        imageSrc: '../assets/images/product/31.png',
-        productName: 'Pro Healthy Lifestyle Edible Oil 5 litre Jar | Saffola Gold Refined Oil',
-        productLink: 'product-color.html',
-        price: '1920.00',
-        originalPrice: '2000.00'
-    },
-    {
-        imageSrc: '../assets/images/product/35-1.png',
-        productName: 'Herschel Leather duffle bag in brown color',
-        productLink: 'product-color.html',
-        price: '670.00',
-        originalPrice: '900.00'
-    },
-    {
-        imageSrc: '../assets/images/product/26.png',
-        productName: 'EvoFox Game Box 32 GB with Asphalt 8 ',
-        productLink: 'product-color.html',
-        price: '130.00',
-        originalPrice: '153.00'
-    }
-];
-
+let dynamicProducts = [];
 let currentIndex = 0;
 
 function getRandomDelay(minSeconds, maxSeconds) {
@@ -908,19 +850,25 @@ function getRandomTimeText() {
 }
 
 function updateRecentProduct(product) {
-    if (!box) return;
+    if (!box || !product) return;
 
+    const imgBox = box.querySelector('a');
     const img = box.querySelector('img');
     const link = box.querySelector('.recent-content a');
     const priceTag = box.querySelector('.price');
 
-    if (img) img.src = product.imageSrc;
+    const BASE = "https://api.workarya.com";
+    const imgSrc = product.mainImage ? (product.mainImage.startsWith('http') ? product.mainImage : BASE + product.mainImage) : "assets/images/product/placeholder.png";
+    const productUrl = `product-detail.php?id=${product._id || product.id}`;
+
+    if (imgBox) imgBox.href = productUrl;
+    if (img) img.src = imgSrc;
     if (link) {
-        link.textContent = product.productName;
-        link.href = product.productLink;
+        link.textContent = product.name;
+        link.href = productUrl;
     }
     if (priceTag) {
-        priceTag.innerHTML = `$${product.price} <del>$${product.originalPrice}</del>`;
+        priceTag.innerHTML = `₹${product.discountPrice || product.price || 0} ${product.discountPrice ? `<del>₹${product.price}</del>` : ""}`;
     }
 
     if (timerElement) {
@@ -935,8 +883,10 @@ function updateRecentProduct(product) {
 
         const nextDelay = getRandomDelay(8, 9);
         setTimeout(() => {
-            currentIndex = (currentIndex + 1) % products.length;
-            updateRecentProduct(products[currentIndex]);
+            if (dynamicProducts.length > 0) {
+                currentIndex = (currentIndex + 1) % dynamicProducts.length;
+                updateRecentProduct(dynamicProducts[currentIndex]);
+            }
         }, nextDelay);
     }, removeDelay);
 }
@@ -947,7 +897,26 @@ if (closeBtn && box) {
     });
 }
 
-const initialDelay = getRandomDelay(8, 9);
-setTimeout(() => {
-    updateRecentProduct(products[currentIndex]);
-}, initialDelay);
+async function initRecentProducts() {
+    if (!box) return;
+    try {
+        const res = await fetch('https://api.workarya.com/api/products/list?page=1&pageSize=15');
+        const json = await res.json();
+        
+        if (json.success && json.data) {
+            dynamicProducts = json.data.data || json.data || [];
+            dynamicProducts = dynamicProducts.sort(() => 0.5 - Math.random());
+            
+            if (dynamicProducts.length > 0) {
+                const initialDelay = getRandomDelay(8, 9);
+                setTimeout(() => {
+                    updateRecentProduct(dynamicProducts[currentIndex]);
+                }, initialDelay);
+            }
+        }
+    } catch (e) {
+        console.error('Failed to load recent products for popup:', e);
+    }
+}
+
+initRecentProducts();
