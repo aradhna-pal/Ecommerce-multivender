@@ -71,6 +71,7 @@
     <script src="js/user.js"></script>
     <script src="js/coupon.js"></script>
     <script src="js/pincode.js"></script>
+    <script src="js/banner.js"></script>
 
     <!-- <script src="js/register.js"></script> -->
 
