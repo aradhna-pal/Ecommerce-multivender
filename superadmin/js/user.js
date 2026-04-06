@@ -10,6 +10,7 @@ async function loadUsers() {
         "Authorization": `Bearer ${token}`
       }
     });
+    
 
     const result = await res.json();
     if (!result.success) return;
@@ -31,6 +32,7 @@ async function loadUsers() {
        
           <td>${new Date(u.createDate).toLocaleDateString()}</td>
           <td>${statusBadge}</td>
+
         </tr>
       `;
     });
