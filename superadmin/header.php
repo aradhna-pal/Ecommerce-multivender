@@ -69,6 +69,7 @@
     <script src="js/order.js"></script>
     <script src="js/vender.js"></script>
     <script src="js/user.js"></script>
+    <script src="js/coupon.js"></script>
 
     <!-- <script src="js/register.js"></script> -->
 

@@ -49,10 +49,10 @@
                                                   S.no
                                                 </th>
                                                 <!-- <th class="all">S.no</th> -->
-                                                <th>Coupon Name</th>
+                                                <th>Coupon Code</th>
                                                 <th>Coupon Type</th>
-                                                <th>Amount</th>
-                                                <th>Expiry Date</th>
+                                                <th>Value</th>
+                                               
                                                 <th>Status</th>
                                               
                                                 <th>Edit</th>
@@ -60,43 +60,8 @@
                                                 <!-- <th style="width: 120px;">Action</th> -->
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                   1
-                                                </td>
-                                              
-                                                <td>
-                                                    S
-                                                </td>
-                                                <td>
-                                                    Single time 
-                                                </td>
-                                                <td>
-                                                    100%
-                                                </td>
-                                                <td>
-                                                    31 Dec, 2024
-                                                </td>
-                                                
-                                               
-                                                <td>
-                                                    <span class="badge bg-success-subtle text-success p-1">Published</span>
-                                                </td>
-
-                                             
-                                                <td class="table-action">
-                                                    <!-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a> -->
-                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                    <!-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-trash-can"></i></a> -->
-                                                </td>
-                                                <td class="table-action">
-                                                    <!-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a> -->
-                                                    <!-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a> -->
-                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-trash-can"></i></a>
-                                                </td>
-                                            </tr>
-
+                                        <tbody id="allcoupon">
+                                           
                                          
                                         </tbody>
                                     </table>
