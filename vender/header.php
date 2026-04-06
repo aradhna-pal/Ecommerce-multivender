@@ -18,11 +18,37 @@
     <script src="./js/catugery.js"></script>
     <script src="./js/brand.js"></script>
     
-
+    <style id="vendor-status-styles"></style>
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page
-        if (!localStorage.getItem("vendorToken")) {
+        const token = localStorage.getItem("vendorToken");
+        if (!token) {
             window.location.href = "login.php";
+        } else {
+            try {
+                // Decode JWT Payload safely
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const payload = JSON.parse(atob(base64));
+                
+                // Hide non-essential menus if status is not 'approved'
+                if (payload.Status !== 'approved') {
+                    document.getElementById('vendor-status-styles').innerHTML = `
+                        #menu-dashboard,
+                        #menu-ecommerce,
+                        #menu-order,
+                        #menu-pincode,
+                        #menu-blogs,
+                        #menu-enqueries,
+                        #menu-rating,
+                        #menu-invoice {
+                            display: none !important;
+                        }
+                    `;
+                }
+            } catch (e) {
+                console.error("Error decoding token:", e);
+            }
         }
     </script>
 
@@ -85,7 +111,7 @@
 
                     <!-- <li class="menu-title">Navigation</li> -->
 
-                    <li class="menu-item">
+                    <li class="menu-item" id="menu-dashboard">
                         <a href="index.php" class="menu-link">
                             <span class="menu-icon"><i data-feather="home"></i></span>
                             <span class="menu-text"> Dashboard </span>
@@ -97,7 +123,7 @@
 
 
 
-                    <li class="menu-item">
+                    <li class="menu-item" id="menu-ecommerce">
                         <a href="#ecommerce" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="shopping-cart"></i></span>
                             <span class="menu-text"> Ecommerce </span>
@@ -164,7 +190,7 @@
 
 
 
-                    <li class="menu-item">
+                    <li class="menu-item" id="menu-order">
                         <a href="#order" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="shopping-bag"></i> </span>
                             <span class="menu-text"> Order </span>
@@ -181,48 +207,7 @@
                             </ul>
                         </div>
                     </li>
-
-
-
-
-
-
-                    <li class="menu-item">
-                        <a href="#user" data-bs-toggle="collapse" class="menu-link">
-                            <span class="menu-icon"><i data-feather="user"></i> </span>
-                            <span class="menu-text"> User Management </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="user">
-                            <ul class="sub-menu">
-                                <li class="menu-item">
-                                    <a href="apps-invoice-report.php" class="menu-link">
-                                        <span class="menu-text">User</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="#banner" data-bs-toggle="collapse" class="menu-link">
-                            <span class="menu-icon"><i data-feather="image"></i> </span>
-                            <span class="menu-text"> Banner Management </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="banner">
-                            <ul class="sub-menu">
-                                <li class="menu-item">
-                                    <a href="banner.php" class="menu-link">
-                                        <span class="menu-text">Banner</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="menu-item">
+                    <li class="menu-item" id="menu-pincode">
                         <a href="#pincode" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="map-pin"></i> </span>
                             <span class="menu-text">All Pincode </span>
@@ -239,7 +224,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item" id="menu-blogs">
                         <a href="#blogs" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="clipboard"></i> </span>
                             <span class="menu-text">Blogs </span>
@@ -267,7 +252,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item">
+                    <li class="menu-item" id="menu-enqueries">
                         <a href="#enqueries" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="help-circle"></i> </span>
                             <span class="menu-text"> Enqueries </span>
@@ -300,7 +285,7 @@
                     </li>
 
 
-                    <li class="menu-item">
+                    <li class="menu-item" id="menu-rating">
                         <a href="#rating" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="star"></i> </span>
                             <span class="menu-text"> Rating Management </span>
@@ -317,7 +302,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item" id="menu-invoice">
                         <a href="#invoice" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="file-text"></i></span>
                             <span class="menu-text"> Invoice </span>
