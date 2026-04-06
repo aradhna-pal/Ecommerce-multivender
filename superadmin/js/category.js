@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==================== CONFIG ====================
     const BASE_URL = "https://api.workarya.com/api/category";
     const IMAGE_BASE_URL = "https://api.workarya.com/uploads/";
-    let token = localStorage.getItem('vendorToken') || '';
+    let token = localStorage.getItem('superadminToken') || '';
     let allCategories = [];
 
     // ==================== LOAD CATEGORIES ====================
@@ -622,6 +622,3 @@ document.addEventListener("DOMContentLoaded", function () {
     })();
 
 });
-
-
-
