@@ -2304,17 +2304,6 @@
    });
 </script>
 
-<?php include 'footer.php'; ?>
-                   });
-               } else {
-                   brandListContainer.innerHTML = "<li>No brands available</li>";
-               }
-           } catch (error) {
-               console.error("Error loading brands:", error);
-               brandListContainer.innerHTML = "<li>Error loading brands</li>";
-           }
-       }
-   });
-</script>
+
 
 <?php include 'footer.php'; ?>
