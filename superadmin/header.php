@@ -69,6 +69,7 @@
     <script src="js/order.js"></script>
     <script src="js/vender.js"></script>
     <script src="js/user.js"></script>
+    <script src="js/coupon.js"></script>
 
     <!-- <script src="js/register.js"></script> -->
 
@@ -146,11 +147,11 @@
                                         <span class="menu-text">Vender</span>
                                     </a>
                                 </li>
-                                <li class="menu-item">
+                                <!-- <li class="menu-item">
                                     <a href="user.php" class="menu-link">
                                         <span class="menu-text">All Users</span>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </li>
@@ -262,7 +263,7 @@
                         <div class="collapse" id="user">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a href="apps-invoice-report.php" class="menu-link">
+                                    <a href="user.php" class="menu-link">
                                         <span class="menu-text">User</span>
                                     </a>
                                 </li>
