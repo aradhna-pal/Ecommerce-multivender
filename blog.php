@@ -5,7 +5,7 @@
     <section class="breadcrumb-section">
         <div class="custom-container">
             <div class="breadcrumb-contain">
-                <h2>Blog Grid 2</h2>
+                <h2>Blog </h2>
                 <nav>
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item">
@@ -13,7 +13,7 @@
                                 <i class="ri-home-3-fill"></i>
                             </a>
                         </li>
-                        <li class="breadcrumb-item active">Blog grid</li>
+                        <li class="breadcrumb-item active">Blog </li>
                     </ol>
                 </nav>
             </div>
