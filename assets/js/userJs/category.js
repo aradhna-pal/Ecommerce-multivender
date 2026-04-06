@@ -43,8 +43,9 @@ async function loadCategories() {
         function renderCategory(cat, parentUl) {
             const li = document.createElement("li");
 
+            const catId = cat._id || cat.id || "";
             const a = document.createElement("a");
-            a.href = "shop.php"; // or dynamic slug: `shop.php?slug=${cat.slug}`
+            a.href = `shop.php?categoryId=${encodeURIComponent(catId)}`;
             a.classList.add("sub-category-box");
 
             const h5 = document.createElement("h5");

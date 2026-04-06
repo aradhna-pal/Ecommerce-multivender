@@ -16,37 +16,6 @@
 
 
                         <ul class="sub-menu-list" id="categoryList">
-                            <li>
-                                <a href="shop.php" class="sub-category-box">
-                                    <i class="ri-macbook-line"></i>
-                                    <h5>Mobiles, Computers</h5>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="shop.php" class="sub-category-box">
-                                    <i class="ri-plug-2-line"></i>
-                                    <h5>TV, Appliances, Electronics</h5>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="shop.php" class="sub-category-box">
-                                    <i class="ri-men-line"></i>
-                                    <h5>Men's Fashion</h5>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="shop.php" class="sub-category-box">
-                                    <i class="ri-women-line"></i>
-                                    <h5>Women's Fashion <span class="success-bg-color">New</span></h5>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="shop.php" class="sub-category-box">
-                                    <i class="ri-knife-line"></i>
-                                    <h5>Home, Kitchen, Pets</h5>
-                                </a>
-                            </li>
-
                         </ul>
                     </div>
                 </div>

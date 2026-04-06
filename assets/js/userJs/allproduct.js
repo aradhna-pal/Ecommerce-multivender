@@ -342,11 +342,14 @@ async function loadProducts(page = 1, limit = 50) {
   }
 
   const brandIdQuery = urlParams.get('brandId');
+  const categoryIdQuery = urlParams.get('categoryId');
   let hasBrandFilter = false;
+  let hasCategoryFilter = false;
 
   if (currentFilters) {
       if (currentFilters.categories?.length > 0) {
           url += `&categoryIds=${currentFilters.categories.map(c => c.id).join(',')}`;
+          hasCategoryFilter = true;
       }
       if (currentFilters.brands?.length > 0) {
           url += `&brandIds=${currentFilters.brands.map(b => b.id).join(',')}`;
@@ -365,6 +368,11 @@ async function loadProducts(page = 1, limit = 50) {
 
   if (brandIdQuery && !hasBrandFilter) {
       url += `&brandIds=${encodeURIComponent(brandIdQuery)}`;
+  }
+
+  // Apply category ID from URL if not already handled by a sidebar filter selection
+  if (categoryIdQuery && !hasCategoryFilter) {
+      url += `&categoryIds=${encodeURIComponent(categoryIdQuery)}`;
   }
 
   try {
