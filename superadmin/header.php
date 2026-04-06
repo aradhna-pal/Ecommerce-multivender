@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
 
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/favicon.webp">
- 
+
     <script>
 
         let token = localStorage.getItem("superadminToken");
@@ -67,8 +67,10 @@
     <script src="js/uploadExcel.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/order.js"></script>
+    <script src="js/vender.js"></script>
+
     <!-- <script src="js/register.js"></script> -->
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
@@ -130,6 +132,29 @@
                     <!-- <li class="menu-title">Apps</li> -->
 
 
+                    <li class="menu-item">
+                        <a href="#admin" data-bs-toggle="collapse" class="menu-link">
+                            <span class="menu-icon"><i data-feather="shopping-bag"></i> </span>
+                            <span class="menu-text"> Admin Management </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="admin">
+                            <ul class="sub-menu">
+                                <li class="menu-item">
+                                    <a href="vender.php" class="menu-link">
+                                        <span class="menu-text">Vender</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="all.php" class="menu-link">
+                                        <span class="menu-text">All</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
 
                     <li class="menu-item">
                         <a href="#ecommerce" data-bs-toggle="collapse" class="menu-link">
@@ -156,7 +181,7 @@
                                     </a>
                                 </li> -->
 
-                                
+
                                 <!-- <li class="menu-item">
                                     <a href="apps-ecommerce-products-details.html" class="menu-link">
                                         <span class="menu-text">Product Details</span>
@@ -175,16 +200,7 @@
                                         <span class="menu-text">Category </span>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="sub-category.php" class="menu-link">
-                                        <span class="menu-text"> Sub Category</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="child-category.php" class="menu-link">
-                                        <span class="menu-text"> Child Category</span>
-                                    </a>
-                                </li>
+
                                 <li class="menu-item">
                                     <a href="color.php" class="menu-link">
                                         <span class="menu-text"> Color</span>
