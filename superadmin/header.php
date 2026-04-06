@@ -334,7 +334,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item">
+                    <!-- <li class="menu-item">
                         <a href="#enqueries" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="help-circle"></i> </span>
                             <span class="menu-text"> Enqueries </span>
@@ -364,7 +364,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
 
 
                     <li class="menu-item">

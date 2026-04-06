@@ -246,3 +246,9 @@ async function deleteAddress(id) {
 
 // Load addresses on page load
 document.addEventListener('DOMContentLoaded', loadAddresses);
+
+
+
+
+
+

@@ -33,12 +33,12 @@
                         <div class="profile-box">
                             <div class="profile-contain">
                                 <div class="profile-image">
-                                    <img src="../assets/images/review/1.jpg" class="img-fluid update_img" alt="">
+                                    <img src="../assets/images/review/1.jpg" class="img-fluid update_img" alt="" id="userProfileImage">
                                 </div>
 
                                 <div class="profile-name">
-                                    <h3>Kennedy Page</h3>
-                                    <h4 class="text-content">kennedy@example.com</h4>
+                                    <h3 id="userFullName">Kennedy Page</h3>
+                                    <h4 id="userEmail" class="text-content">kennedy@example.com</h4>
                                 </div>
                             </div>
                         </div>
@@ -48,6 +48,8 @@
                                 <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-dashboard" type="button"><i class="ri-home-2-line"></i>
                                     Dashboard</button>
+
+                                    
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
