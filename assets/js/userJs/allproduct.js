@@ -1274,3 +1274,5 @@ function flashSaleCardHTML(p) {
     </div>
   `;
 }
+
+

@@ -37,8 +37,8 @@
                                 </div>
 
                                 <div class="profile-name">
-                                    <h3 id="userFullName">Kennedy Page</h3>
-                                    <h4 id="userEmail" class="text-content">kennedy@example.com</h4>
+                                    <h3 id="userFullName"></h3>
+                                    <h4 id="userEmail" class="text-content"></h4>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                             </li>
                         </ul>
                         <div class="logout-box">
-                            <button class="nav-link logout-btn theme-bg-color text-light"><i
+                            <button class="nav-link logout-btn theme-bg-color text-light" logout-nav><i
                                     class="ri-logout-box-line"></i>Log Out</button>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         <div class="tab-pane fade active show" id="pills-dashboard">
                             <div class="dashboard-home dashboard-bg-box">
                                 <div class="title d-block">
-                                    <h3>Welcome Back, Kennedy Page</h3>
+                                    <h3 id="welcomeUserName"></h3>
                                     <p class="mt-2 fw-normal">From your My Account Dashboard you have the ability to
                                         view a snapshot of your recent account activity and update your account
                                         information. Select a link below to view or edit information.</p>
@@ -840,5 +840,58 @@
         </div>
     </section>
     <!-- News-letter Section End -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let user = null;
+            const userDataStr = localStorage.getItem("userData");
+            if (userDataStr) {
+                try {
+                    user = JSON.parse(userDataStr);
+                } catch(e) {}
+            }
+            
+            const token = localStorage.getItem('userToken');
+            if (!user && token) {
+                try {
+                    const base64Url = token.split('.')[1];
+                    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                    const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+                        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                    }).join(''));
+                    user = JSON.parse(jsonPayload);
+                } catch (e) {
+                    console.error("Could not parse token");
+                }
+            }
+
+            if (user) {
+                const firstName = user.firstname || user.firstName || user.name || "User";
+                const lastName = user.lastname || user.lastName || "";
+                const fullName = (firstName + " " + lastName).trim();
+                const email = user.email || "";
+                
+                const userFullNameEl = document.getElementById("userFullName");
+                const userEmailEl = document.getElementById("userEmail");
+                const welcomeUserNameEl = document.getElementById("welcomeUserName");
+                
+                if (userFullNameEl) userFullNameEl.textContent = fullName;
+                if (userEmailEl) userEmailEl.textContent = email;
+                if (welcomeUserNameEl) welcomeUserNameEl.textContent = "Welcome Back, " + fullName;
+
+                const profileImg = user.image || user.profileImage || user.profilePic || user.avatar;
+                const userProfileImageEl = document.getElementById("userProfileImage");
+                if (userProfileImageEl && profileImg && profileImg.trim() !== "") {
+                    if(profileImg.startsWith('http')) {
+                        userProfileImageEl.src = profileImg;
+                    } else if (profileImg.startsWith('/')) {
+                        userProfileImageEl.src = 'https://api.workarya.com' + profileImg;
+                    } else {
+                        userProfileImageEl.src = 'https://api.workarya.com/' + profileImg;
+                    }
+                }
+            }
+        });
+    </script>
 
     <?php include 'footer.php'; ?>
