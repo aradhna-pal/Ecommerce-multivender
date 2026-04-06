@@ -45,24 +45,16 @@
                                     <table class="table table-centered w-100 nowrap mb-0">
                                         <thead class="table-light">
                                             <tr>
-                                                <th >
-                                                  S.no
-                                                </th>
-                                                <!-- <th class="all">S.no</th> -->
-                                                <th>Coupon Code</th>
+                                                <th>S.No</th>
+                                                <th>Coupon Name</th>
                                                 <th>Coupon Type</th>
-                                                <th>Value</th>
-                                               
-                                                <th>Status</th>
-                                              
+                                                <th>Amount</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
-                                                <!-- <th style="width: 120px;">Action</th> -->
                                             </tr>
                                         </thead>
-                                        <tbody id="allcoupon">
-                                           
-                                         
+                                        <tbody id="allCoupons">
+                                            <!-- Dynamic Content Rendered via JS -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -76,4 +68,3 @@
             </div> <!-- content -->
 
             <?php include 'footer.php'; ?>
-            

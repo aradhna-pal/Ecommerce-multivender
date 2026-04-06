@@ -7,11 +7,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center py-2">
-                    <h4>Add Coupon</h4>
+                    <h4>Edit Coupon</h4>
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">TechUI</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
-                        <li class="breadcrumb-item active">Add Coupon</li>
+                        <li class="breadcrumb-item active">Edit Coupon</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title mb-1">Details</h4>
-                        <p class="mb-0 text-muted">Create a new discount coupon.</p>
+                        <p class="mb-0 text-muted">Update your discount coupon.</p>
                     </div>
                     <div class="card-body">
-                        <form id="addCouponForm">
+                        <form id="editCouponForm">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="couponCode">Coupon Code <span class="text-danger">*</span></label>
@@ -79,8 +79,8 @@
             </div>
             
             <div class="d-flex justify-content-end mb-3">
-                <button type="button" class="btn btn-dark" id="addCouponBtn">
-                    Add Coupon
+                <button type="button" class="btn btn-dark" id="editCouponBtn">
+                    Update Coupon
                 </button>
             </div>
 
