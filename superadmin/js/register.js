@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("email", email);
             formData.append("password", password);
             formData.append("phone", phone);
-            formData.append("role", "USER");
+            formData.append("role", "SUPERADMIN"); // ✅ role added
 
             // API call
             const response = await fetch("https://api.workarya.com/register", {

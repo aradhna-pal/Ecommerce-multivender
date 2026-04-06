@@ -32,10 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("email", email);
             formData.append("password", password);
             formData.append("phone", phone);
-            formData.append("role", "ADMIN");
-
             // API call
-            const response = await fetch("https://api.workarya.com/register", {
+            const response = await fetch("https://api.workarya.com/register-vendor", {
                 method: "POST",
                 body: formData
             });
