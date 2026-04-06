@@ -46,15 +46,15 @@
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    
+
 
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> -->
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <script src="./assets/js/userJs/login.js"></script>
     <Script src="./assets/js/userJs/blog.js"></Script>
@@ -185,7 +185,7 @@
                         <div class="close-icon">
                             <i class="ri-close-fill" id="close-btn"></i>
                         </div>
-                       
+
                         <input id="searchInputBox" type="search" class="form-control"
                             placeholder="I'm searching for...">
                         <button class="search-button btn" type="submit">
@@ -317,7 +317,7 @@
                     <li>
                         <a data-bs-toggle="offcanvas" href="#wishlistOffcanvas">
                             <i class="iconsax" data-icon-name="heart"></i>
-                              <span class="label"><span id="wishlistCount">0</span></span>
+                            <span class="label"><span id="wishlistCount">0</span></span>
                         </a>
                     </li>
                     <li>
@@ -359,16 +359,14 @@
                                 </li>
 
                                 <li class="nav-item dropdown mega-dropdown">
-                                    <a class="nav-link " href="shop.php" data-bs-auto-close="outside"
-                                        >Shop</a>
-                                   
+                                    <a class="nav-link " href="shop.php" data-bs-auto-close="outside">Shop</a>
+
                                 </li>
 
                                 <li class="nav-item dropdown mega-dropdown">
-                                    <a class="nav-link " href="about-us.php" 
-                                        data-bs-auto-close="outside">About Us</a>
+                                    <a class="nav-link " href="about-us.php" data-bs-auto-close="outside">About Us</a>
 
-                                 
+
                                 </li>
 
                                 <!-- <li class="nav-item dropdown mega-dropdown">
@@ -2168,18 +2166,18 @@
                                     </div>
                                 </li> -->
 
-                            
 
-                             
+
+
 
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link" href="blog.php">Blog</a>
-                                    
+
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link" href="contact-us.php">Contact Us</a>
-                                    
+
                                 </li>
                             </ul>
                         </div>
@@ -2201,25 +2199,25 @@
                                 </button>
                             </div>
 
-                       <ul class="product-box-list" id="recentViewProduct">
-    <li>
-        <div class="vertical-product-box">
-            <a href="product-color.php" class="product-image">
-                <img src="assets/images/product/3.png" class="img-fluid" alt="">
-            </a>
-            <div class="product-content">
-                <a href="product-color.php">
-                    <h5 class="name title-color">Portable Laptop Table</h5>
-                </a>
-                <h5 class="price">$199.00 <del>$200.00</del></h5>
-                <button class="btn cart-btn">
-                    <i class="ri-shopping-cart-line"></i>
-                    <span>Add to cart</span>
-                </button>
-            </div>
-        </div>
-    </li>
-</ul>
+                            <ul class="product-box-list" id="recentViewProduct">
+                                <li>
+                                    <div class="vertical-product-box">
+                                        <a href="product-color.php" class="product-image">
+                                            <img src="assets/images/product/3.png" class="img-fluid" alt="">
+                                        </a>
+                                        <div class="product-content">
+                                            <a href="product-color.php">
+                                                <h5 class="name title-color">Portable Laptop Table</h5>
+                                            </a>
+                                            <h5 class="price">$199.00 <del>$200.00</del></h5>
+                                            <button class="btn cart-btn">
+                                                <i class="ri-shopping-cart-line"></i>
+                                                <span>Add to cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
 
                             <div class="empty-message">
                                 <svg>
@@ -2231,7 +2229,7 @@
                             </div>
                         </div>
                     </li>
-                   
+
                 </ul>
             </div>
         </div>
@@ -2281,13 +2279,13 @@
     <!-- Mobile Menu End -->
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const userToken = localStorage.getItem('userToken');
-            
+
             const myAccountNav = document.getElementById('my-account-nav');
             const loginNav = document.getElementById('login-nav');
             const logoutNav = document.getElementById('logout-nav');
-            
+
             const guestActions = document.querySelectorAll('.guest-action');
             const userActions = document.querySelectorAll('.user-action');
 
@@ -2295,7 +2293,7 @@
                 if (myAccountNav) myAccountNav.style.display = '';
                 if (loginNav) loginNav.style.display = 'none';
                 if (logoutNav) logoutNav.style.display = '';
-                
+
                 guestActions.forEach(el => el.style.display = 'none');
                 userActions.forEach(el => el.style.display = '');
             }
@@ -2303,13 +2301,13 @@
             // Handle Logout
             const logoutBtns = document.querySelectorAll('.logout-btn');
             logoutBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
+                btn.addEventListener('click', function (e) {
                     e.preventDefault();
                     localStorage.removeItem('userToken');
                     window.location.href = 'index.php'; // Redirect to home page
                 });
             });
-            
+
             // Handle Global Search Form
             const searchForm = document.getElementById('headerSearchForm');
             const searchInput = document.getElementById('searchInputBox');
@@ -2319,7 +2317,7 @@
                 if (searchQuery) {
                     searchInput.value = searchQuery;
                 }
-                searchForm.addEventListener('submit', function(e) {
+                searchForm.addEventListener('submit', function (e) {
                     e.preventDefault();
                     const query = searchInput.value.trim();
                     if (query) {

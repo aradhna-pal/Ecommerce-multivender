@@ -6022,7 +6022,7 @@ body.demo-5.dark .category-full-box .category-header {
 .category-full-box .category-menu-list {
   background-color: rgba(var(--white), 1);
   border: 1px solid rgba(var(--content-color), 0.2);
-  padding-top: 20px;
+  /* padding-top: 20px; */
   height: 100%;
 }
 @media (max-width: 1399.98px) {
