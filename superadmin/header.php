@@ -576,7 +576,7 @@
                             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light"
                                 data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                                 aria-expanded="false">
-                                <div id="user-avatar" class="rounded-circle d-inline-flex align-items-center justify-content-center bg-primary text-white font-16" style="width: 32px; height: 32px; font-weight: bold;">
+                                <div id="user-avatar" class="rounded-circle d-inline-flex align-items-center justify-content-center bg-dark text-white font-16" style="width: 32px; height: 32px; font-weight: bold;">
                                     A
                                 </div>
                                 <span id="user-name" class="ms-1 d-none d-md-inline-block">
