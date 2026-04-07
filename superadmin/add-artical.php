@@ -7,7 +7,6 @@
                     <h4>Add Article</h4>
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
                         <li class="breadcrumb-item"><a href="index">Home</a></li>
-                        <li class="breadcrumb-item"><a href="">Blogs</a></li>
                         <li class="breadcrumb-item active">Add Article</li>
                     </ol>
                 </div>

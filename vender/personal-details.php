@@ -11,8 +11,7 @@
                     <h4>Personal Details</h4>
 
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">TechUI</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li>
+                        <li class="breadcrumb-item"><a href="index">Home</a></li>
                         <li class="breadcrumb-item active">Personal Details</li>
                     </ol>
                 </div>
