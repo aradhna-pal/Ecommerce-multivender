@@ -32,9 +32,9 @@
                         </button>
                         <div class="profile-box">
                             <div class="profile-contain">
-                                <div class="profile-image">
+                                <!-- <div class="profile-image">
                                     <img src="../assets/images/review/1.jpg" class="img-fluid update_img" alt="" id="userProfileImage">
-                                </div>
+                                </div> -->
 
                                 <div class="profile-name">
                                     <h3 id="userFullName"></h3>
