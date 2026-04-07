@@ -1,201 +1,168 @@
-
-document.addEventListener("DOMContentLoaded", loadBanners);
-
+// ====================== COMMON SETUP ======================
 const BASE = "https://api.workarya.com";
 
+function getToken() {
+    return localStorage.getItem("superadminToken");
+}
+
+// ====================== BANNER LIST PAGE ======================
 async function loadBanners() {
-  try {
-    const token = localStorage.getItem("superadminToken");
+    if (!document.getElementById("allbanner")) return; // Safety: only run on list page
 
-    const res = await fetch(`${BASE}/api/banner/list`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    try {
+        const token = getToken();
+        if (!token) return;
 
-    const banners = await res.json();
-    const tbody = document.getElementById("allbanner");
-    tbody.innerHTML = "";
+        const res = await fetch(`${BASE}/api/banner/list`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
 
-    banners.forEach((b, index) => {
-      tbody.innerHTML += `
-        <tr>
-         <td>${index + 1}</td>
-         
+        if (!res.ok) throw new Error("Failed to load banners");
 
-          <td>
-            <img src="${BASE + b.image}" height="48" class="rounded me-3"/>
-          </td>
+        const banners = await res.json();
+        const tbody = document.getElementById("allbanner");
+        tbody.innerHTML = "";
 
-          <td>
-            <p class="m-0 font-16">${b.link ?? "-"}</p>
-          </td>
+        banners.forEach((b, index) => {
+            tbody.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>
+                        <img src="${BASE + b.image}" height="48" class="rounded me-3" alt="Banner"/>
+                    </td>
+                    <td>
+                        <p class="m-0 font-16">${b.link ?? "-"}</p>
+                    </td>
+                    <td>${b.title}</td>
+                    <td>
+                        <span class="badge ${b.isActive ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'} p-1">
+                            ${b.isActive ? "Published" : "Unpublished"}
+                        </span>
+                    </td>
+                    <td class="table-action">
+                        <a href="edit-banner.php?id=${b.id}" class="action-icon">
+                            <i class="mdi mdi-square-edit-outline"></i>
+                        </a>
+                    </td>
+                    <td class="table-action">
+                        <a href="javascript:void(0);" class="action-icon delete-banner" data-id="${b.id}">
+                            <i class="mdi mdi-delete"></i>
+                        </a>
+                    </td>
+                </tr>
+            `;
+        });
 
-          <td>${b.title}</td>
-
-          <td>
-            <span class="badge ${
-              b.isActive
-                ? "bg-success-subtle text-success"
-                : "bg-danger-subtle text-danger"
-            } p-1">
-              ${b.isActive ? "Published" : "Unpublished"}
-            </span>
-          </td>
-
-          <td class="table-action">
-            <a href="edit-banner.php?id=${b.id}" class="action-icon">
-              <i class="mdi mdi-square-edit-outline"></i>
-            </a>
-          </td>
-
-          <td class="table-action">
-            <a href="javascript:void(0);" 
-               class="action-icon delete-banner" 
-               data-id="${b.id}">
-              <i class="mdi mdi-delete"></i>
-            </a>
-          </td>
-        </tr>
-      `;
-    });
-
-  } catch (err) {
-    console.error(err);
-  }
+    } catch (err) {
+        console.error("Load Banners Error:", err);
+        Swal.fire("Error", "Failed to load banners", "error");
+    }
 }
 
-
-
-
-// ****************************************************** delete api ************************************************
-
-// DELETE WITH SWEET ALERT
+// ====================== DELETE BANNER ======================
 document.addEventListener("click", async function (e) {
-  if (!e.target.closest(".delete-banner")) return;
+    const deleteBtn = e.target.closest(".delete-banner");
+    if (!deleteBtn) return;
 
-  const id = e.target.closest(".delete-banner").dataset.id;
-  const token = localStorage.getItem("superadminToken");
+    const id = deleteBtn.dataset.id;
+    const token = getToken();
 
-  const confirmDelete = await Swal.fire({
-    title: "Delete Banner?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Yes, Delete"
-  });
+    const confirmDelete = await Swal.fire({
+        title: "Delete Banner?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Delete"
+    });
 
-  if (!confirmDelete.isConfirmed) return;
+    if (!confirmDelete.isConfirmed) return;
 
-  try {
-    const res = await fetch(
-      `https://api.workarya.com/api/banner/delete/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`
+    try {
+        const res = await fetch(`${BASE}/api/banner/delete/${id}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` }
+        });
+
+        const text = await res.text();
+        console.log("DELETE RAW:", text);
+
+        let result = {};
+        try { result = JSON.parse(text); } catch (e) {}
+
+        if (res.ok || result.success === true || result.status === true) {
+            Swal.fire("Deleted!", "Banner removed successfully", "success");
+            loadBanners(); // Refresh list
+        } else {
+            throw new Error(result.message || "Delete failed");
         }
-      }
-    );
-
-    // 🔥 IMPORTANT — see actual API reply
-    const text = await res.text();
-    console.log("DELETE API RAW:", text);
-
-    // some APIs return empty body on delete
-    if (!text) {
-      Swal.fire("Deleted!", "Banner removed", "success");
-      loadBanners();
-      return;
+    } catch (err) {
+        console.error("Delete Error:", err);
+        Swal.fire("Error", err.message || "Delete failed", "error");
     }
-
-    const result = JSON.parse(text);
-
-    // handle multiple possible formats
-    if (res.ok || result.success === true || result.status === true) {
-      Swal.fire("Deleted!", "Banner removed", "success");
-      loadBanners();
-    } else {
-      throw new Error(result.message || "Unknown error");
-    }
-
-  } catch (err) {
-    console.error("DELETE ERROR:", err);
-    Swal.fire("Error", "Delete failed", "error");
-  }
 });
 
-
-// ============================================================== delte api end ==============================================================
-
-
-
-// ================================================================= Add Banner API ===============================================================
-
-// const BASE = "https://api.workarya.com";
-
+// ====================== ADD BANNER ======================
 document.addEventListener("click", async function (e) {
-  if (!e.target.closest("#addBannerBtn")) return;
+    if (!e.target.closest("#addBannerBtn")) return;
 
-  const token = localStorage.getItem("superadminToken");
+    const token = getToken();
+    const title = document.getElementById("bannerName").value.trim();
+    const link = document.getElementById("bannerDescription").value.trim();
+    const imageFile = document.getElementById("bannerImage").files[0];
+    const isActive = document.getElementById("isActive").checked;
 
-  const title = document.getElementById("bannerName").value.trim();
-  const link = document.getElementById("bannerDescription").value.trim();
-  const imageFile = document.getElementById("bannerImage").files[0];
-  const isActive = document.getElementById("isActive").checked;
+    if (!title || !imageFile) {
+        Swal.fire("Error", "Title and Image are required", "error");
+        return;
+    }
 
-  if (!title || !imageFile) {
-    Swal.fire("Error", "Title and Image required", "error");
-    return;
-  }
+    const fd = new FormData();
+    fd.append("Title", title);
+    fd.append("Link", link);
+    fd.append("Image", imageFile);
+    fd.append("IsActive", isActive);
 
-  const fd = new FormData();
-  fd.append("Title", title);
-  fd.append("Link", link);
-  fd.append("Image", imageFile);
-  fd.append("IsActive", isActive);
+    try {
+        const res = await fetch(`${BASE}/api/banner/create`, {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` },
+            body: fd
+        });
 
-  try {
-    const res = await fetch(`https://api.workarya.com/api/banner/create`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      body: fd,
-    });
+        if (!res.ok) throw new Error();
 
-    if (!res.ok) throw new Error();
+        Swal.fire("Success", "Banner added successfully", "success")
+            .then(() => {
+                window.location.href = "banner.php";
+            });
 
-    await Swal.fire("Success", "Banner added successfully", "success");
-
-    // ✅ redirect to banners list page
-    window.location.href = "banner.php"; // yaha apna page name do
-
-  } catch (err) {
-    Swal.fire("Error", "Banner create failed", "error");
-  }
+    } catch (err) {
+        Swal.fire("Error", "Failed to create banner", "error");
+    }
 });
 
+// ====================== EDIT BANNER PAGE ======================
+let bannerId = null;
 
+function initEditPage() {
+    if (!document.getElementById("editBannerBtn")) return; // Only run on edit page
 
-// ============================================================== Add Banner API End ===============================================================
+    const urlParams = new URLSearchParams(window.location.search);
+    bannerId = urlParams.get("id");
 
+    if (!bannerId) {
+        Swal.fire({
+            title: "Error",
+            text: "Banner ID not found in URL!",
+            icon: "error"
+        });
+        return;
+    }
 
-// ================================================================ Edit Banner API ===============================================================
-// const BASE = "https://api.workarya.com";
-
-
-// ====================== EDIT BANNER SCRIPT ======================
-
-// const BASE = "https://api.workarya.com";
-
-
-
-const urlParams = new URLSearchParams(window.location.search);
-const bannerId = urlParams.get("id");
-
-if (!bannerId) {
-    Swal.fire({ title: "Error", text: "Banner ID not found!", icon: "error" });
+    loadBannerForEdit();
 }
 
-// ================== LOAD EXISTING DATA ==================
-document.addEventListener("DOMContentLoaded", async function () {
-    const token = localStorage.getItem("superadminToken");
+async function loadBannerForEdit() {
+    const token = getToken();
     if (!token) {
         Swal.fire("Error", "Token not found. Please login again.", "error");
         return;
@@ -203,50 +170,56 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     try {
         const res = await fetch(`${BASE}/api/banner/list`, {
-            headers: { "Authorization": `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${token}` }
         });
 
         if (!res.ok) throw new Error();
 
         const banners = await res.json();
-        
-        const banner = banners.find(b => b.id == bannerId);
+        const banner = banners.find(b => String(b.id) === String(bannerId));
 
         if (!banner) {
             Swal.fire("Error", "Banner not found", "error");
             return;
         }
 
+        // Fill form
         document.getElementById("bannerName").value = banner.title || "";
         document.getElementById("bannerDescription").value = banner.link || "";
 
         const isActiveCheckbox = document.getElementById("isActive");
-        isActiveCheckbox.checked = !!banner.isActive;
+        if (isActiveCheckbox) isActiveCheckbox.checked = !!banner.isActive;
 
         const toggleLabel = document.getElementById("toggleLabel");
         if (toggleLabel) toggleLabel.textContent = banner.isActive ? "Active" : "Inactive";
 
+        // Show existing image preview
         if (banner.image) {
             const preview = document.getElementById("previewImage");
             const placeholder = document.getElementById("placeholderText");
-            preview.src = BASE + banner.image;
-            preview.style.display = "block";
-            placeholder.style.display = "none";
+            if (preview) {
+                preview.src = BASE + banner.image;
+                preview.style.display = "block";
+            }
+            if (placeholder) placeholder.style.display = "none";
         }
 
     } catch (err) {
         console.error(err);
         Swal.fire("Error", "Failed to load banner details", "error");
     }
-});
+}
 
-// ================== UPDATE BANNER (NO _method) ==================
+// ====================== UPDATE BANNER ======================
 document.addEventListener("click", async function (e) {
     if (!e.target.closest("#editBannerBtn")) return;
 
-    const token = localStorage.getItem("superadminToken");
-    if (!token) return;
+    if (!bannerId) {
+        Swal.fire("Error", "Banner ID is missing", "error");
+        return;
+    }
 
+    const token = getToken();
     const title = document.getElementById("bannerName").value.trim();
     const link = document.getElementById("bannerDescription").value.trim();
     const imageFile = document.getElementById("bannerImage").files[0];
@@ -263,48 +236,43 @@ document.addEventListener("click", async function (e) {
     formData.append("Link", link || "");
     formData.append("IsActive", isActive ? "true" : "false");
 
-    // Image bhi bhejo agar select ki ho
     if (imageFile) {
         formData.append("Image", imageFile);
-        console.log("✅ New image added to FormData:", imageFile.name);
-    } else {
-        console.log("ℹ️ No new image selected");
     }
-
-
-    // 🔥 Important Fix
-    // formData.append("_method", "PUT");
 
     try {
         const res = await fetch(`${BASE}/api/banner/update`, {
-            method: "PUT",                    // ← POST rakho
+            method: "PUT",
             headers: {
-                "Authorization": `Bearer ${token}`,
-                "Accept": "application/json"
+                Authorization: `Bearer ${token}`,
+                Accept: "application/json"
             },
             body: formData
         });
 
         const text = await res.text();
-        console.log("=== UPDATE RAW RESPONSE ===");
-        console.log("Status:", res.status, res.statusText);
-        console.log("Body:", text);
+        console.log("UPDATE RAW:", res.status, text);
 
         let result = {};
-        try { 
-            result = JSON.parse(text); 
-        } catch (e) {}
+        try { result = JSON.parse(text); } catch (e) {}
 
         if (res.ok || result.success === true || result.status === true) {
             Swal.fire("Success", "Banner updated successfully", "success")
-                .then(() => window.location.href = "banner.php");
+                .then(() => {
+                    window.location.href = "banner.php";
+                });
         } else {
-            const msg = result.message || result.error || text || "Update failed";
+            const msg = result.message || result.error || "Update failed";
             throw new Error(msg);
         }
-
     } catch (err) {
         console.error("Update Error:", err);
         Swal.fire("Error", err.message || "Failed to update banner", "error");
     }
+});
+
+// ====================== INITIALIZE EVERYTHING ======================
+document.addEventListener("DOMContentLoaded", function () {
+    loadBanners();   // Works only on list page
+    initEditPage();  // Works only on edit page
 });
