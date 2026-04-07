@@ -1237,7 +1237,13 @@ document.addEventListener("DOMContentLoaded", () => {
 }
   loadFlashSaleProducts();
 });
-
+function shortName(name, words = 6) {
+  if (!name) return "";
+  const parts = name.split(" ");
+  return parts.length > words
+    ? parts.slice(0, words).join(" ") + "..."
+    : name;
+}
 
 function flashSaleCardHTML(p) {
   const id = p._id || p.id;
@@ -1251,7 +1257,7 @@ function flashSaleCardHTML(p) {
             </a>
             <div class="product-content">
                 <a href="product-detail.php?id=${id}">
-                    <h4 class="productName">${p.name}</h4>
+                    <h4 class="productName">${shortName(p.name)}</h4>
                 </a>
                 <h5 class="price">₹${p.discountPrice || p.price || 0} ${p.discountPrice ? `<del>₹${p.price}</del>` : ""}</h5>
                 <div class="progress">
