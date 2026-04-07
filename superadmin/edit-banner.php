@@ -38,7 +38,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="bannerName">Banner Name</label>
                                 <input type="text" class="form-control" id="bannerName" name="bannerName"
-                                    placeholder="Product Name">
+                                    placeholder="Banner Name">
                             </div>
 
                             <!-- Content -->
