@@ -13,10 +13,9 @@
 
 
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">TechUI</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Apps</a></li>
+                        <li class="breadcrumb-item"><a href="">Home</a></li>
 
-                        <li class="breadcrumb-item"><a href="javascript: void(0);"> Edit Brand </a></li>
+                        <li class="breadcrumb-item"><a href=""> Edit Brand </a></li>
                     </ol>
                 </div>
             </div>

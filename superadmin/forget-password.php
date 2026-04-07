@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from themes.getappui.com/techui/layouts/auth-forgotpw.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Feb 2026 07:41:01 GMT -->
+<!-- Mirrored from themes.getappui.com/Home/layouts/auth-forgotpw.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Feb 2026 07:41:01 GMT -->
 <head>
     <meta charset="utf-8" />
-    <title>Recover Password  | TechUI - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title>Recover Password  | Home </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="GetAppui" name="author" />
@@ -87,7 +87,7 @@
 
     <footer class="footer footer-alt fw-medium bg-transparent">
         <span class="text-muted">
-            <script>document.write(new Date().getFullYear())</script> © TechUI - Template by GetAppui
+            <script>document.write(new Date().getFullYear())</script> © Hyperscripts - Template by GetAppui
         </span>
     </footer>
 
@@ -102,5 +102,5 @@
 </body>
 
 
-<!-- Mirrored from themes.getappui.com/techui/layouts/auth-forgotpw.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Feb 2026 07:41:01 GMT -->
+<!-- Mirrored from themes.getappui.com/Home/layouts/auth-forgotpw.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Feb 2026 07:41:01 GMT -->
 </html>

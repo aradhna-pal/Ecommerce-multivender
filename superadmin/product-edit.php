@@ -16,10 +16,9 @@
 
 
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">TechUI</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Extra Pages</a></li>
+                        <li class="breadcrumb-item"><a href="">Home</a></li>
 
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Product Edit</a></li>
+                        <li class="breadcrumb-item"><a href="">Product Edit</a></li>
                     </ol>
                 </div>
             </div>

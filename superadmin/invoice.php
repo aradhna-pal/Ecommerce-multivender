@@ -14,10 +14,10 @@
 
 
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index">Home</a></li>
                         <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Invoice</a></li> -->
 
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Invoice</a></li>
+                        <li class="breadcrumb-item"><a href="">Invoice</a></li>
                     </ol>
                 </div>
             </div>

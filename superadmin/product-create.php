@@ -11,9 +11,8 @@
                 <div class="d-flex justify-content-between align-items-center py-2">
                     <h4>Product Create</h4>
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">TechUI</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Apps</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Product Create</a></li>
+                        <li class="breadcrumb-item"><a href="index">Home</a></li>
+                        <li class="breadcrumb-item"><a href="">Product Create</a></li>
                     </ol>
                 </div>
             </div>

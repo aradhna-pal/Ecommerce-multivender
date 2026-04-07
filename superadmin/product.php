@@ -12,10 +12,9 @@
 
 
                     <ol class="breadcrumb d-lg-flex d-none mb-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">TechUI</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+                        <li class="breadcrumb-item"><a href="index">Home</a></li>
 
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Product</a></li>
+                        <li class="breadcrumb-item"><a href="">Product</a></li>
                     </ol>
                 </div>
             </div>
@@ -63,56 +62,7 @@
                                 </tr>
                             </thead>
                             <tbody id="allproduct">
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="assets/product-1-eec07e95.jpg" alt="contact-img" title="contact-img"
-                                            class="rounded me-3" height="48" />
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="products-details.html" class="text-body">Blue N</a>
-
-                                        </p>
-                                    </td>
-                                    <td>
-                                        shrot description
-                                    </td>
-                                    <td>
-                                        description
-                                    </td>
-                                    <td>
-                                        category
-                                    </td>
-                                    <td>
-                                        Wilson
-                                    </td>
-                                    <td>
-                                        6245
-                                    </td>
-                                    <td>
-                                        $148.66
-                                    </td>
-
-                                    <td>
-                                        254
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success-subtle text-success p-1">Published</span>
-                                    </td>
-
-                                    <td style="cursor: pointer;">
-                                        <i class="mdi mdi-square-edit-outline text-primary fs-3"></i>
-                                    </td>
-
-                                    <td style="cursor: pointer;">
-                                        <i class="mdi mdi-delete text-danger fs-3"></i>
-                                    </td>
-                                </tr>
-
+                               
 
                             </tbody>
                         </table>
