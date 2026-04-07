@@ -10,7 +10,7 @@
                 <nav>
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="index">
                                 <i class="ri-home-3-fill"></i>
                             </a>
                         </li>
