@@ -2,7 +2,7 @@
 
 async function loadBrands() {
   try {
-    const token = localStorage.getItem("superadminToken");
+    const token = localStorage.getItem("vendorToken");
 
     if (!token) {
       alert("Please login first");
