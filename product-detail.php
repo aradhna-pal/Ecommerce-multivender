@@ -123,9 +123,9 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <a href="seller-details-2.html" class="offer-top">Visit Thirfting_store</a>
-                                    <h4 class="name">Apple iPhone 14 - 512 GB Sliver Model</h4>
-                                    <h5 class="product-price">$2,193.45 <del>$2,548.69</del></h5>
+                                    <!-- <a href="seller-details-2.html" class="offer-top">Visit Thirfting_store</a> -->
+                                    <h4 class="name"></h4>
+                                    <h5 class="product-price"> <del></del></h5>
                                     <div class="price-rating">
                                         <ul class="rating-review-sold-box">
                                             <li>
@@ -143,9 +143,7 @@
                                     </div>
 
                                     <div class="product-contain">
-                                        <p>The smartphone offers various additional features, including water and dust
-                                            resistance, dual stereo speakers for immersive audio, NFC for contactless
-                                            payments, and an IR blaster for controlling compatible electronic devices.
+                                        <p>
                                         </p>
                                     </div>
 
@@ -157,27 +155,27 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="flexRadioDefault"
                                                     id="1" checked>
-                                                <label class="form-check-label" for="1">64 GB</label>
+                                                <label class="form-check-label" for="1"></label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="flexRadioDefault"
                                                     id="2">
-                                                <label class="form-check-label" for="2">128 GB</label>
+                                                <label class="form-check-label" for="2"></label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="flexRadioDefault"
                                                     id="3">
-                                                <label class="form-check-label" for="3">256 GB</label>
+                                                <label class="form-check-label" for="3"></label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="flexRadioDefault"
                                                     id="4">
-                                                <label class="form-check-label" for="4">512 GB</label>
+                                                <label class="form-check-label" for="4"></label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="flexRadioDefault"
                                                     id="5">
-                                                <label class="form-check-label" for="5">1 TB</label>
+                                                <label class="form-check-label" for="5"></label>
                                             </div>
                                         </form>
                                     </div>
@@ -215,14 +213,14 @@
                                         </form>
                                     </div>
 
-                                    <div class="hurry-up-box">
+                                    <!-- <div class="hurry-up-box">
                                         <h5>There are just <span class="theme-color">5</span> left in stock, so please
                                             act immediately.</h5>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated"
                                                 style="width: 50%"></div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="text-md-start text-center">
                                         <div class="qty-box h-100 qty-container quantity-box-2">
@@ -246,7 +244,7 @@
                                         </button>
                                     </div>
 
-                                    <ul class="size-delivery-info">
+                                    <!-- <ul class="size-delivery-info">
                                         <li>
                                             <button type="button" class="btn" data-bs-toggle="modal"
                                                 data-bs-target="#deliveryModal">
@@ -261,7 +259,7 @@
                                                 <span>Ask a question</span>
                                             </button>
                                         </li>
-                                    </ul>
+                                    </ul> -->
 
                                     <div class="about-item-box product-spacing border-top-space">
                                         <div class="product-title">
@@ -269,16 +267,16 @@
                                         </div>
 
                                         <ul class="about-item-list">
-                                            <li>Brand : <span>Apple</span></li>
-                                            <li>Category : <span>Electronic</span></li>
-                                            <li>Condition : <span>Brand new</span></li>
-                                            <li>Color : <span>Deep purple</span></li>
-                                            <li>Material : <span>Model name</span></li>
-                                            <li>Operating system : <span>iOS</span></li>
+                                            <li>Brand : <span></span></li>
+                                            <li>Category : <span></span></li>
+                                            <li>Condition : <span></span></li>
+                                            <li>Color : <span></span></li>
+                                            <li>Material : <span></span></li>
+                                            <li>Operating system : <span></span></li>
                                         </ul>
                                     </div>
 
-                                    <div class="description-box product-spacing border-top-space">
+                                    <!-- <div class="description-box product-spacing border-top-space">
                                         <div class="product-title">
                                             <h4>Description :</h4>
                                         </div>
@@ -316,7 +314,7 @@
                                                 <span>This product is non-returnable.</span>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> -->
 
                                     <div class="payment-option product-spacing border-top-space">
                                         <div class="product-title">
