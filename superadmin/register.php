@@ -11,7 +11,7 @@
     <meta content="GetAppui" name="author" />
 
     <!-- App favicon -->
-      <link rel="shortcut icon" href="assets/img/favicon.webp">
+    <link rel="shortcut icon" href="assets/img/favicon.webp">
 
 
     <!-- Theme Config Js -->
@@ -87,8 +87,12 @@
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label for="role" class="form-label">Role</label>
-                                                    <input class="form-control" type="text" id="role"
-                                                        placeholder="Enter your role">
+                                                    <select class="form-control" id="role">
+                                                        <option value="">Select Role</option>
+                                                        <option value="user">USER</option>
+                                                        <option value="admin">VENDER</option>
+                                                        <option value="superadmin">SUPERADMIN</option>
+                                                    </select>
                                                 </div>
 
                                             </div>

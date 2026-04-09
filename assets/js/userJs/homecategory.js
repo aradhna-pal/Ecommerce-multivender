@@ -1,6 +1,5 @@
 {/* <script> */}
-const FALLBACK_IMG = "https://api.workarya.com/"; // default image
-
+// const FALLBACK_IMG = "https://api.workarya.com/"; 
 document.addEventListener("DOMContentLoaded", loadCategories);
 
 async function loadCategories() {
@@ -26,10 +25,11 @@ async function loadCategories() {
             const img = cat.image ? cat.image : FALLBACK_IMG;
             // alert(img)
 
+            const catId = cat._id || cat.id;
             const slide = `
                 <div class="swiper-slide">
-                    <a href="shop.php?slug=${cat.slug}" class="category-box">
-                        <img src="${img}" class="img-fluid" alt="${cat.name}">
+                    <a href="shop.php?categoryId=${catId}" class="category-box">
+                        <img src="https://api.workarya.com/${img}" class="img-fluid" alt="${cat.name}">
                         <h4>${cat.name}</h4>
                     </a>
                 </div>

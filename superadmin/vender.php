@@ -60,6 +60,7 @@
                                              
                                                 
                                                 <th>Status</th>
+                                                <th>View Profile</th>
                                          
                                              
                                             

@@ -13,6 +13,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
 
 
@@ -97,6 +98,7 @@
     <script src="js/pincode.js"></script>
     <script src="js/banner.js"></script>
     <script src="js/all-article.js"></script>
+    <script src="js/vender-detail.js"></script>
 
 
     <!-- <script src="js/register.js"></script> -->
@@ -408,32 +410,12 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- <li class="menu-item">
-                        <a href="#invoice" data-bs-toggle="collapse" class="menu-link">
-                            <span class="menu-icon"><i data-feather="file-text"></i></span>
-                            <span class="menu-text"> Invoice </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="invoice">
-                            <ul class="sub-menu">
-                                <li class="menu-item">
-                                    <a href="apps-invoice-report.php" class="menu-link">
-                                        <span class="menu-text">Invoice Report</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="apps-invoice.php" class="menu-link">
-                                        <span class="menu-text">Invoice</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> -->
+                 
 
 
                     <!-- <li class="menu-title">Pages</li> -->
 
-                    <li class="menu-item">
+                    <!-- <li class="menu-item">
                         <a href="#menuExpages" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="book"></i></span>
                             <span class="menu-text"> Profile </span>
@@ -450,7 +432,7 @@
 
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="menu-item">
                         <a href="#authPages" data-bs-toggle="collapse" class="menu-link">

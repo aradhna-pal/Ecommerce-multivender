@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = document.getElementById("emailaddress").value;
         const password = document.getElementById("password").value;
         const phone = document.getElementById("phone").value;
+        const role = document.getElementById("role").value;
 
         const checkbox = document.getElementById("checkbox-signUp");
 
@@ -19,6 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 icon: "warning",
                 title: "Please accept Terms & Conditions"
+            });
+            return;
+        }
+
+        if (!role) {
+            Swal.fire({
+                icon: "warning",
+                title: "Please select a role"
             });
             return;
         }
@@ -31,10 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("email", email);
             formData.append("password", password);
             formData.append("phone", phone);
-            formData.append("role", "SUPERADMIN"); // ✅ role added
+            formData.append("role", role.toUpperCase()); // ✅ role added dynamically ("USER", "ADMIN", "SUPERADMIN")
+
+            // ✅ Determine API URL based on role
+            let apiUrl = "https://api.workarya.com/register";
+            if (role === "admin" || role === "vendor") {
+                apiUrl = "https://api.workarya.com/admin-vendors";
+            }
 
             // API call
-            const response = await fetch("https://api.workarya.com/register", {
+            const response = await fetch(apiUrl, {
                 method: "POST",
                 body: formData
             });
@@ -71,4 +86,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
-

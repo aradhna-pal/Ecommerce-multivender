@@ -1,7 +1,3 @@
-
-
-
-
 document.addEventListener("DOMContentLoaded", loadVendors);
 
 async function loadVendors() {
@@ -46,6 +42,16 @@ async function loadVendors() {
             </label>
         </div>
     </td>
+
+    <td>
+       <a href="vendor-profile.php?id=${v.id}" class="btn btn-sm ">
+    <i class="fa fa-eye"></i> 
+</a>
+    </td>
+
+   
+
+
 </tr>
 `;
     });
@@ -53,7 +59,6 @@ async function loadVendors() {
     console.error("Error loading vendors:", err);
   }
 }
-
 
 document.addEventListener("change", async function (e) {
   if (!e.target.matches(".vendor-approval-toggle")) return;
@@ -73,7 +78,7 @@ document.addEventListener("change", async function (e) {
     if (isApprove) {
       res = await fetch(`https://api.workarya.com/approve-vendor/${vendorId}`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       });
     }
 
@@ -85,7 +90,7 @@ document.addEventListener("change", async function (e) {
         inputLabel: "Rejection reason",
         inputPlaceholder: "Enter reason...",
         showCancelButton: true,
-        confirmButtonText: "Reject"
+        confirmButtonText: "Reject",
       });
 
       if (!reason) {
@@ -114,9 +119,8 @@ document.addEventListener("change", async function (e) {
       icon: "success",
       title: isApprove ? "Vendor Approved" : "Vendor Rejected",
       timer: 1500,
-      showConfirmButton: false
+      showConfirmButton: false,
     });
-
   } catch (err) {
     console.error(err);
     toggle.checked = !isApprove;
@@ -125,7 +129,7 @@ document.addEventListener("change", async function (e) {
     Swal.fire({
       icon: "error",
       title: "Action Failed",
-      text: "Please try again"
+      text: "Please try again",
     });
   }
 });
