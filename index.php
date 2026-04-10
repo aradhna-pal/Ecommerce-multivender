@@ -47,7 +47,7 @@
                     display: flex;
                     align-items: center;
                     padding: 10px;
-                    background: #fff;
+                    /* background: #fff; */
                     border-bottom: 1px solid #ddd;
                     text-decoration: none;
                     color: #333;
