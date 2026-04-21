@@ -42,14 +42,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <h4 class="mt-0">Description</h4>
-                                <div class="mb-2">
-                                    <div id="snow-editor" style="height: 300px;">
-                                        <p>Write something here...</p>
-                                    </div>
-                                    <!-- Hidden field to store Quill content -->
-                                    <input type="hidden" id="Description" name="Description">
-                                </div>
+                                <label class="form-label" for="Description">Description</label>
+                                <textarea class="form-control" id="Description" name="Description" rows="8" placeholder="Long description"></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -77,8 +71,8 @@
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="product-code">Product Code</label>
-                                        <input type="text" class="form-control" id="product-code">
+                                        <label class="form-label" for="Sku">SKU</label>
+                                        <input type="text" class="form-control" id="Sku" placeholder="SKU code">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="StockQuantity">Stock Quantity</label>
@@ -89,14 +83,9 @@
                                         <input type="number" id="MinStockQuantity" name="MinStockQuantity" class="form-control" value="0">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label" for="color-select">Color</label>
-                                        <select class="form-select" id="color-select" name="Color">
-                                            <option selected value="Red">Red</option>
-                                            <option value="Blue">Blue</option>
-                                            <option value="Cyan">Cyan</option>
-                                            <option value="Green">Green</option>
-                                            <option value="Yellow">Yellow</option>
-                                            <option value="Black">Black</option>
+                                        <label class="form-label" for="ColorId">Color</label>
+                                        <select class="form-select" id="ColorId" name="ColorId">
+                                            <option value="">Select Color</option>
                                         </select>
                                     </div>
                                 </div>
@@ -110,62 +99,32 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label class="form-label" for="CategoryId">Category</label>
-                                        <select class="form-select" id="CategoryId" name="CategoryId">
-                                            <option value="">Select Category</option>
-                                        </select>
-                                    </div>
+                                    <input type="hidden" id="CategoryId" name="CategoryId">
+                                    <input type="hidden" id="SubCategoryId" name="SubCategoryId">
+                                    <div id="CategoryLevelsContainer"></div>
 
                                     <div class="mb-3">
-                                        <label class="form-label" for="SubCategoryId">Sub Category</label>
-                                        <select class="form-select" id="SubCategoryId" name="SubCategoryId">
-                                            <option value="">Select Sub Category</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label" for="example-select">Sizes</label>
-                                        <select class="form-select" id="example-select" name="Sizes">
-                                            <option selected value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="8.5">8.5</option>
-                                            <option value="9">9</option>
-                                            <option value="9.5">9.5</option>
-                                            <option value="10">10</option>
-                                            <option value="10.5">10.5</option>
-                                            <option value="11">11</option>
+                                        <label class="form-label" for="SizeId">Size</label>
+                                        <select class="form-select" id="SizeId" name="SizeId">
+                                            <option value="">Select Size</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="mb-3">
-                                        <label class="form-label" for="tags-select">Tags</label>
-                                        <select class="form-select" id="tags-select" name="MetaKeywords" multiple>
-                                            <option value="Technology">Technology</option>
-                                            <option value="Marketing">Marketing</option>
-                                            <option value="Design">Design</option>
-                                            <option value="Fashion">Fashion</option>
-                                        </select>
+                                        <label class="form-label" for="MetaTitle">Meta Title</label>
+                                        <input type="text" class="form-control" id="MetaTitle" name="MetaTitle">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Gender :</label>
-                                        <div class="d-flex gap-3">
-                                            <div class="form-check">
-                                                <input type="radio" name="Gender" id="male" value="Male" class="form-check-input">
-                                                <label for="male">Male</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input type="radio" name="Gender" id="female" value="Female" class="form-check-input">
-                                                <label for="female">Female</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input type="radio" name="Gender" id="kids" value="Kids" class="form-check-input">
-                                                <label for="kids">Kids</label>
-                                            </div>
-                                        </div>
+                                        <label class="form-label" for="MetaDescription">Meta Description</label>
+                                        <textarea class="form-control" id="MetaDescription" name="MetaDescription" rows="2"></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label" for="MetaKeywords">Meta Keywords</label>
+                                        <input type="text" class="form-control" id="MetaKeywords" name="MetaKeywords" placeholder="keyword1, keyword2">
                                     </div>
 
                                     <div class="mb-3">
@@ -190,6 +149,26 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="Height">Height</label>
                                                 <input type="text" class="form-control" id="Height" name="Height">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-check mb-2">
+                                                <input type="checkbox" class="form-check-input" id="TrackInventory" checked>
+                                                <label class="form-check-label" for="TrackInventory">Track Inventory</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check mb-2">
+                                                <input type="checkbox" class="form-check-input" id="IsActive" checked>
+                                                <label class="form-check-label" for="IsActive">Active</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check mb-2">
+                                                <input type="checkbox" class="form-check-input" id="IsFeatured">
+                                                <label class="form-check-label" for="IsFeatured">Featured</label>
                                             </div>
                                         </div>
                                     </div>

@@ -26,8 +26,8 @@ async function loadBrands() {
     const tbody = document.getElementById("brandTableBody");
     tbody.innerHTML = "";
 
-    // agar response direct array hai
-    const brands = data.data || data;
+    // Handle variable API shapes
+    const brands = data?.data?.data || data?.data || data?.brands || data || [];
 
     brands.forEach((brand, index) => {
       const row = `
@@ -36,32 +36,32 @@ async function loadBrands() {
 
 
                     <td >
-                        <img src="https://api.workarya.com${brand.logo || "https://via.placeholder.com/48"} "
+                        <img src="${(window.resolveApiMediaUrl ? window.resolveApiMediaUrl(brand.logo || brand.image) : ("https://api.workarya.com" + (brand.logo || brand.image || "")))}"
                              class="rounded" height="78" width="78"
     style="object-fit: contain;" />
                     </td>
 
                     
 
-                    <td>${brand.name}</td>
+                    <td>${brand.name || brand.Name || "-"}</td>
 
-                    <td>${brand.description}</td>
+                    <td>${brand.description || brand.Description || "-"}</td>
 
                     <td>
                         <span class="badge ${
-                          brand.isActive
+                          (brand.isActive ?? brand.IsActive)
                             ? "bg-success-subtle text-success"
                             : "bg-danger-subtle text-danger"
                         }">
-                            ${brand.isActive ? "Active" : "Inactive"}
+                            ${(brand.isActive ?? brand.IsActive) ? "Active" : "Inactive"}
                         </span>
                     </td>
 
-                    <td onclick="editBrand('${brand.id}')" style="cursor: pointer;">
+                    <td onclick="editBrand('${brand.id || brand._id}')" style="cursor: pointer;">
                         <i class="mdi mdi-square-edit-outline text-primary fs-3"></i>
                     </td>
 
-                  <td onclick="deleteBrand('${brand.id}')" style="cursor: pointer;">
+                  <td onclick="deleteBrand('${brand.id || brand._id}')" style="cursor: pointer;">
                     <i class="mdi mdi-delete text-danger fs-3"></i>
                    </td>
                 </tr>

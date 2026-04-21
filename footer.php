@@ -593,6 +593,9 @@
                                     <div class="product-contain">
                                         <p id="qvDesc"></p>
                                     </div>
+                                    <div class="product-contain">
+                                        <p>Category: <span id="qvCategory"></span></p>
+                                    </div>
                                     <!-- PRICE -->
                                     <div class="price-rating">
                                         <h3 id="qvPrice"></h3>
@@ -1234,7 +1237,7 @@
 <!-- Recent Product View Box End -->
 
 <!-- Quick View Modal Start -->
-<div class="modal fade quick-view-modal theme-modal" id="quickViewModal">
+<div class="modal fade quick-view-modal theme-modal" id="quickViewModalLegacy">
     <div class="modal-dialog modal-custom-size modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">

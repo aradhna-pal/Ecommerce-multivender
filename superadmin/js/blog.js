@@ -1,10 +1,40 @@
 // ############################################# GET ALL BLOGS ###########################################
 
+function normalizeBlogsPayload(payload) {
+  return payload?.data?.data || payload?.data || payload?.blogs || payload || [];
+}
+
+function blogImagePath(blog) {
+  if (!blog || typeof blog !== "object") return "";
+  return (
+    blog.image ||
+    blog.Image ||
+    blog.imageUrl ||
+    blog.imageurl ||
+    blog.mainImage ||
+    blog.mainimage ||
+    ""
+  );
+}
+
+function toBlogImageUrl(path) {
+  if (!path) return "https://via.placeholder.com/48";
+  if (typeof window.resolveApiMediaUrl === "function") {
+    return window.resolveApiMediaUrl(path);
+  }
+  return /^https?:\/\//i.test(path) ? path : `https://api.workarya.com${path}`;
+}
+
+function normalizeBlogDetailPayload(payload) {
+  return payload?.data?.data || payload?.data || payload || null;
+}
+
 
 async function loadBlogs() {
   try {
     const res = await fetch("https://api.workarya.com/api/blogs");
-    const blogs = await res.json();
+    const raw = await res.json();
+    const blogs = normalizeBlogsPayload(raw);
 
     console.log("BLOG API:", blogs);
 
@@ -18,7 +48,7 @@ async function loadBlogs() {
 
           <td>
             <img 
-              src="https://api.workarya.com${blog.image}"
+              src="${toBlogImageUrl(blogImagePath(blog))}"
               height="48"
               width="48"
               class="rounded"
@@ -28,20 +58,20 @@ async function loadBlogs() {
           </td>
 
           <td>
-            <p class="m-0 font-16">${blog.title}</p>
+            <p class="m-0 font-16">${blog.title || blog.Title || "-"}</p>
           </td>
 
           <td>
-            ${truncateWords(blog.description, 10)}
+            ${truncateWords(blog.description || blog.content || "", 10)}
           </td>
 
           <td>
             <span class="badge ${
-              blog.is_active
+              (blog.is_active ?? blog.isActive)
                 ? "bg-success-subtle text-success"
                 : "bg-danger-subtle text-danger"
             } p-1">
-              ${blog.is_active ? "Active" : "Inactive"}
+              ${(blog.is_active ?? blog.isActive) ? "Active" : "Inactive"}
             </span>
           </td>
 
@@ -49,7 +79,7 @@ async function loadBlogs() {
             <i 
               class="mdi mdi-square-edit-outline fs-4 text-primary"
               style="cursor:pointer"
-              onclick="editBlog('${blog.id}')"
+              onclick="editBlog('${blog.id || blog._id}')"
             ></i>
           </td>
 
@@ -57,7 +87,7 @@ async function loadBlogs() {
             <i 
               class="mdi mdi-delete fs-4 text-danger"
               style="cursor:pointer"
-              onclick="deleteBlog('${blog.id}')"
+              onclick="deleteBlog('${blog.id || blog._id}')"
             ></i>
           </td>
         </tr>
@@ -227,24 +257,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!blogId) return;
 
   try {
-    // SAME API you used in loadBlogs()
-    const res = await fetch("https://api.workarya.com/api/blogs");
-    const blogs = await res.json();
+    // Prefer detail endpoint for edit prefill
+    let blog = null;
+    const detailRes = await fetch(`https://api.workarya.com/api/blogs/${encodeURIComponent(blogId)}`);
+    if (detailRes.ok) {
+      const detailRaw = await detailRes.json();
+      blog = normalizeBlogDetailPayload(detailRaw);
+    }
 
-    // find matching blog
-    const blog = blogs.find(b => String(b.id) === String(blogId));
+    // Fallback to list endpoint for older API responses
+    if (!blog) {
+      const res = await fetch("https://api.workarya.com/api/blogs");
+      const raw = await res.json();
+      const blogs = normalizeBlogsPayload(raw);
+      blog = blogs.find((b) => String(b.id || b._id) === String(blogId)) || null;
+    }
     if (!blog) return;
 
     console.log("Prefill blog:", blog);
 
     // Prefill fields (same keys you used in table)
-    document.getElementById("blogName").value = blog.title || "";
-    document.getElementById("blogDescription").value = blog.description || "";
-    document.getElementById("isActive").checked = blog.is_active;
+    document.getElementById("blogName").value = blog.title || blog.Title || "";
+    document.getElementById("blogDescription").value = blog.description || blog.content || "";
+    document.getElementById("isActive").checked = !!(blog.is_active ?? blog.isActive);
 
-    if (blog.image) {
+    const imgPath = blogImagePath(blog);
+    if (imgPath) {
       const img = document.getElementById("previewImage");
-      img.src = "https://api.workarya.com" + blog.image;
+      img.src = toBlogImageUrl(imgPath);
       img.style.display = "block";
       document.getElementById("placeholderText").style.display = "none";
     }

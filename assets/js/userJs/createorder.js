@@ -123,7 +123,14 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             theme: {
               color: "#4a4fea"
-            }
+            },
+            method: {
+              card: true,
+              netbanking: true,
+              wallet: true,
+              upi: true,
+              emi: true,
+            },
           };
 
           const rzp = new window.Razorpay(options);

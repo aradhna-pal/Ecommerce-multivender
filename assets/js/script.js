@@ -857,8 +857,13 @@ function updateRecentProduct(product) {
     const link = box.querySelector('.recent-content a');
     const priceTag = box.querySelector('.price');
 
-    const BASE = "https://api.workarya.com";
-    const imgSrc = product.mainImage ? (product.mainImage.startsWith('http') ? product.mainImage : BASE + product.mainImage) : "assets/images/product/placeholder.png";
+    const BASE_LOCAL = "https://api.workarya.com";
+    const mainImage = product.mainImage || product.mainimage;
+    const imgSrc = mainImage
+        ? (typeof window.resolveApiMediaUrl === "function"
+            ? window.resolveApiMediaUrl(mainImage)
+            : (String(mainImage).startsWith("http") ? mainImage : BASE_LOCAL + mainImage))
+        : "assets/images/product/placeholder.png";
     const productUrl = `product-detail.php?id=${product._id || product.id}`;
 
     if (imgBox) imgBox.href = productUrl;
@@ -868,7 +873,27 @@ function updateRecentProduct(product) {
         link.href = productUrl;
     }
     if (priceTag) {
-        priceTag.innerHTML = `₹${product.discountPrice || product.price || 0} ${product.discountPrice ? `<del>₹${product.price}</del>` : ""}`;
+        const toNum = (v) => {
+            const n = Number(v);
+            return Number.isFinite(n) ? n : 0;
+        };
+
+        const regular = toNum(product.price);
+        let discountCandidate = toNum(product.discountPrice ?? product.discountprice);
+        if (regular > 0 && discountCandidate > regular) {
+            discountCandidate = regular;
+        }
+
+        const hasRealDiscount =
+            regular > 0 && discountCandidate > 0 && discountCandidate < regular;
+
+        const finalPrice = hasRealDiscount
+            ? discountCandidate
+            : discountCandidate > 0
+              ? discountCandidate
+              : regular;
+
+        priceTag.innerHTML = `₹${finalPrice} ${hasRealDiscount ? `<del>₹${regular}</del>` : ""}`;
     }
 
     if (timerElement) {

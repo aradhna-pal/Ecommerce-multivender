@@ -28,7 +28,7 @@ async function loadBanners() {
                 <tr>
                     <td>${index + 1}</td>
                     <td>
-                        <img src="${BASE + b.image}" height="48" class="rounded me-3" alt="Banner"/>
+                        <img src="${window.resolveApiMediaUrl ? window.resolveApiMediaUrl(b.image) : (BASE + b.image)}" height="48" class="rounded me-3" alt="Banner"/>
                     </td>
                     <td>
                         <p class="m-0 font-16">${b.link ?? "-"}</p>
@@ -198,7 +198,7 @@ async function loadBannerForEdit() {
             const preview = document.getElementById("previewImage");
             const placeholder = document.getElementById("placeholderText");
             if (preview) {
-                preview.src = BASE + banner.image;
+                preview.src = window.resolveApiMediaUrl ? window.resolveApiMediaUrl(banner.image) : (BASE + banner.image);
                 preview.style.display = "block";
             }
             if (placeholder) placeholder.style.display = "none";

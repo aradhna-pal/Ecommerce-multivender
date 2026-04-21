@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <title> Hyperscripts | Multivender</title>
+    <script src="../assets/js/media-url.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="GetAppui" name="author" />
@@ -82,23 +83,24 @@
     <link rel="stylesheet" href="assets/dropify-1a8a5c67.css">
     <script src="script.js"></script>
 
-    <script src="js/brand.js"></script>
-    <script src="js/product.js"></script>
+    <script src="js/brand.js?v=2"></script>
+    <script src="js/product.js?v=9"></script>
     <script src="js/color.js"></script>
     <script src="js/size.js"></script>
-    <script src="js/category.js"></script>
+    <script src="js/category.js?v=2"></script>
     <script src="js/subcategory.js"></script>
     <script src="js/childcategory.js"></script>
     <script src="js/uploadExcel.js"></script>
-    <script src="js/blog.js"></script>
-    <script src="js/order.js"></script>
+    <script src="js/blog.js?v=4"></script>
+    <script src="js/order.js?v=2"></script>
+    <script src="js/dashboard.js?v=1"></script>
     <script src="js/vender.js"></script>
     <script src="js/user.js"></script>
     <script src="js/coupon.js"></script>
     <script src="js/pincode.js"></script>
     <script src="js/banner.js"></script>
     <script src="js/all-article.js"></script>
-    <script src="js/vender-detail.js"></script>
+    <script src="js/vender-detail.js?v=3"></script>
 
 
     <!-- <script src="js/register.js"></script> -->

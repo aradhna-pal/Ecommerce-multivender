@@ -1,12 +1,13 @@
 // ==================== CONFIG ====================
-// const BASE = "https://api.workarya.com";
+// API host: media-url.js sets window.BASE before this file runs
+const CART_API_ROOT = window.BASE || "https://api.workarya.com";
 
 const API = {
-  applyCoupon: `${BASE}/api/coupon/apply`,
-  list: `${BASE}/api/cart/list`,
-  updateQuantity: `${BASE}/api/cart/update-quantity`,
-  remove: `${BASE}/api/cart/remove`,
-  clear: `${BASE}/api/cart/clear`
+  applyCoupon: `${CART_API_ROOT}/api/coupon/apply`,
+  list: `${CART_API_ROOT}/api/cart/list`,
+  updateQuantity: `${CART_API_ROOT}/api/cart/update-quantity`,
+  remove: `${CART_API_ROOT}/api/cart/remove`,
+  clear: `${CART_API_ROOT}/api/cart/clear`
 };
 
 // ==================== HEADERS ====================
@@ -69,7 +70,7 @@ function renderMainCart(items) {
           <div class="cart-box">
             <div class="cart-image">
               <a href="product.html?id=${item.productId}">
-                <img src="${BASE}${item.productImage}" class="img-fluid" alt="${item.productName}">
+                <img src="${window.resolveApiMediaUrl(item.productImage || item.image)}" class="img-fluid" alt="${item.productName}">
               </a>
             </div>
             <div class="cart-contain">
@@ -120,11 +121,17 @@ function updateCartSummary(data) {
 async function updateQuantity(productId, action) {
   try {
     const headers = getHeaders();
-    await fetch(API.updateQuantity, {
+    const res = await fetch(API.updateQuantity, {
       method: "POST",
       headers,
       body: JSON.stringify({ productId, action })
     });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.success === false) {
+      console.error("Quantity update rejected:", data);
+      Swal.fire("Error", data.message || data.title || "Failed to update quantity", "error");
+      return;
+    }
     await refreshAllCarts();
   } catch (err) {
     console.error("Quantity update failed:", err);
@@ -286,7 +293,7 @@ async function proceedToCheckout() {
   const payload = { couponCode: currentCoupon };
 
   try {
-    const response = await fetch(`${BASE}/api/orders/checkout`, {
+    const response = await fetch(`${CART_API_ROOT}/api/orders/checkout`, {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify(payload)
@@ -354,7 +361,7 @@ function renderOffcanvasCart(items) {
     const li = `
       <li class="vertical-product-box" data-id="${item.productId}" data-unit-price="${item.price || item.currentPrice}">
         <a href="product.html?id=${item.productId}" class="product-image">
-          <img src="${BASE}${item.productImage}" class="img-fluid" alt="${item.productName}">
+          <img src="${window.resolveApiMediaUrl(item.productImage || item.image)}" class="img-fluid" alt="${item.productName}">
         </a>
         
         <div class="product-content">
@@ -402,6 +409,8 @@ document.addEventListener("click", async (e) => {
   const removeRowBtn = e.target.closest(".remove-row");
 
   if (plusBtn || minusBtn) {
+    e.preventDefault();
+    e.stopPropagation();
     const btn = plusBtn || minusBtn;
     const productId = btn.dataset.id;
     const action = plusBtn ? "ADD" : "REMOVE";

@@ -1,8 +1,15 @@
 // ==================== PROCEED TO CHECKOUT LOGIC ====================
 // ==================== PROCEED TO CHECKOUT LOGIC ====================
+const CHECKOUT_API_ROOT = window.BASE || "https://api.workarya.com";
+
 async function proceedToCheckout() {
   const userToken = localStorage.getItem("userToken");
   if (!userToken) {
+    localStorage.setItem(
+      "postLoginRedirect",
+      `${window.location.pathname}${window.location.search}`,
+    );
+    localStorage.setItem("postLoginAction", "checkout");
     if (typeof Swal !== 'undefined') {
       Swal.fire({
         title: "Login Required",
@@ -36,7 +43,7 @@ async function proceedToCheckout() {
   }
 
   try {
-    const res = await fetch(`${BASE}/api/orders/checkout`, {
+    const res = await fetch(`${CHECKOUT_API_ROOT}/api/orders/checkout`, {
       method: "POST",
       headers: getHeaders(),
       body: JSON.stringify(payload)
@@ -121,7 +128,7 @@ function renderCheckoutProducts(data) {
         <td>
           <div class="checkout-product-box">
             <a href="product-detail.php?id=${item.productId}" class="product-image">
-              <img src="${BASE}${item.image}" class="img-fluid" alt="${item.productName}">
+              <img src="${window.resolveApiMediaUrl(item.image || item.productImage)}" class="img-fluid" alt="${item.productName}">
             </a>
             <div class="product-contain">
               <a href="product-detail.php?id=${item.productId}">

@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (data.success === true) {
                 // ✅ Token save in localStorage
-                localStorage.setItem("userToken", data.token);
+                localStorage.setItem("userToken", data.token || data.data?.token || data.data);
 
                 // ✅ Optional: user info bhi save kar sakte ho
                 if (data.user) {
@@ -116,6 +116,22 @@ document.addEventListener("DOMContentLoaded", function () {
                     title: "Login Successful 🎉",
                     text: data.message || "Welcome back!"
                 }).then(() => {
+                    const action = localStorage.getItem("postLoginAction");
+                    const redirect = localStorage.getItem("postLoginRedirect");
+                    localStorage.removeItem("postLoginAction");
+                    localStorage.removeItem("postLoginRedirect");
+
+                    if (action === "checkout" && redirect) {
+                        const joiner = redirect.includes("?") ? "&" : "?";
+                        window.location.href = `${redirect}${joiner}postLoginCheckout=1`;
+                        return;
+                    }
+
+                    if (redirect) {
+                        window.location.href = redirect;
+                        return;
+                    }
+
                     window.location.href = "index.php";
                 });
 

@@ -33,7 +33,8 @@ if (!window.categoryPageInitialized) {
                 const result = await response.json();
                 console.log("Category List Response:", result);
 
-                if (!result.success || !result.data || result.data.length === 0) {
+                const categories = result?.data?.data || result?.data || [];
+                if (!result.success || !Array.isArray(categories) || categories.length === 0) {
                     categoryTableBody.innerHTML = `
                         <tr>
                             <td colspan="8" class="text-center text-danger">No category data found</td>
@@ -42,7 +43,7 @@ if (!window.categoryPageInitialized) {
                     return;
                 }
 
-                renderCategoryRows(result.data);
+                renderCategoryRows(categories);
             } catch (error) {
                 console.error("Category Load Error:", error);
                 categoryTableBody.innerHTML = `
@@ -134,7 +135,7 @@ if (!window.categoryPageInitialized) {
         // =========================
         function createRow(itemNo, item) {
             const imageUrl = item.image
-                ? `${IMAGE_BASE_URL}${item.image}`
+                ? (window.resolveApiMediaUrl ? window.resolveApiMediaUrl(item.image) : `${IMAGE_BASE_URL}${item.image}`)
                 : "assets/images/products/img-1.png";
 
             const statusBadge = item.isActive

@@ -57,13 +57,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
 
-    <script src="./assets/js/userJs/login.js"></script>
-    <Script src="./assets/js/userJs/blog.js"></Script>
-    <script src="./assets/js/userJs/allproduct.js"></script>
+    <script src="./assets/js/media-url.js"></script>
+    <script src="./assets/js/userJs/login.js?v=2"></script>
+    <script src="./assets/js/userJs/blog.js?v=2"></script>
+    <script src="./assets/js/userJs/allproduct.js?v=3"></script>
     <script src="./assets/js/userJs/category.js"></script>
     <script src="./assets/js/userJs/user-order.js"></script>
     <script src="./assets/js/userJs/cart.js"></script>
-    <script src="./assets/js/userJs/checkout.js"></script>
+    <script src="./assets/js/userJs/checkout.js?v=2"></script>
     <script src="./assets/js/userJs/address.js"></script>
     <script src="./assets/js/userJs/createorder.js"></script>
     <script src="./assets/js/userJs/recentView.js"></script>
@@ -2325,6 +2326,8 @@
                     const query = searchInput.value.trim();
                     if (query) {
                         window.location.href = 'shop.php?search=' + encodeURIComponent(query);
+                    } else {
+                        window.location.href = 'shop.php';
                     }
                 });
             }

@@ -2,6 +2,17 @@ const getBlog = "https://api.workarya.com/api/blogs";
 const imageBaseUrl = "https://api.workarya.com";
 const blogDetails = "https://api.workarya.com/api/blogs/"; // Append blog ID for details
 
+function blogImageUrl(path) {
+  const fallback = "./assets/images/inner-page/blog/1.jpg";
+  if (typeof window.resolveApiMediaUrl === "function") {
+    return window.resolveApiMediaUrl(path, fallback);
+  }
+  if (!path) return fallback;
+  const s = String(path).trim();
+  if (/^https?:\/\//i.test(s)) return s;
+  return imageBaseUrl + (s.startsWith("/") ? s : "/" + s);
+}
+
 const getQueryParam = (name) => new URLSearchParams(window.location.search).get(name);
 
 const formatBlogDate = (isoString) => {
@@ -20,7 +31,7 @@ const fillBlogDetail = (blog) => {
     const contentEl = document.getElementById("blog-detail-content");
 
     if (mainImageEl) {
-        mainImageEl.src = blog.image ? `${imageBaseUrl}${blog.image}` : "./assets/images/inner-page/blog/1.jpg";
+        mainImageEl.src = blogImageUrl(blog.image);
         mainImageEl.alt = blog.title || "Blog Image";
     }
 
@@ -50,6 +61,9 @@ const fillBlogDetail = (blog) => {
     }
 };
 
+const normalizeBlogDetailPayload = (payload) =>
+    payload?.data?.data || payload?.data || payload || null;
+
 const renderRecentPosts = (blogs, currentId) => {
     const sideRecent = document.getElementById("blog-recent-sidebar");
     const relatedSlider = document.getElementById("related-blog-slider");
@@ -71,7 +85,7 @@ const renderRecentPosts = (blogs, currentId) => {
         sideRecent.innerHTML = top4
             .map((bg) => {
                 const link = bg.slug ? `blog-detail.php?slug=${encodeURIComponent(bg.slug)}` : `blog-detail.php?id=${encodeURIComponent(bg.id)}`;
-                const image = bg.image ? `${imageBaseUrl}${bg.image}` : "./assets/images/inner-page/blog/1.jpg";
+                const image = blogImageUrl(bg.image);
                 const date = formatBlogDate(bg.created_at);
                 return `
                     <div class="recent-box">
@@ -94,7 +108,7 @@ const renderRecentPosts = (blogs, currentId) => {
         relatedSlider.innerHTML = top4
             .map((bg) => {
                 const link = bg.slug ? `blog-detail.php?slug=${encodeURIComponent(bg.slug)}` : `blog-detail.php?id=${encodeURIComponent(bg.id)}`;
-                const image = bg.image ? `${imageBaseUrl}${bg.image}` : "./assets/images/inner-page/blog/1.jpg";
+                const image = blogImageUrl(bg.image);
                 const title = bg.title || "Untitled";
                 const date = formatBlogDate(bg.created_at);
                 const description = (bg.description || bg.content || "").replace(/<[^>]*>/g, "").slice(0, 120) + "...";
@@ -134,7 +148,10 @@ const renderBlogDetailPage = async () => {
     if (id) {
         try {
             const response = await fetch(`${blogDetails}${encodeURIComponent(id)}`);
-            if (response.ok) blogData = await response.json();
+            if (response.ok) {
+                const raw = await response.json();
+                blogData = normalizeBlogDetailPayload(raw);
+            }
         } catch (error) {
             console.error("Error fetching blog detail by id:", error);
         }
@@ -171,9 +188,7 @@ const renderBlogDetailPage = async () => {
 const ITEMS_PER_PAGE = 8;
 
 const createBlogCardHTML = (blog) => {
-    const blogImage = blog.image
-        ? `${imageBaseUrl}${blog.image}`
-        : "./assets/images/inner-page/blog/1.jpg";
+    const blogImage = blogImageUrl(blog.image);
 
     const blogTitle = blog.title || "No Title";
 
@@ -286,7 +301,7 @@ const renderBlogListingPage = async () => {
         if (sidebarRecent) {
             sidebarRecent.innerHTML = sortedBlogs.slice(0, 4).map((blog) => {
                 const link = blog.slug ? `blog-detail.php?slug=${encodeURIComponent(blog.slug)}` : `blog-detail.php?id=${encodeURIComponent(blog.id)}`;
-                const img = blog.image ? `${imageBaseUrl}${blog.image}` : "./assets/images/inner-page/blog/1.jpg";
+                const img = blogImageUrl(blog.image);
                 return `
                     <div class="recent-box">
                         <a href="${link}" class="recent-image">
@@ -334,9 +349,7 @@ document.addEventListener("DOMContentLoaded", async function () { if (false) {
             blogSection.innerHTML = "";
 
             blogs.forEach((blog) => {
-                const blogImage = blog.image
-                    ? `${imageBaseUrl}${blog.image}`
-                    : "./assets/images/inner-page/blog/1.jpg";
+                const blogImage = blogImageUrl(blog.image);
 
                 const blogTitle = blog.title || "No Title";
 

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="assets/app-0f19a312.css">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="js/login.js"></script>
+    <script src="js/login.js?v=5"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 

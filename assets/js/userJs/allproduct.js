@@ -1,3 +1,5 @@
+const BASE = window.BASE || "https://api.workarya.com";
+
 let qvName, qvDesc, qvPrice, qvImages, qvIndex, qvMainImg, qvThumbs, qvColors, qvSizes, quickModal;
 let currentFilters = null;
 
@@ -6,6 +8,85 @@ window.applyFilters = function (filters) {
     currentFilters = filters;
     loadProducts(1, 50);
 };
+
+/** Single product: GET /api/products/detail/{id} (same response shape as live API). */
+function productsDetailUrl(productId) {
+  return `${BASE}/api/products/detail/${encodeURIComponent(productId)}`;
+}
+
+/**
+ * GET /api/products/list — query params aligned with backend:
+ * Search / q, repeated categoryIds, repeated brandIds (also single brandId/categoryId from URL).
+ */
+function buildProductsListUrl(page, limit) {
+  let url = `${BASE}/api/products/list?page=${page}&pageSize=${limit}`;
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const searchVal = urlParams.get("Search") || urlParams.get("search");
+  const qVal = urlParams.get("q");
+  if (searchVal) {
+    url += `&Search=${encodeURIComponent(searchVal)}`;
+  } else if (qVal) {
+    url += `&q=${encodeURIComponent(qVal)}`;
+  }
+
+  let hasBrandFilter = false;
+  let hasCategoryFilter = false;
+
+  if (currentFilters) {
+    if (currentFilters.categories?.length > 0) {
+      currentFilters.categories.forEach((c) => {
+        url += `&categoryIds=${encodeURIComponent(c.id)}`;
+      });
+      hasCategoryFilter = true;
+    }
+    if (currentFilters.brands?.length > 0) {
+      currentFilters.brands.forEach((b) => {
+        url += `&brandIds=${encodeURIComponent(b.id)}`;
+      });
+      hasBrandFilter = true;
+    }
+    if (currentFilters.colors?.length > 0) {
+      currentFilters.colors.forEach((col) => {
+        url += `&colorIds=${encodeURIComponent(col.id)}`;
+        url += `&colors=${encodeURIComponent(col.name)}`;
+      });
+    }
+    if (currentFilters.sizes?.length > 0) {
+      currentFilters.sizes.forEach((s) => {
+        url += `&sizeIds=${encodeURIComponent(s.id)}`;
+        url += `&sizes=${encodeURIComponent(s.name)}`;
+      });
+    }
+    if (currentFilters.price) {
+      const { min, max } = currentFilters.price;
+      url += `&minPrice=${encodeURIComponent(min)}&maxPrice=${encodeURIComponent(max)}`;
+    }
+  }
+
+  const brandIdQuery = urlParams.get("brandId");
+  const categoryIdQuery = urlParams.get("categoryId");
+  if (brandIdQuery && !hasBrandFilter) {
+    url += `&brandIds=${encodeURIComponent(brandIdQuery)}`;
+  }
+  if (categoryIdQuery && !hasCategoryFilter) {
+    url += `&categoryIds=${encodeURIComponent(categoryIdQuery)}`;
+  }
+
+  return url;
+}
+
+async function fetchProductDetail(productId) {
+  const res = await fetch(productsDetailUrl(productId));
+  if (!res.ok) {
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
+  const json = await res.json();
+  if (!json.success || json.data == null) {
+    return null;
+  }
+  return json.data.data || json.data;
+}
 
 
 
@@ -47,25 +128,10 @@ function openOptions(btn) {
 // Quick View Function - Fetches full product data and populates modal
 async function openQuickView(productId) {
   try {
-    console.log("Fetching products list for quick view, looking for ID:", productId);
-    const res = await fetch(`${BASE}/api/products/list`);
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
-    const json = await res.json();
-    let products = [];
-    if (json.success && json.data) {
-      products = json.data.data || json.data || [];
-      console.log("Products list fetched:", products.length, "products");
-    } else {
-      console.warn("Products list not found");
-      return;
-    }
-
-    // Find the specific product by ID
-    const p = products.find(product => product._id === productId || product.id === productId);
-    if (!p) {
-      console.warn("Product not found in list with ID:", productId);
+    console.log("Fetching product detail for quick view:", productsDetailUrl(productId));
+    const p = await fetchProductDetail(productId);
+    if (!p || !p.name) {
+      console.warn("Product not found for quick view:", productId);
       return;
     }
 
@@ -73,15 +139,20 @@ async function openQuickView(productId) {
 
     // Populate all product details in quick view modal
     if (qvName) qvName.innerText = p.name || "";
-    if (qvDesc) qvDesc.innerText = p.shortDescription || "";
-    if (qvPrice) qvPrice.innerHTML = `₹${p.discountPrice || p.price || 0} ${p.discountPrice ? `<del>₹${p.price}</del>` : ""}`;
+    if (qvDesc) qvDesc.innerText = getProductDescription(p);
+    const qvCategory = document.getElementById("qvCategory");
+    if (qvCategory) qvCategory.innerText = getProductCategory(p) || "N/A";
+    const qvPricing = getProductPrice(p);
+    if (qvPrice) {
+      qvPrice.innerHTML = `₹${qvPricing.finalPrice} ${qvPricing.hasDiscount ? `<del>₹${qvPricing.strikePrice}</del>` : ""}`;
+    }
 
     // Images
-    qvImages = [p.mainImage, ...(p.galleryImages || [])].filter(Boolean);
+    qvImages = getProductImages(p);
     qvIndex = 0;
 
     if (qvMainImg && qvImages.length > 0) {
-      qvMainImg.src = BASE + qvImages[qvIndex];
+      qvMainImg.src = toImageUrl(qvImages[qvIndex]);
     }
 
     // Thumbnails
@@ -91,7 +162,7 @@ async function openQuickView(productId) {
         qvThumbs.innerHTML += `
           <div class="swiper-slide">
             <div class="image-box">
-              <img src="${BASE + src}" class="thumb-img" data-i="${i}" style="cursor:pointer">
+              <img src="${toImageUrl(src)}" class="thumb-img" data-i="${i}" style="cursor:pointer">
             </div>
           </div>`;
       });
@@ -110,23 +181,29 @@ async function openQuickView(productId) {
     // Colors
     if (qvColors) {
       qvColors.innerHTML = "";
-      if (p.colors && p.colors.length > 0) {
-        p.colors.forEach((c) => {
+      const colors = getProductColors(p);
+      if (colors.length > 0) {
+        colors.forEach((c) => {
           qvColors.innerHTML += `
             <div style="width:30px;height:30px;border-radius:50%;
                         background:${c};border:1px solid #ccc;cursor:pointer;margin:2px;"></div>`;
         });
+      } else {
+        qvColors.innerHTML = `<span class="text-muted">No color</span>`;
       }
     }
 
     // Sizes
     if (qvSizes) {
       qvSizes.innerHTML = "";
-      if (p.sizes && p.sizes.length > 0) {
-        p.sizes.forEach((s) => {
+      const sizes = getProductSizes(p);
+      if (sizes.length > 0) {
+        sizes.forEach((s) => {
           qvSizes.innerHTML += `
             <div class="px-3 py-1 border" style="cursor:pointer;margin:2px;">${s}</div>`;
         });
+      } else {
+        qvSizes.innerHTML = `<span class="text-muted">No size</span>`;
       }
     }
 
@@ -138,7 +215,7 @@ async function openQuickView(productId) {
         addBtn.removeAttribute("onclick"); // Remove existing redirect to cart.html
         addBtn.classList.add("qv-add-cart-btn");
         addBtn.setAttribute("data-id", p._id || p.id);
-        addBtn.setAttribute("data-price", p.discountPrice || p.price || 0);
+        addBtn.setAttribute("data-price", qvPricing.finalPrice || 0);
       }
     }
 
@@ -156,13 +233,89 @@ async function openQuickView(productId) {
 
 // individual product buy now  ****************************************
 
+function toImageUrl(path) {
+  if (typeof window.resolveApiMediaUrl === "function") {
+    return window.resolveApiMediaUrl(path);
+  }
+  if (!path || typeof path !== "string") return "assets/images/product/placeholder.png";
+  var t = path.trim();
+  return /^https?:\/\//i.test(t) ? t : BASE + (t.startsWith("/") ? t : "/" + t);
+}
 
-const BASE = "https://api.workarya.com";
+function getProductImages(product) {
+  const mainImage = product.mainImage || product.mainimage;
+  const galleryImages = product.galleryImages || product.galleryimages || [];
+  return [mainImage, ...galleryImages].filter(Boolean);
+}
+
+function normalizeToArray(value) {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (typeof value === "string" && value.trim()) return [value.trim()];
+  if (value && typeof value === "object") {
+    const values = Object.values(value).filter((v) => typeof v === "string" && v.trim());
+    return values.map((v) => v.trim());
+  }
+  return [];
+}
+
+function getProductPrice(product) {
+  const toNum = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : 0;
+  };
+
+  const regular = toNum(product.price ?? product.Price);
+  const discountCandidate = toNum(
+    product.discountPrice ?? product.discountprice,
+  );
+
+  let effectiveDiscount = discountCandidate;
+  if (regular > 0 && discountCandidate > regular) {
+    effectiveDiscount = regular;
+  }
+
+  const hasRealDiscount =
+    regular > 0 && effectiveDiscount > 0 && effectiveDiscount < regular;
+
+  const finalPrice =
+    hasRealDiscount ? effectiveDiscount : effectiveDiscount > 0
+      ? effectiveDiscount
+      : regular;
+
+  return {
+    regular,
+    discount: effectiveDiscount,
+    finalPrice,
+    hasDiscount: hasRealDiscount,
+    strikePrice: hasRealDiscount ? regular : 0,
+  };
+}
+
+function getProductDescription(product) {
+  return product.shortDescription || product.shortdescription || "";
+}
+
+function getProductCategory(product) {
+  return product.categoryName || product.categoryname || "";
+}
+
+function getProductColors(product) {
+  return normalizeToArray(product.colors?.map?.((c) => c.name || c) || product.colors || product.colorname);
+}
+
+function getProductSizes(product) {
+  return normalizeToArray(product.sizes?.map?.((s) => s.name || s) || product.sizes || product.sizename);
+}
 
 // Proceed to Checkout Function
 async function proceedToCheckout() {
   const userToken = localStorage.getItem("userToken");
   if (!userToken) {
+    localStorage.setItem(
+      "postLoginRedirect",
+      `${window.location.pathname}${window.location.search}`,
+    );
+    localStorage.setItem("postLoginAction", "checkout");
     if (typeof Swal !== 'undefined') {
       Swal.fire({
         title: "Login Required",
@@ -332,48 +485,7 @@ async function loadProducts(page = 1, limit = 50) {
     </div>
   `;
 
-  let url = `${BASE}/api/products/list?page=${page}&pageSize=${limit}`;
-
-  // Add search query if present in URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const searchQuery = urlParams.get('search');
-  if (searchQuery) {
-      url += `&search=${encodeURIComponent(searchQuery)}`;
-  }
-
-  const brandIdQuery = urlParams.get('brandId');
-  const categoryIdQuery = urlParams.get('categoryId');
-  let hasBrandFilter = false;
-  let hasCategoryFilter = false;
-
-  if (currentFilters) {
-      if (currentFilters.categories?.length > 0) {
-          url += `&categoryIds=${currentFilters.categories.map(c => c.id).join(',')}`;
-          hasCategoryFilter = true;
-      }
-      if (currentFilters.brands?.length > 0) {
-          url += `&brandIds=${currentFilters.brands.map(b => b.id).join(',')}`;
-          hasBrandFilter = true;
-      }
-      if (currentFilters.colors?.length > 0) {
-          url += `&` + currentFilters.colors.map(c => `colors=${encodeURIComponent(c.name)}`).join('&');
-      }
-      if (currentFilters.sizes?.length > 0) {
-          url += `&` + currentFilters.sizes.map(s => `sizes=${encodeURIComponent(s.name)}`).join('&');
-      }
-      if (currentFilters.price) {
-          url += `&minPrice=${currentFilters.price.min}&maxPrice=${currentFilters.price.max}`;
-      }
-  }
-
-  if (brandIdQuery && !hasBrandFilter) {
-      url += `&brandIds=${encodeURIComponent(brandIdQuery)}`;
-  }
-
-  // Apply category ID from URL if not already handled by a sidebar filter selection
-  if (categoryIdQuery && !hasCategoryFilter) {
-      url += `&categoryIds=${encodeURIComponent(categoryIdQuery)}`;
-  }
+  let url = buildProductsListUrl(page, limit);
 
   try {
       const res = await fetch(url);
@@ -436,7 +548,8 @@ function renderPagination(totalPages, currentPage) {
 
 function cardHTML(p) {
   const id = p._id || p.id;
-  const img = p.images?.[0] || "../assets/images/product/placeholder.png";
+  const img = p.images?.[0] || p.mainImage || p.mainimage || "assets/images/product/placeholder.png";
+  const pricing = getProductPrice(p);
 
   return `
   <div class="col">
@@ -465,7 +578,7 @@ function cardHTML(p) {
               </ul>
             </div>
 
-            <button class="btn add-cart-btn" data-id="${p._id}">add to cart</button>
+            <button class="btn add-cart-btn" data-id="${id}">add to cart</button>
             <button class="close-btn btn" onclick="closeSidebar()">
               <i class="ri-close-line"></i>
             </button>
@@ -476,7 +589,7 @@ function cardHTML(p) {
       <div class="productMain product-box-4 pro-bg-white">
         <div class="product-image">
           <a href="product-detail.php?id=${id}">
-            <img src="${BASE + p.mainImage}" class="img-fluid productImage" alt="">
+            <img src="${toImageUrl(img)}" class="img-fluid productImage" alt="">
           </a>
 
           <div class="quick-view-button-box">
@@ -487,7 +600,7 @@ function cardHTML(p) {
         </div>
 
         <div class="product-content">
-          <h5 class="sub-name productName">${p.brandName || ""}</h5>
+          <h5 class="sub-name productName">${p.brandName || p.brandname || ""}</h5>
 
           <a href="product-detail.php?id=${id}" class="name">
             <h5>${p.name}</h5>
@@ -504,8 +617,8 @@ function cardHTML(p) {
           
 
           <h5 class="price">
-            ₹${p.discountPrice}
-            ${p.discountPrice ? `<del>₹${p.price}</del>` : ""}
+            ₹${pricing.finalPrice}
+            ${pricing.hasDiscount ? `<del>₹${pricing.strikePrice}</del>` : ""}
           </h5>
 
           <div class="option-box">
@@ -615,24 +728,10 @@ async function openOptions(card, productId) {
   }
 
   try {
-    console.log("Fetching products list for select options, looking for ID:", productId);
-    const res = await fetch(`${BASE}/api/products/list`);
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
-    const json = await res.json();
-    let products = [];
-    if (json.success && json.data) {
-      products = json.data.data || json.data || [];
-      console.log("Products list fetched:", products.length, "products");
-    } else {
-      console.warn("Products list not found");
-      throw new Error("Products list not found");
-    }
-
-    const p = products.find((product) => product._id === productId || product.id === productId);
-    if (!p) {
-      console.warn("Product not found in list with ID:", productId);
+    console.log("Fetching product detail for select options:", productsDetailUrl(productId));
+    const p = await fetchProductDetail(productId);
+    if (!p || !p.name) {
+      console.warn("Product not found for select options:", productId);
       if (colorsList) colorsList.innerHTML = "<li>No colors available</li>";
       if (sizesList) sizesList.innerHTML = "<li>No sizes available</li>";
       return;
@@ -641,8 +740,9 @@ async function openOptions(card, productId) {
     console.log("Found product for select options:", p);
 
     if (colorsList) {
-      if (Array.isArray(p.colors) && p.colors.length > 0) {
-        colorsList.innerHTML = p.colors
+      const colors = getProductColors(p);
+      if (colors.length > 0) {
+        colorsList.innerHTML = colors
           .map((c) => `<li><a href='#!' style='background-color:${c};'></a></li>`)
           .join("");
       } else {
@@ -651,8 +751,9 @@ async function openOptions(card, productId) {
     }
 
     if (sizesList) {
-      if (Array.isArray(p.sizes) && p.sizes.length > 0) {
-        sizesList.innerHTML = p.sizes
+      const sizes = getProductSizes(p);
+      if (sizes.length > 0) {
+        sizesList.innerHTML = sizes
           .map((s) => `<li><a href='#!'>${s}</a></li>`)
           .join("");
       } else {
@@ -744,37 +845,38 @@ if (window.location.pathname.includes('product-detail')) {
     }
 
     try {
-      console.log("Fetching product from:", `${BASE}/api/products/get/${id}`);
-      const res = await fetch(`${BASE}/api/products/get/${id}`);
-      
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
+      console.log("Fetching product from:", productsDetailUrl(id));
+      const p = await fetchProductDetail(id);
+
+      console.log("Product payload:", p);
+
+      if (!p || !p.name) {
+        throw new Error("Invalid product data structure");
       }
 
-      const json = await res.json();
-      console.log("Full API response:", json);
+      populateProduct(p);
 
-      let p;
-      if (json.success && json.data) {
-        p = json.data.data || json.data;
+      // ================ ADD TO RECENT VIEWS ================
+      await addToRecentViews(id);
 
-        if (!p || !p.name) {
-          throw new Error("Invalid product data structure");
-        }
+      // ================ LOAD PRODUCT REVIEWS ================
+      if (typeof loadProductReviews === "function") {
+        await loadProductReviews(id);
+      }
 
-        populateProduct(p);
+      // ================ LOAD RELATED PRODUCTS ================
+      if (typeof loadRelatedProducts === "function") {
+        await loadRelatedProducts(id, 8, p);
+      }
 
-        // ================ ADD TO RECENT VIEWS ================
-        // Call after successfully loading product data
-        await addToRecentViews(id);
-
-        // ================ LOAD PRODUCT REVIEWS ================
-        if (typeof loadProductReviews === 'function') {
-          await loadProductReviews(id);
-        }
-
-      } else {
-        alert("Product not found or API error");
+      // ================ POST LOGIN CHECKOUT REDIRECT ================
+      const qp = new URLSearchParams(window.location.search);
+      if (qp.get("postLoginCheckout") === "1") {
+        qp.delete("postLoginCheckout");
+        const newQuery = qp.toString();
+        const newUrl = `${window.location.pathname}${newQuery ? `?${newQuery}` : ""}`;
+        window.history.replaceState({}, "", newUrl);
+        await proceedToCheckout();
       }
     } catch (error) {
       console.error("Error fetching product:", error);
@@ -792,8 +894,12 @@ function stripHtml(html) {
 function populateProduct(p) {
   console.log("Populating product with data:", p);
 
+  const pricing = getProductPrice(p);
+  const sizes = getProductSizes(p);
+  const colors = getProductColors(p);
+
   // Images
-  const images = [p.mainImage, ...(p.galleryImages || [])].filter(Boolean);
+  const images = getProductImages(p);
   console.log("Images to display:", images);
   const swiperWrapper = document.querySelector(
     ".product-original-slider .swiper-wrapper",
@@ -807,7 +913,7 @@ function populateProduct(p) {
       swiperWrapper.innerHTML += `
                                 <div class="swiper-slide">
                                     <div class="slider-image">
-                                        <img src="${BASE + img}" class="img-fluid" alt="">
+                                        <img src="${toImageUrl(img)}" class="img-fluid" alt="">
                                     </div>
                                 </div>`;
     });
@@ -821,7 +927,7 @@ function populateProduct(p) {
       thumbWrapper.innerHTML += `
                                 <div class="swiper-slide">
                                     <div class="sidebar-image">
-                                        <img src="${BASE + img}" class="img-fluid" alt="">
+                                        <img src="${toImageUrl(img)}" class="img-fluid" alt="">
                                     </div>
                                 </div>`;
     });
@@ -891,14 +997,14 @@ function populateProduct(p) {
 
   const priceEl = document.querySelector(".product-price");
   if (priceEl) {
-    priceEl.innerHTML = `₹${p.discountPrice} <del>₹${p.price}</del>`;
-    console.log("Updated price to:", `₹${p.discountPrice}`);
+    priceEl.innerHTML = `₹${pricing.finalPrice} ${pricing.hasDiscount ? `<del>₹${pricing.strikePrice}</del>` : ""}`;
+    console.log("Updated price to:", `₹${pricing.finalPrice}`);
   } else {
     console.warn("Price element not found");
   }
   const descEl = document.querySelector(".product-contain p");
   if (descEl) {
-    descEl.innerText = p.shortDescription;
+    descEl.innerText = getProductDescription(p);
     console.log("Updated description");
   } else {
     console.warn("Description element not found");
@@ -919,12 +1025,12 @@ function populateProduct(p) {
   );
   const sizeSection = sizeForm?.closest(".product-package"); // poora size block
 
-  if (sizeForm && Array.isArray(p.sizes) && p.sizes.length > 0) {
+  if (sizeForm && sizes.length > 0) {
     // show section
     if (sizeSection) sizeSection.style.display = "";
 
     sizeForm.innerHTML = "";
-    p.sizes.forEach((s, i) => {
+    sizes.forEach((s, i) => {
       sizeForm.insertAdjacentHTML(
         "beforeend",
         `
@@ -947,12 +1053,12 @@ function populateProduct(p) {
   const colorForm = document.querySelector(".color-product");
   const colorSection = colorForm?.closest(".product-package"); // poora color block
 
-  if (colorForm && Array.isArray(p.colors) && p.colors.length > 0) {
+  if (colorForm && colors.length > 0) {
     // show section
     if (colorSection) colorSection.style.display = "";
 
     colorForm.innerHTML = "";
-    p.colors.forEach((c, i) => {
+    colors.forEach((c, i) => {
       colorForm.insertAdjacentHTML(
         "beforeend",
         `
@@ -983,10 +1089,10 @@ function populateProduct(p) {
   const aboutList = document.querySelector(".about-item-list");
   if (aboutList) {
     aboutList.innerHTML = `
-                            <li>Brand : <span>${p.brandName || ""}</span></li>
-                            <li>Category : <span>${p.categoryName || ""}</span></li>
+                            <li>Brand : <span>${p.brandName || p.brandname || ""}</span></li>
+                            <li>Category : <span>${getProductCategory(p)}</span></li>
                             <li>Condition : <span>Brand new</span></li>
-                            <li>Color : <span>${(p.colors || [])[0] || ""}</span></li>
+                            <li>Color : <span>${colors[0] || ""}</span></li>
                             `;
     console.log("Updated about item list");
   } else {
@@ -998,15 +1104,15 @@ function populateProduct(p) {
     ".side-product-box .product-image img",
   );
   if (sidebarImg) {
-    sidebarImg.src = BASE + p.mainImage;
+    sidebarImg.src = toImageUrl(p.mainImage || p.mainimage);
     console.log("Updated sidebar image");
   } else {
     console.warn("Sidebar image not found");
   }
   const stockEl = document.querySelector(".stock-box span");
   if (stockEl) {
-    stockEl.innerText = p.stockQuantity || 0;
-    console.log("Updated stock to:", p.stockQuantity);
+    stockEl.innerText = p.stockQuantity ?? p.stockquantity ?? 0;
+    console.log("Updated stock to:", p.stockQuantity ?? p.stockquantity);
   } else {
     console.warn("Stock element not found");
   }
@@ -1016,8 +1122,8 @@ function populateProduct(p) {
     ".side-product-box .product-contain h4",
   );
   if (selectedOptionsEl) {
-    const firstSize = p.sizes && p.sizes.length > 0 ? p.sizes[0] : "";
-    const firstColor = p.colors && p.colors.length > 0 ? p.colors[0] : "";
+    const firstSize = sizes[0] || "";
+    const firstColor = colors[0] || "";
     selectedOptionsEl.innerText = `${firstSize}${firstSize && firstColor ? ", " : ""}${firstColor}`;
     console.log("Updated selected options to:", selectedOptionsEl.innerText);
   } else {
@@ -1033,11 +1139,11 @@ function populateProduct(p) {
     );
 
     if (textNode) {
-      textNode.nodeValue = `₹${p.discountPrice} `;
+      textNode.nodeValue = `₹${pricing.finalPrice} `;
     } else {
       // agar text node na mile to naya insert kar do span se pehle
       h4.insertBefore(
-        document.createTextNode(`₹${p.discountPrice} `),
+        document.createTextNode(`₹${pricing.finalPrice} `),
         h4.firstChild,
       );
     }
@@ -1058,7 +1164,7 @@ function populateProduct(p) {
     buttonContainer.insertAdjacentHTML("beforeend", `
       <div class="button-group">
         <button class="btn buy-btn-desktop theme-bg-color text-white" data-action="buy-now" data-product-id="${p.id}">Buy now</button>
-        <button class="btn add-to-bag-btn buy-btn-2 theme-border fw-500" data-product-id="${p.id}" data-product-price="${p.discountPrice}">
+        <button class="btn add-to-bag-btn buy-btn-2 theme-border fw-500" data-product-id="${p.id}" data-product-price="${pricing.finalPrice}">
           <i class="ri-shopping-bag-line"></i> Add to bag
         </button>
       </div>
@@ -1175,68 +1281,59 @@ if (!window.cartGlobalClickBound) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Product detail page scripts initialized");
-  async function loadFlashSaleProducts() {
-  const container = document.getElementById("flashSaleContainer");
-
-  if (!container) return;
+async function loadRelatedProducts(productId, limit = 8, currentProduct = null) {
+  const wrapper = document.querySelector(".related-products .swiper-wrapper");
+  if (!wrapper || !productId) return;
 
   try {
-    const res = await fetch(`${BASE}/api/products/list?page=1&pageSize=7`);
-    const json = await res.json();
-    const products = json?.data?.data || json?.data || [];
+    let products = [];
+    let res = await fetch(
+      `${BASE}/api/products/related/${encodeURIComponent(productId)}?limit=${encodeURIComponent(limit)}`,
+    );
 
-    if (!products.length) {
-      container.innerHTML = `<p>No products found</p>`;
+    // Some deployments don't expose /related endpoint yet (404). Fallback to category list.
+    if (res.ok) {
+      const json = await res.json();
+      products = json?.data?.data || json?.data || [];
+    } else {
+      const categoryId =
+        currentProduct?.categoryid ||
+        currentProduct?.categoryId ||
+        currentProduct?.category?.id ||
+        "";
+
+      if (categoryId) {
+        res = await fetch(
+          `${BASE}/api/products/list?page=1&pageSize=${encodeURIComponent(limit + 1)}&categoryIds=${encodeURIComponent(categoryId)}`,
+        );
+        if (res.ok) {
+          const listJson = await res.json();
+          const list = listJson?.data?.data || listJson?.data || [];
+          products = list.filter((x) => String(x.id || x._id) !== String(productId));
+        }
+      }
+    }
+
+    wrapper.innerHTML = "";
+
+    if (!Array.isArray(products) || products.length === 0) {
+      wrapper.innerHTML = `<div class="swiper-slide"><p class="text-muted">No related products found.</p></div>`;
       return;
     }
 
-    container.innerHTML = "";
-
-    products.forEach((p) => {
-      container.insertAdjacentHTML("beforeend", flashSaleCardHTML(p));
+    products.slice(0, limit).forEach((p) => {
+      wrapper.insertAdjacentHTML("beforeend", flashSaleCardHTML(p));
     });
 
-    // Re-initialize swiper if it exists
-    const swiperEl = document.querySelector(".product-slider-7");
-    if (swiperEl && swiperEl.swiper) {
-      swiperEl.swiper.update();
-    }
-
-    // Add event delegation for "Add to cart" in flash sale
-    if (!container.dataset.eventsBound) {
-      container.dataset.eventsBound = "true";
-      container.addEventListener("click", (e) => {
-        if (e.target.closest(".add-cart-btn")) {
-          e.preventDefault();
-          const btn = e.target.closest(".add-cart-btn");
-          const productId = btn.getAttribute("data-id");
-
-          let price = 0;
-          const card = btn.closest(".product-box");
-          if (card) {
-            const priceEl = card.querySelector(".price");
-            if (priceEl) {
-              const priceText = priceEl.innerText;
-              const priceMatch = priceText.match(/[\d.]+/);
-              price = priceMatch ? parseFloat(priceMatch[0]) : 0;
-            }
-          }
-
-          if (productId) {
-            addToCart(productId, 1, price);
-          }
-        }
-      });
+    const relatedSwiperEl = document.querySelector(".related-products");
+    if (relatedSwiperEl && relatedSwiperEl.swiper) {
+      relatedSwiperEl.swiper.update();
     }
   } catch (err) {
-    console.error(err);
-    container.innerHTML = `<p>Error loading products</p>`;
+    console.error("Error loading related products:", err);
+    wrapper.innerHTML = `<div class="swiper-slide"><p class="text-muted">No related products found.</p></div>`;
   }
 }
-  loadFlashSaleProducts();
-});
 function shortName(name, words = 6) {
   if (!name) return "";
   const parts = name.split(" ");
@@ -1247,19 +1344,20 @@ function shortName(name, words = 6) {
 
 function flashSaleCardHTML(p) {
   const id = p._id || p.id;
-  const img = p.images?.[0] || p.mainImage || "assets/images/product/placeholder.png";
+  const img = p.images?.[0] || p.mainImage || p.mainimage || "assets/images/product/placeholder.png";
+  const pricing = getProductPrice(p);
 
   return `
     <div class="swiper-slide">
         <div class="product-box productMain">
             <a href="product-detail.php?id=${id}" class="product-image">
-                <img src="${img.startsWith('http') ? img : BASE + img}" class="img-fluid productImage" alt="">
+                <img src="${toImageUrl(img)}" class="img-fluid productImage" alt="">
             </a>
             <div class="product-content">
                 <a href="product-detail.php?id=${id}">
                     <h4 class="productName">${shortName(p.name)}</h4>
                 </a>
-                <h5 class="price">₹${p.discountPrice || p.price || 0} ${p.discountPrice ? `<del>₹${p.price}</del>` : ""}</h5>
+                <h5 class="price">₹${pricing.finalPrice} ${pricing.hasDiscount ? `<del>₹${pricing.strikePrice}</del>` : ""}</h5>
                 <div class="progress">
                     <div class="progress-bar" style="width: ${p.stockQuantity ? Math.min(100, (Math.floor(p.stockQuantity / 3) / (p.stockQuantity || 12)) * 100) : 30}%"></div>
                 </div>

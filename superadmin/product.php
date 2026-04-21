@@ -49,6 +49,7 @@
                                         S.No
                                     </th>
                                     <th>Product</th>
+                                    <th>Vendor Name</th>
                                     <th>Short Description</th>
                                     <th>Description</th>
                                     <th>Category</th>

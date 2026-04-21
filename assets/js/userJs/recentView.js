@@ -48,9 +48,9 @@ async function loadRecentProducts() {
             const productName = product.name || "Product Name";
             const productPrice = product.salePrice ? `$${parseFloat(product.salePrice).toFixed(2)}` : "$0.00";
             const discountPrice = product.originalPrice ? `$${parseFloat(product.originalPrice).toFixed(2)}` : "$0.00";
-            const productImage = product.image 
-                ? `${BASE_URL}${product.image}` 
-                : "assets/images/product/3.png";
+            const productImage = window.resolveApiMediaUrl
+                ? window.resolveApiMediaUrl(product.image, "assets/images/product/3.png")
+                : (product.image ? `${BASE_URL}${product.image}` : "assets/images/product/3.png");
 
             html += `
                 <li>

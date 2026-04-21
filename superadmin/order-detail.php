@@ -181,7 +181,7 @@
             o.items.forEach(it => {
                 itemsHtml += `
         <div class="border rounded p-2 mb-2 d-flex gap-2">
-          <img src="${BASE}${it.productImage}"
+          <img src="${window.resolveApiMediaUrl ? window.resolveApiMediaUrl(it.productImage || it.image) : (BASE + (it.productImage || ""))}"
                width="60" height="60"
                style="object-fit:cover;border-radius:6px"/>
           <div>

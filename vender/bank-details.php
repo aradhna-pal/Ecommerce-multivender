@@ -49,7 +49,7 @@
                                     <label class="form-label" for="branchName">Branch Name</label>
                                     <input type="text" class="form-control" id="branchName" name="branchName" placeholder="Enter branch name">
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <!-- <div class="col-md-6 mb-3">
                                     <label class="form-label" for="accountType">Account Type</label>
                                     <select class="form-select" id="accountType" name="accountType">
                                         <option value="">Select Account Type</option>
@@ -57,8 +57,8 @@
                                         <option value="Current">Current</option>
                                         <option value="Overdraft">Overdraft</option>
                                     </select>
-                                </div>
-                                <div class="col-12 mb-3">
+                                </div> -->
+                                <div class="col-6 mb-3">
                                     <label class="form-label" for="cancelledCheque">Upload Cancelled Cheque / Passbook</label>
                                     <input type="file" class="form-control" id="cancelledCheque" name="cancelledCheque">
                                 </div>

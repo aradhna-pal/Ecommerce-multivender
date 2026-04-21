@@ -1,5 +1,4 @@
-
-// const BASE = "https://api.workarya.com";
+const TRACK_ORDER_API_ROOT = window.BASE || "https://api.workarya.com";
 
 document.addEventListener("DOMContentLoaded", () => {
     // ✅ run only on tracking page
@@ -16,7 +15,7 @@ async function init() {
         if (!orderId || !token) return;
 
         const res = await fetch(
-            `${BASE}/api/orders/order-details/${orderId}`,
+            `${TRACK_ORDER_API_ROOT}/api/orders/order-details/${orderId}`,
             { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -71,7 +70,7 @@ function render(order) {
         tbody.innerHTML += `
         <tr>
             <td class="d-flex align-items-center gap-2">
-                <img src="${BASE}${item.productImage}" width="50" height="50"
+                <img src="${window.resolveApiMediaUrl(item.productImage || item.image)}" width="50" height="50"
                      style="object-fit:cover;border-radius:6px">
                 <span>${item.productName}</span>
             </td>

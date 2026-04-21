@@ -48,7 +48,7 @@
                                     <label class="form-label" for="address">Address <span class="text-danger">*</span></label>
                                     <textarea class="form-control" id="address" name="address" rows="2" placeholder="Enter full address" required></textarea>
                                 </div>
-                                <div class="col-md-3 mb-3">
+                                <!-- <div class="col-md-3 mb-3">
                                     <label class="form-label" for="country">Country <span class="text-danger">*</span></label>
                                     <select class="form-select" id="country" name="country" required>
                                         <option value="">Select Country</option>
@@ -69,7 +69,7 @@
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label" for="pincode">Pincode <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter pincode" required>
-                                </div>
+                                </div> -->
 
                                 <h5 class="mt-3 mb-2">Profile Image</h5>
                                 <div class="col-md-6 mb-3">
@@ -88,6 +88,7 @@
                                 const countrySelect = document.getElementById("country");
                                 const stateSelect = document.getElementById("state");
                                 const citySelect = document.getElementById("city");
+                                if (!countrySelect || !stateSelect || !citySelect) return;
 
                                 // Load Countries
                                 fetch("https://countriesnow.space/api/v0.1/countries/iso")

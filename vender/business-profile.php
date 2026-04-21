@@ -39,6 +39,10 @@
                                     <input type="tel" class="form-control" id="businessPhone" name="businessPhone" placeholder="Enter mobile number" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="alternatePhone">Alternate Phone</label>
+                                    <input type="tel" class="form-control" id="alternatePhone" name="alternatePhone" placeholder="Enter alternate number">
+                                </div>
+                                <div class="col-md-6 mb-3">
                                     <label class="form-label" for="businessEmail">Business Email</label>
                                     <input type="email" class="form-control" id="businessEmail" name="businessEmail" placeholder="Enter business email">
                                 </div>
@@ -46,11 +50,27 @@
                                     <label class="form-label" for="businessWebsite">Business Website</label>
                                     <input type="url" class="form-control" id="businessWebsite" name="businessWebsite" placeholder="https://www.example.com">
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="businessType">Business Type</label>
+                                    <input type="text" class="form-control" id="businessType" name="businessType" placeholder="e.g. Private Limited">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="businessCategory">Business Category</label>
+                                    <input type="text" class="form-control" id="businessCategory" name="businessCategory" placeholder="e.g. IT Services">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label class="form-label" for="businessDescription">Business Description</label>
+                                    <textarea class="form-control" id="businessDescription" name="businessDescription" rows="2" placeholder="Describe your business"></textarea>
+                                </div>
 
                                 <h5 class="mt-3 mb-2">Business Address</h5>
                                 <div class="col-12 mb-3">
-                                    <label class="form-label" for="businessAddress">Business Address <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="businessAddress" name="businessAddress" rows="2" placeholder="Enter full address" required></textarea>
+                                    <label class="form-label" for="businessAddress">Address Line 1 <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="businessAddress" name="businessAddress" rows="2" placeholder="Enter address line 1" required></textarea>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label class="form-label" for="businessAddressLine2">Address Line 2</label>
+                                    <input type="text" class="form-control" id="businessAddressLine2" name="businessAddressLine2" placeholder="Enter address line 2">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label" for="businessCountry">Business Country <span class="text-danger">*</span></label>
@@ -99,7 +119,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="aadharImage">Aadhar Card Image Front/Back <span class="text-danger">*</span></label>
-                                    <input type="file" class="form-control" id="aadharImage" name="aadharImage" accept="image/*, .pdf" required>
+                                    <input type="file" class="form-control" id="aadharImage" name="aadharImage" accept="image/*, .pdf" multiple required>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -118,6 +138,22 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="panImage">PAN Card Image</label>
                                     <input type="file" class="form-control" id="panImage" name="panImage" accept="image/*, .pdf">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="cinNumber">CIN Number</label>
+                                    <input type="text" class="form-control" id="cinNumber" name="cinNumber" placeholder="Enter CIN number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="cinCertificate">CIN Certificate</label>
+                                    <input type="file" class="form-control" id="cinCertificate" name="cinCertificate" accept="image/*, .pdf">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="udyamRegistrationNumber">Udyam Registration Number</label>
+                                    <input type="text" class="form-control" id="udyamRegistrationNumber" name="udyamRegistrationNumber" placeholder="Enter Udyam number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="businessLogo">Business Logo</label>
+                                    <input type="file" class="form-control" id="businessLogo" name="businessLogo" accept="image/*">
                                 </div>
 
                                 <div class="col-md-6 mb-3">

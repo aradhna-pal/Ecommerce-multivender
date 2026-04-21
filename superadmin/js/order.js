@@ -10,24 +10,24 @@ async function loadOrders() {
     );
 
     const result = await res.json();
-    const orders = result.data || [];
+    const orders = result?.data?.data || result?.data || result?.orders || [];
 
     const tbody = document.getElementById("allorder");
     tbody.innerHTML = "";
 
     orders.forEach((o, index) => {
-      const firstItem = o.items[0] || {};
+      const firstItem = (o.items && o.items[0]) || {};
       const address = o.address || {};
 
       const row = `
         <tr>
           <td>${index + 1}</td>
 
-          <td class="fw-bold">${o.orderId}</td>
+          <td class="fw-bold">${o.orderId || o.id || "-"}</td>
 
           <td>
             <div class="d-flex align-items-center gap-2">
-              <img src="https://api.workarya.com${firstItem.productImage || ""}"
+              <img src="${(window.resolveApiMediaUrl ? window.resolveApiMediaUrl(firstItem.productImage || firstItem.image) : ("https://api.workarya.com" + (firstItem.productImage || firstItem.image || "")))}"
                    width="40" height="40" style="object-fit:cover;border-radius:6px"
                    onerror="this.style.display='none'"/>
               <div>
@@ -42,13 +42,13 @@ async function loadOrders() {
             ${formatDate(o.createdAt)}
           </td>
 
-          <td>₹${o.totalAmount}</td>
+          <td>₹${o.totalAmount ?? o.total ?? 0}</td>
 
-          <td>${o.paymentStatus}</td>
+          <td>${o.paymentStatus || o.paymentstatus || "-"}</td>
 
           <td>
             <span class="badge bg-info-subtle text-info fw-semibold">
-              ${o.orderStatus}
+              ${o.orderStatus || o.status || "-"}
             </span>
           </td>
 
@@ -57,7 +57,7 @@ async function loadOrders() {
   <i class="mdi mdi-eye-outline fs-4 text-primary"
      title="Order Details"
      style="cursor:pointer"
-     onclick="viewOrder('${o.orderId}')"></i>
+     onclick="viewOrder('${o.orderId || o.id}')"></i>
 </td>
 
 <td class="table-action">
@@ -65,7 +65,7 @@ async function loadOrders() {
   <i class="mdi mdi-printer fs-3 text-success"
      title="Print Invoice"
      style="cursor:pointer"
-     onclick="printInvoice('${o.orderId}')"></i>
+     onclick="printInvoice('${o.orderId || o.id}')"></i>
 </td>
 
 

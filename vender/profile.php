@@ -154,7 +154,7 @@
                                 <!-- settings -->
                                 <div id="edit-profile" class="tab-pane" role="tabpanel">
                                     <div class="user-profile-content">
-                                        <form>
+                                        <form id="vendorPasswordForm">
                                             <div class="row row-cols-sm-2 row-cols-1">
                                                 <div class="mb-2">
                                                     <label class="form-label" for="FullName">First
@@ -171,7 +171,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label" for="oldpassword">Current Password</label>
-                                                    <input type="password" value="Enter Old Password" id="oldpassword" class="form-control">
+                                                    <input type="password" value="" id="oldpassword" class="form-control">
                                                 </div>
                                                 
                                                 <div class="mb-3">
@@ -184,7 +184,7 @@
                                                 </div>
                                                 
                                             </div>
-                                            <button class="btn btn-primary" type="submit"><i class="ri-save-line me-1 fs-16 lh-1"></i> Save</button>
+                                            <button id="vendorPasswordSaveBtn" class="btn btn-primary" type="submit"><i class="ri-save-line me-1 fs-16 lh-1"></i> Save</button>
                                         </form>
                                     </div>
                                 </div>

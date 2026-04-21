@@ -18,15 +18,34 @@
     <script src="./js/catugery.js"></script>
     <script src="./js/brand.js"></script>
     <script src="./js/vender-detail.js"></script>
+    <script src="./js/product.js?v=9"></script>
     <script src="./js/pincode.js"></script>
     <script src="./js/coupon.js"></script>
     <script src="./js/all-article.js"></script>
+    <script src="./js/order.js"></script>
+    <script src="./js/dashboard.js?v=1"></script>
     <style id="vendor-status-styles"></style>
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page
         const token = localStorage.getItem("vendorToken");
+        const rawCurrentPage = window.location.pathname.split("/").pop().toLowerCase();
+        function normalizePage(page) {
+            return (page || "").toLowerCase().replace(/\.php$/, "");
+        }
+        const currentPage = normalizePage(rawCurrentPage);
+        const publicPages = [
+            "login",
+            "auth-login",
+            "auth-register",
+            "auth-forgotpw",
+            "auth-lock-screen",
+            "auth-logout",
+            "logout"
+        ];
         if (!token) {
-            window.location.href = "login.php";
+            if (!publicPages.includes(currentPage)) {
+                window.location.href = "login.php";
+            }
         } else {
             try {
                 // Decode JWT Payload safely
@@ -219,7 +238,7 @@
                         <div class="collapse" id="order">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a href="apps-ecommerce-order.php" class="menu-link">
+                                    <a href="order.php" class="menu-link">
                                         <span class="menu-text">Order</span>
                                     </a>
                                 </li>
@@ -340,8 +359,13 @@
 
 
                     <!-- <li class="menu-title">Pages</li> -->
-
                     <li class="menu-item">
+                        <a href="index.php" class="menu-link">
+                            <span class="menu-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        
                         <a href="#menuExpages" data-bs-toggle="collapse" class="menu-link">
                             <span class="menu-icon"><i data-feather="book"></i></span>
                             <span class="menu-text"> Profile </span>
@@ -349,7 +373,7 @@
                         </a>
                         <div class="collapse" id="menuExpages">
                             <ul class="sub-menu">
-
+                                
                                 <li class="menu-item">
                                     <a href="profile.php" class="menu-link">
                                         <span class="menu-text">Profile</span>

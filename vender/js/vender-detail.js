@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const personalSaveBtn = document.getElementById("savePersonalDetailsBtn");
     const businessSaveBtn = document.getElementById("saveBusinessProfileBtn");
     const bankSaveBtn = document.getElementById("saveBankDetailsBtn");
+    const vendorPasswordForm = document.getElementById("vendorPasswordForm");
+    const vendorPasswordSaveBtn = document.getElementById("vendorPasswordSaveBtn");
 
     let cachedProfile = null;
     let cachedBusiness = null;
@@ -119,6 +121,11 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
+    function getInputValue(id) {
+        var el = document.getElementById(id);
+        return el ? String(el.value || "").trim() : "";
+    }
+
     function setValue(id, value) {
         const el = document.getElementById(id);
         if (el && value !== undefined && value !== null) {
@@ -128,8 +135,48 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function normalizeMediaUrl(value) {
-        var raw = (value || "").toString().trim();
-        if (!raw) return "";
+        function deepFindUrl(input, depth) {
+            if (!input || depth > 5) return "";
+            if (typeof input === "string") {
+                var s = input.trim();
+                if (!s || s === "[object Object]") return "";
+                return s;
+            }
+            if (Array.isArray(input)) {
+                for (var i = 0; i < input.length; i++) {
+                    var arrFound = deepFindUrl(input[i], depth + 1);
+                    if (arrFound) return arrFound;
+                }
+                return "";
+            }
+            if (typeof input === "object") {
+                var preferredKeys = [
+                    "url", "Url", "value", "Value", "path", "Path",
+                    "fileUrl", "FileUrl", "documentUrl", "DocumentUrl",
+                    "src", "Src", "location", "Location"
+                ];
+                for (var k = 0; k < preferredKeys.length; k++) {
+                    var key = preferredKeys[k];
+                    if (input[key] !== undefined && input[key] !== null) {
+                        var found = deepFindUrl(input[key], depth + 1);
+                        if (found) return found;
+                    }
+                }
+                var allKeys = Object.keys(input);
+                for (var j = 0; j < allKeys.length; j++) {
+                    var fallbackFound = deepFindUrl(input[allKeys[j]], depth + 1);
+                    if (fallbackFound) return fallbackFound;
+                }
+            }
+            return "";
+        }
+
+        var normalizedInput = value;
+        if (normalizedInput && typeof normalizedInput === "object") {
+            normalizedInput = deepFindUrl(normalizedInput, 0);
+        }
+        var raw = (normalizedInput || "").toString().trim();
+        if (!raw || raw === "[object Object]") return "";
         if (/^https?:\/\//i.test(raw) || raw.indexOf("//") === 0) {
             return raw.indexOf("//") === 0 ? ("https:" + raw) : raw;
         }
@@ -207,6 +254,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function loadBank(vendorId) {
         if (!token || !vendorId) return null;
+        function pickChequeUrl(row) {
+            if (!row) return "";
+            return (
+                row.cancelledChequeImage ||
+                row.CancelledChequeImage ||
+                row.cancelledChequeImageUrl ||
+                row.CancelledChequeImageUrl ||
+                ""
+            );
+        }
         let payload = null;
         try {
             payload = await fetchJson(API_BASE + "/api/bank/get/" + encodeURIComponent(vendorId), {
@@ -214,6 +271,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers: authHeaders()
             });
             cachedBank = getData(payload);
+
+            // If detail endpoint omits cheque image, enrich from list endpoint.
+            if (cachedBank && !pickChequeUrl(firstRow(cachedBank))) {
+                const listPayload = await fetchJson(API_BASE + "/api/bank/get", {
+                    method: "GET",
+                    headers: authHeaders()
+                });
+                const listData = getData(listPayload);
+                const rows = Array.isArray(listData) ? listData : (listData ? [listData] : []);
+                const match = rows.find(function (row) {
+                    const rowVendorId = row && (row.vendorId || row.VendorId || row.userId || row.UserId);
+                    return String(rowVendorId || "") === String(vendorId);
+                });
+                if (match) {
+                    cachedBank = Object.assign({}, match, firstRow(cachedBank));
+                }
+            }
         } catch (error) {
             // Fallback for API variants that expose /api/bank/get only.
             payload = await fetchJson(API_BASE + "/api/bank/get", {
@@ -300,7 +374,17 @@ document.addEventListener("DOMContentLoaded", function () {
         setValue("accountNumber", row.accountNumber || row.AccountNumber || "");
         setValue("ifscCode", row.ifscCode || row.IFSCCode || "");
         setValue("branchName", row.branchName || row.BranchName || "");
-        renderExistingFilePreview("cancelledCheque", row.cancelledChequeImage || row.CancelledChequeImage, "View existing cancelled cheque");
+        var chequeUrl =
+            row.cancelledChequeImage ||
+            row.CancelledChequeImage ||
+            row.cancelledChequeImageUrl ||
+            row.CancelledChequeImageUrl ||
+            "";
+        renderExistingFilePreview(
+            "cancelledCheque",
+            chequeUrl,
+            "View existing cancelled cheque"
+        );
     }
 
     function setText(id, value) {
@@ -350,6 +434,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (profileImage && profileRow.profileImage) {
             profileImage.src = normalizeMediaUrl(profileRow.profileImage);
         }
+
+        setValue("FirstName", profileRow.firstName || "");
+        setValue("Lastname", profileRow.lastName || "");
+        setValue("Email", profileRow.email || "");
 
         setText("vendorAboutName", fullName);
         setText("vendorAboutDesignation", (businessRow.businessType || "VENDOR PROFILE").toUpperCase());
@@ -651,6 +739,51 @@ document.addEventListener("DOMContentLoaded", function () {
                 showMessage("Failed", error.message || "Unable to save bank details.", "error");
             } finally {
                 bankSaveBtn.disabled = false;
+            }
+        });
+    }
+
+    if (vendorPasswordForm && vendorPasswordSaveBtn) {
+        vendorPasswordForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            if (!token) {
+                showMessage("Unauthorized", "Please login again.", "error");
+                return;
+            }
+            var currentPassword = getInputValue("oldpassword");
+            var newPassword = getInputValue("Password");
+            var confirmPassword = getInputValue("RePassword");
+
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                showMessage("Validation Error", "Please fill current, new and confirm password.", "warning");
+                return;
+            }
+            if (newPassword.length < 6) {
+                showMessage("Validation Error", "New password must be at least 6 characters.", "warning");
+                return;
+            }
+            if (newPassword !== confirmPassword) {
+                showMessage("Validation Error", "New password and re-password do not match.", "warning");
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append("currentPassword", currentPassword);
+            formData.append("newPassword", newPassword);
+            formData.append("confirmPassword", confirmPassword);
+            try {
+                vendorPasswordSaveBtn.disabled = true;
+                await fetchJson(API_BASE + "/api/vendor/change-password", {
+                    method: "POST",
+                    headers: authHeaders(),
+                    body: formData
+                });
+                showMessage("Success", "Password changed successfully.", "success");
+                vendorPasswordForm.reset();
+            } catch (error) {
+                showMessage("Failed", error.message || "Unable to change password.", "error");
+            } finally {
+                vendorPasswordSaveBtn.disabled = false;
             }
         });
     }

@@ -1,220 +1,195 @@
-
 <?php include 'header.php'; ?>
-            <!-- ========== Topbar End ========== -->
-            <div class="content">
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center py-2">
+                    <h4>Product Create</h4>
+                    <ol class="breadcrumb d-lg-flex d-none mb-0">
+                        <li class="breadcrumb-item"><a href="index">Home</a></li>
+                        <li class="breadcrumb-item"><a href="">Product Create</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
 
-                <!-- Start Content-->
-                <div class="container-fluid">
-
-                    <!-- start page title -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="d-flex justify-content-between align-items-center py-2">
-                                <h4>Product Create</h4>
-
-
-                                <ol class="breadcrumb d-lg-flex d-none mb-0">
-                                    <li class="breadcrumb-item"><a href="index">Home</a></li>
-
-                                    <li class="breadcrumb-item"><a href="">Product Create</a></li>
-                                </ol>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-1">Details</h4>
+                        <p class="mb-0 text-muted">Title, short description, image...</p>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" id="product-form">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Product Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Product Name" required>
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="ShortDescription">Short Description</label>
+                                <input type="text" class="form-control" id="ShortDescription" name="ShortDescription" placeholder="Short Description">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="Description">Description</label>
+                                <textarea class="form-control" id="Description" name="Description" rows="8" placeholder="Long description"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <h4 class="mt-0">Main Image</h4>
+                                <input type="file" id="MainImage" name="MainImage" data-plugins="dropify" data-height="300" accept="image/*" />
+                            </div>
+                            <div class="mb-3">
+                                <h4 class="mt-0">Gallery Images</h4>
+                                <input type="file" id="GalleryImages" name="GalleryImages[]" data-plugins="dropify" data-height="150" multiple accept="image/*" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-1">Properties</h4>
+                        <p class="mb-0 text-muted">Additional functions and attributes...</p>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" id="properties-form">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Sku">SKU</label>
+                                        <input type="text" class="form-control" id="Sku" placeholder="SKU code">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="StockQuantity">Stock Quantity</label>
+                                        <input type="number" id="StockQuantity" name="StockQuantity" class="form-control" placeholder="0" value="0">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="MinStockQuantity">Min Stock Quantity</label>
+                                        <input type="number" id="MinStockQuantity" name="MinStockQuantity" class="form-control" value="0">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="ColorId">Color</label>
+                                        <select class="form-select" id="ColorId" name="ColorId">
+                                            <option value="">Select Color</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="BrandId">Brand</label>
+                                        <select class="form-select" id="BrandId" name="BrandId">
+                                            <option value="">Select Brand</option>
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="CategoryId" name="CategoryId">
+                                    <input type="hidden" id="SubCategoryId" name="SubCategoryId">
+                                    <div id="CategoryLevelsContainer"></div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="SizeId">Size</label>
+                                        <select class="form-select" id="SizeId" name="SizeId">
+                                            <option value="">Select Size</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="MetaTitle">Meta Title</label>
+                                        <input type="text" class="form-control" id="MetaTitle" name="MetaTitle">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="MetaDescription">Meta Description</label>
+                                        <textarea class="form-control" id="MetaDescription" name="MetaDescription" rows="2"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="MetaKeywords">Meta Keywords</label>
+                                        <input type="text" class="form-control" id="MetaKeywords" name="MetaKeywords" placeholder="keyword1, keyword2">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="Weight">Weight (kg)</label>
+                                        <input type="text" class="form-control" id="Weight" name="Weight" placeholder="0.00">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="Length">Length</label>
+                                                <input type="text" class="form-control" id="Length" name="Length">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="Width">Width</label>
+                                                <input type="text" class="form-control" id="Width" name="Width">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="Height">Height</label>
+                                                <input type="text" class="form-control" id="Height" name="Height">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-check mb-2">
+                                                <input type="checkbox" class="form-check-input" id="TrackInventory" checked>
+                                                <label class="form-check-label" for="TrackInventory">Track Inventory</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check mb-2">
+                                                <input type="checkbox" class="form-check-input" id="IsActive" checked>
+                                                <label class="form-check-label" for="IsActive">Active</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check mb-2">
+                                                <input type="checkbox" class="form-check-input" id="IsFeatured">
+                                                <label class="form-check-label" for="IsFeatured">Featured</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title mb-1">Pricing</h4>
+                            <p class="mb-0 text-muted">Price related inputs</p>
+                        </div>
+                        <div class="card-body">
+                            <form action="#" id="pricing-form">
+                                <div class="mb-3">
+                                    <label for="Price" class="form-label">Regular Price</label>
+                                    <input type="text" id="Price" name="Price" class="form-control" placeholder="$ 0.00" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="DiscountPrice" class="form-label">Discount / Sales Price</label>
+                                    <input type="text" id="DiscountPrice" name="DiscountPrice" class="form-control" placeholder="$ 0.00">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="CostPrice" class="form-label">Cost Price</label>
+                                    <input type="text" id="CostPrice" name="CostPrice" class="form-control" placeholder="$ 0.00">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="TaxPercentage" class="form-label">Tax Percentage (%)</label>
+                                    <input type="number" id="TaxPercentage" name="TaxPercentage" class="form-control" step="0.01" value="0">
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <!-- end page title -->
+                </div>
 
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title mb-1">Details</h4>
-                                    <p class="mb-0 text-muted">Title, short description, image...</p>
-                                </div>
-                                <div class="card-body">
-
-                                    <form action="#">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="product-name">Product Name</label>
-                                            <input type="email" class="form-control" id="product-name"
-                                                placeholder="Product Name">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="sub-des">Sub Description</label>
-                                            <input type="password" class="form-control" id="sub-des"
-                                                placeholder="Description">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <h4 class="mt-0">Content</h4>
-                                            <div class="mb-2">
-                                                <div id="snow-editor" style="height: 300px;">
-                                                    <h3>Write Somthing Hear</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <h4 class="mt-0">Images</h4>
-
-                                            <input type="file" data-plugins="dropify" data-height="300" />
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-xl-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title mb-1">Properties</h4>
-                                    <p class="mb-0 text-muted">Additional functions and attributes...</p>
-                                </div>
-                                <div class="card-body">
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col-xl-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="product-code">Product Code</label>
-                                                    <input type="text" class="form-control" id="product-code">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="simpleinput">Quantity</label>
-                                                    <input type="number" id="simpleinput" class="form-control"
-                                                        placeholder="0" value="0">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="color-select">Color</label>
-                                                    <select class="form-select" id="color-select">
-                                                        <option selected value="Red">Red</option>
-                                                        <option value="Blue">Blue</option>
-                                                        <option value="Cyan">Cyan</option>
-                                                        <option value="Green">Green</option>
-                                                        <option value="Yellow">Yellow</option>
-                                                        <option value="Black">Black</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xl-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="product-sku">Product SKU</label>
-                                                    <input type="text" class="form-control" id="product-sku">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="inputState" class="form-label">Category</label>
-                                                    <select id="inputState" class="form-select">
-                                                        <option>Shirt</option>
-                                                        <optgroup label="Clothing">
-                                                            <option value="Shirts">Shirts</option>
-                                                            <option value="T-shirts">T-shirts</option>
-                                                            <option value="Jeans">Jeans</option>
-                                                            <option value="Leather">Leather</option>
-                                                            <option value="Accessories">Accessories</option>
-                                                        </optgroup>
-                                                        <optgroup label="Tailored">
-                                                            <option value="Suits">Suits</option>
-                                                            <option value="Blazers">Blazers</option>
-                                                            <option value="Trousers">Trousers</option>
-                                                            <option value="Waistcoats">Waistcoats</option>
-                                                            <option value="Apparel">Apparel</option>
-                                                        </optgroup>
-                                                        <optgroup label="Accessories">
-                                                            <option value="Shoes">Shoes</option>
-                                                            <option value="Backpacks and bags">Backpacks and bags
-                                                            </option>
-                                                            <option value="Bracelets">Bracelets</option>
-                                                            <option value="Face masks">Face masks</option>
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="color-select">Sizes</label>
-                                                    <select class="form-select" id="example-select">
-                                                        <option selected value="7">7</option>
-                                                        <option value="8 ">8 </option>
-                                                        <option value="8.56">8.56</option>
-                                                        <option value="9">9</option>
-                                                        <option value="9.5">9.5</option>
-                                                        <option value="10">10</option>
-                                                        <option value="10.5">10.5</option>
-                                                        <option value="11">11</option>
-                                                        <option value="11.5">11.5</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="tags-select">Tags</label>
-                                                    <select class="form-select" id="tags-select">
-                                                        <option selected value="Technology">Technology</option>
-                                                        <option value="Marketing">Marketing </option>
-                                                        <option value="Design">Design</option>
-                                                        <option value="Photography">Photography</option>
-                                                        <option value="art">art</option>
-                                                        <option value="Fashion">Fashion</option>
-
-                                                    </select>
-                                                </div>
-                                                <div class="mb-0">
-                                                    <label class="form-label">Gender *:</label>
-                                                    <div class="d-flex gap-2">
-
-                                                        <div class="form-check mb-1">
-                                                            <input type="radio" name="gender" id="male" value="Male"
-                                                                required="" class="form-check-input">
-                                                            <label for="male">Male</label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input type="radio" name="gender" id="female" value="Female"
-                                                                class="form-check-input">
-                                                            <label for="female">Female</label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input type="radio" name="gender" id="kids" value="Female"
-                                                                class="form-check-input">
-                                                            <label for="kids">Kids</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title mb-1">Pricing</h4>
-                                        <p class="mb-0 text-muted">Price related inputs</p>
-                                    </div>
-                                    <div class="card-body">
-                                        <form action="#">
-                                            <div class="mb-3">
-                                                <label for="regular-price" class="form-label">Regular Price</label>
-                                                <input type="text" id="regular-price" class="form-control" required=""
-                                                    placeholder="$ 0.00">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="sales-price" class="form-label">Sales Price</label>
-                                                <input type="text" id="sales-price" class="form-control" required=""
-                                                    placeholder="$ 0.00">
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-end mb-3">
-                                <button type="button" class="btn btn-dark">Create Product</button>
-                            </div>
-                        </div>
-
-                    </div><!-- end row -->
-                </div> <!-- container -->
-
-            </div> <!-- content -->
-
-           
-            <?php include 'footer.php'; ?>
+                <div class="d-flex justify-content-end mt-3 mb-3">
+                    <button type="button" onclick="submitProduct()" class="btn btn-dark">Create Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php include 'footer.php'; ?>

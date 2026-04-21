@@ -1,105 +1,516 @@
+const API_BASE = "https://api.workarya.com";
+const PRODUCT_INSERT = `${API_BASE}/api/products/insert`;
+const PRODUCT_UPDATE_BASE = `${API_BASE}/api/products/update`;
+const PRODUCT_DETAIL_BASE = `${API_BASE}/api/products/detail`;
+
+let categoryTree = [];
+
+function authToken() {
+  return localStorage.getItem("superadminToken");
+}
+
+function resolveMedia(url) {
+  if (window.resolveApiMediaUrl) return window.resolveApiMediaUrl(url);
+  if (!url) return "https://via.placeholder.com/48";
+  if (/^https?:\/\//i.test(url)) return url;
+  return `${API_BASE}${url.startsWith("/") ? "" : "/"}${url}`;
+}
+
 function truncateWords(text, wordLimit = 10) {
   if (!text) return "";
-
-  // HTML tags remove karo
-  const cleanText = text.replace(/<[^>]*>/g, "");
-
+  const cleanText = String(text).replace(/<[^>]*>/g, "");
   const words = cleanText.split(" ");
   if (words.length <= wordLimit) return cleanText;
-
-  return words.slice(0, wordLimit).join(" ") + "...";
+  return `${words.slice(0, wordLimit).join(" ")}...`;
 }
-async function loadProduct() {
+
+function normalizeArrayPayload(payload) {
+  return payload?.data?.data || payload?.data || payload?.items || payload || [];
+}
+
+function pickVendorName(product) {
+  return (
+    product.vendorName ||
+    product.VendorName ||
+    product.venderName ||
+    product.sellerName ||
+    product.SellerName ||
+    product.shopName ||
+    product.businessName ||
+    product.BusinessName ||
+    product.createdByName ||
+    product.CreatedByName ||
+    product.createdBy ||
+    product.CreatedBy ||
+    product.vendorEmail ||
+    product.VendorEmail ||
+    "-"
+  );
+}
+
+async function loadCreatorNameMap(token) {
   try {
-    const token = localStorage.getItem("superadminToken");
-
-    if (!token) {
-      alert("Please login first");
-      return;
-    }
-
-    const res = await fetch(
-      "https://api.workarya.com/api/products/list",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    const res = await fetch(`${API_BASE}/admin-vendors`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token ? `Bearer ${token}` : "",
       },
-    );
+    });
+    const json = await res.json();
+    const list = json?.data || [];
+    const map = {};
+    list.forEach((v) => {
+      const id = (v?.id || v?.Id || v?.vendorId || v?.VendorId || v?.userId || v?.UserId || "").toString().trim();
+      if (!id) return;
+      const fullName = `${v?.firstName || ""} ${v?.lastName || ""}`.trim();
+      map[id] = fullName || v?.email || id;
+    });
+    return map;
+  } catch {
+    return {};
+  }
+}
 
-    const data = await res.json();
+function pickCreatedById(product) {
+  return (
+    product.createdById ||
+    product.CreatedById ||
+    product.createdBy ||
+    product.CreatedBy ||
+    product.vendorId ||
+    product.VendorId ||
+    product.vendorid ||
+    product.userId ||
+    product.UserId ||
+    product.userid ||
+    product.sellerId ||
+    product.SellerId ||
+    ""
+  )
+    .toString()
+    .trim();
+}
 
-    console.log("API:", data);
+function pickCreatedByName(product, creatorMap) {
+  const apiName =
+    product.createdbyname ||
+    product.createdByName ||
+    product.CreatedByName ||
+    "";
+  if (apiName && apiName.toString().trim()) return apiName.toString().trim();
 
-    const tbody = document.getElementById("allproduct");
+  const createdById = pickCreatedById(product);
+  if (createdById && creatorMap[createdById]) return creatorMap[createdById];
+  const directName = pickVendorName(product);
+  if (directName && directName !== "-" && directName !== createdById) return directName;
+  return createdById || "-";
+}
+
+async function fetchJson(url, options = {}) {
+  const res = await fetch(url, options);
+  const raw = await res.text();
+  let data = {};
+  try {
+    data = raw ? JSON.parse(raw) : {};
+  } catch {
+    data = { message: raw };
+  }
+  if (!res.ok) {
+    throw new Error(data?.message || `${res.status} ${res.statusText}`);
+  }
+  return data;
+}
+
+function setSelectOptions(selectId, list, labelKey = "name") {
+  const el = document.getElementById(selectId);
+  if (!el) return;
+  const current = el.value;
+  el.innerHTML = `<option value="">Select</option>`;
+  list.forEach((item) => {
+    const id = item.id || item._id;
+    if (!id) return;
+    const opt = document.createElement("option");
+    opt.value = id;
+    opt.textContent = item[labelKey] || item.Name || "-";
+    el.appendChild(opt);
+  });
+  if (current) el.value = current;
+}
+
+function flattenCategoryNodes(nodes, bucket = [], parent = null) {
+  (nodes || []).forEach((n) => {
+    bucket.push({
+      id: n.id || n._id,
+      name: n.name,
+      parentId: parent ? (parent.id || parent._id) : null,
+      raw: n,
+    });
+    if (n.children?.length) flattenCategoryNodes(n.children, bucket, n);
+  });
+  return bucket;
+}
+
+function getNodeId(node) {
+  return node?.id || node?._id || "";
+}
+
+function syncSelectedCategoryFields(pathIds) {
+  const categoryIdInput = document.getElementById("CategoryId");
+  const subCategoryIdInput = document.getElementById("SubCategoryId");
+  const cleanPath = (pathIds || []).filter(Boolean);
+  const rootId = cleanPath[0] || "";
+  const deepestId = cleanPath.length > 1 ? cleanPath[cleanPath.length - 1] : "";
+  if (categoryIdInput) categoryIdInput.value = rootId;
+  if (subCategoryIdInput) subCategoryIdInput.value = deepestId;
+}
+
+function renderCategoryLevelSelect(levelIndex, nodes, selectedId = "") {
+  const wrapper = document.createElement("div");
+  wrapper.className = "mb-3";
+
+  const label = document.createElement("label");
+  label.className = "form-label";
+  label.textContent = levelIndex === 0 ? "Category" : `Category Level ${levelIndex + 1}`;
+
+  const select = document.createElement("select");
+  select.className = "form-select dynamic-category-level";
+  select.dataset.level = String(levelIndex);
+  select.innerHTML = `<option value="">Select ${levelIndex === 0 ? "Category" : "Sub Category"}</option>`;
+
+  (nodes || []).forEach((node) => {
+    const id = getNodeId(node);
+    if (!id) return;
+    const opt = document.createElement("option");
+    opt.value = id;
+    opt.textContent = node.name || "-";
+    if (selectedId && selectedId === id) opt.selected = true;
+    select.appendChild(opt);
+  });
+
+  wrapper.appendChild(label);
+  wrapper.appendChild(select);
+  return wrapper;
+}
+
+function renderCategoryLevels(selectedPath = []) {
+  const container = document.getElementById("CategoryLevelsContainer");
+  if (!container) return;
+  container.innerHTML = "";
+
+  let nodesAtLevel = categoryTree || [];
+  const path = [];
+  let level = 0;
+
+  while (nodesAtLevel && nodesAtLevel.length > 0) {
+    const selectedAtLevel = selectedPath[level] || "";
+    const block = renderCategoryLevelSelect(level, nodesAtLevel, selectedAtLevel);
+    container.appendChild(block);
+
+    const selectedNode =
+      nodesAtLevel.find((n) => getNodeId(n) === selectedAtLevel) || null;
+    if (!selectedNode) break;
+
+    path.push(getNodeId(selectedNode));
+    nodesAtLevel = selectedNode.children || [];
+    level += 1;
+  }
+
+  syncSelectedCategoryFields(path);
+
+  container.querySelectorAll(".dynamic-category-level").forEach((select) => {
+    select.addEventListener("change", (e) => {
+      const changedLevel = Number(e.target.dataset.level || 0);
+      const selects = Array.from(container.querySelectorAll(".dynamic-category-level"));
+      const nextPath = selects
+        .slice(0, changedLevel + 1)
+        .map((s) => s.value)
+        .filter(Boolean);
+      renderCategoryLevels(nextPath);
+    });
+  });
+}
+
+function findCategoryPathToId(nodes, targetId, trail = []) {
+  for (let i = 0; i < (nodes || []).length; i += 1) {
+    const n = nodes[i];
+    const id = getNodeId(n);
+    const nextTrail = [...trail, id];
+    if (id === targetId) return nextTrail;
+    if (n.children?.length) {
+      const found = findCategoryPathToId(n.children, targetId, nextTrail);
+      if (found.length) return found;
+    }
+  }
+  return [];
+}
+
+async function loadProductFormOptions() {
+  const token = authToken();
+  if (!token) return;
+
+  const headers = { Authorization: `Bearer ${token}` };
+  const [brandsRes, categoriesRes, colorsRes, sizesRes] = await Promise.all([
+    fetchJson(`${API_BASE}/api/brands/list`, { headers }),
+    fetchJson(`${API_BASE}/api/category/list`, { headers }),
+    fetchJson(`${API_BASE}/api/colors/get`, { headers }),
+    fetchJson(`${API_BASE}/api/size/get`, { headers }),
+  ]);
+
+  setSelectOptions("BrandId", normalizeArrayPayload(brandsRes));
+
+  categoryTree = normalizeArrayPayload(categoriesRes);
+  renderCategoryLevels([]);
+
+  setSelectOptions("ColorId", normalizeArrayPayload(colorsRes));
+  setSelectOptions("SizeId", normalizeArrayPayload(sizesRes));
+}
+
+function toBool(elId, fallback = false) {
+  const el = document.getElementById(elId);
+  return el ? !!el.checked : fallback;
+}
+
+function numberValue(elId, fallback = 0) {
+  const v = document.getElementById(elId)?.value;
+  if (v === "" || v == null) return fallback;
+  const n = Number(v);
+  return Number.isNaN(n) ? fallback : n;
+}
+
+function textValue(elId) {
+  return (document.getElementById(elId)?.value || "").trim();
+}
+
+function normalizeId(v) {
+  return typeof v === "string" ? v : "";
+}
+
+function buildProductFormData() {
+  const fd = new FormData();
+  fd.append("Name", textValue("name"));
+  fd.append("ShortDescription", textValue("ShortDescription"));
+  fd.append("Description", textValue("Description"));
+  fd.append("CategoryId", textValue("CategoryId"));
+  if (textValue("SubCategoryId")) fd.append("SubCategoryId", textValue("SubCategoryId"));
+  fd.append("BrandId", textValue("BrandId"));
+  fd.append("ColorId", textValue("ColorId"));
+  fd.append("SizeId", textValue("SizeId"));
+
+  fd.append("Price", numberValue("Price", 0));
+  fd.append("DiscountPrice", numberValue("DiscountPrice", 0));
+  fd.append("CostPrice", numberValue("CostPrice", 0));
+  fd.append("TaxPercentage", numberValue("TaxPercentage", 0));
+  fd.append("StockQuantity", numberValue("StockQuantity", 0));
+  fd.append("MinStockQuantity", numberValue("MinStockQuantity", 0));
+
+  fd.append("Sku", textValue("Sku"));
+  fd.append("Weight", numberValue("Weight", 0));
+  fd.append("Length", numberValue("Length", 0));
+  fd.append("Width", numberValue("Width", 0));
+  fd.append("Height", numberValue("Height", 0));
+  fd.append("MetaTitle", textValue("MetaTitle"));
+  fd.append("MetaDescription", textValue("MetaDescription"));
+  fd.append("MetaKeywords", textValue("MetaKeywords"));
+
+  fd.append("TrackInventory", toBool("TrackInventory", true));
+  fd.append("IsActive", toBool("IsActive", true));
+  fd.append("IsFeatured", toBool("IsFeatured", false));
+
+  const mainImage = document.getElementById("MainImage")?.files?.[0];
+  if (mainImage) fd.append("MainImage", mainImage);
+
+  const gallery = document.getElementById("GalleryImages")?.files || [];
+  for (let i = 0; i < gallery.length; i += 1) {
+    fd.append("GalleryImages", gallery[i]);
+  }
+
+  return fd;
+}
+
+function validateProductForm() {
+  if (!textValue("name")) return "Product name is required";
+  if (!textValue("CategoryId")) return "Category is required";
+  if (!textValue("BrandId")) return "Brand is required";
+  if (!textValue("ColorId")) return "Color is required";
+  if (!textValue("SizeId")) return "Size is required";
+  if (numberValue("Price", 0) <= 0) return "Price must be greater than 0";
+  return null;
+}
+
+window.submitProduct = async function submitProduct() {
+  const token = authToken();
+  if (!token) {
+    Swal.fire({ icon: "warning", title: "Please login first" });
+    return;
+  }
+  const validationError = validateProductForm();
+  if (validationError) {
+    Swal.fire({ icon: "warning", title: validationError });
+    return;
+  }
+
+  try {
+    Swal.fire({ title: "Creating...", allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+    const data = await fetchJson(PRODUCT_INSERT, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+      body: buildProductFormData(),
+    });
+    await Swal.fire({
+      icon: "success",
+      title: "Product created",
+      text: data?.message || "Created successfully",
+    });
+    window.location.href = "product.php";
+  } catch (err) {
+    Swal.fire({ icon: "error", title: "Create failed", text: err.message });
+  }
+};
+
+window.submitProductUpdate = async function submitProductUpdate() {
+  const token = authToken();
+  const productId = new URLSearchParams(window.location.search).get("id") || textValue("ProductId");
+  if (!token || !productId) {
+    Swal.fire({ icon: "warning", title: "Missing token or product id" });
+    return;
+  }
+  const validationError = validateProductForm();
+  if (validationError) {
+    Swal.fire({ icon: "warning", title: validationError });
+    return;
+  }
+
+  try {
+    Swal.fire({ title: "Updating...", allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+    const data = await fetchJson(`${PRODUCT_UPDATE_BASE}/${encodeURIComponent(productId)}`, {
+      method: "PUT",
+      headers: { Authorization: `Bearer ${token}` },
+      body: buildProductFormData(),
+    });
+    await Swal.fire({
+      icon: "success",
+      title: "Product updated",
+      text: data?.message || "Updated successfully",
+    });
+    window.location.href = "product.php";
+  } catch (err) {
+    Swal.fire({ icon: "error", title: "Update failed", text: err.message });
+  }
+};
+
+async function loadProductForEdit() {
+  const marker = document.getElementById("productEditPage");
+  if (!marker) return;
+
+  const productId = new URLSearchParams(window.location.search).get("id");
+  if (!productId) return;
+
+  const token = authToken();
+  const headers = token ? { Authorization: `Bearer ${token}` } : {};
+  const detail = await fetchJson(`${PRODUCT_DETAIL_BASE}/${encodeURIComponent(productId)}`, { headers });
+  const p = detail?.data?.data || detail?.data || detail;
+
+  document.getElementById("ProductId").value = p.id || "";
+  document.getElementById("name").value = p.name || "";
+  document.getElementById("ShortDescription").value = p.shortdescription || p.shortDescription || "";
+  document.getElementById("Description").value = p.description || "";
+  document.getElementById("BrandId").value = normalizeId(p.brandid || p.brandId || "");
+  const categoryId = normalizeId(p.categoryid || p.categoryId || "");
+  const subCategoryId = normalizeId(p.subcategoryid || p.subCategoryId || "");
+  const targetCategoryId = subCategoryId || categoryId;
+  const categoryPath = targetCategoryId ? findCategoryPathToId(categoryTree, targetCategoryId) : [];
+  renderCategoryLevels(categoryPath);
+  document.getElementById("ColorId").value = normalizeId(p.colorid || p.colorId || "");
+  document.getElementById("SizeId").value = normalizeId(p.sizeid || p.sizeId || "");
+  document.getElementById("Price").value = p.price ?? "";
+  document.getElementById("DiscountPrice").value = p.discountprice ?? p.discountPrice ?? "";
+  document.getElementById("CostPrice").value = p.costprice ?? p.costPrice ?? "";
+  document.getElementById("TaxPercentage").value = p.taxpercentage ?? p.taxPercentage ?? 0;
+  document.getElementById("Sku").value = p.sku || "";
+  document.getElementById("StockQuantity").value = p.stockquantity ?? p.stockQuantity ?? 0;
+  document.getElementById("MinStockQuantity").value = p.minstockquantity ?? p.minStockQuantity ?? 0;
+  document.getElementById("Weight").value = p.weight ?? "";
+  document.getElementById("Length").value = p.length ?? "";
+  document.getElementById("Width").value = p.width ?? "";
+  document.getElementById("Height").value = p.height ?? "";
+  document.getElementById("MetaTitle").value = p.metatitle || "";
+  document.getElementById("MetaDescription").value = p.metadescription || "";
+  document.getElementById("MetaKeywords").value = p.metakeywords || "";
+  document.getElementById("TrackInventory").checked = !!(p.trackinventory ?? p.trackInventory);
+  document.getElementById("IsActive").checked = !!(p.isactive ?? p.isActive);
+  document.getElementById("IsFeatured").checked = !!(p.isfeatured ?? p.isFeatured);
+
+  const mainPrev = document.getElementById("existingMainImage");
+  if (mainPrev && (p.mainimage || p.mainImage)) {
+    mainPrev.src = resolveMedia(p.mainimage || p.mainImage);
+    mainPrev.style.display = "block";
+  }
+
+  const galleryWrap = document.getElementById("existingGalleryImages");
+  if (galleryWrap) {
+    galleryWrap.innerHTML = "";
+    const gallery = p.galleryimages || p.galleryImages || [];
+    gallery.forEach((img) => {
+      const el = document.createElement("img");
+      el.src = resolveMedia(img);
+      el.style.cssText = "width:70px;height:70px;object-fit:cover;border-radius:6px;margin:4px;";
+      galleryWrap.appendChild(el);
+    });
+  }
+}
+
+async function loadProduct() {
+  const tbody = document.getElementById("allproduct");
+  if (!tbody) return;
+
+  try {
+    const token = authToken();
+    const data = await fetchJson(`${API_BASE}/api/products/list`, {
+      method: "GET",
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    });
+
+    const products = normalizeArrayPayload(data);
+    const creatorMap = await loadCreatorNameMap(token);
     tbody.innerHTML = "";
 
-    // ✅ FIX: nested data handle
-    const products = data.data?.data || [];
-
     products.forEach((product, index) => {
+      const isActive = !!(product.isActive ?? product.isactive);
+      const creatorName = pickCreatedByName(product, creatorMap);
       const row = `
         <tr>
           <td>${index + 1}</td>
-
           <td class="d-flex align-items-center gap-2">
-  <img 
-    src="https://api.workarya.com${product.mainImage}" 
-    class="rounded" 
-    height="48"
-    width="48"
-    style="object-fit: cover;"
-    onerror="this.src='https://via.placeholder.com/48'"
-  />
-
-  <span>${truncateWords(product.name || "", 5)}</span>
-</td>
-
-       
-
-          <td>${truncateWords(product.shortDescription || "", 5)}</td>
-        <td>${truncateWords(product.description, 4)}</td>
-
-        <td>${product.categoryName}</td>
-
-            <td>${product.brandName}</td>
-            <td>${product.discountPrice}</td>
-            <td>${product.price}</td>
-
-            <td>${product.stockQuantity}</td>
-            
-
+            <img
+              src="${resolveMedia(product.mainImage || product.mainimage || product.image)}"
+              class="rounded"
+              height="48"
+              width="48"
+              style="object-fit: cover;"
+              onerror="this.src='https://via.placeholder.com/48'"
+            />
+            <span>${truncateWords(product.name || product.productName || "", 5)}</span>
+          </td>
+          <td>${truncateWords(creatorName, 4)}</td>
+          <td>${truncateWords(product.shortDescription || product.shortdescription || "", 5)}</td>
+          <td>${truncateWords(product.description || "", 4)}</td>
+          <td>${product.categoryName || product.categoryname || "-"}</td>
+          <td>${product.brandName || product.brandname || "-"}</td>
+          <td>${product.discountPrice ?? product.discountprice ?? "-"}</td>
+          <td>${product.price ?? "-"}</td>
+          <td>${product.stockQuantity ?? product.stockquantity ?? "-"}</td>
           <td>
-            <span class="badge ${
-              product.isActive
-                ? "bg-success-subtle text-success"
-                : "bg-danger-subtle text-danger"
-            }">
-              ${product.isActive ? "Active" : "Inactive"}
+            <span class="badge ${isActive ? "bg-success-subtle text-success" : "bg-danger-subtle text-danger"}">
+              ${isActive ? "Active" : "Inactive"}
             </span>
           </td>
-
-          <!-- EDIT -->
           <td>
-            <i 
-              class="mdi mdi-square-edit-outline text-primary fs-3"
-              style="cursor: pointer;"
-              onclick="editProduct('${product.id}')"
-            ></i>
+            <i class="mdi mdi-square-edit-outline text-primary fs-3" style="cursor:pointer" onclick="editProduct('${product.id || product._id}')"></i>
           </td>
-
-          <!-- DELETE -->
           <td>
-            <i 
-              class="mdi mdi-delete text-danger fs-3"
-              style="cursor: pointer;"
-              onclick="deleteProduct('${product.id}')"
-            ></i>
+            <i class="mdi mdi-delete text-danger fs-3" style="cursor:pointer" onclick="deleteProduct('${product.id || product._id}')"></i>
           </td>
-        </tr>
-      `;
-
+        </tr>`;
       tbody.insertAdjacentHTML("beforeend", row);
     });
   } catch (error) {
@@ -107,73 +518,48 @@ async function loadProduct() {
   }
 }
 
-loadProduct();
+window.editProduct = function editProduct(id) {
+  window.location.href = `product-edit.php?id=${encodeURIComponent(id)}`;
+};
 
-
-// ****************************************************** END GET ALL PRODUCT API **************************************
-
-
-// ****************************************************** DELETE PRODUCT START ******************************************
-
-async function deleteProduct(id) {
-  const token = localStorage.getItem("superadminToken");
-
+window.deleteProduct = async function deleteProduct(id) {
+  const token = authToken();
   if (!token) {
-    Swal.fire({
-      icon: "warning",
-      title: "Login required",
-      text: "Please login first."
-    });
+    Swal.fire({ icon: "warning", title: "Login required", text: "Please login first." });
     return;
   }
-
   const confirm = await Swal.fire({
     icon: "warning",
     title: "Delete permanently?",
     text: "This action cannot be undone!",
     showCancelButton: true,
     confirmButtonText: "Yes, delete",
-    cancelButtonText: "Cancel"
+    cancelButtonText: "Cancel",
   });
-
   if (!confirm.isConfirmed) return;
 
   try {
-    Swal.fire({
-      title: "Deleting...",
-      allowOutsideClick: false,
-      didOpen: () => Swal.showLoading()
+    Swal.fire({ title: "Deleting...", allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+    await fetchJson(`${API_BASE}/api/products/permanent-delete-product/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
     });
-
-    const res = await fetch(
-      `https://api.workarya.com/api/products/permanent-delete-product/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    const text = await res.text();
-    if (!res.ok) throw new Error(text || "Delete failed");
-
-    await Swal.fire({
-      icon: "success",
-      title: "Deleted!",
-      text: "Product deleted successfully."
-    });
-
-    // ✅ IMPORTANT: table reload
+    await Swal.fire({ icon: "success", title: "Deleted!", text: "Product deleted successfully." });
     loadProduct();
-
   } catch (err) {
-    Swal.fire({
-      icon: "error",
-      title: "Error",
-      text: err.message
-    });
+    Swal.fire({ icon: "error", title: "Error", text: err.message });
   }
-}
+};
 
-// ************************************************ end delte ********************************
+document.addEventListener("DOMContentLoaded", async () => {
+  const hasCategoryUi = document.getElementById("CategoryLevelsContainer");
+  if (hasCategoryUi) {
+    try {
+      await loadProductFormOptions();
+      await loadProductForEdit();
+    } catch (err) {
+      console.error("Form setup error:", err);
+    }
+  }
+  loadProduct();
+});
