@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Multivender</title>
+    <script src="../assets/js/media-url.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="GetAppui" name="author" />
@@ -23,7 +24,7 @@
     <script src="./js/coupon.js"></script>
     <script src="./js/all-article.js"></script>
     <script src="./js/order.js"></script>
-    <script src="./js/dashboard.js?v=1"></script>
+    <script src="./js/dashboard.js?v=4"></script>
     <style id="vendor-status-styles"></style>
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page

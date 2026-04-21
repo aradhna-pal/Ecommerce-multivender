@@ -112,11 +112,21 @@ namespace elemechWisetrack.DataBaseLayer
                     (SELECT COUNT(*) FROM products WHERE isdeleted = false) AS total_products,
                     (SELECT COUNT(*) FROM orders) AS total_orders,
                     (SELECT COUNT(*) FROM ""AspNetUsers"" WHERE ""sourcetype"" = 'vendor') AS total_vendors,
+                    (SELECT COUNT(*) FROM ""AspNetUsers"") AS total_users,
+                    (SELECT COUNT(*) FROM brands) AS total_brands,
+                    (SELECT COUNT(*) FROM categories) AS total_categories,
+                    (SELECT COUNT(*) FROM colors) AS total_colors,
+                    (SELECT COUNT(*) FROM sizes) AS total_sizes,
                     (SELECT COALESCE(SUM(final_amount), 0) FROM orders) AS total_revenue;";
 
             long totalProducts = 0;
             long totalOrders = 0;
             long totalVendors = 0;
+            long totalUsers = 0;
+            long totalBrands = 0;
+            long totalCategories = 0;
+            long totalColors = 0;
+            long totalSizes = 0;
             decimal totalRevenue = 0;
 
             using (var cmd = new NpgsqlCommand(summarySql, conn))
@@ -127,7 +137,12 @@ namespace elemechWisetrack.DataBaseLayer
                     totalProducts = reader.IsDBNull(0) ? 0 : reader.GetInt64(0);
                     totalOrders = reader.IsDBNull(1) ? 0 : reader.GetInt64(1);
                     totalVendors = reader.IsDBNull(2) ? 0 : reader.GetInt64(2);
-                    totalRevenue = reader.IsDBNull(3) ? 0 : reader.GetDecimal(3);
+                    totalUsers = reader.IsDBNull(3) ? 0 : reader.GetInt64(3);
+                    totalBrands = reader.IsDBNull(4) ? 0 : reader.GetInt64(4);
+                    totalCategories = reader.IsDBNull(5) ? 0 : reader.GetInt64(5);
+                    totalColors = reader.IsDBNull(6) ? 0 : reader.GetInt64(6);
+                    totalSizes = reader.IsDBNull(7) ? 0 : reader.GetInt64(7);
+                    totalRevenue = reader.IsDBNull(8) ? 0 : reader.GetDecimal(8);
                 }
             }
 
@@ -162,6 +177,11 @@ namespace elemechWisetrack.DataBaseLayer
                     totalProducts,
                     totalOrders,
                     totalVendors,
+                    totalUsers,
+                    totalBrands,
+                    totalCategories,
+                    totalColors,
+                    totalSizes,
                     totalRevenue,
                     trend
                 }

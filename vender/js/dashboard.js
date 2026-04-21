@@ -1,4 +1,14 @@
-const VENDOR_DASHBOARD_API_BASE = (window.API_BASE_URL || window.BASE || "https://api.workarya.com").replace(/\/$/, "");
+const VENDOR_DASHBOARD_API_BASE = (() => {
+  const localOverride = localStorage.getItem("apiBaseUrl");
+  if (localOverride) return String(localOverride).replace(/\/$/, "");
+  const isLocal = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
+  const configured = window.API_BASE_URL || window.BASE;
+  if (isLocal && (!configured || /api\.workarya\.com/i.test(String(configured)))) {
+    return "http://127.0.0.1:5098";
+  }
+  if (configured) return String(configured).replace(/\/$/, "");
+  return (isLocal ? "http://127.0.0.1:5098" : "https://api.workarya.com").replace(/\/$/, "");
+})();
 
 function vendorDashboardToken() {
   return localStorage.getItem("vendorToken");
@@ -9,15 +19,9 @@ function formatCurrency(value) {
   return `₹${num.toLocaleString("en-IN", { maximumFractionDigits: 0 })}`;
 }
 
-function setCardValueByTitle(title, value) {
-  const cards = Array.from(document.querySelectorAll(".card .card-body"));
-  const card = cards.find((c) => {
-    const heading = c.querySelector("h4");
-    return heading && heading.textContent.trim().toLowerCase() === title.toLowerCase();
-  });
-  if (!card) return;
-  const valueEl = card.querySelector("h2");
-  if (valueEl) valueEl.textContent = value;
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
 }
 
 function renderVendorTrend(trend) {
@@ -38,6 +42,25 @@ function renderVendorTrend(trend) {
   chart.render();
 }
 
+function updateVendorParamTable(data) {
+  const rows = Array.from(document.querySelectorAll(".table-responsive.pt-2 tbody tr"));
+  if (!rows.length) return;
+  const mapped = [
+    { label: "Products", today: data.totalProducts ?? 0, total: data.totalProducts ?? 0, percent: "100%" },
+    { label: "Orders", today: data.totalOrders ?? 0, total: data.totalOrders ?? 0, percent: "100%" },
+    { label: "Items Sold", today: data.totalItemsSold ?? 0, total: data.totalItemsSold ?? 0, percent: "100%" },
+    { label: "Revenue", today: formatCurrency(data.totalRevenue), total: formatCurrency(data.totalRevenue), percent: "100%" },
+  ];
+  mapped.forEach((item, index) => {
+    if (!rows[index]) return;
+    const cells = rows[index].querySelectorAll("th, td");
+    if (cells[0]) cells[0].textContent = item.label;
+    if (cells[1]) cells[1].textContent = item.today;
+    if (cells[2]) cells[2].textContent = item.total;
+    if (cells[4]) cells[4].textContent = item.percent;
+  });
+}
+
 async function loadVendorDashboard() {
   if (!document.getElementById("balance_overview")) return;
   const token = vendorDashboardToken();
@@ -50,12 +73,13 @@ async function loadVendorDashboard() {
     const json = await res.json();
     const data = json?.data || {};
 
-    setCardValueByTitle("Balance", formatCurrency(data.totalRevenue));
-    setCardValueByTitle("Spending", String(data.totalItemsSold ?? 0));
-    setCardValueByTitle("Total Profit", formatCurrency(data.totalRevenue));
-    setCardValueByTitle("Running Project", String(data.totalProducts ?? 0));
-    setCardValueByTitle("Expense Total", String(data.totalOrders ?? 0));
+    setText("vdTotalRevenue", formatCurrency(data.totalRevenue));
+    setText("vdItemsSold", String(data.totalItemsSold ?? 0));
+    setText("vdRevenueCard", formatCurrency(data.totalRevenue));
+    setText("vdTotalProducts", String(data.totalProducts ?? 0));
+    setText("vdTotalOrders", String(data.totalOrders ?? 0));
     renderVendorTrend(data.trend || []);
+    updateVendorParamTable(data);
   } catch (e) {
     console.error("Vendor dashboard load error:", e);
   }

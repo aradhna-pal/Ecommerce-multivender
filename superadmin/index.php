@@ -49,7 +49,7 @@
                                                                 <i class="mdi mdi-arrow-top-right"></i>
                                                             </a>
                                                         </div>
-                                                        <h2 class="mb-0">$90,000</h2>
+                                                        <h2 class="mb-0" id="sdTotalRevenue">₹0</h2>
                                                     </div>
                                                 </div>
                                             </div><!-- end col -->
@@ -63,7 +63,7 @@
                                                                 <i class="mdi mdi-arrow-top-right"></i>
                                                             </a>
                                                         </div>
-                                                        <h2 class="mb-0">1,21,020</h2>
+                                                        <h2 class="mb-0" id="sdTotalVendors">0</h2>
                                                     </div><!-- end card-body -->
                                                 </div><!-- end card -->
                                             </div><!-- end col -->
@@ -88,14 +88,14 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="my-0">Total Profit</h4>
+                                    <h4 class="my-0">Total Revenue</h4>
                                     <i class="mdi mdi-chevron-right text-primary font-20"></i>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <h2 class="mb-2 mt-0">$20,424</h2>
+                                        <h2 class="mb-2 mt-0" id="sdRevenueCard">₹0</h2>
                                         <p class="mb-0"><span class="badge bg-success-subtle text-success">25.42%</span>
-                                            vs last month</p>
+                                            vs selected period</p>
                                     </div>
                                     <div class="col-6">
                                         <div class="text-end">
@@ -109,12 +109,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="my-0">New Customers</h4>
+                                    <h4 class="my-0">Total Users</h4>
                                     <i class="mdi mdi-chevron-right text-primary font-20"></i>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <h2 class="mb-2 mt-0">654</h2>
+                                        <h2 class="mb-2 mt-0" id="sdTotalUsers">0</h2>
                                         <p class="mb-0"><span class="badge bg-success-subtle text-success">30.32%</span>
                                             vs last month</p>
                                     </div>
@@ -132,15 +132,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="my-0">Running Project</h4>
+                                    <h4 class="my-0">Total Products</h4>
                                     <i class="mdi mdi-chevron-right text-primary font-20"></i>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <h2 class="mb-2 mt-0">24</h2>
+                                        <h2 class="mb-2 mt-0" id="sdTotalProducts">0</h2>
                                         <p class="mb-0"><span
                                                 class="badge bg-danger-subtle text-danger rounded">5%</span>
-                                            vs last month</p>
+                                            listed products</p>
                                     </div>
                                     <div class="col-6">
                                         <div class="text-end">
@@ -153,15 +153,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="my-0">Expense Total</h4>
+                                    <h4 class="my-0">Total Orders</h4>
                                     <i class="mdi mdi-chevron-right text-primary font-20"></i>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-6">
-                                        <h2 class="mb-2 mt-0">$12,246</h2>
+                                        <h2 class="mb-2 mt-0" id="sdTotalOrders">0</h2>
                                         <p class="mb-0"><span class="badge bg-success-subtle text-success">12.92%</span>
-                                            vs last month</p>
+                                            platform orders</p>
                                     </div>
                                     <div class="col-6">
                                         <div class="text-end">
@@ -181,7 +181,7 @@
             <div class="col-xl-8">
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">Balance Overview</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">Revenue Overview (INR)</h4>
                         <div class="flex-shrink-0">
                             <div class="dropdown z-3">
                                 <a aria-expanded="false" class="dropdown-toggle arrow-none card-drop"
