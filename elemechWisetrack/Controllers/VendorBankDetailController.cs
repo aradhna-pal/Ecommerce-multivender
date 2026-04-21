@@ -85,15 +85,26 @@ namespace elemechWisetrack.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBankDetailByUserId(string userId)
         {
-            var loggedInUserId =
-                User.FindFirst("VendorId")?.Value ??
-                User.FindFirst("vendorId")?.Value ??
-                User.FindFirst("UserId")?.Value ??
-                User.FindFirst("userId")?.Value ??
-                User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var role =
+                User.FindFirst(ClaimTypes.Role)?.Value ??
+                User.FindFirst("Role")?.Value ??
+                User.FindFirst("role")?.Value;
 
-            // Prefer token user for vendor calls; fallback to route userId for admin flows.
-            var effectiveUserId = !string.IsNullOrWhiteSpace(loggedInUserId) ? loggedInUserId : userId;
+            var tokenVendorId =
+                User.FindFirst("VendorId")?.Value ??
+                User.FindFirst("vendorId")?.Value;
+
+            var tokenUserId =
+                User.FindFirst("UserId")?.Value ??
+                User.FindFirst("userId")?.Value;
+
+            // Superadmin should be able to fetch any vendor by route userId.
+            // Vendor should only fetch its own record from token claims.
+            var isVendor = string.Equals(role, "vendor", StringComparison.OrdinalIgnoreCase);
+            var effectiveUserId = isVendor
+                ? (!string.IsNullOrWhiteSpace(tokenVendorId) ? tokenVendorId : tokenUserId)
+                : userId;
+
             if (string.IsNullOrWhiteSpace(effectiveUserId))
             {
                 return BadRequest(new { Success = false, Message = "UserId is required" });
