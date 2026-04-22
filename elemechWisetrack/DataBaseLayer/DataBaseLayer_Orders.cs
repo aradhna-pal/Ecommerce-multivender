@@ -1207,7 +1207,7 @@ SELECT
     oi.product_id,
     oi.quantity,
     oi.price,
-    oi.discount,
+    0::numeric AS item_discount,
 
     p.name,
     p.mainimage
@@ -1216,6 +1216,7 @@ FROM orders o
 LEFT JOIN address_details a ON a.id = o.address_id
 LEFT JOIN order_items oi ON oi.order_id = o.id
 LEFT JOIN products p ON p.id = oi.product_id
+LEFT JOIN ""AspNetUsers"" u ON u.""Id""::text = p.createdby::text
 
 WHERE LOWER(COALESCE(p.createdby::text, '')) = @userIdText
 
@@ -1249,15 +1250,17 @@ SELECT
     oi.product_id,
     oi.quantity,
     oi.price,
-    oi.discount,
+    0::numeric AS item_discount,
 
     p.name,
-    p.mainimage
+    p.mainimage,
+    TRIM(CONCAT(COALESCE(u.""FirstName"", ''), ' ', COALESCE(u.""LastName"", ''))) AS vendor_name
 
 FROM orders o
 LEFT JOIN address_details a ON a.id = o.address_id
 LEFT JOIN order_items oi ON oi.order_id = o.id
 LEFT JOIN products p ON p.id = oi.product_id
+LEFT JOIN ""AspNetUsers"" u ON u.""Id""::text = p.createdby::text
 
 ORDER BY o.created_at DESC";
             }
@@ -1288,15 +1291,17 @@ SELECT
     oi.product_id,
     oi.quantity,
     oi.price,
-    oi.discount,
+    0::numeric AS item_discount,
 
     p.name,
-    p.mainimage
+    p.mainimage,
+    TRIM(CONCAT(COALESCE(u.""FirstName"", ''), ' ', COALESCE(u.""LastName"", ''))) AS vendor_name
 
 FROM orders o
 LEFT JOIN address_details a ON a.id = o.address_id
 LEFT JOIN order_items oi ON oi.order_id = o.id
 LEFT JOIN products p ON p.id = oi.product_id
+LEFT JOIN ""AspNetUsers"" u ON u.""Id""::text = p.createdby::text
 
 WHERE o.user_email = @email
 AND o.order_status != 'DELIVERED'
@@ -1355,7 +1360,8 @@ ORDER BY o.created_at DESC";
                         Price = reader.GetDecimal(18),
                         Discount = reader.IsDBNull(19) ? 0 : reader.GetDecimal(19),
                         ProductName = reader.IsDBNull(20) ? null : reader.GetString(20),
-                        ProductImage = reader.IsDBNull(21) ? null : reader.GetString(21)
+                        ProductImage = reader.IsDBNull(21) ? null : reader.GetString(21),
+                        VendorName = (reader.FieldCount > 22 && !reader.IsDBNull(22)) ? reader.GetString(22) : null
                     };
 
                     ((List<object>)orderDict[orderId].Items).Add(item);
@@ -1588,7 +1594,7 @@ ORDER BY o.created_at DESC";
             // 🔹 2. ORDER ITEMS
             // ============================
             using (var cmd2 = new NpgsqlCommand(@"
-        SELECT oi.product_id, oi.quantity, oi.price, oi.discount,
+        SELECT oi.product_id, oi.quantity, oi.price, 0::numeric AS item_discount,
                p.name, p.mainimage, p.description, p.price
         FROM order_items oi
         LEFT JOIN products p ON p.id = oi.product_id
