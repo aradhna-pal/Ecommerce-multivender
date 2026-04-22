@@ -4,33 +4,36 @@ function vendorOrderToken() {
   return localStorage.getItem("vendorToken");
 }
 
-function vendorIdFromToken() {
-  const token = vendorOrderToken();
-  if (!token) return "";
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/")));
-    return payload.VendorId || payload.vendorId || payload.vendorid || "";
-  } catch {
-    return "";
-  }
-}
-
 function normalizeOrderPayload(result) {
   return result?.data?.data || result?.data || result?.orders || [];
 }
 
-function ownsOrder(order, vendorId) {
-  if (!vendorId) return true;
-  const orderOwnerId = order.vendorId || order.vendorid || order.sellerId || order.sellerid || "";
-  if (orderOwnerId) return String(orderOwnerId) === String(vendorId);
+function normalizeOrder(order = {}) {
+  const items = Array.isArray(order.items)
+    ? order.items
+    : Array.isArray(order.Items)
+      ? order.Items
+      : [];
 
-  const items = Array.isArray(order.items) ? order.items : [];
-  const ownedItems = items.filter((item) => {
-    const itemOwner = item.vendorId || item.vendorid || item.sellerId || item.sellerid || "";
-    return itemOwner ? String(itemOwner) === String(vendorId) : true;
-  });
-  if (!items.length) return true;
-  return ownedItems.length > 0;
+  const normalizedItems = items.map((item) => ({
+    productImage: item.productImage ?? item.ProductImage ?? item.image ?? item.Image ?? "",
+  }));
+
+  const address = order.address || order.Address || {};
+
+  return {
+    id: order.orderId || order.OrderId || order.id || order.Id || "",
+    orderId: order.orderId || order.OrderId || order.id || order.Id || "",
+    createdAt: order.createdAt || order.CreatedAt || null,
+    totalAmount: order.totalAmount ?? order.TotalAmount ?? order.total ?? order.Total ?? 0,
+    paymentStatus: order.paymentStatus || order.PaymentStatus || order.paymentstatus || "-",
+    orderStatus: order.orderStatus || order.OrderStatus || order.status || order.Status || "-",
+    address: {
+      fullName: address.fullName || address.FullName || address.name || address.Name || "-",
+      phoneNumber: address.phoneNumber || address.PhoneNumber || address.phone || address.Phone || "-",
+    },
+    items: normalizedItems,
+  };
 }
 
 function formatDate(dateStr) {
@@ -54,8 +57,8 @@ async function loadOrders() {
       headers: { Authorization: `Bearer ${token}` },
     });
     const result = await res.json();
-    const vendorId = vendorIdFromToken();
-    const orders = normalizeOrderPayload(result).filter((order) => ownsOrder(order, vendorId));
+    const ordersRaw = normalizeOrderPayload(result);
+    const orders = Array.isArray(ordersRaw) ? ordersRaw.map(normalizeOrder) : [];
 
     tableBody.innerHTML = "";
 

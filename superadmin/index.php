@@ -43,7 +43,7 @@
                                                 <div class="card border-0 bg-soft-warning mb-0">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between align-items-center">
-                                                            <h4 class="mt-0 mb-0">Balance</h4>
+                                                            <h4 class="mt-0 mb-0">Total Revenue</h4>
                                                             <a class="avatar-xs bg-white rounded font-18 d-flex text-black align-items-center justify-content-center"
                                                                 href="#">
                                                                 <i class="mdi mdi-arrow-top-right"></i>
@@ -57,7 +57,7 @@
                                                 <div class="card border-0 bg-soft-success mb-0">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between align-items-center">
-                                                            <h4 class="mt-0 mb-0">Spending</h4>
+                                                            <h4 class="mt-0 mb-0">Total Vendors</h4>
                                                             <a class="avatar-xs bg-white rounded font-18 d-flex text-black align-items-center justify-content-center"
                                                                 href="#">
                                                                 <i class="mdi mdi-arrow-top-right"></i>
@@ -174,6 +174,41 @@
                     </div><!-- end row -->
                 </div><!-- end row -->
             </div><!-- end col -->
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-muted mb-2">Total Brands</h5>
+                        <h3 class="mb-0" id="sdTotalBrands">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-muted mb-2">Total Categories</h5>
+                        <h3 class="mb-0" id="sdTotalCategories">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-muted mb-2">Total Colors</h5>
+                        <h3 class="mb-0" id="sdTotalColors">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-muted mb-2">Total Sizes</h5>
+                        <h3 class="mb-0" id="sdTotalSizes">0</h3>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- end row -->
 

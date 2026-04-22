@@ -41,7 +41,7 @@
                                                 <div class="card border-0 bg-soft-warning mb-0">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between align-items-center">
-                                                            <h4 class="mt-0 mb-0">Balance</h4>
+                                                            <h4 class="mt-0 mb-0">Total Revenue</h4>
                                                             <a class="avatar-xs bg-white rounded font-18 d-flex text-black align-items-center justify-content-center"
                                                                 href="#">
                                                                 <i class="mdi mdi-arrow-top-right"></i>
@@ -55,7 +55,7 @@
                                                 <div class="card border-0 bg-soft-success mb-0">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between align-items-center">
-                                                            <h4 class="mt-0 mb-0">Spending</h4>
+                                                            <h4 class="mt-0 mb-0">Items Sold</h4>
                                                             <a class="avatar-xs bg-white rounded font-18 d-flex text-black align-items-center justify-content-center"
                                                                 href="#">
                                                                 <i class="mdi mdi-arrow-top-right"></i>
@@ -107,12 +107,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="my-0">New Customers</h4>
+                                    <h4 class="my-0">Total Items Sold</h4>
                                     <i class="mdi mdi-chevron-right text-primary font-20"></i>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <h2 class="mb-2 mt-0">654</h2>
+                                        <h2 class="mb-2 mt-0" id="vdTotalItemsSold">0</h2>
                                         <p class="mb-0"><span class="badge bg-success-subtle text-success">30.32%</span>
                                             vs last month</p>
                                     </div>

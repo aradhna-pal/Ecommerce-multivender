@@ -19,15 +19,16 @@ async function loadOrders() {
     });
 
     const result = await res.json();
+    const orders = normalizeOrdersResponse(result);
 
-    if (!result.success || !result.orders?.length) {
+    if (!orders.length) {
       tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No orders found</td></tr>`;
       return;
     }
 
     tableBody.innerHTML = "";
 
-    result.orders.forEach((order) => {
+    orders.forEach((order) => {
       const firstItem = order.items?.[0];
 
       tableBody.innerHTML += `
@@ -71,6 +72,32 @@ function getStatusClass(s) {
   if (["PLACED", "COMPLETED", "SUCCESS"].includes(s)) return "status-success";
   if (["CANCELED", "FAILED"].includes(s)) return "status-cancel";
   return "status-process";
+}
+
+function normalizeOrdersResponse(result) {
+  const rawOrders = result?.data?.data || result?.data || result?.orders || [];
+  if (!Array.isArray(rawOrders)) return [];
+
+  return rawOrders.map((order) => {
+    const items = Array.isArray(order.items)
+      ? order.items
+      : Array.isArray(order.Items)
+        ? order.Items
+        : [];
+
+    const normalizedItems = items.map((item) => ({
+      productName: item.productName ?? item.ProductName ?? "No Product",
+    }));
+
+    return {
+      orderId: order.orderId || order.OrderId || order.id || order.Id || "",
+      createdAt: order.createdAt || order.CreatedAt || "",
+      orderStatus: order.orderStatus || order.OrderStatus || "",
+      paymentStatus: order.paymentStatus || order.PaymentStatus || "",
+      finalAmount: order.finalAmount ?? order.FinalAmount ?? order.totalAmount ?? order.TotalAmount ?? 0,
+      items: normalizedItems,
+    };
+  });
 }
 
 // ********************************************************* user addrss ********************************************

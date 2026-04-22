@@ -93,7 +93,7 @@
     <script src="js/uploadExcel.js"></script>
     <script src="js/blog.js?v=4"></script>
     <script src="js/order.js?v=2"></script>
-    <script src="js/dashboard.js?v=4"></script>
+    <script src="js/dashboard.js?v=6"></script>
     <script src="js/vender.js"></script>
     <script src="js/user.js"></script>
     <script src="js/coupon.js"></script>

@@ -31,20 +31,7 @@
         <div class="col-md-6">
             <div class="card p-3 shadow-sm" >
                 <h5 class="mb-3">Order Details</h5>
-                <div id="orderDetails">
-                    <p><strong>Order ID:</strong> #236</p>
-                    <p><strong>Order Number:</strong> ORD-680B2992549C8</p>
-                    <p><strong>Order Date:</strong> 2025-04-25 06:20:02</p>
-                    <p><strong>Order Status:</strong> Cancelled</p>
-                    <p><strong>Cancellation Reason:</strong> </p>
-                    <p><strong>Comment:</strong> </p>
-                    <p><strong>Order Total:</strong> ₹465.00</p>
-                    <p><strong>Shipping Charges:</strong> ₹0.00</p>
-                    <p><strong>Payment Method:</strong> razorpay</p>
-                    <p><strong>Payment Status:</strong> Paid</p>
-                    <p><strong>Courier Name:</strong> N/A</p>
-                    <p><strong>Tracking Number:</strong> N/A</p>
-                </div>
+                <div id="orderDetails">Loading order...</div>
             </div>
         </div>
 
@@ -52,15 +39,7 @@
         <div class="col-md-6">
             <div class="card p-3 shadow-sm">
                 <h5 class="mb-3">Delivery Address</h5>
-                <div id="deliveryAddress">
-                    <p><strong>Name:</strong> </p>
-                    <p><strong>Mobile:</strong> </p>
-                    <p><strong>Address:</strong> N/A</p>
-                    <p><strong>City:</strong> N/A</p>
-                    <p><strong>State:</strong> N/A</p>
-                    <p><strong>Country:</strong> N/A</p>
-                    <p><strong>Post Code:</strong> 000000</p>
-                </div>
+                <div id="deliveryAddress">Loading address...</div>
             </div>
         </div>
 
@@ -68,16 +47,7 @@
         <div class="col-md-6">
             <div class="card p-3 shadow-sm">
                 <h5 class="mb-3">Customer Details</h5>
-                <div id="customerDetails">
-                    <p><strong>Name:</strong> Yogesh Kumar</p>
-                    <p><strong>Email:</strong> yogeshkumar0798@gmail.com</p>
-                    <p><strong>Mobile:</strong> 8650242402</p>
-                    <p><strong>Address:</strong> N/A</p>
-                    <p><strong>City:</strong> N/A</p>
-                    <p><strong>State:</strong> N/A</p>
-                    <p><strong>Country:</strong> N/A</p>
-                    <p><strong>Post Code:</strong> 000000</p>
-                </div>
+                <div id="customerDetails">Loading customer...</div>
             </div>
         </div>
 
@@ -121,88 +91,97 @@
 
 
 <script>
+(function () {
+    const ORDER_BASE_URL = "https://api.workarya.com";
+    const currentOrderId = "<?php echo $orderId; ?>";
+    const normalizedOrderId = (currentOrderId || "").trim().toLowerCase();
+    const orderDetailsEl = document.getElementById("orderDetails");
+    const deliveryAddressEl = document.getElementById("deliveryAddress");
+    const customerDetailsEl = document.getElementById("customerDetails");
+    const orderItemsEl = document.getElementById("orderItems");
 
+    function showState(message) {
+        orderDetailsEl.innerHTML = message;
+        deliveryAddressEl.innerHTML = message;
+        customerDetailsEl.innerHTML = message;
+        orderItemsEl.innerHTML = message;
+    }
 
-    // order - detail **************************************************************
-    const BASE = "http://multivendor_backend.workarya.com";
-    const orderId = "<?php echo $orderId; ?>";
+    function renderOrder(order) {
+        const a = order.address || {};
+        const addressName = a.fullName || a.FullName || a.name || a.Name || "";
+        const addressPhone = a.phoneNumber || a.PhoneNumber || a.phone || a.Phone || "";
+        const addressPincode = a.postalCode || a.PostalCode || a.pincode || a.Pincode || "";
 
-    async function loadOrderDetail() {
-        try {
-            const res = await fetch(`${BASE}/api/orders/my-orders`, {
-                headers: {
-                    "Authorization": "Bearer " + localStorage.getItem("superadminToken")
-                }
-            });
+        document.getElementById("orderHeading").innerText = "Order Detail - " + (order.orderId || order.id || "-");
+        orderDetailsEl.innerHTML = `
+      <p><strong>Order ID:</strong> ${order.orderId || order.id || "-"}</p>
+      <p><strong>Order Date:</strong> ${new Date(order.createdAt).toLocaleString()}</p>
+      <p><strong>Order Status:</strong> ${order.orderStatus || "-"}</p>
+      <p><strong>Payment Status:</strong> ${order.paymentStatus || "-"}</p>
+      <p><strong>Order Total:</strong> ₹${order.totalAmount ?? order.total ?? 0}</p>`;
 
-            const result = await res.json();
-            const orders = result.data || [];
-
-            const o = orders.find(x => x.orderId === orderId);
-            if (!o) {
-                document.getElementById("orderDetails").innerHTML = "Order not found";
-                return;
-            }
-
-            // 🔹 Heading
-            document.getElementById("orderHeading").innerText =
-                "Order Detail - " + o.orderId;
-
-            // 🔹 Order Details
-            document.getElementById("orderDetails").innerHTML = `
-      <p><strong>Order ID:</strong> ${o.orderId}</p>
-      <p><strong>Order Date:</strong> ${new Date(o.createdAt).toLocaleString()}</p>
-      <p><strong>Order Status:</strong> ${o.orderStatus}</p>
-      <p><strong>Payment Status:</strong> ${o.paymentStatus}</p>
-      <p><strong>Order Total:</strong> ₹${o.totalAmount}</p>
-    `;
-
-            // 🔹 Address
-            const a = o.address || {};
-            document.getElementById("deliveryAddress").innerHTML = `
-      <p><strong>Name:</strong> ${a.fullName || ""}</p>
-      <p><strong>Mobile:</strong> ${a.phoneNumber || ""}</p>
+        deliveryAddressEl.innerHTML = `
+      <p><strong>Name:</strong> ${addressName}</p>
+      <p><strong>Mobile:</strong> ${addressPhone}</p>
       <p><strong>Address:</strong> ${a.addressLine1 || ""} ${a.addressLine2 || ""}</p>
       <p><strong>City:</strong> ${a.city || ""}</p>
       <p><strong>State:</strong> ${a.state || ""}</p>
-      <p><strong>Post Code:</strong> ${a.postalCode || ""}</p>
-    `;
+      <p><strong>Post Code:</strong> ${addressPincode}</p>`;
 
-            // 🔹 Customer
-            document.getElementById("customerDetails").innerHTML = `
-      <p><strong>Name:</strong> ${a.fullName || ""}</p>
-      <p><strong>Mobile:</strong> ${a.phoneNumber || ""}</p>
+        customerDetailsEl.innerHTML = `
+      <p><strong>Name:</strong> ${addressName}</p>
+      <p><strong>Mobile:</strong> ${addressPhone}</p>
       <p><strong>City:</strong> ${a.city || ""}</p>
-      <p><strong>State:</strong> ${a.state || ""}</p>
-    `;
+      <p><strong>State:</strong> ${a.state || ""}</p>`;
 
-            // 🔹 Items
-            let itemsHtml = "";
-            o.items.forEach(it => {
-                itemsHtml += `
-        <div class="border rounded p-2 mb-2 d-flex gap-2">
-          <img src="${window.resolveApiMediaUrl ? window.resolveApiMediaUrl(it.productImage || it.image) : (BASE + (it.productImage || ""))}"
-               width="60" height="60"
-               style="object-fit:cover;border-radius:6px"/>
-          <div>
-            <p class="m-0"><strong>${it.productName}</strong></p>
-            <p class="m-0">Qty: ${it.quantity}</p>
-            <p class="m-0">Price: ₹${it.price}</p>
-          </div>
-        </div>
-      `;
+        const itemsHtml = (order.items || []).map((it) => `
+            <div class="border rounded p-2 mb-2 d-flex gap-2">
+                <img src="${window.resolveApiMediaUrl ? window.resolveApiMediaUrl(it.productImage || it.image) : (ORDER_BASE_URL + (it.productImage || ""))}"
+                    width="60" height="60" style="object-fit:cover;border-radius:6px"/>
+                <div>
+                    <p class="m-0"><strong>${it.productName || "-"}</strong></p>
+                    <p class="m-0">Qty: ${it.quantity || 0}</p>
+                    <p class="m-0">Price: ₹${it.price || 0}</p>
+                </div>
+            </div>`).join("");
+
+        orderItemsEl.innerHTML = itemsHtml || "No items";
+    }
+
+    async function loadOrderDetail() {
+        try {
+            const token = localStorage.getItem("superadminToken");
+            if (!token) {
+                showState("Login required");
+                return;
+            }
+
+            const res = await fetch(`${ORDER_BASE_URL}/api/orders/my-orders`, {
+                headers: { Authorization: `Bearer ${token}` },
             });
-            document.getElementById("orderItems").innerHTML = itemsHtml;
 
-        } catch (e) {
-            console.error(e);
+            if (!res.ok) {
+                showState("Failed to load order");
+                return;
+            }
+
+            const result = await res.json();
+            const orders = result?.data?.data || result?.data || result?.orders || [];
+            const order = orders.find((x) => ((x.orderId || x.id || "").trim().toLowerCase()) === normalizedOrderId);
+
+            if (!order) {
+                showState("Order not found");
+                return;
+            }
+
+            renderOrder(order);
+        } catch (error) {
+            console.error("Superadmin order detail error:", error);
+            showState("Unable to load order details");
         }
     }
 
     loadOrderDetail();
-
-
-    // end order detil **********************************************************
-
-
+})();
 </script>

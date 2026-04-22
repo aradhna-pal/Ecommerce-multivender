@@ -23,8 +23,8 @@
     <script src="./js/pincode.js"></script>
     <script src="./js/coupon.js"></script>
     <script src="./js/all-article.js"></script>
-    <script src="./js/order.js"></script>
-    <script src="./js/dashboard.js?v=4"></script>
+    <script src="./js/order.js?v=2"></script>
+    <script src="./js/dashboard.js?v=5"></script>
     <style id="vendor-status-styles"></style>
     <script>
         // Check if the vendor is logged in; if no token, redirect to login page

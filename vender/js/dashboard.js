@@ -1,14 +1,4 @@
-const VENDOR_DASHBOARD_API_BASE = (() => {
-  const localOverride = localStorage.getItem("apiBaseUrl");
-  if (localOverride) return String(localOverride).replace(/\/$/, "");
-  const isLocal = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
-  const configured = window.API_BASE_URL || window.BASE;
-  if (isLocal && (!configured || /api\.workarya\.com/i.test(String(configured)))) {
-    return "http://127.0.0.1:5098";
-  }
-  if (configured) return String(configured).replace(/\/$/, "");
-  return (isLocal ? "http://127.0.0.1:5098" : "https://api.workarya.com").replace(/\/$/, "");
-})();
+const VENDOR_DASHBOARD_API_BASE = "https://api.workarya.com";
 
 function vendorDashboardToken() {
   return localStorage.getItem("vendorToken");
@@ -74,7 +64,7 @@ async function loadVendorDashboard() {
     const data = json?.data || {};
 
     setText("vdTotalRevenue", formatCurrency(data.totalRevenue));
-    setText("vdItemsSold", String(data.totalItemsSold ?? 0));
+    setText("vdTotalItemsSold", String(data.totalItemsSold ?? 0));
     setText("vdRevenueCard", formatCurrency(data.totalRevenue));
     setText("vdTotalProducts", String(data.totalProducts ?? 0));
     setText("vdTotalOrders", String(data.totalOrders ?? 0));

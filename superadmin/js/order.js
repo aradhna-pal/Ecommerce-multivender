@@ -1,3 +1,5 @@
+const superadminOrderMap = {};
+
 async function loadOrders() {
   const token = localStorage.getItem("superadminToken");
 
@@ -10,12 +12,17 @@ async function loadOrders() {
     );
 
     const result = await res.json();
-    const orders = result?.data?.data || result?.data || result?.orders || [];
+    const ordersRaw = result?.data?.data || result?.data || result?.orders || [];
+    const orders = Array.isArray(ordersRaw) ? ordersRaw.map(normalizeOrder) : [];
 
     const tbody = document.getElementById("allorder");
     tbody.innerHTML = "";
 
     orders.forEach((o, index) => {
+      const currentOrderId = o.orderId || o.id || "";
+      if (currentOrderId) {
+        superadminOrderMap[currentOrderId] = o;
+      }
       const firstItem = (o.items && o.items[0]) || {};
       const address = o.address || {};
 
@@ -79,6 +86,35 @@ async function loadOrders() {
   }
 }
 
+function normalizeOrder(order = {}) {
+  const items = Array.isArray(order.items)
+    ? order.items
+    : Array.isArray(order.Items)
+      ? order.Items
+      : [];
+
+  const normalizedItems = items.map((item) => ({
+    productImage: item.productImage ?? item.ProductImage ?? item.image ?? item.Image ?? "",
+    productName: item.productName ?? item.ProductName ?? "",
+  }));
+
+  const address = order.address || order.Address || {};
+
+  return {
+    id: order.orderId || order.OrderId || order.id || order.Id || "",
+    orderId: order.orderId || order.OrderId || order.id || order.Id || "",
+    createdAt: order.createdAt || order.CreatedAt || null,
+    totalAmount: order.totalAmount ?? order.TotalAmount ?? order.total ?? order.Total ?? 0,
+    paymentStatus: order.paymentStatus || order.PaymentStatus || order.paymentstatus || "-",
+    orderStatus: order.orderStatus || order.OrderStatus || order.status || order.Status || "-",
+    address: {
+      fullName: address.fullName || address.FullName || address.name || address.Name || "-",
+      phoneNumber: address.phoneNumber || address.PhoneNumber || address.phone || address.Phone || "-",
+    },
+    items: normalizedItems,
+  };
+}
+
 
 {/* <td class="table-action">
   <!-- Download PDF -->
@@ -99,6 +135,10 @@ loadOrders();
 // order detial***************************
 
 function viewOrder(id) {
+  const selectedOrder = superadminOrderMap[id];
+  if (selectedOrder) {
+    sessionStorage.setItem("superadminSelectedOrder", JSON.stringify(selectedOrder));
+  }
   window.location.href = `order-detail.php?id=${id}`;
 }
 

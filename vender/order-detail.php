@@ -66,6 +66,9 @@ async function loadOrderDetail() {
         }
 
         const a = o.address || {};
+        const addressName = a.fullName || a.FullName || a.name || a.Name || "";
+        const addressPhone = a.phoneNumber || a.PhoneNumber || a.phone || a.Phone || "";
+        const addressPincode = a.postalCode || a.PostalCode || a.pincode || a.Pincode || "";
         document.getElementById("orderHeading").innerText = "Order Detail - " + (o.orderId || o.id || "-");
         document.getElementById("orderDetails").innerHTML = `
             <p><strong>Order ID:</strong> ${o.orderId || o.id || "-"}</p>
@@ -75,16 +78,16 @@ async function loadOrderDetail() {
             <p><strong>Order Total:</strong> ₹${o.totalAmount || 0}</p>`;
 
         document.getElementById("deliveryAddress").innerHTML = `
-            <p><strong>Name:</strong> ${a.fullName || ""}</p>
-            <p><strong>Mobile:</strong> ${a.phoneNumber || ""}</p>
+            <p><strong>Name:</strong> ${addressName}</p>
+            <p><strong>Mobile:</strong> ${addressPhone}</p>
             <p><strong>Address:</strong> ${a.addressLine1 || ""} ${a.addressLine2 || ""}</p>
             <p><strong>City:</strong> ${a.city || ""}</p>
             <p><strong>State:</strong> ${a.state || ""}</p>
-            <p><strong>Post Code:</strong> ${a.postalCode || ""}</p>`;
+            <p><strong>Post Code:</strong> ${addressPincode}</p>`;
 
         document.getElementById("customerDetails").innerHTML = `
-            <p><strong>Name:</strong> ${a.fullName || ""}</p>
-            <p><strong>Mobile:</strong> ${a.phoneNumber || ""}</p>
+            <p><strong>Name:</strong> ${addressName}</p>
+            <p><strong>Mobile:</strong> ${addressPhone}</p>
             <p><strong>City:</strong> ${a.city || ""}</p>
             <p><strong>State:</strong> ${a.state || ""}</p>`;
 

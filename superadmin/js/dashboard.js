@@ -1,14 +1,4 @@
-const SUPERADMIN_DASHBOARD_API_BASE = (() => {
-  const localOverride = localStorage.getItem("apiBaseUrl");
-  if (localOverride) return String(localOverride).replace(/\/$/, "");
-  const isLocal = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
-  const configured = window.API_BASE_URL || window.BASE;
-  if (isLocal && (!configured || /api\.workarya\.com/i.test(String(configured)))) {
-    return "http://127.0.0.1:5098";
-  }
-  if (configured) return String(configured).replace(/\/$/, "");
-  return (isLocal ? "http://127.0.0.1:5098" : "https://api.workarya.com").replace(/\/$/, "");
-})();
+const SUPERADMIN_DASHBOARD_API_BASE = "https://api.workarya.com";
 
 function superadminDashboardToken() {
   return localStorage.getItem("superadminToken");
@@ -79,6 +69,10 @@ async function loadSuperadminDashboard() {
     setText("sdRevenueCard", formatCurrency(data.totalRevenue));
     setText("sdTotalProducts", String(data.totalProducts ?? 0));
     setText("sdTotalOrders", String(data.totalOrders ?? 0));
+    setText("sdTotalBrands", String(data.totalBrands ?? 0));
+    setText("sdTotalCategories", String(data.totalCategories ?? 0));
+    setText("sdTotalColors", String(data.totalColors ?? 0));
+    setText("sdTotalSizes", String(data.totalSizes ?? 0));
     renderSuperadminTrend(data.trend || []);
     updateSuperadminParamTable(data);
   } catch (e) {
