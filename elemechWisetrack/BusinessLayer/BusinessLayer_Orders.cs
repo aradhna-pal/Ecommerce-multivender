@@ -16,7 +16,7 @@ namespace elemechWisetrack.BusinessLayer
         Task<object> SchedulePickup(PickupRequestModel model);
         Task<object> CompleteExchange(Guid exchangeId);
         Task<object> UpdatePickupStatus(Guid exchangeId, string status);
-        Task<object> GetMyOrders(string email);
+        Task<object> GetMyOrders(string email, string? roleOrSourceType = null);
         Task<object> UpdateOrderStatus(UpdateOrderStatusModel model);
         Task<object> TrackOrder(Guid orderId);
         Task<object> GetOrderDetails(string email, Guid orderId);
@@ -83,9 +83,9 @@ namespace elemechWisetrack.BusinessLayer
             return await _dataBaseLayer.UpdatePickupStatus(exchangeId, status);
         }
 
-        public async Task<object> GetMyOrders(string email)
+        public async Task<object> GetMyOrders(string email, string? roleOrSourceType = null)
         {
-            return await _dataBaseLayer.GetMyOrders(email);
+            return await _dataBaseLayer.GetMyOrders(email, roleOrSourceType);
         }
 
         public async Task<object> UpdateOrderStatus(UpdateOrderStatusModel model)

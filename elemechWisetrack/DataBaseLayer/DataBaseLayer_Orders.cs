@@ -18,7 +18,7 @@ namespace elemechWisetrack.DataBaseLayer
         Task<object> SchedulePickup(PickupRequestModel model);
         Task<object> CompleteExchange(Guid exchangeId);
         Task<object> UpdatePickupStatus(Guid exchangeId, string status);
-        Task<object> GetMyOrders(string email);
+        Task<object> GetMyOrders(string email, string? roleOrSourceType = null);
         Task<object> UpdateOrderStatus(UpdateOrderStatusModel model);
         Task<object> TrackOrder(Guid orderId);
         Task<object> GetOrderDetails(string email, Guid orderId);
@@ -1145,7 +1145,7 @@ namespace elemechWisetrack.DataBaseLayer
             };
         }
 
-        public async Task<object> GetMyOrders(string email)
+        public async Task<object> GetMyOrders(string email, string? roleOrSourceType = null)
         {
             using var conn = new NpgsqlConnection(DbConnection);
             await conn.OpenAsync();
@@ -1153,25 +1153,117 @@ namespace elemechWisetrack.DataBaseLayer
             // ============================
             // 🔹 1. GET USER ID
             // ============================
-            string userQuery = @"SELECT ""Id"" FROM ""AspNetUsers"" WHERE ""Email""=@Email LIMIT 1";
+            string userQuery = @"SELECT ""Id"", COALESCE(LOWER(""sourcetype""), '') FROM ""AspNetUsers"" WHERE ""Email""=@Email LIMIT 1";
 
             Guid userId;
+            string sourceType = "";
 
             using (var cmd = new NpgsqlCommand(userQuery, conn))
             {
                 cmd.Parameters.AddWithValue("@Email", email);
-                var result = await cmd.ExecuteScalarAsync();
-
-                if (result == null)
+                using var userReader = await cmd.ExecuteReaderAsync();
+                if (!await userReader.ReadAsync())
                     return new { success = false, message = "User not found" };
-
-                userId = Guid.Parse(result.ToString());
+                userId = userReader.GetGuid(0);
+                sourceType = userReader.IsDBNull(1) ? "" : userReader.GetString(1);
             }
+
+            var requestedScope = (roleOrSourceType ?? "").Trim().ToLowerInvariant();
+            var effectiveScope = sourceType;
+            if (requestedScope.Contains("superadmin") || requestedScope.Contains("admin") || requestedScope == "internal")
+                effectiveScope = "superadmin";
+            else if (requestedScope.Contains("vendor"))
+                effectiveScope = "vendor";
 
             // ============================
             // 🔹 2. GET ORDERS + ITEMS + ADDRESS
             // ============================
-            string query = @"
+            string query;
+            if (effectiveScope == "vendor")
+            {
+                // Vendors should see only orders that contain their products.
+                query = @"
+SELECT 
+    o.id AS order_id,
+    o.total_amount,
+    o.discount_amount,
+    o.final_amount,
+    o.payment_method,
+    o.payment_status,
+    o.order_status,
+    o.created_at,
+
+    -- Address
+    a.id AS address_id,
+    a.full_name,
+    a.phone_number,
+    a.address_line1,
+    a.address_line2,
+    a.city,
+    a.state,
+    a.postal_code,
+
+    -- Items
+    oi.product_id,
+    oi.quantity,
+    oi.price,
+    oi.discount,
+
+    p.name,
+    p.mainimage
+
+FROM orders o
+LEFT JOIN address_details a ON a.id = o.address_id
+LEFT JOIN order_items oi ON oi.order_id = o.id
+LEFT JOIN products p ON p.id = oi.product_id
+
+WHERE LOWER(COALESCE(p.createdby::text, '')) = @userIdText
+
+ORDER BY o.created_at DESC";
+            }
+            else if (effectiveScope == "superadmin")
+            {
+                // Superadmin can see all orders.
+                query = @"
+SELECT 
+    o.id AS order_id,
+    o.total_amount,
+    o.discount_amount,
+    o.final_amount,
+    o.payment_method,
+    o.payment_status,
+    o.order_status,
+    o.created_at,
+
+    -- Address
+    a.id AS address_id,
+    a.full_name,
+    a.phone_number,
+    a.address_line1,
+    a.address_line2,
+    a.city,
+    a.state,
+    a.postal_code,
+
+    -- Items
+    oi.product_id,
+    oi.quantity,
+    oi.price,
+    oi.discount,
+
+    p.name,
+    p.mainimage
+
+FROM orders o
+LEFT JOIN address_details a ON a.id = o.address_id
+LEFT JOIN order_items oi ON oi.order_id = o.id
+LEFT JOIN products p ON p.id = oi.product_id
+
+ORDER BY o.created_at DESC";
+            }
+            else
+            {
+                query = @"
 SELECT 
     o.id AS order_id,
     o.total_amount,
@@ -1210,9 +1302,11 @@ WHERE o.user_email = @email
 AND o.order_status != 'DELIVERED'
 
 ORDER BY o.created_at DESC";
+            }
 
             using var cmd2 = new NpgsqlCommand(query, conn);
             cmd2.Parameters.AddWithValue("@email", email);
+            cmd2.Parameters.AddWithValue("@userIdText", userId.ToString().ToLowerInvariant());
 
             using var reader = await cmd2.ExecuteReaderAsync();
 

@@ -68,17 +68,21 @@ namespace elemechWisetrack.Controllers
         [HttpGet("my-orders")]
         public async Task<IActionResult> GetMyOrders()
         {
-            // ✅ Get email from JWT token
             string email = User.FindFirst(ClaimTypes.Email)?.Value ??
                                    User.FindFirst("email")?.Value ??
                                    User.FindFirst("UserName")?.Value;
+            string role = User.FindFirst(ClaimTypes.Role)?.Value ??
+                          User.FindFirst("role")?.Value ??
+                          User.FindFirst("Role")?.Value ??
+                          User.FindFirst("sourcetype")?.Value ??
+                          User.FindFirst("SourceType")?.Value;
 
             if (string.IsNullOrEmpty(email))
             {
                 return Unauthorized(new { success = false, message = "Invalid token" });
             }
 
-            var result = await _businessLayer.GetMyOrders(email);
+            var result = await _businessLayer.GetMyOrders(email, role);
 
             return Ok(result);
         }
