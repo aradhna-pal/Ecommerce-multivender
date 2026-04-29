@@ -140,7 +140,6 @@
                             <label class="form-label" for="MetaKeywords">Meta Keywords</label>
                             <input type="text" class="form-control" id="MetaKeywords" placeholder="keyword1, keyword2">
                         </div>
-
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-check mb-2">
@@ -151,7 +150,7 @@
                             <div class="col-md-4">
                                 <div class="form-check mb-2">
                                     <input type="checkbox" class="form-check-input" id="IsActive">
-                                    <label class="form-check-label" for="IsActive">Active</label>
+                                    <label class="form-check-label" for="IsActive">Sales Status (<span id="SalesStatusDisplay">Inactive</span>)</label>
                                 </div>
                             </div>
                             <div class="col-md-4">

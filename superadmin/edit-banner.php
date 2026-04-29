@@ -48,6 +48,16 @@
 
     </textarea>
                             </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="bannerPlacement">Show Banner At</label>
+                                <select class="form-select" id="bannerPlacement" name="bannerPlacement">
+                                    <option value="top">Top (Current Running Banner)</option>
+                                    <option value="middle">Middle Section</option>
+                                    <option value="bottom">Bottom Section</option>
+                                </select>
+                                <small class="text-muted">Select where this banner should be applied on homepage.</small>
+                            </div>
                          
                             <div class="mb-3">
                                 <h4 class="mt-0">Images</h4>

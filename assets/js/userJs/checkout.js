@@ -2,6 +2,36 @@
 // ==================== PROCEED TO CHECKOUT LOGIC ====================
 const CHECKOUT_API_ROOT = window.BASE || "https://api.workarya.com";
 
+function openLoginModal() {
+  const authModalEl = document.getElementById("authenticationModal");
+  if (authModalEl && typeof bootstrap !== "undefined") {
+    const authModal = bootstrap.Modal.getOrCreateInstance(authModalEl);
+    authModal.show();
+  } else {
+    window.location.href = "login.php";
+  }
+}
+
+function isUserNotFoundMessage(message) {
+  return typeof message === "string" && message.toLowerCase().includes("user not found");
+}
+
+async function hasCartItems() {
+  try {
+    const res = await fetch(`${CHECKOUT_API_ROOT}/api/cart/list`, {
+      method: "POST",
+      headers: getHeaders(),
+      body: JSON.stringify({ couponCode: localStorage.getItem("appliedCoupon") || "" })
+    });
+
+    const data = await res.json().catch(() => ({}));
+    return Array.isArray(data.items) && data.items.length > 0;
+  } catch (err) {
+    console.error("Cart check error:", err);
+    return false;
+  }
+}
+
 async function proceedToCheckout() {
   const userToken = localStorage.getItem("userToken");
   if (!userToken) {
@@ -20,15 +50,21 @@ async function proceedToCheckout() {
         cancelButtonText: "Cancel"
       }).then((result) => {
         if (result.isConfirmed) {
-          const authModalEl = document.getElementById('authenticationModal');
-          if (authModalEl) {
-            const authModal = bootstrap.Modal.getOrCreateInstance(authModalEl);
-            authModal.show();
-          }
+          openLoginModal();
         }
       });
     } else {
       alert("Login Required. Please login.");
+    }
+    return;
+  }
+
+  const cartHasItems = await hasCartItems();
+  if (!cartHasItems) {
+    if (typeof Swal !== "undefined") {
+      Swal.fire("Cart is empty", "Please select item.", "warning");
+    } else {
+      alert("Please select item.");
     }
     return;
   }
@@ -63,6 +99,13 @@ async function proceedToCheckout() {
       window.location.href = `checkout.php?checkoutData=${encodedData}`;
 
     } else {
+      if (isUserNotFoundMessage(data.message)) {
+        localStorage.removeItem("userToken");
+        Swal.fire("Please login", "User not found. Please login.", "warning").then(() => {
+          openLoginModal();
+        });
+        return;
+      }
       if (typeof Swal !== 'undefined') {
         Swal.fire("Failed", data.message || "Unable to proceed to checkout.", "error");
       } else {
@@ -118,9 +161,19 @@ function renderCheckoutProducts(data) {
   }
 
   let html = '';
+  const cartItems = Array.isArray(data.cartItems) ? data.cartItems : [];
+
+  if (cartItems.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="2" class="text-center py-3">Please select item.</td>
+      </tr>
+    `;
+    return;
+  }
 
   // Render Products with Clickable Link
-  data.cartItems.forEach(item => {
+  cartItems.forEach(item => {
     const price = parseFloat(item.price) || 0;
     
     html += `

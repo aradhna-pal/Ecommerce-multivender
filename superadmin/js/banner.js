@@ -5,6 +5,25 @@ function getToken() {
     return localStorage.getItem("superadminToken");
 }
 
+function getBannerPlacement(banner) {
+    const raw = banner?.placement ?? banner?.position ?? banner?.section ?? banner?.showIn ?? banner?.bannerPlacement;
+    const normalized = String(raw || "").toLowerCase().trim();
+    if (["top", "middle", "bottom"].includes(normalized)) return normalized;
+
+    // Fallback for older records where placement may be saved in title accidentally.
+    const titleGuess = String(banner?.title || "").toLowerCase().trim();
+    if (["top", "middle", "bottom"].includes(titleGuess)) return titleGuess;
+    return "top";
+}
+
+function getBannerActive(banner) {
+    return Boolean(banner?.isActive ?? banner?.is_active ?? banner?.active);
+}
+
+function getBannerId(banner) {
+    return banner?.id ?? banner?._id ?? "";
+}
+
 // ====================== BANNER LIST PAGE ======================
 async function loadBanners() {
     if (!document.getElementById("allbanner")) return; // Safety: only run on list page
@@ -24,6 +43,8 @@ async function loadBanners() {
         tbody.innerHTML = "";
 
         banners.forEach((b, index) => {
+            const bannerId = getBannerId(b);
+            const isActive = getBannerActive(b);
             tbody.innerHTML += `
                 <tr>
                     <td>${index + 1}</td>
@@ -33,19 +54,29 @@ async function loadBanners() {
                     <td>
                         <p class="m-0 font-16">${b.link ?? "-"}</p>
                     </td>
+                    <td>
+                        <span class="badge ${getBannerPlacement(b) === 'middle' ? 'bg-success-subtle text-success' : 'bg-light text-muted'} p-1">
+                            ${getBannerPlacement(b) === "middle" ? "Yes" : "No"}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${getBannerPlacement(b) === 'bottom' ? 'bg-success-subtle text-success' : 'bg-light text-muted'} p-1">
+                            ${getBannerPlacement(b) === "bottom" ? "Yes" : "No"}
+                        </span>
+                    </td>
                     <td>${b.title}</td>
                     <td>
-                        <span class="badge ${b.isActive ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'} p-1">
-                            ${b.isActive ? "Published" : "Unpublished"}
+                        <span class="badge ${isActive ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'} p-1">
+                            ${isActive ? "Published" : "Unpublished"}
                         </span>
                     </td>
                     <td class="table-action">
-                        <a href="edit-banner.php?id=${b.id}" class="action-icon">
+                        <a href="edit-banner.php?id=${bannerId}" class="action-icon">
                             <i class="mdi mdi-square-edit-outline"></i>
                         </a>
                     </td>
                     <td class="table-action">
-                        <a href="javascript:void(0);" class="action-icon delete-banner" data-id="${b.id}">
+                        <a href="javascript:void(0);" class="action-icon delete-banner" data-id="${bannerId}">
                             <i class="mdi mdi-delete"></i>
                         </a>
                     </td>
@@ -107,6 +138,7 @@ document.addEventListener("click", async function (e) {
     const token = getToken();
     const title = document.getElementById("bannerName").value.trim();
     const link = document.getElementById("bannerDescription").value.trim();
+    const placement = document.getElementById("bannerPlacement")?.value || "top";
     const imageFile = document.getElementById("bannerImage").files[0];
     const isActive = document.getElementById("isActive").checked;
 
@@ -118,8 +150,12 @@ document.addEventListener("click", async function (e) {
     const fd = new FormData();
     fd.append("Title", title);
     fd.append("Link", link);
+    fd.append("Placement", placement);
+    fd.append("placement", placement);
+    fd.append("Position", placement);
     fd.append("Image", imageFile);
     fd.append("IsActive", isActive);
+    fd.append("is_active", isActive ? "true" : "false");
 
     try {
         const res = await fetch(`${BASE}/api/banner/create`, {
@@ -176,7 +212,7 @@ async function loadBannerForEdit() {
         if (!res.ok) throw new Error();
 
         const banners = await res.json();
-        const banner = banners.find(b => String(b.id) === String(bannerId));
+        const banner = banners.find(b => String(getBannerId(b)) === String(bannerId));
 
         if (!banner) {
             Swal.fire("Error", "Banner not found", "error");
@@ -186,12 +222,16 @@ async function loadBannerForEdit() {
         // Fill form
         document.getElementById("bannerName").value = banner.title || "";
         document.getElementById("bannerDescription").value = banner.link || "";
+        const placementSelect = document.getElementById("bannerPlacement");
+        if (placementSelect) {
+            placementSelect.value = getBannerPlacement(banner);
+        }
 
         const isActiveCheckbox = document.getElementById("isActive");
-        if (isActiveCheckbox) isActiveCheckbox.checked = !!banner.isActive;
+        if (isActiveCheckbox) isActiveCheckbox.checked = getBannerActive(banner);
 
         const toggleLabel = document.getElementById("toggleLabel");
-        if (toggleLabel) toggleLabel.textContent = banner.isActive ? "Active" : "Inactive";
+        if (toggleLabel) toggleLabel.textContent = getBannerActive(banner) ? "Active" : "Inactive";
 
         // Show existing image preview
         if (banner.image) {
@@ -222,6 +262,7 @@ document.addEventListener("click", async function (e) {
     const token = getToken();
     const title = document.getElementById("bannerName").value.trim();
     const link = document.getElementById("bannerDescription").value.trim();
+    const placement = document.getElementById("bannerPlacement")?.value || "top";
     const imageFile = document.getElementById("bannerImage").files[0];
     const isActive = document.getElementById("isActive").checked;
 
@@ -230,44 +271,72 @@ document.addEventListener("click", async function (e) {
         return;
     }
 
-    const formData = new FormData();
-    formData.append("id", bannerId);
-    formData.append("Title", title);
-    formData.append("Link", link || "");
-    formData.append("IsActive", isActive ? "true" : "false");
-
-    if (imageFile) {
-        formData.append("Image", imageFile);
+    function buildUpdateFormData() {
+        const fd = new FormData();
+        fd.append("id", bannerId);
+        fd.append("Id", bannerId);
+        fd.append("bannerId", bannerId);
+        fd.append("BannerId", bannerId);
+        fd.append("Title", title);
+        fd.append("title", title);
+        fd.append("Link", link || "");
+        fd.append("link", link || "");
+        fd.append("Placement", placement);
+        fd.append("placement", placement);
+        fd.append("Position", placement);
+        fd.append("IsActive", isActive ? "true" : "false");
+        fd.append("isActive", isActive ? "true" : "false");
+        fd.append("is_active", isActive ? "true" : "false");
+        if (imageFile) fd.append("Image", imageFile);
+        return fd;
     }
 
-    try {
-        const res = await fetch(`${BASE}/api/banner/update`, {
-            method: "PUT",
+    async function tryUpdate(method, url) {
+        const res = await fetch(url, {
+            method,
             headers: {
                 Authorization: `Bearer ${token}`,
                 Accept: "application/json"
             },
-            body: formData
+            body: buildUpdateFormData()
         });
 
         const text = await res.text();
-        console.log("UPDATE RAW:", res.status, text);
+        let json = {};
+        try { json = JSON.parse(text); } catch (_) {}
+        const ok = res.ok || json.success === true || json.status === true || json.Success === true;
+        return { ok, res, text, json };
+    }
 
-        let result = {};
-        try { result = JSON.parse(text); } catch (e) {}
-
-        if (res.ok || result.success === true || result.status === true) {
-            Swal.fire("Success", "Banner updated successfully", "success")
-                .then(() => {
-                    window.location.href = "banner.php";
-                });
-        } else {
-            const msg = result.message || result.error || "Update failed";
-            throw new Error(msg);
+    try {
+        // Some backends support PUT, some still use POST for multipart updates.
+        let attempt = await tryUpdate("PUT", `${BASE}/api/banner/update`);
+        if (!attempt.ok) {
+            attempt = await tryUpdate("POST", `${BASE}/api/banner/update`);
         }
+        if (!attempt.ok) {
+            attempt = await tryUpdate("POST", `${BASE}/api/banner/update/${bannerId}`);
+        }
+
+        console.log("UPDATE ATTEMPT RESULT:", attempt.res.status, attempt.text);
+
+        if (attempt.ok) {
+            Swal.fire("Success", "Banner updated successfully", "success").then(() => {
+                window.location.href = "banner.php";
+            });
+            return;
+        }
+
+        const serverMsg =
+            attempt.json?.message ||
+            attempt.json?.Message ||
+            attempt.json?.error ||
+            attempt.text ||
+            `Update failed (${attempt.res.status})`;
+        throw new Error(serverMsg);
     } catch (err) {
         console.error("Update Error:", err);
-        Swal.fire("Error", err.message || "Failed to update banner", "error");
+        Swal.fire("Error", String(err.message || "Failed to update banner"), "error");
     }
 });
 

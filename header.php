@@ -13,6 +13,10 @@
     <meta name="author" content="Kartify">
     <link rel="icon" href="assets/images/img/favicon.webp" type="image/x-icon">
     <link rel="apple-touch-icon" href="assets/images/img/favicon.webp">
+
+    <!-- Performance: warm up API connection so first fetch is fast -->
+    <link rel="preconnect" href="https://api.workarya.com" crossorigin>
+    <link rel="dns-prefetch" href="https://api.workarya.com">
     <meta name="title-color" content="#ff9900">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -59,17 +63,18 @@
 
     <script src="./assets/js/media-url.js"></script>
     <script src="./assets/js/userJs/login.js?v=2"></script>
-    <script src="./assets/js/userJs/blog.js?v=2"></script>
-    <script src="./assets/js/userJs/allproduct.js?v=3"></script>
+    <script src="./assets/js/userJs/blog.js?v=6"></script>
+    <script src="./assets/js/userJs/allproduct.js?v=5"></script>
     <script src="./assets/js/userJs/category.js"></script>
     <script src="./assets/js/userJs/user-order.js"></script>
     <script src="./assets/js/userJs/cart.js"></script>
     <script src="./assets/js/userJs/checkout.js?v=2"></script>
     <script src="./assets/js/userJs/address.js"></script>
-    <script src="./assets/js/userJs/createorder.js"></script>
+    <script src="./assets/js/userJs/createorder.js?v=2"></script>
     <script src="./assets/js/userJs/recentView.js"></script>
     <script src="./assets/js/userJs/productFilter.js"></script>
     <script src="./assets/js/userJs/wishlist-notify.js"></script>
+    <script src="./assets/js/userJs/compare-notify.js?v=1"></script>
     <script src="./assets/js/userJs/trackorder.js"></script>
     <script src="./assets/js/userJs/homecategory.js"></script>
     <!-- <script src="./assets/js/userJs/user-order.js"></script> -->
@@ -78,6 +83,8 @@
 </head>
 
 <body class="base-bg-color">
+    <?php include __DIR__ . '/preloader.php'; ?>
+
     <!-- Page Loader Start -->
     <!-- <div class="preloader">
         <div class="progress-container">
@@ -155,6 +162,9 @@
                     </li>
                     <li>
                         <a href="wishlist.php">Wishlist</a>
+                    </li>
+                    <li>
+                        <a href="compare.php">Compare</a>
                     </li>
                     <li>
                         <a href="cart.php">Cart</a>
@@ -318,6 +328,12 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="compare.php" title="Compare products">
+                            <i class="ri-repeat-2-line" style="font-size:22px;"></i>
+                            <span class="label"><span id="compareCount">0</span></span>
+                        </a>
+                    </li>
+                    <li>
                         <a data-bs-toggle="offcanvas" href="#wishlistOffcanvas">
                             <i class="iconsax" data-icon-name="heart"></i>
                             <span class="label"><span id="wishlistCount">0</span></span>
@@ -335,15 +351,16 @@
         
 
         <div class="nav-header custom-container d-flex">
-            <div class="category-header d-sm-flex d-none">
-                <a data-bs-toggle="offcanvas" href="#categoryCanvas" class="btn category-button d-xxl-none d-block">
-                    <i class="ri-menu-line"></i>
-                    <span>Shop By Categories</span>
-                </a>
-                <button class="btn category-button categoryButton d-xxl-block d-none">
+            <div class="category-header d-sm-flex d-none position-relative">
+                <button type="button" class="btn category-button d-block" id="headerCategoryTrigger" aria-expanded="false">
                     <i class="ri-menu-line"></i>
                     <span>Shop By Categories</span>
                 </button>
+                <div class="header-category-mega" id="headerCategoryMega">
+                    <ul class="sub-menu-list" id="headerCategoryList">
+                        <li class="text-center text-muted small py-3">Loading categories...</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="header-nav-middle">
@@ -359,11 +376,6 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown mega-dropdown">
                                     <a class="nav-link " href="index.php">Home</a>
-
-                                </li>
-
-                                <li class="nav-item dropdown mega-dropdown">
-                                    <a class="nav-link " href="shop.php" data-bs-auto-close="outside">Shop</a>
 
                                 </li>
 
@@ -2252,7 +2264,7 @@
             </li>
 
             <li class="mobile-category">
-                <a data-bs-toggle="offcanvas" href="#categoryCanvas">
+                <a href="javascript:void(0)" onclick="document.getElementById('headerCategoryTrigger')?.click(); return false;">
                     <i class="ri-menu-line"></i>
                     <span>Category</span>
                 </a>
@@ -2281,6 +2293,184 @@
         </ul>
     </div>
     <!-- Mobile Menu End -->
+
+    <!-- Global "Shop By Categories" mega dropdown (available on every page) -->
+    <style>
+        .category-header.position-relative {
+            position: relative;
+        }
+        .header-category-mega {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 260px;
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            z-index: 1050;
+            display: none;
+        }
+        .header-category-mega.show {
+            display: block;
+        }
+        .header-category-mega .sub-menu-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        .header-category-mega .sub-menu-list li {
+            position: static;
+        }
+        .header-category-mega .sub-menu-list li > a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-bottom: 1px solid #eee;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+            font-size: 14px;
+            background: #fff;
+        }
+        .header-category-mega .sub-menu-list li > a:hover {
+            background: #f4f7fb;
+            color: #0f3460;
+        }
+        .header-category-mega .sub-menu-list li > a h5 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .header-category-mega .sub-menu-list li > a .chevron {
+            font-size: 16px;
+            color: #999;
+            margin-left: 8px;
+        }
+        .header-category-mega .sub-menu-list li:hover > a .chevron {
+            color: #0f3460;
+        }
+        /* Flyout submenus appearing to the right */
+        .header-category-mega .sub-menu-list li ul {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            min-width: 240px;
+            min-height: 100%;
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            z-index: 1060;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .header-category-mega .sub-menu-list li:hover > ul {
+            display: block;
+        }
+        .header-category-mega .success-bg-color {
+            background: #28a745;
+            color: #fff;
+            padding: 2px 6px;
+            font-size: 10px;
+            margin-left: 6px;
+            border-radius: 3px;
+        }
+        /* Mobile: render as a full-width list below the trigger */
+        @media (max-width: 767.98px) {
+            .header-category-mega {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 85%;
+                height: 100%;
+                overflow-y: auto;
+                z-index: 1055;
+                border: 0;
+            }
+            .header-category-mega .sub-menu-list li ul {
+                position: static;
+                box-shadow: none;
+                border: 0;
+                background: #fafbfc;
+                padding-left: 14px;
+                min-height: 0;
+            }
+            .header-category-mega .sub-menu-list li:hover > ul {
+                display: none;
+            }
+            .header-category-mega .sub-menu-list li.open > ul {
+                display: block;
+            }
+        }
+        .header-category-mega-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1045;
+            display: none;
+        }
+        .header-category-mega-backdrop.show {
+            display: block;
+        }
+    </style>
+    <div class="header-category-mega-backdrop" id="headerCategoryMegaBackdrop"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const trigger = document.getElementById('headerCategoryTrigger');
+            const mega = document.getElementById('headerCategoryMega');
+            const backdrop = document.getElementById('headerCategoryMegaBackdrop');
+            if (!trigger || !mega) return;
+
+            const isMobile = () => window.matchMedia('(max-width: 767.98px)').matches;
+
+            function close() {
+                mega.classList.remove('show');
+                if (backdrop) backdrop.classList.remove('show');
+                trigger.setAttribute('aria-expanded', 'false');
+                mega.querySelectorAll('li.open').forEach(li => li.classList.remove('open'));
+            }
+            function open() {
+                mega.classList.add('show');
+                if (backdrop && isMobile()) backdrop.classList.add('show');
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+
+            trigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                if (mega.classList.contains('show')) close(); else open();
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!mega.contains(e.target) && !trigger.contains(e.target)) close();
+            });
+
+            if (backdrop) backdrop.addEventListener('click', close);
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') close();
+            });
+
+            // Mobile: tap parent category to expand/collapse instead of immediate navigation
+            mega.addEventListener('click', function (e) {
+                if (!isMobile()) return;
+                const anchor = e.target.closest('a[data-has-children="true"]');
+                if (!anchor) return;
+                const li = anchor.parentElement;
+                if (li && !li.classList.contains('open')) {
+                    e.preventDefault();
+                    // Close siblings at the same level
+                    Array.from(li.parentElement.children).forEach(sib => {
+                        if (sib !== li) sib.classList.remove('open');
+                    });
+                    li.classList.add('open');
+                }
+            });
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -2326,8 +2516,6 @@
                     const query = searchInput.value.trim();
                     if (query) {
                         window.location.href = 'shop.php?search=' + encodeURIComponent(query);
-                    } else {
-                        window.location.href = 'shop.php';
                     }
                 });
             }

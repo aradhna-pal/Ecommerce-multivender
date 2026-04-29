@@ -10,6 +10,20 @@ const API = {
   clear: `${CART_API_ROOT}/api/cart/clear`
 };
 
+function openLoginModal() {
+  const authModalEl = document.getElementById("authenticationModal");
+  if (authModalEl && typeof bootstrap !== "undefined") {
+    const authModal = bootstrap.Modal.getOrCreateInstance(authModalEl);
+    authModal.show();
+  } else {
+    window.location.href = "login.php";
+  }
+}
+
+function isUserNotFoundMessage(message) {
+  return typeof message === "string" && message.toLowerCase().includes("user not found");
+}
+
 // ==================== HEADERS ====================
 function getHeaders() {
   const token = localStorage.getItem("userToken");
@@ -276,15 +290,21 @@ async function proceedToCheckout() {
         cancelButtonText: "Cancel"
       }).then((result) => {
         if (result.isConfirmed) {
-          const authModalEl = document.getElementById('authenticationModal');
-          if (authModalEl) {
-            const authModal = bootstrap.Modal.getOrCreateInstance(authModalEl);
-            authModal.show();
-          }
+          openLoginModal();
         }
       });
     } else {
       alert("Login Required. Please login.");
+    }
+    return;
+  }
+
+  const currentItems = Array.isArray(currentCartData.items) ? currentCartData.items : [];
+  if (currentItems.length === 0) {
+    if (typeof Swal !== "undefined") {
+      Swal.fire("Cart is empty", "Please select item.", "warning");
+    } else {
+      alert("Please select item.");
     }
     return;
   }
@@ -308,6 +328,13 @@ async function proceedToCheckout() {
       const encodedData = encodeURIComponent(JSON.stringify(data));
       window.location.href = `checkout.php?checkoutData=${encodedData}`;
     } else {
+      if (isUserNotFoundMessage(data.message)) {
+        localStorage.removeItem("userToken");
+        Swal.fire("Please login", "User not found. Please login.", "warning").then(() => {
+          openLoginModal();
+        });
+        return;
+      }
       if (typeof Swal !== 'undefined') {
         Swal.fire("Failed", data.message || "Unable to proceed to checkout.", "error");
       } else {

@@ -79,9 +79,6 @@
                             <a href="index.php">Home</a>
                         </li>
                         <li>
-                            <a href="shop.php">Shop</a>
-                        </li>
-                        <li>
                             <a href="about-us.php">About Us</a>
                         </li>
                         <li>
@@ -132,9 +129,6 @@
                     <ul class="footer-list">
                         <li>
                             <a href="user-dashboard.php">My Account</a>
-                        </li>
-                        <li>
-                            <a href="shop.php">My Shop</a>
                         </li>
                         <li>
                             <a href="cart.php">My Cart</a>

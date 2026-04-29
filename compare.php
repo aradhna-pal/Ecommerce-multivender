@@ -9,7 +9,7 @@
                 <nav>
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item">
-                            <a href="index.html">
+                            <a href="index.php">
                                 <i class="ri-home-3-fill"></i>
                             </a>
                         </li>
@@ -24,206 +24,12 @@
     <!-- Compare Section Start -->
     <section class="compare-section section-t-space">
         <div class="custom-container">
-            <div class="table-responsive compare-table">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Images</th>
-                            <td class="compare-details-box">
-                                <div class="compare-image">
-                                    <button class="close-compare">
-                                        <i class="ri-close-line"></i>
-                                    </button>
-                                    <a href="product-left-thumbnail.html">
-                                        <img src="./assets/images/product/22.png" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <a href="product-4-images.html">
-                                    <h3 class="title-color">Daily Shine Shampoo</h3>
-                                </a>
-                                <button onclick="location.href = 'cart.html';" class="btn cart-button">Add To
-                                    Cart</button>
-                            </td>
-                            <td class="compare-details-box">
-                                <div class="compare-image">
-                                    <button class="close-compare">
-                                        <i class="ri-close-line"></i>
-                                    </button>
-                                    <a href="product-left-thumbnail.html">
-                                        <img src="./assets/images/product/28.png" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <a href="product-4-images.html">
-                                    <h3 class="title-color">Daily Shine Shampoo</h3>
-                                </a>
-                                <button onclick="location.href = 'cart.html';" class="btn cart-button">Add To
-                                    Cart</button>
-                            </td>
-                            <td class="compare-details-box">
-                                <div class="compare-image">
-                                    <button class="close-compare">
-                                        <i class="ri-close-line"></i>
-                                    </button>
-                                    <a href="product-left-thumbnail.html">
-                                        <img src="./assets/images/product/98.png" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <a href="product-4-images.html">
-                                    <h3 class="title-color">Daily Shine Shampoo</h3>
-                                </a>
-                                <button onclick="location.href = 'cart.html';" class="btn cart-button">Add To
-                                    Cart</button>
-                            </td>
-                            <td class="compare-details-box">
-                                <div class="compare-image">
-                                    <button class="close-compare">
-                                        <i class="ri-close-line"></i>
-                                    </button>
-                                    <a href="product-left-thumbnail.html">
-                                        <img src="./assets/images/product/146.png" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <a href="product-4-images.html">
-                                    <h3 class="title-color">Daily Shine Shampoo</h3>
-                                </a>
-                                <button onclick="location.href = 'cart.html';" class="btn cart-button">Add To
-                                    Cart</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th>Hair Type</th>
-                            <td class="text-content">Normal</td>
-                            <td class="text-content">Oily</td>
-                            <td class="text-content">Dry</td>
-                            <td class="text-content">Normal</td>
-                        </tr>
-
-                        <tr>
-                            <th>Item Form</th>
-                            <td class="text-content">Gel</td>
-                            <td class="text-content">Liquid</td>
-                            <td class="text-content">Gel</td>
-                            <td class="text-content">Gel</td>
-                        </tr>
-
-                        <tr>
-                            <th>Price</th>
-                            <td class="price text-content">$20.23</td>
-                            <td class="price text-content">$26.90</td>
-                            <td class="price text-content">$12.23</td>
-                            <td class="price text-content">$15.85</td>
-                        </tr>
-
-                        <tr>
-                            <th>Availability</th>
-                            <td class="text-content">In Stock</td>
-                            <td class="text-content">In Stock</td>
-                            <td class="text-content">In Stock</td>
-                            <td class="text-content">In Stock</td>
-                        </tr>
-
-                        <tr>
-                            <th>Rating</th>
-                            <td>
-                                <div class="compare-rating">
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill"></i>
-                                        </li>
-                                    </ul>
-                                    <span class="text-content">(20 Rating)</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="compare-rating">
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill"></i>
-                                        </li>
-                                    </ul>
-                                    <span class="text-content">(20 Rating)</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="compare-rating">
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill"></i>
-                                        </li>
-                                    </ul>
-                                    <span class="text-content">(20 Rating)</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="compare-rating">
-                                    <ul class="rating">
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill fill"></i>
-                                        </li>
-                                        <li>
-                                            <i class="ri-star-fill"></i>
-                                        </li>
-                                    </ul>
-                                    <span class="text-content">(20 Rating)</span>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th>Weight</th>
-                            <td class="text-content">5.00kg</td>
-                            <td class="text-content">1.00kg</td>
-                            <td class="text-content">0.75kg</td>
-                            <td class="text-content">0.50kg</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Products fetched from /api/compare/list rendered by compare-notify.js -->
+            <div id="compareContainer">
+                <div class="text-center py-5">
+                    <div class="spinner-border text-primary" role="status" aria-hidden="true"></div>
+                    <p class="mt-3 text-muted">Loading your compare list...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -262,5 +68,15 @@
     </section>
     <!-- News-letter Section End -->
 
-    
+    <!-- Re-render on every visit, not just first page load, so back/forward works. -->
+    <script>
+      (function () {
+        function kick() { if (typeof window.loadCompare === 'function') window.loadCompare(); }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', kick);
+        } else {
+          kick();
+        }
+      })();
+    </script>
     <?php include 'footer.php'; ?>

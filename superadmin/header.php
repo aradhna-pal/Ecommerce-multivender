@@ -8,6 +8,10 @@
     <title> Hyperscripts | Multivender</title>
     <script src="../assets/js/media-url.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Performance: warm up API connection so first fetch is fast -->
+    <link rel="preconnect" href="https://api.workarya.com" crossorigin>
+    <link rel="dns-prefetch" href="https://api.workarya.com">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="GetAppui" name="author" />
     <link rel="stylesheet" href="style.css">
@@ -84,7 +88,7 @@
     <script src="script.js"></script>
 
     <script src="js/brand.js?v=2"></script>
-    <script src="js/product.js?v=9"></script>
+    <script src="js/product.js?v=17"></script>
     <script src="js/color.js"></script>
     <script src="js/size.js"></script>
     <script src="js/category.js?v=2"></script>
@@ -128,6 +132,7 @@
 
 <body>
 
+    <?php include __DIR__ . '/../preloader.php'; ?>
 
     <!-- Begin page -->
     <div class="app-wrapper">

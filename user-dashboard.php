@@ -110,7 +110,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a target="_blank" href="wishlist.html" class="personal-detail">
+                                        <a href="wishlist.php" class="personal-detail">
                                             <svg>
                                                 <use
                                                     xlink:href="https://themes.pixelstrap.net/kartify/assets/images/inner-page/user-dashboard/home.svg#wishlist">
@@ -324,6 +324,15 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+
+                                    <!-- Pagination (populated by user-order.js, 10 orders per page) -->
+                                    <div class="d-flex flex-wrap justify-content-between align-items-center mt-3 gap-2"
+                                         id="orderPaginationWrap" style="display:none !important;">
+                                        <div class="small text-muted" id="orderPaginationSummary"></div>
+                                        <nav aria-label="Orders pagination">
+                                            <ul class="pagination pagination-sm mb-0" id="orderPagination"></ul>
+                                        </nav>
                                     </div>
                                 </div>
                             </div>
@@ -596,7 +605,7 @@
                                     </div>
                                 </div>
 
-                                <form class="profile-form">
+                                <form class="profile-form" id="profileForm" novalidate>
                                     <div class="profile-title">
                                         <h4>Account Information</h4>
                                     </div>
@@ -604,21 +613,21 @@
                                         <div class="col-sm-6">
                                             <div class="theme-form">
                                                 <label for="fname" class="form-label">First Name</label>
-                                                <input placeholder="Enter First Name" value="Cameron" type="text"
-                                                    class="form-control" id="fname">
+                                                <input placeholder="Enter First Name" type="text"
+                                                    class="form-control" id="fname" maxlength="100">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="theme-form">
                                                 <label for="lname" class="form-label">Last Name</label>
-                                                <input placeholder="Enter Last Name" value="Williamson" type="text"
-                                                    class="form-control" id="lname">
+                                                <input placeholder="Enter Last Name" type="text"
+                                                    class="form-control" id="lname" maxlength="100">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="theme-form">
                                                 <label for="phone" class="form-label">Phone</label>
-                                                <input type="tel" class="form-control" id="phone" value="+359-654-3248">
+                                                <input type="tel" class="form-control" id="phone" maxlength="40" placeholder="Enter Phone">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -627,65 +636,15 @@
                                                 <input type="date" class="form-control" id="date">
                                             </div>
                                         </div>
+
                                         <div class="col-12">
-                                            <div class="theme-form">
-                                                <label for="address" class="form-label">Address Line</label>
-                                                <textarea class="form-control" id="address"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl-3 col-lg-6 col-md-3 col-sm-6">
-                                            <div class="theme-form">
-                                                <label for="exampleInputPassword1" class="form-label">Country</label>
-                                                <select class="form-select">
-                                                    <option selected disabled>Choose...</option>
-                                                    <option value="1">India</option>
-                                                    <option value="2">Australia</option>
-                                                    <option value="3">Canada</option>
-                                                    <option value="4">United Kingdom</option>
-                                                    <option value="5">Bangkok</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl-3 col-lg-6 col-md-3 col-sm-6">
-                                            <div class="theme-form">
-                                                <label for="exampleInputPassword1" class="form-label">State /
-                                                    Region</label>
-                                                <select class="form-select">
-                                                    <option selected disabled>Choose...</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Gujarat</option>
-                                                    <option value="3">Rajasthan</option>
-                                                    <option value="4">Delhi</option>
-                                                    <option value="5">Mumbai</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl-3 col-lg-6 col-md-3 col-sm-6">
-                                            <div class="theme-form">
-                                                <label for="exampleInputPassword1" class="form-label">State</label>
-                                                <select class="form-select">
-                                                    <option selected disabled>Choose...</option>
-                                                    <option value="1">Ahmadabad</option>
-                                                    <option value="2">Vapi</option>
-                                                    <option value="3">Surat</option>
-                                                    <option value="4">Vadodara</option>
-                                                    <option value="5">Kingdom</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl-3 col-lg-6 col-md-3 col-sm-6">
-                                            <div class="theme-form">
-                                                <label for="exampleInputPassword1" class="form-label">Zip/Code</label>
-                                                <input type="number" class="form-control" id="exampleInputPassword1">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="from-button-group d-flex gap-sm-3 gap-2 justify-content-end">
-                                                <button type="submit"
+                                            <div class="from-button-group d-flex gap-sm-3 gap-2 justify-content-end align-items-center">
+                                                <span id="profileFormStatus" class="small text-muted me-auto"></span>
+                                                <button type="button" id="profileCancelBtn"
+                                                    class="btn d-inline-block bg-light text-dark rounded-2">Cancel</button>
+                                                <button type="submit" id="profileSaveBtn"
                                                     class="btn d-inline-block theme-bg-color text-light rounded-2">Save
                                                     Changes</button>
-                                                <button type="submit"
-                                                    class="btn d-inline-block theme-bg-color text-light rounded-2">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
@@ -698,28 +657,37 @@
                                 <div class="profile-title">
                                     <h4>Email Address</h4>
                                     <p>Modify the e-mail associated with your account. Your account is currently
-                                        <a
-                                            href="mailto:cameron.williamson@example.com">cameron.williamson@example.com</a>
+                                        <a href="#!" id="currentEmailLink">—</a>
                                     </p>
                                 </div>
 
-                                <form class="profile-form">
+                                <form class="profile-form" id="changeEmailForm" novalidate>
                                     <div class="row g-sm-4 g-3">
                                         <div class="col-12">
                                             <div class="theme-form custom-width">
                                                 <label for="email" class="form-label">New Email Address</label>
-                                                <input placeholder="blocktheme@example.com" type="email"
-                                                    class="form-control" id="email">
+                                                <input placeholder="you@example.com" type="email"
+                                                    class="form-control" id="email" autocomplete="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="theme-form custom-width">
+                                                <label for="emailCurrentPassword" class="form-label">Current Password</label>
+                                                <input placeholder="Enter your current password" type="password"
+                                                    class="form-control" id="emailCurrentPassword"
+                                                    autocomplete="current-password" required>
+                                                <span class="suggestion-text">For your security, confirm your password to change the email.</span>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
-                                            <div class="from-button-group d-flex gap-sm-3 gap-2">
-                                                <button type="submit"
+                                            <div class="from-button-group d-flex gap-sm-3 gap-2 align-items-center flex-wrap">
+                                                <button type="submit" id="changeEmailSubmit"
                                                     class="btn d-inline-block theme-bg-color text-light rounded-2">Save
                                                     Changes</button>
-                                                <button type="submit"
+                                                <button type="button" id="changeEmailCancel"
                                                     class="btn d-inline-block gray-bg-color rounded-2">Cancel</button>
+                                                <span id="changeEmailStatus" class="small"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -729,48 +697,47 @@
                             <div class="dashboard-privacy dashboard-bg-box">
                                 <div class="profile-title">
                                     <h4>Change Password</h4>
-                                    <p>When you change your password, we will send you an email to confirm, so
-                                        please watch for that email after submitting.</p>
+                                    <p>Enter your current password and a new one. You'll stay signed in after the
+                                        change.</p>
                                 </div>
 
-                                <form class="profile-form">
+                                <form class="profile-form" id="changePasswordForm" novalidate>
                                     <div class="row g-sm-4 g-3">
                                         <div class="col-12">
                                             <div class="theme-form custom-width">
                                                 <label for="pass" class="form-label">Old Password</label>
                                                 <input placeholder="Enter Old Password" type="password"
-                                                    class="form-control" id="pass">
+                                                    class="form-control" id="pass" autocomplete="current-password" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="theme-form custom-width">
                                                 <label for="pass1" class="form-label">New Password</label>
                                                 <input placeholder="Enter New Password" type="password"
-                                                    class="form-control" id="pass1">
-                                                <span class="suggestion-text">Verify that there are at least 15
-                                                    characters OR that there are at least 8 characters, including a
-                                                    lowercase letter and a number.</span>
+                                                    class="form-control" id="pass1" autocomplete="new-password" required>
+                                                <span class="suggestion-text">At least 8 characters including a
+                                                    lowercase letter, an uppercase letter, and a number.</span>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <div class="theme-form custom-width">
                                                 <label for="pass2" class="form-label">Confirm New Password</label>
-                                                <input placeholder="Enter New Password" type="password"
-                                                    class="form-control" id="pass2">
-                                                <span class="suggestion-text">Make sure the new password above
-                                                    corresponds with it.</span>
+                                                <input placeholder="Confirm New Password" type="password"
+                                                    class="form-control" id="pass2" autocomplete="new-password" required>
+                                                <span class="suggestion-text">Must match the new password above.</span>
                                             </div>
                                         </div>
 
 
                                         <div class="col-12">
-                                            <div class="from-button-group d-flex gap-sm-3 gap-2">
-                                                <button type="submit"
+                                            <div class="from-button-group d-flex gap-sm-3 gap-2 align-items-center flex-wrap">
+                                                <button type="submit" id="changePasswordSubmit"
                                                     class="btn d-inline-block theme-bg-color text-light rounded-2">Save
                                                     Changes</button>
-                                                <button type="submit"
+                                                <button type="button" id="changePasswordCancel"
                                                     class="btn d-inline-block gray-bg-color rounded-2">Cancel</button>
+                                                <span id="changePasswordStatus" class="small"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -892,6 +859,407 @@
                     }
                 }
             }
+
+            // =================================================================
+            // Profile tab: load current values, save on submit, upload avatar
+            // -----------------------------------------------------------------
+            // Backend endpoints (all require Bearer token):
+            //   GET  /api/user/profile
+            //   PUT  /api/user/profile            (JSON text fields)
+            //   POST /api/user/profile/image      (multipart image)
+            // =================================================================
+            (function wireProfileForm() {
+                const API_BASE = "https://api.workarya.com";
+                const form = document.getElementById("profileForm");
+                if (!form) return;
+
+                const fname = document.getElementById("fname");
+                const lname = document.getElementById("lname");
+                const phone = document.getElementById("phone");
+                const date  = document.getElementById("date");
+                const statusEl = document.getElementById("profileFormStatus");
+                const saveBtn = document.getElementById("profileSaveBtn");
+                const cancelBtn = document.getElementById("profileCancelBtn");
+                const fileInput = document.getElementById("file");
+                const outputImg = document.getElementById("output");
+                const avatarImgs = [outputImg, document.getElementById("userProfileImage")].filter(Boolean);
+
+                const token = localStorage.getItem("userToken");
+                if (!token) {
+                    setStatus("Please log in to edit your profile.", "error");
+                    saveBtn && (saveBtn.disabled = true);
+                    return;
+                }
+
+                // Snapshot used for the Cancel button — revert the form to the values
+                // we fetched from the server, not the ones the user half-typed.
+                let pristine = { firstName: "", lastName: "", phone: "", dateOfBirth: "" };
+
+                function setStatus(msg, type) {
+                    if (!statusEl) return;
+                    statusEl.textContent = msg || "";
+                    statusEl.className = "small me-auto " + (
+                        type === "error" ? "text-danger" :
+                        type === "success" ? "text-success" : "text-muted"
+                    );
+                }
+
+                function absoluteImageUrl(path) {
+                    if (!path) return null;
+                    const s = String(path).trim();
+                    if (/^https?:\/\//i.test(s)) return s;
+                    return API_BASE + (s.startsWith("/") ? s : "/" + s);
+                }
+
+                function applyProfile(p) {
+                    if (!p) return;
+                    fname.value = p.firstName || "";
+                    lname.value = p.lastName  || "";
+                    phone.value = p.phone     || "";
+                    // API gives an ISO datetime; HTML date input wants yyyy-MM-dd.
+                    date.value = p.dateOfBirth ? String(p.dateOfBirth).slice(0, 10) : "";
+
+                    pristine = {
+                        firstName: fname.value,
+                        lastName:  lname.value,
+                        phone:     phone.value,
+                        dateOfBirth: date.value
+                    };
+
+                    const url = absoluteImageUrl(p.profileImage);
+                    if (url) {
+                        avatarImgs.forEach(img => { img.src = url; });
+                    }
+
+                    // Keep the sidebar name / welcome banner in sync with saved data.
+                    const fullName = ((p.firstName || "") + " " + (p.lastName || "")).trim();
+                    const userFullNameEl = document.getElementById("userFullName");
+                    const userEmailEl = document.getElementById("userEmail");
+                    const welcomeUserNameEl = document.getElementById("welcomeUserName");
+                    if (userFullNameEl && fullName) userFullNameEl.textContent = fullName;
+                    if (welcomeUserNameEl && fullName) welcomeUserNameEl.textContent = "Welcome Back, " + fullName;
+
+                    const profileEmail = (p.email || p.Email || p.userEmail || "").trim();
+                    if (userEmailEl) userEmailEl.textContent = profileEmail;
+                    const currentEmailLink = document.getElementById("currentEmailLink");
+                    if (currentEmailLink) {
+                        if (profileEmail) {
+                            currentEmailLink.textContent = profileEmail;
+                            currentEmailLink.setAttribute("href", "mailto:" + profileEmail);
+                        } else {
+                            currentEmailLink.textContent = "—";
+                            currentEmailLink.removeAttribute("href");
+                        }
+                    }
+
+                    // Refresh the localStorage snapshot so other pages see the change.
+                    try {
+                        const existing = JSON.parse(localStorage.getItem("userData") || "{}");
+                        const merged = Object.assign({}, existing, {
+                            firstname: p.firstName, firstName: p.firstName,
+                            lastname: p.lastName,   lastName: p.lastName,
+                            phone: p.phone,
+                            email: profileEmail || existing.email || "",
+                            dateOfBirth: p.dateOfBirth,
+                            profileImage: p.profileImage || existing.profileImage,
+                            image: p.profileImage || existing.image
+                        });
+                        localStorage.setItem("userData", JSON.stringify(merged));
+                    } catch (_) {}
+                }
+
+                async function loadProfile() {
+                    try {
+                        const res = await fetch(`${API_BASE}/api/user/profile`, {
+                            headers: { "Authorization": `Bearer ${token}` },
+                            cache: "no-store"
+                        });
+                        const raw = await res.json();
+                        if (!res.ok || raw?.Success === false || raw?.success === false) {
+                            setStatus(raw?.Message || raw?.message || "Could not load profile.", "error");
+                            return;
+                        }
+                        const data = raw?.Data || raw?.data || raw;
+                        applyProfile(data);
+                    } catch (err) {
+                        console.error("[profile] load failed", err);
+                        setStatus("Network error loading profile.", "error");
+                    }
+                }
+
+                form.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    setStatus("Saving...");
+                    saveBtn.disabled = true;
+
+                    const payload = {
+                        firstName: fname.value.trim(),
+                        lastName:  lname.value.trim(),
+                        phone:     phone.value.trim(),
+                        // Send DOB only when the user actually entered one — null leaves it
+                        // untouched on the server thanks to COALESCE in the UPDATE.
+                        dateOfBirth: date.value ? date.value : null
+                    };
+
+                    try {
+                        const res = await fetch(`${API_BASE}/api/user/profile`, {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": `Bearer ${token}`
+                            },
+                            body: JSON.stringify(payload)
+                        });
+                        const raw = await res.json();
+                        if (!res.ok || raw?.Success === false || raw?.success === false) {
+                            setStatus(raw?.Message || raw?.message || "Could not save changes.", "error");
+                            return;
+                        }
+                        const data = raw?.Data || raw?.data || raw;
+                        applyProfile(data);
+                        setStatus("Profile saved successfully.", "success");
+                        if (window.Swal) {
+                            Swal.fire({ icon: "success", title: "Profile updated", timer: 1500, showConfirmButton: false });
+                        }
+                    } catch (err) {
+                        console.error("[profile] save failed", err);
+                        setStatus("Network error while saving.", "error");
+                    } finally {
+                        saveBtn.disabled = false;
+                        setTimeout(() => { if (statusEl && statusEl.classList.contains("text-success")) setStatus(""); }, 3000);
+                    }
+                });
+
+                cancelBtn?.addEventListener("click", () => {
+                    fname.value = pristine.firstName;
+                    lname.value = pristine.lastName;
+                    phone.value = pristine.phone;
+                    date.value  = pristine.dateOfBirth;
+                    setStatus("Changes discarded.", "muted");
+                });
+
+                // Avatar upload — adds to the existing `loadFile(event)` handler which
+                // only previews locally; this one actually uploads the file and updates
+                // the DB.
+                fileInput?.addEventListener("change", async (e) => {
+                    const file = e.target.files && e.target.files[0];
+                    if (!file) return;
+
+                    if (file.size > 4 * 1024 * 1024) {
+                        setStatus("Image is larger than 4 MB.", "error");
+                        e.target.value = "";
+                        return;
+                    }
+
+                    const fd = new FormData();
+                    fd.append("Image", file);
+
+                    setStatus("Uploading picture...");
+                    try {
+                        const res = await fetch(`${API_BASE}/api/user/profile/image`, {
+                            method: "POST",
+                            headers: { "Authorization": `Bearer ${token}` },
+                            body: fd
+                        });
+                        const raw = await res.json();
+                        if (!res.ok || raw?.Success === false || raw?.success === false) {
+                            setStatus(raw?.Message || raw?.message || "Upload failed.", "error");
+                            return;
+                        }
+                        const path = (raw?.Data || raw?.data || {}).profileImage;
+                        if (path) {
+                            const url = absoluteImageUrl(path);
+                            avatarImgs.forEach(img => { img.src = url; });
+                            try {
+                                const existing = JSON.parse(localStorage.getItem("userData") || "{}");
+                                existing.profileImage = path;
+                                existing.image = path;
+                                localStorage.setItem("userData", JSON.stringify(existing));
+                            } catch (_) {}
+                        }
+                        setStatus("Profile picture updated.", "success");
+                    } catch (err) {
+                        console.error("[profile] image upload failed", err);
+                        setStatus("Network error during upload.", "error");
+                    }
+                });
+
+                loadProfile();
+            })();
+
+            // ===== Change Email / Change Password =====
+            (function wireSecurityForms() {
+                const token = () => localStorage.getItem("userToken");
+                const API = "https://api.workarya.com/api";
+
+                function setStatus(el, msg, type) {
+                    if (!el) return;
+                    el.textContent = msg || "";
+                    el.classList.remove("text-success", "text-danger", "text-muted");
+                    if (type === "success") el.classList.add("text-success");
+                    else if (type === "error") el.classList.add("text-danger");
+                    else el.classList.add("text-muted");
+                }
+
+                function refreshCurrentEmail(email) {
+                    const link = document.getElementById("currentEmailLink");
+                    if (!link) return;
+                    const e = email || (() => {
+                        try { return JSON.parse(localStorage.getItem("userData") || "{}").email || ""; }
+                        catch (_) { return ""; }
+                    })();
+                    if (e) {
+                        link.textContent = e;
+                        link.setAttribute("href", "mailto:" + e);
+                    } else {
+                        link.textContent = "—";
+                        link.removeAttribute("href");
+                    }
+                }
+                refreshCurrentEmail();
+
+                // ---- Change Email ----
+                const emailForm = document.getElementById("changeEmailForm");
+                const emailInput = document.getElementById("email");
+                const emailPwd = document.getElementById("emailCurrentPassword");
+                const emailBtn = document.getElementById("changeEmailSubmit");
+                const emailStatus = document.getElementById("changeEmailStatus");
+                const emailCancel = document.getElementById("changeEmailCancel");
+
+                emailCancel?.addEventListener("click", () => {
+                    if (emailInput) emailInput.value = "";
+                    if (emailPwd) emailPwd.value = "";
+                    setStatus(emailStatus, "", "muted");
+                });
+
+                emailForm?.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    const t = token();
+                    if (!t) { setStatus(emailStatus, "Please sign in again.", "error"); return; }
+
+                    const newEmail = (emailInput?.value || "").trim();
+                    const currentPassword = emailPwd?.value || "";
+                    if (!newEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail)) {
+                        setStatus(emailStatus, "Please enter a valid email address.", "error");
+                        return;
+                    }
+                    if (!currentPassword) {
+                        setStatus(emailStatus, "Please enter your current password.", "error");
+                        return;
+                    }
+
+                    emailBtn.disabled = true;
+                    setStatus(emailStatus, "Updating email…", "muted");
+                    try {
+                        const res = await fetch(API + "/account/change-email", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": "Bearer " + t
+                            },
+                            body: JSON.stringify({ newEmail, currentPassword })
+                        });
+                        let data = {};
+                        try { data = await res.json(); } catch (_) {}
+                        if (!res.ok || data.success === false) {
+                            setStatus(emailStatus, data.message || `Update failed (${res.status}).`, "error");
+                            return;
+                        }
+
+                        // Persist refreshed token + email so subsequent requests work.
+                        if (data.token) localStorage.setItem("userToken", data.token);
+                        try {
+                            const existing = JSON.parse(localStorage.getItem("userData") || "{}");
+                            existing.email = data.email || newEmail;
+                            localStorage.setItem("userData", JSON.stringify(existing));
+                        } catch (_) {}
+
+                        refreshCurrentEmail(data.email || newEmail);
+                        if (emailInput) emailInput.value = "";
+                        if (emailPwd) emailPwd.value = "";
+                        setStatus(emailStatus, "Email updated successfully.", "success");
+                        if (typeof Swal !== "undefined") {
+                            Swal.fire({ icon: "success", title: "Email updated", text: "Your email has been updated.", timer: 1500, showConfirmButton: false });
+                        }
+                    } catch (err) {
+                        console.error("[account] change-email failed", err);
+                        setStatus(emailStatus, "Network error. Please try again.", "error");
+                    } finally {
+                        emailBtn.disabled = false;
+                    }
+                });
+
+                // ---- Change Password ----
+                const pwdForm = document.getElementById("changePasswordForm");
+                const oldPwd = document.getElementById("pass");
+                const newPwd = document.getElementById("pass1");
+                const confirmPwd = document.getElementById("pass2");
+                const pwdBtn = document.getElementById("changePasswordSubmit");
+                const pwdStatus = document.getElementById("changePasswordStatus");
+                const pwdCancel = document.getElementById("changePasswordCancel");
+
+                pwdCancel?.addEventListener("click", () => {
+                    [oldPwd, newPwd, confirmPwd].forEach(x => { if (x) x.value = ""; });
+                    setStatus(pwdStatus, "", "muted");
+                });
+
+                pwdForm?.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    const t = token();
+                    if (!t) { setStatus(pwdStatus, "Please sign in again.", "error"); return; }
+
+                    const currentPassword = oldPwd?.value || "";
+                    const newPassword = newPwd?.value || "";
+                    const confirmPassword = confirmPwd?.value || "";
+
+                    if (!currentPassword || !newPassword || !confirmPassword) {
+                        setStatus(pwdStatus, "All password fields are required.", "error");
+                        return;
+                    }
+                    if (newPassword.length < 8) {
+                        setStatus(pwdStatus, "New password must be at least 8 characters.", "error");
+                        return;
+                    }
+                    if (newPassword !== confirmPassword) {
+                        setStatus(pwdStatus, "New password and confirmation do not match.", "error");
+                        return;
+                    }
+                    if (newPassword === currentPassword) {
+                        setStatus(pwdStatus, "New password must differ from the current password.", "error");
+                        return;
+                    }
+
+                    pwdBtn.disabled = true;
+                    setStatus(pwdStatus, "Updating password…", "muted");
+                    try {
+                        const res = await fetch(API + "/account/change-password", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": "Bearer " + t
+                            },
+                            body: JSON.stringify({ currentPassword, newPassword, confirmPassword })
+                        });
+                        let data = {};
+                        try { data = await res.json(); } catch (_) {}
+                        if (!res.ok || data.success === false) {
+                            setStatus(pwdStatus, data.message || `Update failed (${res.status}).`, "error");
+                            return;
+                        }
+
+                        [oldPwd, newPwd, confirmPwd].forEach(x => { if (x) x.value = ""; });
+                        setStatus(pwdStatus, "Password updated successfully.", "success");
+                        if (typeof Swal !== "undefined") {
+                            Swal.fire({ icon: "success", title: "Password updated", text: "Your password has been changed.", timer: 1500, showConfirmButton: false });
+                        }
+                    } catch (err) {
+                        console.error("[account] change-password failed", err);
+                        setStatus(pwdStatus, "Network error. Please try again.", "error");
+                    } finally {
+                        pwdBtn.disabled = false;
+                    }
+                });
+            })();
         });
     </script>
 

@@ -1,5 +1,8 @@
 <?php include 'header.php'; ?>
 
+    <!-- Keep preloader visible until blog detail fetch is painted. -->
+    <script>window.pdHoldPreloader = true;</script>
+
     <!-- Breadcrumb Section Start -->
     <section class="breadcrumb-section">
         <div class="custom-container">
@@ -179,292 +182,76 @@
                         </div>
                     </div>
 
+                    <!-- Dynamic Comments (populated by assets/js/userJs/blog.js) -->
                     <div class="leave-box">
-                        <div class="leave-title mt-0">
-                            <h3>Leave Comment</h3>
+                        <div class="leave-title mt-0 d-flex align-items-center justify-content-between">
+                            <h3>Comments <span id="blogCommentsCount" class="text-muted fs-6">(0)</span></h3>
                         </div>
 
                         <div class="review-people">
-                            <ul class="review-list">
-                                <li>
+                            <ul class="review-list" id="blogCommentsList">
+                                <li class="loading-state" id="blogCommentsLoading">
                                     <div class="people-box">
-                                        <div>
-                                            <div class="people-image">
-                                                <img src="./assets/images/review/1.jpg" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-
                                         <div class="people-comment">
-                                            <div class="name">
-                                                <a href="#!">Tracey</a>
-                                                <div class="product-rating">
-                                                    <ul class="rating">
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="date-time">
-                                                <h4 class="text-content h6">1 week ago</h4>
-                                            </div>
-
-                                            <div class="reply">
-                                                <p>What a fantastic read! You’ve touched on some really important
-                                                    points, especially when it comes to [specific topic]. I found the
-                                                    way you explained the challenges and solutions to be both clear and
-                                                    practical. It would be interesting to hear more about how this has
-                                                    been applied in real-life situations. I’ll definitely be keeping an
-                                                    eye out for your next post!</p>
-                                            </div>
-
-                                            <ul class="share-box">
-                                                <li>
-                                                    <a href="#!">
-                                                        <i class="ri-heart-3-line"></i>
-                                                        <span>Like</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#!">
-                                                        <i class="ri-reply-line"></i>
-                                                        <span>Reply</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <ul class="review-list reply-review-list">
-                                        <li>
-                                            <div class="people-box">
-                                                <div>
-                                                    <div class="people-image">
-                                                        <img src="./assets/images/review/2.jpg" class="img-fluid"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="people-comment">
-                                                    <div class="name">
-                                                        <a href="#!">Ms. Bryce Price</a>
-                                                        <div class="product-rating">
-                                                            <ul class="rating">
-                                                                <li class="theme-color">
-                                                                    <i class="ri-star-line"></i>
-                                                                </li>
-                                                                <li class="theme-color">
-                                                                    <i class="ri-star-line"></i>
-                                                                </li>
-                                                                <li class="theme-color">
-                                                                    <i class="ri-star-line"></i>
-                                                                </li>
-                                                                <li class="theme-color">
-                                                                    <i class="ri-star-line"></i>
-                                                                </li>
-                                                                <li class="theme-color">
-                                                                    <i class="ri-star-line"></i>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="date-time">
-                                                        <h4 class="text-content h6">5 week ago</h4>
-                                                    </div>
-
-                                                    <div class="reply">
-                                                        <p>This post is so well-written and informative! I love how you
-                                                            break down the details in a way that makes complex concepts
-                                                            easier to understand. Your perspective on [specific topic]
-                                                            was really eye-opening. It would be great to see more
-                                                            examples or case studies in your future posts to add even
-                                                            more depth. Looking forward to your next article!</p>
-                                                    </div>
-
-                                                    <ul class="share-box">
-                                                        <li>
-                                                            <a href="#!">
-                                                                <i class="ri-heart-3-line"></i>
-                                                                <span>Like</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#!">
-                                                                <i class="ri-reply-line"></i>
-                                                                <span>Reply</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <div class="people-box">
-                                        <div>
-                                            <div class="people-image">
-                                                <img src="./assets/images/review/5.jpg" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-
-                                        <div class="people-comment">
-                                            <div class="name">
-                                                <a href="#!">Kianna Gulgowski</a>
-                                                <div class="product-rating">
-                                                    <ul class="rating">
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li>
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="date-time">
-                                                <h4 class="text-content h6">8 week ago</h4>
-                                            </div>
-
-                                            <div class="reply">
-                                                <p>This post is packed with valuable insights, and I appreciate the
-                                                    level of research that went into it. Your take on [specific issue]
-                                                    is spot on and made me think about it from a new perspective. The
-                                                    way you connected the dots between [related topics] was especially
-                                                    helpful. Can’t wait to read more of your work!</p>
-                                            </div>
-
-                                            <ul class="share-box">
-                                                <li>
-                                                    <a href="#!">
-                                                        <i class="ri-heart-3-line"></i>
-                                                        <span>Like</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#!">
-                                                        <i class="ri-reply-line"></i>
-                                                        <span>Reply</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="people-box">
-                                        <div>
-                                            <div class="people-image">
-                                                <img src="./assets/images/review/6.jpg" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-
-                                        <div class="people-comment">
-                                            <div class="name">
-                                                <a href="#!">Ariane Frisch</a>
-                                                <div class="product-rating">
-                                                    <ul class="rating">
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li class="theme-color">
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                        <li>
-                                                            <i class="ri-star-line"></i>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="date-time">
-                                                <h4 class="text-content h4">1 month ago</h4>
-                                            </div>
-
-                                            <div class="reply">
-                                                <p>I really enjoyed reading this post-it's clear that a lot of thought
-                                                    went into it! Your explanation of [specific topic] was detailed yet
-                                                    easy to follow. I would love to know your thoughts on how these
-                                                    strategies could evolve over time. Looking forward to continuing the
-                                                    discussion in future posts!</p>
-                                            </div>
-
-                                            <ul class="share-box">
-                                                <li>
-                                                    <a href="#!">
-                                                        <i class="ri-heart-3-line"></i>
-                                                        <span>Like</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#!">
-                                                        <i class="ri-reply-line"></i>
-                                                        <span>Reply</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            <p class="text-muted m-0">Loading comments...</p>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
+                            <div id="blogCommentsEmpty" class="text-muted py-3" style="display:none;">
+                                Be the first to comment on this post.
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-section leave-box">
                         <div class="leave-title mt-0">
-                            <h3>Leave a reply</h3>
+                            <h3 id="blogCommentFormTitle">Leave a reply</h3>
+                            <p id="blogReplyingTo" class="text-muted small" style="display:none;">
+                                Replying to <strong></strong>
+                                <a href="#!" id="blogCancelReply" class="ms-2 text-danger">Cancel</a>
+                            </p>
                         </div>
-                        <form>
+                        <form id="blogCommentForm" novalidate>
+                            <input type="hidden" id="blogCommentParentId" value="">
                             <div class="row g-sm-4 g-3">
                                 <div class="col-sm-6">
                                     <div class="form-box">
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Enter your full name">
+                                        <input type="text" class="form-control" id="blogCommentName"
+                                            placeholder="Enter your full name" maxlength="120" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-box">
-                                        <input type="email" class="form-control" id="exampleInputEmail2"
-                                            placeholder="Enter your email address">
+                                        <input type="email" class="form-control" id="blogCommentEmail"
+                                            placeholder="Enter your email address (optional)" maxlength="254">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-box">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                            placeholder="Enter your comment"></textarea>
+                                        <label class="me-3 mb-2">Your Rating:</label>
+                                        <div class="product-rating d-inline-block" id="blogCommentRating">
+                                            <ul class="rating mb-0" style="cursor:pointer;">
+                                                <li data-rating="1"><i class="ri-star-line"></i></li>
+                                                <li data-rating="2"><i class="ri-star-line"></i></li>
+                                                <li data-rating="3"><i class="ri-star-line"></i></li>
+                                                <li data-rating="4"><i class="ri-star-line"></i></li>
+                                                <li data-rating="5"><i class="ri-star-line"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-box">
+                                        <textarea class="form-control" id="blogCommentBody" rows="3"
+                                            placeholder="Enter your comment" maxlength="4000" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-bg-theme w-auto m-0 rounded-2">Submit</button>
+                                    <button type="submit" id="blogCommentSubmit"
+                                        class="btn btn-bg-theme w-auto m-0 rounded-2">Submit</button>
+                                    <span id="blogCommentStatus" class="ms-3 small"></span>
                                 </div>
                             </div>
                         </form>
@@ -694,5 +481,29 @@
     </section>
     <!-- News-letter Section End -->
 
-    
+    <!-- Direct trigger: run blog detail renderer on this page regardless of
+         whether the global DOMContentLoaded chain executes. Also hides the
+         preloader after paint. -->
+    <script>
+        (function () {
+            function runBlogDetail() {
+                if (typeof renderBlogDetailPage !== "function") {
+                    return setTimeout(runBlogDetail, 50);
+                }
+                Promise.resolve(renderBlogDetailPage())
+                    .catch(function (e) { console.error("[blog-detail inline] error:", e); })
+                    .finally(function () {
+                        if (typeof window.hideGlobalPreloader === "function") {
+                            window.hideGlobalPreloader();
+                        }
+                    });
+            }
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", runBlogDetail);
+            } else {
+                runBlogDetail();
+            }
+        })();
+    </script>
+
     <?php include 'footer.php'; ?>

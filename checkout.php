@@ -24,7 +24,7 @@
 <!-- Return login section start -->
 <section class="return-login-section section-t-space">
     <div class="custom-container">
-        <div class="return-box">
+        <div class="return-box" id="returnLoginBox">
             <h3>Returning customer?</h3>
             <button class="btn" data-bs-toggle="modal" data-bs-target="#authenticationModal">Click here to
                 Login</button>
@@ -362,4 +362,13 @@
 
 
 <?php include 'footer.php'; ?>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var returnLoginBox = document.getElementById("returnLoginBox");
+        var userToken = localStorage.getItem("userToken");
+        if (returnLoginBox && userToken) {
+            returnLoginBox.style.display = "none";
+        }
+    });
+</script>
 <!-- <script src="assets/js/userJs/checkout.js"></script> -->

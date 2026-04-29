@@ -18,59 +18,81 @@ function productsDetailUrl(productId) {
  * GET /api/products/list — query params aligned with backend:
  * Search / q, repeated categoryIds, repeated brandIds (also single brandId/categoryId from URL).
  */
-function buildProductsListUrl(page, limit) {
-  let url = `${BASE}/api/products/list?page=${page}&pageSize=${limit}`;
+function getScopeContext() {
   const urlParams = new URLSearchParams(window.location.search);
+  return {
+    urlParams,
+    searchVal: urlParams.get("Search") || urlParams.get("search") || "",
+    qVal: urlParams.get("q") || "",
+    categoryIdQuery: urlParams.get("categoryId") || "",
+    brandIdQuery: urlParams.get("brandId") || "",
+  };
+}
 
-  const searchVal = urlParams.get("Search") || urlParams.get("search");
-  const qVal = urlParams.get("q");
+function buildProductsListUrl(page, limit) {
+  // includeTotal=true lets the backend return the overall match count so we can
+  // render an accurate pager. The count query is gated on the server so it only
+  // runs when explicitly requested — on very large catalogs we can drop this
+  // flag and rely purely on `hasMore` / `nextCursor` (cursor pagination).
+  let url = `${BASE}/api/products/list?page=${page}&pageSize=${limit}&includeTotal=true`;
+  const { searchVal, qVal, categoryIdQuery, brandIdQuery } = getScopeContext();
+
   if (searchVal) {
     url += `&Search=${encodeURIComponent(searchVal)}`;
   } else if (qVal) {
     url += `&q=${encodeURIComponent(qVal)}`;
   }
 
-  let hasBrandFilter = false;
-  let hasCategoryFilter = false;
+  // Dedupe lists so duplicate IDs don't hit the API.
+  const categoryIds = new Set();
+  const brandIds = new Set();
+  const colorIds = new Set();
+  const colorNames = new Set();
+  const sizeIds = new Set();
+  const sizeNames = new Set();
 
+  // URL scope (category-first): these are the starting set.
+  if (categoryIdQuery) categoryIds.add(categoryIdQuery);
+  if (brandIdQuery) brandIds.add(brandIdQuery);
+
+  // Sidebar filter picks broaden / narrow the scope:
+  // - Within the same dimension → OR (union of values)
+  // - Across dimensions → AND (applied together by the API)
   if (currentFilters) {
     if (currentFilters.categories?.length > 0) {
       currentFilters.categories.forEach((c) => {
-        url += `&categoryIds=${encodeURIComponent(c.id)}`;
+        if (c && c.id) categoryIds.add(String(c.id));
       });
-      hasCategoryFilter = true;
     }
     if (currentFilters.brands?.length > 0) {
       currentFilters.brands.forEach((b) => {
-        url += `&brandIds=${encodeURIComponent(b.id)}`;
+        if (b && b.id) brandIds.add(String(b.id));
       });
-      hasBrandFilter = true;
     }
     if (currentFilters.colors?.length > 0) {
       currentFilters.colors.forEach((col) => {
-        url += `&colorIds=${encodeURIComponent(col.id)}`;
-        url += `&colors=${encodeURIComponent(col.name)}`;
+        if (col && col.id) colorIds.add(String(col.id));
+        if (col && col.name) colorNames.add(String(col.name));
       });
     }
     if (currentFilters.sizes?.length > 0) {
       currentFilters.sizes.forEach((s) => {
-        url += `&sizeIds=${encodeURIComponent(s.id)}`;
-        url += `&sizes=${encodeURIComponent(s.name)}`;
+        if (s && s.id) sizeIds.add(String(s.id));
+        if (s && s.name) sizeNames.add(String(s.name));
       });
-    }
-    if (currentFilters.price) {
-      const { min, max } = currentFilters.price;
-      url += `&minPrice=${encodeURIComponent(min)}&maxPrice=${encodeURIComponent(max)}`;
     }
   }
 
-  const brandIdQuery = urlParams.get("brandId");
-  const categoryIdQuery = urlParams.get("categoryId");
-  if (brandIdQuery && !hasBrandFilter) {
-    url += `&brandIds=${encodeURIComponent(brandIdQuery)}`;
-  }
-  if (categoryIdQuery && !hasCategoryFilter) {
-    url += `&categoryIds=${encodeURIComponent(categoryIdQuery)}`;
+  categoryIds.forEach((id) => { url += `&categoryIds=${encodeURIComponent(id)}`; });
+  brandIds.forEach((id) => { url += `&brandIds=${encodeURIComponent(id)}`; });
+  colorIds.forEach((id) => { url += `&colorIds=${encodeURIComponent(id)}`; });
+  colorNames.forEach((n) => { url += `&colors=${encodeURIComponent(n)}`; });
+  sizeIds.forEach((id) => { url += `&sizeIds=${encodeURIComponent(id)}`; });
+  sizeNames.forEach((n) => { url += `&sizes=${encodeURIComponent(n)}`; });
+
+  if (currentFilters?.price) {
+    const { min, max } = currentFilters.price;
+    url += `&minPrice=${encodeURIComponent(min)}&maxPrice=${encodeURIComponent(max)}`;
   }
 
   return url;
@@ -86,6 +108,58 @@ async function fetchProductDetail(productId) {
     return null;
   }
   return json.data.data || json.data;
+}
+
+/* ----------------------------------------------------------------------
+ * Product detail: early kickoff + session cache.
+ * We start the network request the moment this script parses (before
+ * DOMContentLoaded) so the preloader disappears as soon as the response
+ * arrives. A short-lived sessionStorage cache also lets repeat views paint
+ * instantly while a background refetch keeps things up-to-date.
+ * ------------------------------------------------------------------- */
+const PD_CACHE_PREFIX = "pdCache:";
+const PD_CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+
+function readProductCache(id) {
+  try {
+    const raw = sessionStorage.getItem(PD_CACHE_PREFIX + id);
+    if (!raw) return null;
+    const entry = JSON.parse(raw);
+    if (!entry || !entry.ts || Date.now() - entry.ts > PD_CACHE_TTL_MS) return null;
+    return entry.data || null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function writeProductCache(id, data) {
+  try {
+    sessionStorage.setItem(
+      PD_CACHE_PREFIX + id,
+      JSON.stringify({ ts: Date.now(), data })
+    );
+  } catch (_) { /* storage full or blocked — ignore */ }
+}
+
+// Kick off fetch immediately when on product-detail page (no wait for DOMContentLoaded).
+if (
+  typeof window !== "undefined" &&
+  window.location &&
+  window.location.pathname.includes("product-detail")
+) {
+  (function () {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const earlyId = params.get("id");
+      if (!earlyId) return;
+      window.__pdEarlyId = earlyId;
+      window.__pdCached = readProductCache(earlyId);
+      window.__pdFetchPromise = fetchProductDetail(earlyId).catch((e) => {
+        console.warn("Early product fetch failed:", e);
+        return null;
+      });
+    } catch (_) { /* ignore */ }
+  })();
 }
 
 
@@ -384,6 +458,19 @@ async function proceedToCheckout() {
 
 // individual product buy now  end ****************************************
 
+// Stock helpers — respects <c>trackInventory === false</c> (unlimited / not tracked)
+function getSellableUnits(p) {
+  if (!p || typeof p !== "object") return 0;
+  const track = p.trackInventory ?? p.trackinventory;
+  if (track === false) return Number.POSITIVE_INFINITY;
+  const n = Number(p.stockQuantity ?? p.stockquantity ?? 0);
+  return Number.isFinite(n) ? Math.max(0, n) : 0;
+}
+
+function isProductOutOfStock(p) {
+  return getSellableUnits(p) <= 0;
+}
+
 // Add to Cart Function
 async function addToCart(productId, quantity = 1, price) {
   try {
@@ -409,50 +496,61 @@ async function addToCart(productId, quantity = 1, price) {
       body: JSON.stringify(payload)
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    let data = {};
+    try {
+      const text = await response.text();
+      data = text ? JSON.parse(text) : {};
+    } catch {
+      data = {};
     }
 
-    const data = await response.json();
+    if (!response.ok) {
+      const msg = data?.message || data?.Message || `Server error (${response.status})`;
+      if (typeof Swal !== "undefined") {
+        Swal.fire({ icon: "error", title: "Cannot add to cart", text: String(msg) });
+      } else {
+        alert(String(msg));
+      }
+      return false;
+    }
     console.log("Add to cart response:", data);
 
-    if (data.success || data.message) {
-      // Use SweetAlert if available, otherwise use regular alert
-      if (typeof Swal !== 'undefined') {
+    if (data.success === false) {
+      const msg = data.message || "Could not add to cart.";
+      if (typeof Swal !== "undefined") {
+        Swal.fire({ icon: "warning", title: "Cannot add", text: msg, confirmButtonText: "OK" });
+      } else {
+        alert(msg);
+      }
+      return false;
+    }
+
+    if (data.success === true || data.Success === true) {
+      if (typeof Swal !== "undefined") {
         Swal.fire({
-          icon: 'success',
-          title: 'Success!',
-          text: 'Product added to cart successfully!',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK'
+          icon: "success",
+          title: "Success!",
+          text: "Product added to cart successfully!",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "OK",
         });
       } else {
         alert("Product added to cart successfully!");
       }
-
-      // Refresh cart displays after adding an item
       if (typeof refreshAllCarts === "function") {
         refreshAllCarts();
       } else if (typeof loadOffcanvasCart === "function") {
-        // Fallback for pages that might only have offcanvas logic
         loadOffcanvasCart();
       }
-
-      return true; // Return success
-    } else {
-      if (typeof Swal !== 'undefined') {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error!',
-          text: 'Error adding to cart',
-          confirmButtonColor: '#d33',
-          confirmButtonText: 'OK'
-        });
-      } else {
-        alert("Error adding to cart");
-      }
-      return false; // Return failure
+      return true;
     }
+
+    if (typeof Swal !== "undefined") {
+      Swal.fire({ icon: "error", title: "Error!", text: "Error adding to cart" });
+    } else {
+      alert("Error adding to cart");
+    }
+    return false;
 
   } catch (error) {
     console.error("Error adding to cart:", error);
@@ -471,12 +569,27 @@ async function addToCart(productId, quantity = 1, price) {
   }
 }
 
+// Smoothly bring the product grid (or a nearby anchor) into view after a
+// pagination-triggered reload, leaving a small top offset for the sticky
+// header so the first row isn't hidden behind it.
+function scrollToProductsTop(container) {
+  if (!container) return;
+  const anchor = container.closest('.shop-section, section, .container, .row') || container;
+  const rect = anchor.getBoundingClientRect();
+  const top = rect.top + window.pageYOffset - 120;
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+}
+
 async function loadProducts(page = 1, limit = 50) {
   const container = document.getElementById("productsContainer");
   if (!container) return;
 
-  // Show Spinner Loading State
-  container.innerHTML = "";
+  // On any page >1 request, scroll the product grid into view so the user
+  // can see the newly-loaded page without having to scroll manually.
+  if (page > 1) {
+    scrollToProductsTop(container);
+  }
+
   container.innerHTML = `
     <div class="col-12 d-flex justify-content-center align-items-center py-5 w-100">
         <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
@@ -490,9 +603,33 @@ async function loadProducts(page = 1, limit = 50) {
   try {
       const res = await fetch(url);
       const json = await res.json();
-      const products = json?.data?.data || json?.data || [];
-      const totalProducts = json?.data?.total || products.length;
-      const totalPages = json?.data?.totalPages || Math.ceil(totalProducts  / limit);
+
+      // Handle both the old flat shape (`{data: [...]}`) and the new cursor-paginated
+      // shape (`{data: {data: [...], total, hasMore, nextCursor}}`).
+      const payload = json?.data;
+      const products = Array.isArray(payload) ? payload : (payload?.data || []);
+      const totalProducts = Number(payload?.total ?? 0) || 0;
+      const hasMore = !!payload?.hasMore;
+
+      // Prefer the server's total when it was supplied (includeTotal=true). When
+      // the backend skips the count (for speed on huge catalogs), fall back to
+      // `hasMore`: show current page + an extra "phantom" page so the Next arrow
+      // stays active. This gracefully degrades to cursor-style pagination.
+      let totalPages;
+      if (totalProducts > 0) {
+          totalPages = Math.max(1, Math.ceil(totalProducts / limit));
+      } else if (hasMore) {
+          totalPages = page + 1; // at least one more page exists
+      } else {
+          totalPages = page; // this is the last page
+      }
+
+      // If the page we asked for is out of range (e.g. after a filter change
+      // shrank the result set), fall back to page 1. Only applies when we have
+      // an authoritative total — with `hasMore`-only mode we can't detect this.
+      if (totalProducts > 0 && page > totalPages && totalPages > 0) {
+          return loadProducts(1, limit);
+      }
 
       container.innerHTML = "";
 
@@ -505,34 +642,44 @@ async function loadProducts(page = 1, limit = 50) {
           bindCardEvents();
       }
 
-  renderPagination(totalPages, page);
+  renderPagination(totalPages, page, limit);
   } catch (error) {
       console.error("Error loading products:", error);
       container.innerHTML = `<div class="col-12 text-center text-danger py-5 w-100"><h4>Error loading products. Please try again.</h4></div>`;
   }
 }
 
-function renderPagination(totalPages, currentPage) {
+function renderPagination(totalPages, currentPage, limit = 50) {
   const paginationNav = document.querySelector(".custom-pagination .pagination");
   if (!paginationNav) return;
 
   paginationNav.innerHTML = "";
+
+  // Hide the pager entirely when there's nothing to page through.
+  if (!totalPages || totalPages <= 1) {
+    return;
+  }
 
   // Previous button
   const prevLi = document.createElement("li");
   prevLi.className = `page-item ${currentPage === 1 ? "disabled" : ""}`;
   prevLi.innerHTML = `<a class="page-link" href="#!"><i class="ri-arrow-left-s-line"></i></a>`;
   if (currentPage > 1) {
-    prevLi.addEventListener("click", () => loadProducts(currentPage - 1));
+    prevLi.addEventListener("click", () => loadProducts(currentPage - 1, limit));
   }
   paginationNav.appendChild(prevLi);
 
-  // Page numbers
-  for (let i = 1; i <= totalPages; i++) {
+  // Page numbers (windowed to avoid rendering huge lists for large catalogs).
+  const windowSize = 7;
+  let start = Math.max(1, currentPage - Math.floor(windowSize / 2));
+  let end = Math.min(totalPages, start + windowSize - 1);
+  start = Math.max(1, end - windowSize + 1);
+
+  for (let i = start; i <= end; i++) {
     const pageLi = document.createElement("li");
     pageLi.className = `page-item ${i === currentPage ? "active" : ""}`;
     pageLi.innerHTML = `<a class="page-link" href="#!"><span>${i}</span></a>`;
-    pageLi.addEventListener("click", () => loadProducts(i));
+    pageLi.addEventListener("click", () => loadProducts(i, limit));
     paginationNav.appendChild(pageLi);
   }
 
@@ -541,7 +688,7 @@ function renderPagination(totalPages, currentPage) {
   nextLi.className = `page-item ${currentPage === totalPages ? "disabled" : ""}`;
   nextLi.innerHTML = `<a class="page-link" href="#!"><i class="ri-arrow-right-s-line"></i></a>`;
   if (currentPage < totalPages) {
-    nextLi.addEventListener("click", () => loadProducts(currentPage + 1));
+    nextLi.addEventListener("click", () => loadProducts(currentPage + 1, limit));
   }
   paginationNav.appendChild(nextLi);
 }
@@ -550,6 +697,10 @@ function cardHTML(p) {
   const id = p._id || p.id;
   const img = p.images?.[0] || p.mainImage || p.mainimage || "assets/images/product/placeholder.png";
   const pricing = getProductPrice(p);
+  const oos = isProductOutOfStock(p);
+  const addCartMarkup = oos
+    ? `<button type="button" class="btn add-cart-btn" disabled data-id="${id}">Out of stock</button>`
+    : `<button class="btn add-cart-btn" data-id="${id}">add to cart</button>`;
 
   return `
   <div class="col">
@@ -578,7 +729,7 @@ function cardHTML(p) {
               </ul>
             </div>
 
-            <button class="btn add-cart-btn" data-id="${id}">add to cart</button>
+            ${addCartMarkup}
             <button class="close-btn btn" onclick="closeSidebar()">
               <i class="ri-close-line"></i>
             </button>
@@ -630,7 +781,7 @@ function cardHTML(p) {
 </a>
               </li>
               <li>
-                <a href="#!">
+                <a class="compareProduct" data-id="${id}" style="cursor:pointer" title="Add to compare">
                   <i class="ri-repeat-2-line"></i>
                 </a>
               </li>
@@ -832,55 +983,84 @@ async function addToRecentViews(productId) {
 }
 
 // Product Detail Page Script - Only run on product-detail.php
-// Product Detail Page Script - Only run on product-detail.php
 if (window.location.pathname.includes('product-detail')) {
   document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
-    console.log("Product ID from URL:", id);
 
     if (!id) {
       alert("No product ID provided");
       return;
     }
 
+    const hidePreloader = () => {
+      if (typeof window.hideProductDetailPreloader === "function") {
+        window.hideProductDetailPreloader();
+      }
+    };
+
+    let painted = false;
+    const paint = (data) => {
+      if (!data || !data.name) return false;
+      try {
+        populateProduct(data);
+        painted = true;
+        hidePreloader();
+        return true;
+      } catch (e) {
+        console.warn("populateProduct failed:", e);
+        return false;
+      }
+    };
+
+    // 1) Instant paint from session cache if available.
+    const cached = window.__pdCached || readProductCache(id);
+    if (cached) paint(cached);
+
+    // 2) Await the network response (early-fetch started at script parse).
     try {
-      console.log("Fetching product from:", productsDetailUrl(id));
-      const p = await fetchProductDetail(id);
-
-      console.log("Product payload:", p);
-
-      if (!p || !p.name) {
+      const promise = window.__pdFetchPromise || fetchProductDetail(id);
+      const fresh = await promise;
+      if (fresh && fresh.name) {
+        writeProductCache(id, fresh);
+        if (!painted) {
+          if (!paint(fresh)) throw new Error("Invalid product data structure");
+        } else {
+          // Refresh UI silently with latest data (cache was stale but valid).
+          try { populateProduct(fresh); } catch (_) { /* ignore */ }
+        }
+      } else if (!painted) {
         throw new Error("Invalid product data structure");
       }
 
-      populateProduct(p);
+      // Ensure preloader is gone even if paint path was skipped.
+      hidePreloader();
 
-      // ================ ADD TO RECENT VIEWS ================
-      await addToRecentViews(id);
-
-      // ================ LOAD PRODUCT REVIEWS ================
+      // 3) Non-critical work runs in the background (no await, no blocking).
+      const p = fresh || cached;
+      Promise.resolve().then(() => { try { addToRecentViews(id); } catch (_) {} });
       if (typeof loadProductReviews === "function") {
-        await loadProductReviews(id);
+        Promise.resolve().then(() => { try { loadProductReviews(id); } catch (_) {} });
       }
-
-      // ================ LOAD RELATED PRODUCTS ================
       if (typeof loadRelatedProducts === "function") {
-        await loadRelatedProducts(id, 8, p);
+        Promise.resolve().then(() => { try { loadRelatedProducts(id, 8, p); } catch (_) {} });
       }
 
-      // ================ POST LOGIN CHECKOUT REDIRECT ================
+      // Post-login checkout redirect (only runs once data is available).
       const qp = new URLSearchParams(window.location.search);
       if (qp.get("postLoginCheckout") === "1") {
         qp.delete("postLoginCheckout");
         const newQuery = qp.toString();
         const newUrl = `${window.location.pathname}${newQuery ? `?${newQuery}` : ""}`;
         window.history.replaceState({}, "", newUrl);
-        await proceedToCheckout();
+        if (typeof proceedToCheckout === "function") {
+          proceedToCheckout();
+        }
       }
     } catch (error) {
       console.error("Error fetching product:", error);
-      alert("Error loading product: " + error.message);
+      hidePreloader();
+      if (!painted) alert("Error loading product: " + error.message);
     }
   });
 }
@@ -1111,8 +1291,14 @@ function populateProduct(p) {
   }
   const stockEl = document.querySelector(".stock-box span");
   if (stockEl) {
-    stockEl.innerText = p.stockQuantity ?? p.stockquantity ?? 0;
-    console.log("Updated stock to:", p.stockQuantity ?? p.stockquantity);
+    const units = getSellableUnits(p);
+    if (units === Number.POSITIVE_INFINITY) {
+      stockEl.textContent = "In stock";
+    } else if (units <= 0) {
+      stockEl.textContent = "Out of stock";
+    } else {
+      stockEl.textContent = String(units);
+    }
   } else {
     console.warn("Stock element not found");
   }
@@ -1151,26 +1337,33 @@ function populateProduct(p) {
     console.warn("Total price element not found");
   }
 
-  // Add button group
+  // Add button group (or Out of stock when no inventory)
   const buttonContainer = document.querySelector(".total-price-box") || document.querySelector(".side-product-box");
   if (buttonContainer) {
-    // Remove existing button group if it exists
     const existingButtons = buttonContainer.querySelector(".button-group");
     if (existingButtons) {
       existingButtons.remove();
     }
-    
-    // Add new button group
-    buttonContainer.insertAdjacentHTML("beforeend", `
-      <div class="button-group">
+
+    const oos = isProductOutOfStock(p);
+    if (oos) {
+      buttonContainer.insertAdjacentHTML(
+        "beforeend",
+        `<div class="button-group">
+          <button type="button" class="btn theme-border fw-500 w-100" disabled aria-disabled="true">Out of stock</button>
+        </div>`,
+      );
+    } else {
+      buttonContainer.insertAdjacentHTML(
+        "beforeend",
+        `<div class="button-group">
         <button class="btn buy-btn-desktop theme-bg-color text-white" data-action="buy-now" data-product-id="${p.id}">Buy now</button>
         <button class="btn add-to-bag-btn buy-btn-2 theme-border fw-500" data-product-id="${p.id}" data-product-price="${pricing.finalPrice}">
           <i class="ri-shopping-bag-line"></i> Add to bag
         </button>
-      </div>
-    `);
-
-    console.log("Added button group");
+      </div>`,
+      );
+    }
   } else {
     console.warn("Button container not found");
   }
@@ -1346,6 +1539,11 @@ function flashSaleCardHTML(p) {
   const id = p._id || p.id;
   const img = p.images?.[0] || p.mainImage || p.mainimage || "assets/images/product/placeholder.png";
   const pricing = getProductPrice(p);
+  const oos = isProductOutOfStock(p);
+  const sq = Number(p.stockQuantity ?? p.stockquantity ?? 0);
+  const cartBtn = oos
+    ? `<button type="button" class="btn cart-button add-cart-btn" data-id="${id}" disabled>Out of stock</button>`
+    : `<button class="btn cart-button add-cart-btn" data-id="${id}">Add to cart</button>`;
 
   return `
     <div class="swiper-slide">
@@ -1359,11 +1557,11 @@ function flashSaleCardHTML(p) {
                 </a>
                 <h5 class="price">₹${pricing.finalPrice} ${pricing.hasDiscount ? `<del>₹${pricing.strikePrice}</del>` : ""}</h5>
                 <div class="progress">
-                    <div class="progress-bar" style="width: ${p.stockQuantity ? Math.min(100, (Math.floor(p.stockQuantity / 3) / (p.stockQuantity || 12)) * 100) : 30}%"></div>
+                    <div class="progress-bar" style="width: ${sq ? Math.min(100, (Math.floor(sq / 3) / (sq || 12)) * 100) : (oos ? 0 : 30)}%"></div>
                 </div>
             </div>
             <div class="compare-box">
-                <button class="btn cart-button add-cart-btn" data-id="${id}">Add to cart</button>
+                ${cartBtn}
                 <ul class="compare-list">
                     <li>
                         <a href="#!" class="wishlistProduct" data-id="${id}">
@@ -1372,10 +1570,10 @@ function flashSaleCardHTML(p) {
                         </a>
                     </li>
                     <li>
-                        <button class="btn">
+                        <a href="#!" class="compareProduct" data-id="${id}">
                             <i class="ri-repeat-2-line"></i>
                             <span>Compare</span>
-                        </button>
+                        </a>
                     </li>
                 </ul>
             </div>

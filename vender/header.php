@@ -8,6 +8,10 @@
     <title>Multivender</title>
     <script src="../assets/js/media-url.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Performance: warm up API connection so first fetch is fast -->
+    <link rel="preconnect" href="https://api.workarya.com" crossorigin>
+    <link rel="dns-prefetch" href="https://api.workarya.com">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="GetAppui" name="author" />
 
@@ -19,7 +23,7 @@
     <script src="./js/catugery.js"></script>
     <script src="./js/brand.js"></script>
     <script src="./js/vender-detail.js"></script>
-    <script src="./js/product.js?v=9"></script>
+    <script src="./js/product.js?v=12"></script>
     <script src="./js/pincode.js"></script>
     <script src="./js/coupon.js"></script>
     <script src="./js/all-article.js"></script>
@@ -124,6 +128,7 @@
 
 <body>
 
+    <?php include __DIR__ . '/../preloader.php'; ?>
 
     <!-- Begin page -->
     <div class="app-wrapper">

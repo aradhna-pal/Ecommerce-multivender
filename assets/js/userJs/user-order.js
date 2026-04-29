@@ -1,6 +1,18 @@
 const API_BASE = "https://api.workarya.com";
 const USER_ORDERS = `${API_BASE}/api/orders/my-orders`;
 
+// ----------------------------------------------------------------------------
+// Orders pagination (client-side)
+// ----------------------------------------------------------------------------
+// The backend currently returns the user's full order list sorted newest first,
+// so we paginate in the browser. 10 rows per page gives page 1 == "latest 10";
+// additional pages reveal older orders. If the list later grows huge we can
+// switch this to a server-side ?page=&pageSize= fetch without changing the UI.
+const ORDERS_PER_PAGE = 10;
+
+let allOrders = [];
+let currentOrderPage = 1;
+
 document.addEventListener("DOMContentLoaded", loadOrders);
 
 async function loadOrders() {
@@ -10,6 +22,7 @@ async function loadOrders() {
   const token = localStorage.getItem("userToken");
   if (!token) {
     tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Login required</td></tr>`;
+    hideOrderPagination();
     return;
   }
 
@@ -21,36 +34,137 @@ async function loadOrders() {
     const result = await res.json();
     const orders = normalizeOrdersResponse(result);
 
+    // Newest first — defensive sort in case the API ever changes ordering.
+    orders.sort((a, b) => {
+      const ta = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const tb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      return tb - ta;
+    });
+
+    allOrders = orders;
+
     if (!orders.length) {
       tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No orders found</td></tr>`;
+      hideOrderPagination();
       return;
     }
 
-    tableBody.innerHTML = "";
-
-    orders.forEach((order) => {
-      const firstItem = order.items?.[0];
-
-      tableBody.innerHTML += `
-            <tr>
-                <td>#${order.orderId.slice(0, 8)}</td>
-                <td>${firstItem?.productName || "No Product"}</td>
-                <td>${formatDate(order.createdAt)}</td>
-                <td><span class="${getStatusClass(order.orderStatus)}">${order.orderStatus}</span></td>
-                <td>${order.paymentStatus}</td>
-                <td>₹${order.finalAmount}</td>
-                <td>
-                  <a href="order-tracking.php?orderId=${order.orderId}" 
-   class="nav-link logout-btn theme-bg-color text-light" style="padding: 5px 10px; font-size: 14px; border-radius: 5px;" >
-   Track Order
-</a>
-                </td>
-            </tr>`;
-    });
+    currentOrderPage = 1;
+    renderOrdersPage(currentOrderPage);
   } catch (e) {
     tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Error loading orders</td></tr>`;
+    hideOrderPagination();
   }
 }
+
+function renderOrdersPage(page) {
+  const tableBody = document.getElementById("order-table-body");
+  if (!tableBody) return;
+
+  const total = allOrders.length;
+  const totalPages = Math.max(1, Math.ceil(total / ORDERS_PER_PAGE));
+  if (page < 1) page = 1;
+  if (page > totalPages) page = totalPages;
+  currentOrderPage = page;
+
+  const start = (page - 1) * ORDERS_PER_PAGE;
+  const end = Math.min(start + ORDERS_PER_PAGE, total);
+  const slice = allOrders.slice(start, end);
+
+  tableBody.innerHTML = slice.map((order) => {
+    const firstItem = order.items?.[0];
+    return `
+      <tr>
+        <td>#${order.orderId.slice(0, 8)}</td>
+        <td>${firstItem?.productName || "No Product"}</td>
+        <td>${formatDate(order.createdAt)}</td>
+        <td><span class="${getStatusClass(order.orderStatus)}">${formatStatusLabel(order.orderStatus)}</span></td>
+        <td>${order.paymentStatus}</td>
+        <td>₹${order.finalAmount}</td>
+        <td>
+          <a href="order-tracking.php?orderId=${order.orderId}"
+             class="nav-link logout-btn theme-bg-color text-light"
+             style="padding: 5px 10px; font-size: 14px; border-radius: 5px;">
+            Track Order
+          </a>
+        </td>
+      </tr>`;
+  }).join("");
+
+  renderOrderPagination(totalPages, page, total, start + 1, end);
+}
+
+function renderOrderPagination(totalPages, page, total, from, to) {
+  const wrap = document.getElementById("orderPaginationWrap");
+  const list = document.getElementById("orderPagination");
+  const summary = document.getElementById("orderPaginationSummary");
+  if (!wrap || !list) return;
+
+  // Hide pagination if there's only one page — keeps the UI clean when the user
+  // has 10 or fewer orders.
+  if (totalPages <= 1) {
+    hideOrderPagination();
+    if (summary) summary.textContent = `Showing ${total} order${total === 1 ? "" : "s"}`;
+    if (summary && wrap) {
+      wrap.style.cssText = "display:flex !important;";
+      list.innerHTML = "";
+    }
+    return;
+  }
+
+  wrap.style.cssText = "display:flex !important;";
+  if (summary) {
+    summary.textContent = `Showing ${from}–${to} of ${total} orders`;
+  }
+
+  // Keep the visible page numbers compact: current +/- 2, with ellipses.
+  const windowSize = 2;
+  const pages = [];
+  const add = (p) => pages.push(p);
+
+  add(1);
+  if (page - windowSize > 2) add("…");
+  for (let p = Math.max(2, page - windowSize); p <= Math.min(totalPages - 1, page + windowSize); p++) {
+    add(p);
+  }
+  if (page + windowSize < totalPages - 1) add("…");
+  if (totalPages > 1) add(totalPages);
+
+  const item = (label, p, disabled, active) => `
+    <li class="page-item ${disabled ? "disabled" : ""} ${active ? "active" : ""}">
+      ${
+        typeof p === "number" && !disabled
+          ? `<a class="page-link" href="#" data-page="${p}">${label}</a>`
+          : `<span class="page-link">${label}</span>`
+      }
+    </li>`;
+
+  let html = "";
+  html += item("« Prev", page - 1, page === 1, false);
+  pages.forEach((p) => {
+    if (p === "…") html += item("…", null, true, false);
+    else html += item(String(p), p, false, p === page);
+  });
+  html += item("Next »", page + 1, page === totalPages, false);
+
+  list.innerHTML = html;
+}
+
+function hideOrderPagination() {
+  const wrap = document.getElementById("orderPaginationWrap");
+  if (wrap) wrap.style.cssText = "display:none !important;";
+}
+
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("#orderPagination a[data-page]");
+  if (!link) return;
+  e.preventDefault();
+  const page = parseInt(link.getAttribute("data-page"), 10);
+  if (!Number.isFinite(page)) return;
+  renderOrdersPage(page);
+  // Scroll the orders table back into view so the user sees the new page.
+  document.querySelector(".dashboard-order-table")?.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("track-order-btn")) {
@@ -68,10 +182,21 @@ function formatDate(d) {
 }
 
 function getStatusClass(s) {
-  s = s?.toUpperCase();
-  if (["PLACED", "COMPLETED", "SUCCESS"].includes(s)) return "status-success";
-  if (["CANCELED", "FAILED"].includes(s)) return "status-cancel";
+  s = (s || "").toUpperCase();
+  // Terminal happy path
+  if (["DELIVERED", "COMPLETED", "SUCCESS"].includes(s)) return "status-success";
+  // Terminal unhappy path
+  if (["CANCELED", "CANCELLED", "FAILED"].includes(s)) return "status-cancel";
+  // Everything else (PLACED, CONFIRMED, SHIPPED, OUT_FOR_DELIVERY) is in-flight.
   return "status-process";
+}
+
+function formatStatusLabel(s) {
+  if (!s) return "";
+  return String(s)
+    .replace(/_/g, " ")
+    .toLowerCase()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 function normalizeOrdersResponse(result) {

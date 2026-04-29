@@ -1,5 +1,44 @@
 // =============================================== PLACE ORDER LOGIC ===============================================
 
+function openLoginModal() {
+  const authModalEl = document.getElementById("authenticationModal");
+  if (authModalEl && typeof bootstrap !== "undefined") {
+    const authModal = bootstrap.Modal.getOrCreateInstance(authModalEl);
+    authModal.show();
+  } else {
+    window.location.href = "login.php";
+  }
+}
+
+function isUserNotFoundMessage(message) {
+  return typeof message === "string" && message.toLowerCase().includes("user not found");
+}
+
+function getUserEmailForOrder() {
+  try {
+    const fromStorage = JSON.parse(localStorage.getItem("userData") || "{}");
+    if (fromStorage && typeof fromStorage.email === "string" && fromStorage.email.trim()) {
+      return fromStorage.email.trim();
+    }
+  } catch (_) {}
+
+  try {
+    const token = localStorage.getItem("userToken");
+    if (!token) return "";
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
+      window.atob(base64).split("").map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join("")
+    );
+    const payload = JSON.parse(jsonPayload);
+    return (payload.email || payload.sub || "").trim();
+  } catch (_) {
+    return "";
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const placeOrderBtn = document.getElementById("placeOrderBtn");
 
@@ -50,17 +89,30 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      const cartItems = Array.isArray(checkoutData.cartItems) ? checkoutData.cartItems : [];
+      if (cartItems.length === 0) {
+        Swal.fire({ title: "Cart is empty", text: "Please select item.", icon: "warning" });
+        return;
+      }
+
       // 4. Build Items Array
-      const itemsArray = checkoutData.cartItems.map((item) => ({
+      const itemsArray = cartItems.map((item) => ({
         productId: item.productId,
         quantity: parseInt(item.quantity) || 1,
       }));
 
+      if (itemsArray.length === 0) {
+        Swal.fire({ title: "Cart is empty", text: "Please select item.", icon: "warning" });
+        return;
+      }
+
       // 5. Final Order Payload
+      const userEmail = getUserEmailForOrder();
       const orderPayload = {
         addressId: addressId,
         paymentMethod: paymentMethod,
         couponCode: checkoutData.couponCode || null,
+        email: userEmail || null,
         items: itemsArray,
       };
 
@@ -149,6 +201,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
       } catch (error) {
         console.error("Order Error:", error);
+        if (isUserNotFoundMessage(error.message)) {
+          localStorage.removeItem("userToken");
+          Swal.fire({
+            title: "Please login",
+            text: "User not found. Please login.",
+            icon: "warning",
+          }).then(() => {
+            openLoginModal();
+          });
+          return;
+        }
         Swal.fire({
           title: "Order Failed",
           text: error.message || "Something went wrong while placing order",
@@ -174,11 +237,13 @@ document.addEventListener("DOMContentLoaded", function () {
 // ====================== VERIFY RAZORPAY PAYMENT ======================
 async function verifyRazorpayPayment(paymentResponse, orderId, userToken) {
   try {
+    const userEmail = getUserEmailForOrder();
     const verifyPayload = {
       razorpayOrderId: paymentResponse.razorpay_order_id,
       razorpayPaymentId: paymentResponse.razorpay_payment_id,
       razorpaySignature: paymentResponse.razorpay_signature,
-      // orderId: orderId   
+      orderId: orderId,
+      email: userEmail || null,
     };
 
     const response = await fetch("https://api.workarya.com/api/orders/verify", {
@@ -206,6 +271,13 @@ async function verifyRazorpayPayment(paymentResponse, orderId, userToken) {
         window.location.href = "order-success.php";
       });
     } else {
+      if (isUserNotFoundMessage(result.message)) {
+        localStorage.removeItem("userToken");
+        Swal.fire("Please login", "User not found. Please login.", "warning").then(() => {
+          openLoginModal();
+        });
+        return;
+      }
       Swal.fire("Verification Failed", result.message || "Payment verification failed", "error");
     }
   } catch (err) {

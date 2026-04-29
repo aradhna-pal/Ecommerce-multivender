@@ -6,15 +6,27 @@ document.addEventListener("DOMContentLoaded", () => {
     let fadeOutTimeout;
 
     window.loadWishlist = async function() {
+        // Wishlist works for guests too (server keys by IP), so we still call the
+        // API when there is no bearer token. Only attach Authorization when we have one.
         const userToken = localStorage.getItem("userToken");
-        if (!userToken) return;
+        const headers = {};
+        if (userToken) headers["Authorization"] = `Bearer ${userToken}`;
 
         try {
-            const response = await fetch(`${BASE_URL}/api/user/list`, {
-                headers: { 'Authorization': `Bearer ${userToken}` }
-            });
+            const response = await fetch(`${BASE_URL}/api/user/list`, { headers });
             const data = await response.json();
-            const items = data.data || data || [];
+            // The API returns {success, data:[...]} on success and {success:false, message}
+            // on failure. Guard the downstream code so we never try to iterate a string.
+            let items = [];
+            if (Array.isArray(data)) {
+                items = data;
+            } else if (Array.isArray(data?.data)) {
+                items = data.data;
+            } else if (Array.isArray(data?.items)) {
+                items = data.items;
+            } else if (data?.success === false) {
+                console.warn("Wishlist fetch failed:", data.message);
+            }
             
             // Update wishlist count in header badges
             const countElements = document.querySelectorAll('#wishlistCount span, .wishlistCount span, #wishlistCount, .wishlistCount, .wishlist-qty');

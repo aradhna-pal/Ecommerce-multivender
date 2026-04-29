@@ -1,6 +1,8 @@
 
 <?php include 'header.php'; ?>
 
+    <!-- Keep the global preloader visible until the product API finishes painting. -->
+    <script>window.pdHoldPreloader = true;</script>
 
     <!-- Breadcrumb Section Start -->
     <section class="breadcrumb-section">
@@ -1992,7 +1994,73 @@
     </section>
     <!-- News-letter Section End -->
 
-  
+    <!-- Product image hover-zoom (main slider) -->
+    <style>
+        .product-original-slider .slider-image {
+            position: relative;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+        .product-original-slider .slider-image img {
+            transition: transform 0.15s ease-out;
+            transform-origin: center center;
+            will-change: transform;
+            display: block;
+            width: 100%;
+        }
+        .product-original-slider .slider-image.is-zooming img {
+            transform: scale(2.2);
+            transition: transform 0s;
+        }
+        @media (hover: none) {
+            .product-original-slider .slider-image { cursor: default; }
+            .product-original-slider .slider-image.is-zooming img { transform: none; }
+        }
+    </style>
+    <script>
+        (function () {
+            const ZOOM_SELECTOR = '.product-original-slider .slider-image';
+
+            function bindZoom(root) {
+                const figures = root.querySelectorAll(ZOOM_SELECTOR);
+                figures.forEach((figure) => {
+                    if (figure.dataset.zoomBound === '1') return;
+                    figure.dataset.zoomBound = '1';
+
+                    const img = figure.querySelector('img');
+                    if (!img) return;
+
+                    const setOrigin = (event) => {
+                        const rect = figure.getBoundingClientRect();
+                        const x = ((event.clientX - rect.left) / rect.width) * 100;
+                        const y = ((event.clientY - rect.top) / rect.height) * 100;
+                        img.style.transformOrigin = `${Math.max(0, Math.min(100, x))}% ${Math.max(0, Math.min(100, y))}%`;
+                    };
+
+                    figure.addEventListener('mouseenter', (e) => {
+                        setOrigin(e);
+                        figure.classList.add('is-zooming');
+                    });
+                    figure.addEventListener('mousemove', setOrigin);
+                    figure.addEventListener('mouseleave', () => {
+                        figure.classList.remove('is-zooming');
+                        img.style.transformOrigin = 'center center';
+                    });
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                bindZoom(document);
+
+                // Re-bind after the product loader replaces slides. Observe the
+                // main slider wrapper so newly-inserted images get zoom behavior.
+                const mainSlider = document.querySelector('.product-original-slider');
+                if (!mainSlider) return;
+                const observer = new MutationObserver(() => bindZoom(mainSlider));
+                observer.observe(mainSlider, { childList: true, subtree: true });
+            });
+        })();
+    </script>
 
 
     <?php include 'footer.php'; ?>

@@ -326,13 +326,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await fetch(
         `https://api.workarya.com/api/blogs/${blogId}`,
         {
-          method: "PUT", // if not working change to POST
+          method: "PUT",
           headers: { "Authorization": `Bearer ${token}` },
           body: formData,
         }
       );
 
-      if (!res.ok) throw new Error();
+      // The backend returns 200 OK with {success:false, message} on logical failures
+      // (for example "Blog not found"), so we must inspect the body — not just res.ok.
+      let data = {};
+      try { data = await res.json(); } catch (_) {}
+
+      if (!res.ok || data.success === false) {
+        const msg = data.message || `Update failed (status ${res.status})`;
+        console.error("Blog update failed:", msg, data);
+        Swal.fire({ icon: "error", title: "Update failed", text: msg });
+        return;
+      }
 
       Swal.fire({
         icon: "success",
@@ -345,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } catch (e) {
       console.error(e);
-      Swal.fire({ icon: "error", title: "Update failed" });
+      Swal.fire({ icon: "error", title: "Update failed", text: e?.message || "" });
     }
   });
 });

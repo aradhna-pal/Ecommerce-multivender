@@ -297,6 +297,23 @@ function normalizeId(v) {
   return typeof v === "string" ? v : "";
 }
 
+function syncSalesStatusDisplay() {
+  const activeEl = document.getElementById("IsActive");
+  const displayEl = document.getElementById("SalesStatusDisplay");
+  if (!activeEl || !displayEl) return;
+  displayEl.textContent = activeEl.checked ? "Active" : "Inactive";
+}
+
+function isSalesStatusActive(v, fallback = true) {
+  if (v == null || v === "") return fallback;
+  if (typeof v === "boolean") return v;
+  if (typeof v === "number") return v !== 0;
+  const status = String(v).trim().toLowerCase();
+  if (["inactive", "false", "0", "off", "disabled"].includes(status)) return false;
+  if (["active", "true", "1", "on", "enabled"].includes(status)) return true;
+  return fallback;
+}
+
 function buildProductFormData() {
   const fd = new FormData();
   fd.append("Name", textValue("name"));
@@ -305,8 +322,8 @@ function buildProductFormData() {
   fd.append("CategoryId", textValue("CategoryId"));
   if (textValue("SubCategoryId")) fd.append("SubCategoryId", textValue("SubCategoryId"));
   fd.append("BrandId", textValue("BrandId"));
-  fd.append("ColorId", textValue("ColorId"));
-  fd.append("SizeId", textValue("SizeId"));
+  if (textValue("ColorId")) fd.append("ColorId", textValue("ColorId"));
+  if (textValue("SizeId")) fd.append("SizeId", textValue("SizeId"));
 
   fd.append("Price", numberValue("Price", 0));
   fd.append("DiscountPrice", numberValue("DiscountPrice", 0));
@@ -323,6 +340,9 @@ function buildProductFormData() {
   fd.append("MetaTitle", textValue("MetaTitle"));
   fd.append("MetaDescription", textValue("MetaDescription"));
   fd.append("MetaKeywords", textValue("MetaKeywords"));
+  const salesStatus = toBool("IsActive", true) ? "active" : "inactive";
+  fd.append("SalesStatus", salesStatus);
+  fd.append("sales_status", salesStatus);
 
   fd.append("TrackInventory", toBool("TrackInventory", true));
   fd.append("IsActive", toBool("IsActive", true));
@@ -343,8 +363,6 @@ function validateProductForm() {
   if (!textValue("name")) return "Product name is required";
   if (!textValue("CategoryId")) return "Category is required";
   if (!textValue("BrandId")) return "Brand is required";
-  if (!textValue("ColorId")) return "Color is required";
-  if (!textValue("SizeId")) return "Size is required";
   if (numberValue("Price", 0) <= 0) return "Price must be greater than 0";
   return null;
 }
@@ -449,7 +467,10 @@ async function loadProductForEdit() {
   document.getElementById("MetaDescription").value = p.metadescription || "";
   document.getElementById("MetaKeywords").value = p.metakeywords || "";
   document.getElementById("TrackInventory").checked = !!(p.trackinventory ?? p.trackInventory);
-  document.getElementById("IsActive").checked = !!(p.isactive ?? p.isActive);
+  const rawSalesStatus = p.sales_status ?? p.salesStatus ?? p.salesstatus;
+  const activeFallback = !!(p.isactive ?? p.isActive);
+  document.getElementById("IsActive").checked = isSalesStatusActive(rawSalesStatus, activeFallback);
+  syncSalesStatusDisplay();
   document.getElementById("IsFeatured").checked = !!(p.isfeatured ?? p.isFeatured);
 
   const mainPrev = document.getElementById("existingMainImage");
@@ -471,64 +492,702 @@ async function loadProductForEdit() {
   }
 }
 
-async function loadProduct() {
+// =============================================================================
+//  Filter + bulk-update + pagination + search (vendor scope)
+// =============================================================================
+
+// Full working set after ownership filtering (vendor's own products).
+let allLoadedProducts = [];
+// Rows visible in the table after filter + search are applied.
+let filteredProducts = [];
+// Filter rules collected from the modal; applied as AND-combined predicates.
+let activeFilters = [];
+// IDs of rows the user has ticked via the checkbox column.
+const selectedIds = new Set();
+
+// Pagination state. `pageSize === Infinity` means "show all".
+let currentPage = 1;
+let pageSize = 50;
+// Top-of-table search box — matches across name/SKU/category/brand.
+let searchQuery = "";
+
+function normalizeProductForView(p) {
+  return {
+    raw: p,
+    id: p.id || p._id || "",
+    name: (p.name || p.productName || "").toString(),
+    sku: (p.sku || p.SKU || "").toString(),
+    price: Number(p.price ?? 0),
+    discountPrice: Number(p.discountPrice ?? p.discountprice ?? 0),
+    stockQuantity: Number(p.stockQuantity ?? p.stockquantity ?? 0),
+    isActive: !!(p.isActive ?? p.isactive),
+    isFeatured: !!(p.isFeatured ?? p.isfeatured),
+    categoryName: (p.categoryName || p.categoryname || "").toString(),
+    brandName: (p.brandName || p.brandname || "").toString(),
+  };
+}
+
+// Bootstrap is bundled as an ES module in the Hyper theme, so `window.bootstrap`
+// isn't reliably available. Fall back to clicking any element with the
+// Bootstrap dismiss attribute so closing always works.
+function closeModalById(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+  if (window.bootstrap?.Modal?.getInstance) {
+    window.bootstrap.Modal.getInstance(modal)?.hide();
+    return;
+  }
+  const closer = modal.querySelector("[data-bs-dismiss='modal']");
+  if (closer) { closer.click(); return; }
+  modal.classList.remove("show");
+  modal.style.display = "none";
+  document.body.classList.remove("modal-open");
+  document.querySelectorAll(".modal-backdrop").forEach(b => b.remove());
+}
+
+// ===== Filter field catalog + operators =====
+
+const FILTER_FIELDS = [
+  { key: "price",         label: "Price",          type: "number" },
+  { key: "discountPrice", label: "Discount Price", type: "number" },
+  { key: "stockQuantity", label: "Stock Quantity", type: "number" },
+  { key: "name",          label: "Name",           type: "text"   },
+  { key: "sku",           label: "SKU",            type: "text"   },
+  { key: "categoryName",  label: "Category",       type: "text"   },
+  { key: "brandName",     label: "Brand",          type: "text"   },
+  { key: "isActive",      label: "Status",         type: "bool"   },
+  { key: "isFeatured",    label: "Featured",       type: "bool"   },
+];
+
+function operatorsForType(type) {
+  if (type === "number") {
+    return [
+      { key: "eq", label: "Equal to" },
+      { key: "neq", label: "Not equal to" },
+      { key: "gt", label: "Greater than (>)" },
+      { key: "gte", label: "Greater or equal (≥)" },
+      { key: "lt", label: "Less than (<)" },
+      { key: "lte", label: "Less or equal (≤)" },
+      { key: "between", label: "Between" },
+    ];
+  }
+  if (type === "text") {
+    return [
+      { key: "contains", label: "Contains" },
+      { key: "eq", label: "Equal to" },
+      { key: "neq", label: "Not equal to" },
+      { key: "starts", label: "Starts with" },
+      { key: "ends", label: "Ends with" },
+    ];
+  }
+  return [{ key: "eq", label: "Is" }];
+}
+
+function buildValueInput(wrap, type, op) {
+  wrap.innerHTML = "";
+  if (type === "bool") {
+    wrap.innerHTML = `<select class="form-select form-select-sm filter-value">
+      <option value="true">Active / Yes</option>
+      <option value="false">Inactive / No</option>
+    </select>`;
+    return;
+  }
+  if (type === "number") {
+    if (op === "between") {
+      wrap.innerHTML = `
+        <input type="number" class="form-control form-control-sm filter-value" placeholder="Min" />
+        <span class="mx-1 small text-muted">to</span>
+        <input type="number" class="form-control form-control-sm filter-value-2" placeholder="Max" />`;
+      return;
+    }
+    wrap.innerHTML = `<input type="number" class="form-control form-control-sm filter-value" placeholder="Value" />`;
+    return;
+  }
+  wrap.innerHTML = `<input type="text" class="form-control form-control-sm filter-value" placeholder="Text" />`;
+}
+
+function addFilterRow(prefill) {
+  const host = document.getElementById("filterRows");
+  if (!host) return;
+
+  const row = document.createElement("div");
+  row.className = "row g-2 align-items-center filter-row mb-2";
+  row.innerHTML = `
+    <div class="col-md-4">
+      <label class="small text-muted mb-1">Field</label>
+      <select class="form-select form-select-sm filter-field">
+        ${FILTER_FIELDS.map(f => `<option value="${f.key}">${f.label}</option>`).join("")}
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label class="small text-muted mb-1">Operator</label>
+      <select class="form-select form-select-sm filter-operator"></select>
+    </div>
+    <div class="col-md-4">
+      <label class="small text-muted mb-1">Value</label>
+      <div class="d-flex align-items-center filter-value-wrap"></div>
+    </div>
+    <div class="col-md-1 text-end">
+      <button type="button" class="btn btn-sm btn-outline-danger remove-filter-row" title="Remove">
+        <i class="mdi mdi-close"></i>
+      </button>
+    </div>`;
+  host.appendChild(row);
+
+  const fieldSel = row.querySelector(".filter-field");
+  const opSel = row.querySelector(".filter-operator");
+  const valueWrap = row.querySelector(".filter-value-wrap");
+
+  function rebuildOperators(preserveOp) {
+    const f = FILTER_FIELDS.find(x => x.key === fieldSel.value);
+    const ops = operatorsForType(f?.type || "text");
+    opSel.innerHTML = ops.map(o => `<option value="${o.key}">${o.label}</option>`).join("");
+    if (preserveOp && ops.some(o => o.key === preserveOp)) opSel.value = preserveOp;
+    buildValueInput(valueWrap, f?.type || "text", opSel.value);
+  }
+  fieldSel.addEventListener("change", () => rebuildOperators());
+  opSel.addEventListener("change", () => {
+    const f = FILTER_FIELDS.find(x => x.key === fieldSel.value);
+    buildValueInput(valueWrap, f?.type || "text", opSel.value);
+  });
+  row.querySelector(".remove-filter-row").addEventListener("click", () => row.remove());
+
+  if (prefill) {
+    fieldSel.value = prefill.field || FILTER_FIELDS[0].key;
+    rebuildOperators(prefill.op);
+    if (prefill.value != null) {
+      const v1 = row.querySelector(".filter-value");
+      if (v1) v1.value = prefill.value;
+    }
+    if (prefill.value2 != null) {
+      const v2 = row.querySelector(".filter-value-2");
+      if (v2) v2.value = prefill.value2;
+    }
+  } else {
+    rebuildOperators();
+  }
+}
+
+function collectActiveFilters() {
+  const rows = document.querySelectorAll("#filterRows .filter-row");
+  const out = [];
+  rows.forEach(row => {
+    const field = row.querySelector(".filter-field")?.value;
+    const op = row.querySelector(".filter-operator")?.value;
+    if (!field || !op) return;
+    const valEl = row.querySelector(".filter-value");
+    const val2El = row.querySelector(".filter-value-2");
+    const value = valEl?.value ?? "";
+    const value2 = val2El?.value ?? "";
+    const f = FILTER_FIELDS.find(x => x.key === field);
+    if (value === "" && !(f?.type === "bool")) return;
+    out.push({ field, op, type: f?.type || "text", value, value2 });
+  });
+  return out;
+}
+
+function filterMatches(product, rule) {
+  const v = product[rule.field];
+  if (rule.type === "bool") return Boolean(v) === (rule.value === "true");
+  if (rule.type === "number") {
+    const n = Number(v);
+    const a = Number(rule.value);
+    const b = Number(rule.value2);
+    switch (rule.op) {
+      case "eq": return n === a;
+      case "neq": return n !== a;
+      case "gt": return n > a;
+      case "gte": return n >= a;
+      case "lt": return n < a;
+      case "lte": return n <= a;
+      case "between": return n >= Math.min(a, b) && n <= Math.max(a, b);
+    }
+    return true;
+  }
+  const s = String(v ?? "").toLowerCase();
+  const q = String(rule.value ?? "").toLowerCase();
+  switch (rule.op) {
+    case "contains": return s.includes(q);
+    case "eq": return s === q;
+    case "neq": return s !== q;
+    case "starts": return s.startsWith(q);
+    case "ends": return s.endsWith(q);
+  }
+  return true;
+}
+
+function applyActiveFilters() {
+  let list = allLoadedProducts;
+  if (activeFilters.length) {
+    list = list.filter(p => activeFilters.every(r => filterMatches(p, r)));
+  }
+  const q = searchQuery.trim().toLowerCase();
+  if (q) {
+    list = list.filter(p =>
+      (p.name || "").toLowerCase().includes(q) ||
+      (p.sku || "").toLowerCase().includes(q) ||
+      (p.categoryName || "").toLowerCase().includes(q) ||
+      (p.brandName || "").toLowerCase().includes(q)
+    );
+  }
+  filteredProducts = list;
+  currentPage = 1;
+  updateFilterSummary();
+  renderProductRows();
+}
+
+function updateFilterSummary() {
+  const wrap = document.getElementById("filterSummary");
+  const chips = document.getElementById("filterChips");
+  if (!wrap || !chips) return;
+  if (!activeFilters.length) {
+    wrap.style.display = "none";
+    chips.innerHTML = "";
+    return;
+  }
+  wrap.style.display = "flex";
+  chips.innerHTML = activeFilters.map(r => {
+    const fLabel = (FILTER_FIELDS.find(f => f.key === r.field) || {}).label || r.field;
+    const opLabel = (operatorsForType(r.type).find(o => o.key === r.op) || {}).label || r.op;
+    const v = r.op === "between" ? `${r.value} – ${r.value2}` : r.value;
+    return `<span class="badge bg-light text-dark border">${fLabel} ${opLabel} <b>${v}</b></span>`;
+  }).join(" ");
+}
+
+// ===== Selection =====
+
+function updateBulkButton() {
+  const btn = document.getElementById("openBulkUpdateBtn");
+  const count = document.getElementById("bulkSelectedCount");
+  if (count) count.textContent = String(selectedIds.size);
+  if (btn) btn.classList.toggle("d-none", selectedIds.size === 0);
+
+  const selectAll = document.getElementById("selectAllRows");
+  if (selectAll) {
+    const pageIds = getPageSlice().map(p => p.id);
+    selectAll.checked = pageIds.length > 0 && pageIds.every(id => selectedIds.has(id));
+    selectAll.indeterminate = !selectAll.checked && pageIds.some(id => selectedIds.has(id));
+  }
+}
+
+// ===== Pagination =====
+
+function totalPages() {
+  if (!filteredProducts.length) return 1;
+  if (!isFinite(pageSize)) return 1;
+  return Math.max(1, Math.ceil(filteredProducts.length / pageSize));
+}
+
+function getPageSlice() {
+  if (!isFinite(pageSize)) return filteredProducts;
+  const start = (currentPage - 1) * pageSize;
+  return filteredProducts.slice(start, start + pageSize);
+}
+
+function renderPagination() {
+  const info = document.getElementById("pageInfo");
+  const host = document.getElementById("pageLinks");
+  if (info) {
+    const n = filteredProducts.length;
+    if (!n) info.textContent = "0 products";
+    else if (!isFinite(pageSize)) info.textContent = `Showing all ${n} products`;
+    else {
+      const start = (currentPage - 1) * pageSize + 1;
+      const end = Math.min(n, currentPage * pageSize);
+      info.textContent = `${start}–${end} of ${n}`;
+    }
+  }
+  if (!host) return;
+
+  const pages = totalPages();
+  if (!isFinite(pageSize) || pages <= 1) { host.innerHTML = ""; return; }
+
+  const want = new Set([1, pages, currentPage, currentPage - 1, currentPage + 1, currentPage - 2, currentPage + 2]);
+  const nums = [...want].filter(n => n >= 1 && n <= pages).sort((a, b) => a - b);
+
+  const parts = [];
+  parts.push(`<li class="page-item ${currentPage === 1 ? "disabled" : ""}">
+    <a class="page-link" href="javascript:void(0)" data-page="${currentPage - 1}">Prev</a></li>`);
+  let prev = 0;
+  for (const n of nums) {
+    if (n - prev > 1) parts.push(`<li class="page-item disabled"><span class="page-link">…</span></li>`);
+    parts.push(`<li class="page-item ${n === currentPage ? "active" : ""}">
+      <a class="page-link" href="javascript:void(0)" data-page="${n}">${n}</a></li>`);
+    prev = n;
+  }
+  parts.push(`<li class="page-item ${currentPage === pages ? "disabled" : ""}">
+    <a class="page-link" href="javascript:void(0)" data-page="${currentPage + 1}">Next</a></li>`);
+  host.innerHTML = parts.join("");
+}
+
+function goToPage(n) {
+  const pages = totalPages();
+  currentPage = Math.min(Math.max(1, Number(n) || 1), pages);
+  renderProductRows();
+  document.querySelector(".table-responsive")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// ===== Render =====
+
+function renderProductRows() {
   const tbody = document.getElementById("allproduct");
   if (!tbody) return;
 
-  try {
-    const token = authToken();
-    const data = await fetchJson(`${API_BASE}/api/products/list`, {
+  const pages = totalPages();
+  if (currentPage > pages) currentPage = pages;
+
+  if (!filteredProducts.length) {
+    tbody.innerHTML = `<tr><td colspan="13" class="text-center text-muted py-4">No products match the current filter.</td></tr>`;
+    renderPagination();
+    updateBulkButton();
+    return;
+  }
+
+  const slice = getPageSlice();
+  const baseIndex = isFinite(pageSize) ? (currentPage - 1) * pageSize : 0;
+
+  tbody.innerHTML = slice.map((v, index) => {
+    const p = v.raw;
+    const checked = selectedIds.has(v.id) ? "checked" : "";
+    return `
+      <tr>
+        <td>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input product-check" data-id="${v.id}" ${checked}>
+          </div>
+        </td>
+        <td>${baseIndex + index + 1}</td>
+        <td class="d-flex align-items-center gap-2">
+          <img src="${resolveMedia(p.mainImage || p.mainimage || p.image)}" class="rounded"
+               height="48" width="48" style="object-fit:cover;"
+               onerror="this.src='https://via.placeholder.com/48'"/>
+          <span>${truncateWords(v.name, 5)}</span>
+        </td>
+        <td>${truncateWords(p.shortDescription || p.shortdescription || "", 5)}</td>
+        <td>${truncateWords(p.description || "", 4)}</td>
+        <td>${v.categoryName || "-"}</td>
+        <td>${v.brandName || "-"}</td>
+        <td>${v.discountPrice || "-"}</td>
+        <td>${v.price || "-"}</td>
+        <td>${v.stockQuantity || 0}</td>
+        <td>
+          <span class="badge ${v.isActive ? "bg-success-subtle text-success" : "bg-danger-subtle text-danger"}">
+            ${v.isActive ? "Active" : "Inactive"}
+          </span>
+        </td>
+        <td><i class="mdi mdi-square-edit-outline text-primary fs-3" style="cursor:pointer" onclick="editProduct('${v.id}')"></i></td>
+        <td><i class="mdi mdi-delete text-danger fs-3" style="cursor:pointer" onclick="deleteProduct('${v.id}')"></i></td>
+      </tr>`;
+  }).join("");
+
+  renderPagination();
+  updateBulkButton();
+}
+
+// Walk backend cursor pagination so the vendor can see every one of their
+// products even when the catalog is large. We filter by ownership locally
+// because the list endpoint doesn't currently expose a vendor filter.
+async function fetchAllProductsFromApi(token) {
+  const HARD_CAP = 10000;
+  const PAGE = 100;
+  const out = [];
+  let cursor = null;
+
+  while (out.length < HARD_CAP) {
+    const qs = new URLSearchParams();
+    qs.set("pageSize", String(PAGE));
+    if (cursor) qs.set("cursor", cursor);
+
+    const res = await fetchJson(`${API_BASE}/api/products/list?${qs.toString()}`, {
       method: "GET",
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     });
 
+    const payload = res?.data ?? res;
+    if (Array.isArray(payload)) { out.push(...payload); break; }
+
+    const batch = payload?.data || payload?.items || [];
+    if (batch.length) out.push(...batch);
+
+    const hasMore = !!payload?.hasMore;
+    const next = payload?.nextCursor || null;
+    if (!hasMore || !next || next === cursor) break;
+    cursor = next;
+  }
+  return out;
+}
+
+async function loadProduct() {
+  const tbody = document.getElementById("allproduct");
+  if (!tbody) return;
+
+  tbody.innerHTML = `<tr><td colspan="13" class="text-center text-muted py-4">
+    <div class="spinner-border spinner-border-sm me-2" role="status"></div>Loading your products…
+  </td></tr>`;
+
+  try {
+    const token = authToken();
     const vendorId = getVendorIdFromToken();
     const vendorEmail = getVendorEmailFromToken();
     const vendorFullName = getVendorFullNameFromToken();
-    const rawProducts = normalizeArrayPayload(data);
-    const products = rawProducts.filter((product) => isProductOwnedByVendor(product, vendorId, vendorEmail, vendorFullName));
-    tbody.innerHTML = "";
 
-    products.forEach((product, index) => {
-      const isActive = !!(product.isActive ?? product.isactive);
-      const row = `
-        <tr>
-          <td>${index + 1}</td>
-          <td class="d-flex align-items-center gap-2">
-            <img
-              src="${resolveMedia(product.mainImage || product.mainimage || product.image)}"
-              class="rounded"
-              height="48"
-              width="48"
-              style="object-fit: cover;"
-              onerror="this.src='https://via.placeholder.com/48'"
-            />
-            <span>${truncateWords(product.name || product.productName || "", 5)}</span>
-          </td>
-          <td>${truncateWords(product.shortDescription || product.shortdescription || "", 5)}</td>
-          <td>${truncateWords(product.description || "", 4)}</td>
-          <td>${product.categoryName || product.categoryname || "-"}</td>
-          <td>${product.brandName || product.brandname || "-"}</td>
-          <td>${product.discountPrice ?? product.discountprice ?? "-"}</td>
-          <td>${product.price ?? "-"}</td>
-          <td>${product.stockQuantity ?? product.stockquantity ?? "-"}</td>
-          <td>
-            <span class="badge ${isActive ? "bg-success-subtle text-success" : "bg-danger-subtle text-danger"}">
-              ${isActive ? "Active" : "Inactive"}
-            </span>
-          </td>
-          <td>
-            <i class="mdi mdi-square-edit-outline text-primary fs-3" style="cursor:pointer" onclick="editProduct('${product.id || product._id}')"></i>
-          </td>
-          <td>
-            <i class="mdi mdi-delete text-danger fs-3" style="cursor:pointer" onclick="deleteProduct('${product.id || product._id}')"></i>
-          </td>
-        </tr>`;
-      tbody.insertAdjacentHTML("beforeend", row);
+    const rawProducts = await fetchAllProductsFromApi(token);
+    const myProducts = rawProducts.filter(p => isProductOwnedByVendor(p, vendorId, vendorEmail, vendorFullName));
+
+    allLoadedProducts = myProducts.map(p => {
+      const view = normalizeProductForView(p);
+      view.raw = p;
+      return view;
     });
+
+    applyActiveFilters();
   } catch (error) {
     console.error("Error:", error);
+    tbody.innerHTML = `<tr><td colspan="13" class="text-center text-danger py-4">Failed to load products.</td></tr>`;
   }
+}
+
+// ===== Bulk update =====
+
+async function runBulkUpdate() {
+  const token = authToken();
+  if (!token) {
+    Swal.fire({ icon: "warning", title: "Login required" });
+    return;
+  }
+  const useAll = document.getElementById("bulkApplyToAllFiltered")?.checked;
+  const ids = useAll ? filteredProducts.map(p => p.id) : Array.from(selectedIds);
+  if (!ids.length) {
+    Swal.fire({ icon: "warning", title: "No products selected" });
+    return;
+  }
+
+  const body = { productIds: ids };
+  const priceVal    = document.getElementById("bulkPrice")?.value;
+  const discountVal = document.getElementById("bulkDiscountPrice")?.value;
+  const stockVal    = document.getElementById("bulkStockQuantity")?.value;
+  const activeVal   = document.getElementById("bulkIsActive")?.value;
+  const featuredVal = document.getElementById("bulkIsFeatured")?.value;
+
+  if (priceVal !== "" && priceVal != null)       body.price = Number(priceVal);
+  if (discountVal !== "" && discountVal != null) body.discountPrice = Number(discountVal);
+  if (stockVal !== "" && stockVal != null)       body.stockQuantity = parseInt(stockVal, 10);
+  if (activeVal !== "")                          body.isActive = activeVal === "true";
+  if (featuredVal !== "")                        body.isFeatured = featuredVal === "true";
+
+  if (Object.keys(body).length <= 1) {
+    Swal.fire({ icon: "warning", title: "Nothing to update", text: "Fill at least one field." });
+    return;
+  }
+
+  const confirm = await Swal.fire({
+    icon: "question",
+    title: `Update ${ids.length} product(s)?`,
+    text: "This cannot be undone.",
+    showCancelButton: true,
+    confirmButtonText: "Yes, update",
+  });
+  if (!confirm.isConfirmed) return;
+
+  try {
+    Swal.fire({ title: "Updating...", allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+    const res = await fetchJson(`${API_BASE}/api/products/bulk-update`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(body),
+    });
+    closeModalById("bulkUpdateModal");
+    await Swal.fire({
+      icon: "success",
+      title: "Bulk update complete",
+      text: res?.message || `Updated ${res?.updated ?? ids.length} product(s).`,
+    });
+    selectedIds.clear();
+    await loadProduct();
+  } catch (err) {
+    Swal.fire({ icon: "error", title: "Bulk update failed", text: err.message });
+  }
+}
+
+// ===== Export (selection-aware) =====
+
+// RFC 4180: wrap in quotes and double-up any embedded quote.
+function csvEscape(value) {
+  const s = value == null ? "" : String(value).replace(/\r?\n|\r/g, " ").trim();
+  if (/[",\n]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
+  return s;
+}
+
+function exportProductsCsv() {
+  let rows, source;
+  if (selectedIds.size > 0) {
+    rows = filteredProducts.filter(p => selectedIds.has(p.id));
+    if (rows.length < selectedIds.size) {
+      rows = allLoadedProducts.filter(p => selectedIds.has(p.id));
+    }
+    source = "selected";
+  } else if (filteredProducts.length) {
+    rows = filteredProducts;
+    source = "filtered";
+  } else {
+    rows = allLoadedProducts;
+    source = "all";
+  }
+
+  if (!rows.length) {
+    Swal.fire({ icon: "info", title: "Nothing to export", text: "The product list is empty." });
+    return;
+  }
+
+  const headers = [
+    "S.No", "Product ID", "Name", "SKU",
+    "Category", "Brand", "Price", "Discount Price",
+    "Stock Quantity", "Status", "Featured",
+  ];
+
+  const lines = [headers.map(csvEscape).join(",")];
+  rows.forEach((v, i) => {
+    lines.push([
+      i + 1,
+      v.id,
+      v.name,
+      v.sku,
+      v.categoryName,
+      v.brandName,
+      v.price,
+      v.discountPrice,
+      v.stockQuantity,
+      v.isActive ? "Active" : "Inactive",
+      v.isFeatured ? "Yes" : "No",
+    ].map(csvEscape).join(","));
+  });
+
+  // UTF-8 BOM so Excel renders ₹ and accents correctly.
+  const csv = "\uFEFF" + lines.join("\r\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-");
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `my-products-${source}-${rows.length}-${stamp}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+  Swal.fire({
+    toast: true, position: "top-end", icon: "success",
+    title: `Exported ${rows.length} product(s)`,
+    showConfirmButton: false, timer: 1500,
+  });
+}
+
+// ===== Event wiring =====
+
+function wireBulkAndFilterUi() {
+  const filterModalEl = document.getElementById("filterModal");
+  filterModalEl?.addEventListener("show.bs.modal", () => {
+    const host = document.getElementById("filterRows");
+    if (host && !host.children.length) addFilterRow();
+  });
+  document.getElementById("addFilterRowBtn")?.addEventListener("click", () => addFilterRow());
+  document.getElementById("resetFilterBtn")?.addEventListener("click", () => {
+    document.getElementById("filterRows").innerHTML = "";
+    addFilterRow();
+    activeFilters = [];
+    applyActiveFilters();
+  });
+  document.getElementById("clearFiltersLink")?.addEventListener("click", () => {
+    activeFilters = [];
+    document.getElementById("filterRows").innerHTML = "";
+    applyActiveFilters();
+  });
+  document.getElementById("applyFilterBtn")?.addEventListener("click", () => {
+    const rows = document.querySelectorAll("#filterRows .filter-row");
+    activeFilters = collectActiveFilters();
+    if (!activeFilters.length && rows.length) {
+      Swal.fire({ icon: "warning", title: "Fill at least one condition",
+        text: "Pick a field, an operator and a value before clicking Apply." });
+      return;
+    }
+    applyActiveFilters();
+    closeModalById("filterModal");
+    if (activeFilters.length) {
+      Swal.fire({
+        toast: true, position: "top-end", icon: "success", showConfirmButton: false,
+        timer: 1400,
+        title: `${filteredProducts.length} of ${allLoadedProducts.length} products match`,
+      });
+    }
+  });
+
+  document.getElementById("pageSizeSelect")?.addEventListener("change", (e) => {
+    const v = e.target.value;
+    pageSize = v === "all" ? Infinity : (Number(v) || 50);
+    currentPage = 1;
+    renderProductRows();
+  });
+  document.getElementById("pageLinks")?.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-page]");
+    if (!a) return;
+    e.preventDefault();
+    goToPage(a.dataset.page);
+  });
+
+  let searchTimer = null;
+  document.getElementById("productSearchInput")?.addEventListener("input", (e) => {
+    clearTimeout(searchTimer);
+    const v = e.target.value || "";
+    searchTimer = setTimeout(() => {
+      searchQuery = v;
+      applyActiveFilters();
+    }, 180);
+  });
+
+  document.addEventListener("change", (e) => {
+    const cb = e.target.closest(".product-check");
+    if (cb) {
+      const id = cb.dataset.id;
+      if (cb.checked) selectedIds.add(id); else selectedIds.delete(id);
+      updateBulkButton();
+      return;
+    }
+    if (e.target.id === "selectAllRows") {
+      const turnOn = e.target.checked;
+      getPageSlice().forEach(p => turnOn ? selectedIds.add(p.id) : selectedIds.delete(p.id));
+      renderProductRows();
+    }
+  });
+
+  const bulkModalEl = document.getElementById("bulkUpdateModal");
+  bulkModalEl?.addEventListener("show.bs.modal", () => {
+    const count = document.getElementById("bulkUpdateTargetCount");
+    if (count) count.textContent = String(selectedIds.size);
+    ["bulkPrice", "bulkDiscountPrice", "bulkStockQuantity"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = "";
+    });
+    ["bulkIsActive", "bulkIsFeatured"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = "";
+    });
+    const all = document.getElementById("bulkApplyToAllFiltered");
+    if (all) all.checked = false;
+  });
+
+  document.getElementById("bulkApplyToAllFiltered")?.addEventListener("change", (e) => {
+    const count = document.getElementById("bulkUpdateTargetCount");
+    if (!count) return;
+    count.textContent = e.target.checked
+      ? String(filteredProducts.length)
+      : String(selectedIds.size);
+  });
+
+  document.getElementById("runBulkUpdateBtn")?.addEventListener("click", runBulkUpdate);
 }
 
 async function uploadProductsFile(file) {
@@ -570,32 +1229,11 @@ async function uploadProductsFile(file) {
   }
 }
 
+// Legacy server-side export kept as a fallback option — the default Export
+// button now calls `exportProductsCsv` which builds the file locally from the
+// exact rows the vendor sees (selection / filter / search aware).
 async function exportProducts() {
-  const token = authToken();
-  if (!token) {
-    Swal.fire({ icon: "warning", title: "Please login first" });
-    return;
-  }
-
-  try {
-    const res = await fetch(PRODUCT_EXPORT, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (!res.ok) throw new Error(`Export failed (${res.status})`);
-
-    const blob = await res.blob();
-    const downloadUrl = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = downloadUrl;
-    link.download = `vendor-products-${new Date().toISOString().slice(0, 10)}.xlsx`;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    URL.revokeObjectURL(downloadUrl);
-  } catch (err) {
-    Swal.fire({ icon: "error", title: "Export failed", text: err.message });
-  }
+  exportProductsCsv();
 }
 
 window.editProduct = function editProduct(id) {
@@ -637,6 +1275,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       await loadProductFormOptions();
       await loadProductForEdit();
+      syncSalesStatusDisplay();
+      document.getElementById("IsActive")?.addEventListener("change", syncSalesStatusDisplay);
     } catch (err) {
       console.error("Form setup error:", err);
     }
@@ -654,9 +1294,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (exportBtn) {
     exportBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      exportProducts();
+      exportProductsCsv();
     });
   }
 
+  wireBulkAndFilterUi();
   loadProduct();
 });

@@ -5,7 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const listItems = document.querySelectorAll("li[data-class]");
 
     listItems.forEach((item) => {
-        item.addEventListener("click", function () {
+        item.addEventListener("click", function (e) {
+            const clickedLink = e.target.closest("a.personal-detail");
+            if (clickedLink) {
+                e.preventDefault();
+            }
+
             const dataClass = item.getAttribute("data-class");
 
             const button = document.querySelector(

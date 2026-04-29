@@ -49,6 +49,8 @@
                                                 </th>
                                                 <th >Banner Image</th>
                                                 <th>Link</th>
+                                                <th>Middle</th>
+                                                <th>Bottom</th>
                                         
                                                 <th>Title</th>
                                                

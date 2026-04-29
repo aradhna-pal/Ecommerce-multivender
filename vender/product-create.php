@@ -140,7 +140,7 @@
                                         <div class="col-md-4">
                                             <div class="form-check mb-2">
                                                 <input type="checkbox" class="form-check-input" id="IsActive" checked>
-                                                <label class="form-check-label" for="IsActive">Active</label>
+                                                <label class="form-check-label" for="IsActive">Sales Status (<span id="SalesStatusDisplay">Active</span>)</label>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
