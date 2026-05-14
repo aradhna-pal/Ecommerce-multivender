@@ -1,6 +1,17 @@
 const API_BASE = "https://api.workarya.com";
 const USER_ORDERS = `${API_BASE}/api/orders/my-orders`;
 
+function orderProductImageSrc(raw) {
+  if (!raw) return "assets/images/product/1.png";
+  if (typeof window.resolveApiMediaUrl === "function") {
+    return window.resolveApiMediaUrl(raw);
+  }
+  const s = String(raw).trim();
+  if (/^https?:\/\//i.test(s)) return s;
+  const base = API_BASE.replace(/\/$/, "");
+  return s.startsWith("/") ? base + s : `${base}/${s}`;
+}
+
 // ----------------------------------------------------------------------------
 // Orders pagination (client-side)
 // ----------------------------------------------------------------------------
@@ -21,7 +32,7 @@ async function loadOrders() {
 
   const token = localStorage.getItem("userToken");
   if (!token) {
-    tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Login required</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="8" class="text-center text-danger">Login required</td></tr>`;
     hideOrderPagination();
     return;
   }
@@ -44,7 +55,7 @@ async function loadOrders() {
     allOrders = orders;
 
     if (!orders.length) {
-      tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No orders found</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="8" class="text-center">No orders found</td></tr>`;
       hideOrderPagination();
       return;
     }
@@ -52,7 +63,7 @@ async function loadOrders() {
     currentOrderPage = 1;
     renderOrdersPage(currentOrderPage);
   } catch (e) {
-    tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Error loading orders</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="8" class="text-center text-danger">Error loading orders</td></tr>`;
     hideOrderPagination();
   }
 }
@@ -73,9 +84,13 @@ function renderOrdersPage(page) {
 
   tableBody.innerHTML = slice.map((order) => {
     const firstItem = order.items?.[0];
+    const thumb = orderProductImageSrc(firstItem?.productImage);
     return `
       <tr>
         <td>#${order.orderId.slice(0, 8)}</td>
+        <td class="text-center">
+          <img src="${thumb}" alt="" width="48" height="48" class="rounded border" style="object-fit:cover">
+        </td>
         <td>${firstItem?.productName || "No Product"}</td>
         <td>${formatDate(order.createdAt)}</td>
         <td><span class="${getStatusClass(order.orderStatus)}">${formatStatusLabel(order.orderStatus)}</span></td>
@@ -83,7 +98,7 @@ function renderOrdersPage(page) {
         <td>₹${order.finalAmount}</td>
         <td>
           <a href="order-tracking.php?orderId=${order.orderId}"
-             class="nav-link logout-btn theme-bg-color text-light"
+             class="btn btn-sm theme-bg-color text-light"
              style="padding: 5px 10px; font-size: 14px; border-radius: 5px;">
             Track Order
           </a>
@@ -212,6 +227,14 @@ function normalizeOrdersResponse(result) {
 
     const normalizedItems = items.map((item) => ({
       productName: item.productName ?? item.ProductName ?? "No Product",
+      productImage:
+        item.productImage ??
+        item.ProductImage ??
+        item.image ??
+        item.Image ??
+        item.mainimage ??
+        item.MainImage ??
+        "",
     }));
 
     return {

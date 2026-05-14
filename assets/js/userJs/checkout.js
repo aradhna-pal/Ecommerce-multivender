@@ -16,7 +16,18 @@ function isUserNotFoundMessage(message) {
   return typeof message === "string" && message.toLowerCase().includes("user not found");
 }
 
-async function hasCartItems() {
+function isCartItemZeroPriced(item) {
+  const qty = Math.max(1, parseInt(item.quantity, 10) || 1);
+  const total = Number(item.total);
+  const unit =
+    item.price != null ? Number(item.price)
+    : item.currentPrice != null ? Number(item.currentPrice)
+    : Number.isFinite(total) ? total / qty
+    : NaN;
+  return !Number.isFinite(unit) || unit <= 0;
+}
+
+async function getCartCheckoutBarrier() {
   try {
     const res = await fetch(`${CHECKOUT_API_ROOT}/api/cart/list`, {
       method: "POST",
@@ -25,10 +36,13 @@ async function hasCartItems() {
     });
 
     const data = await res.json().catch(() => ({}));
-    return Array.isArray(data.items) && data.items.length > 0;
+    const items = Array.isArray(data.items) ? data.items : [];
+    if (!items.length) return "empty";
+    if (items.some(isCartItemZeroPriced)) return "zero";
+    return "ok";
   } catch (err) {
     console.error("Cart check error:", err);
-    return false;
+    return "error";
   }
 }
 
@@ -59,12 +73,22 @@ async function proceedToCheckout() {
     return;
   }
 
-  const cartHasItems = await hasCartItems();
-  if (!cartHasItems) {
+  const barrier = await getCartCheckoutBarrier();
+  if (barrier !== "ok") {
     if (typeof Swal !== "undefined") {
-      Swal.fire("Cart is empty", "Please select item.", "warning");
+      if (barrier === "zero") {
+        Swal.fire(
+          "Invalid price",
+          "Your cart contains items with no valid price (₹0). Remove them before checkout.",
+          "warning"
+        );
+      } else if (barrier === "empty") {
+        Swal.fire("Cart is empty", "Please select item.", "warning");
+      } else {
+        Swal.fire("Error", "Could not verify your cart. Try again.", "error");
+      }
     } else {
-      alert("Please select item.");
+      alert(barrier === "zero" ? "Cannot checkout: zero-priced items in cart." : "Please select item.");
     }
     return;
   }

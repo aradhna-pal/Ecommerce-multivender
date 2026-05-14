@@ -1,43 +1,67 @@
-/*=====================
-    user Dashboard Js
-==========================*/
-document.addEventListener("DOMContentLoaded", function () {
-    const listItems = document.querySelectorAll("li[data-class]");
+/* User dashboard: mobile sidebar + quick links to tabs */
+(function () {
+  "use strict";
 
-    listItems.forEach((item) => {
+  function wireDashboardTiles() {
+    document
+      .querySelectorAll(".dashboard-setting li[data-class]")
+      .forEach(function (item) {
         item.addEventListener("click", function (e) {
-            const clickedLink = e.target.closest("a.personal-detail");
-            if (clickedLink) {
-                e.preventDefault();
-            }
-
-            const dataClass = item.getAttribute("data-class");
-
-            const button = document.querySelector(
-                `button[data-bs-target="#${dataClass}"]`);
-
-            if (button) {
-                button.click();
-            }
+          var link = e.target.closest("a.personal-detail");
+          if (link) e.preventDefault();
+          var dataClass = item.getAttribute("data-class");
+          if (!dataClass) return;
+          var btn = document.querySelector(
+            'button[data-bs-target="#' + dataClass + '"]'
+          );
+          if (btn) btn.click();
         });
+      });
+  }
+
+  function ensureBgOverlay() {
+    var el = document.querySelector(".bg-overlay");
+    if (el) return el;
+    el = document.createElement("div");
+    el.className = "bg-overlay";
+    el.setAttribute("aria-hidden", "true");
+    document.body.appendChild(el);
+    return el;
+  }
+
+  function wireMobileSidebar() {
+    var sidebar = document.querySelector(".dashboard-left-sidebar");
+    var showBtn = document.querySelector(".left-dashboard-show");
+    var closeBtn = document.querySelector(".dashboard-left-sidebar .sidebar-close");
+    if (!sidebar || !showBtn) return;
+
+    var bgOverlay = ensureBgOverlay();
+
+    function openSidebar() {
+      sidebar.classList.add("show");
+      bgOverlay.classList.add("show");
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove("show");
+      bgOverlay.classList.remove("show");
+    }
+
+    showBtn.addEventListener("click", openSidebar);
+    if (closeBtn) closeBtn.addEventListener("click", closeSidebar);
+    bgOverlay.addEventListener("click", closeSidebar);
+
+    document.querySelectorAll("#pills-tab button[data-bs-target]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (window.matchMedia("(max-width: 991.98px)").matches) {
+          closeSidebar();
+        }
+      });
     });
-});
+  }
 
-const dashboardLeftSidebar = document.querySelector(".dashboard-left-sidebar");
-const bgOverlay = document.querySelector(".bg-overlay");
-const leftDashboardShow = document.querySelector(".left-dashboard-show");
-const sidebarClose = document.querySelector(".sidebar-close");
-
-leftDashboardShow.addEventListener("click", () => {
-    dashboardLeftSidebar.classList.add("show");
-    bgOverlay.classList.add("show");
-});
-
-sidebarClose.addEventListener("click", () => {
-    dashboardLeftSidebar.classList.remove("show");
-    bgOverlay.classList.remove("show");
-});
-bgOverlay.addEventListener("click", () => {
-    dashboardLeftSidebar.classList.remove("show");
-    bgOverlay.classList.remove("show");
-});
+  document.addEventListener("DOMContentLoaded", function () {
+    wireDashboardTiles();
+    wireMobileSidebar();
+  });
+})();

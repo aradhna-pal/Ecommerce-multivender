@@ -1,5 +1,9 @@
+<?php
+$__pwa_script = basename((string)($_SERVER['SCRIPT_FILENAME'] ?? $_SERVER['SCRIPT_NAME'] ?? ''), '/');
+$__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pwa_script === 'index');
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-pwa-home="<?php echo $__pwa_is_home ? '1' : '0'; ?>">
 
 
 <!-- Mirrored from themes.pixelstrap.net/kartify/template/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 Mar 2026 10:19:55 GMT -->
@@ -13,6 +17,26 @@
     <meta name="author" content="Kartify">
     <link rel="icon" href="assets/images/img/favicon.webp" type="image/x-icon">
     <link rel="apple-touch-icon" href="assets/images/img/favicon.webp">
+    <link rel="manifest" href="manifest.webmanifest?v=2">
+    <script>
+    (function () {
+      window.__deferredPwaInstallPrompt = null;
+      window.addEventListener(
+        "beforeinstallprompt",
+        function (e) {
+          e.preventDefault();
+          window.__deferredPwaInstallPrompt = e;
+          try {
+            window.dispatchEvent(new Event("hyperscripts:pwa-bip"));
+          } catch (err) {}
+        },
+        { capture: true }
+      );
+    })();
+    </script>
+    <meta name="theme-color" content="#0d0d0f">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" type="text/css" href="assets/css/pwa-install-banner.css?v=2">
 
     <!-- Performance: warm up API connection so first fetch is fast -->
     <link rel="preconnect" href="https://api.workarya.com" crossorigin>
@@ -20,7 +44,7 @@
     <meta name="title-color" content="#ff9900">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Kartify">
+    <meta name="apple-mobile-web-app-title" content="HyperScripts">
     <meta name="msapplication-TileImage" content="assets/images/favicon/1.html">
     <meta name="msapplication-TileColor" content="#FFFFFF">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,14 +89,14 @@
     <script src="./assets/js/userJs/login.js?v=2"></script>
     <script src="./assets/js/userJs/blog.js?v=6"></script>
     <script src="./assets/js/userJs/allproduct.js?v=5"></script>
-    <script src="./assets/js/userJs/category.js"></script>
-    <script src="./assets/js/userJs/user-order.js"></script>
+    <script src="./assets/js/userJs/category.js?v=7"></script>
+    <script src="./assets/js/userJs/user-order.js?v=2"></script>
     <script src="./assets/js/userJs/cart.js"></script>
     <script src="./assets/js/userJs/checkout.js?v=2"></script>
     <script src="./assets/js/userJs/address.js"></script>
-    <script src="./assets/js/userJs/createorder.js?v=2"></script>
+    <script src="./assets/js/userJs/createorder.js?v=3"></script>
     <script src="./assets/js/userJs/recentView.js"></script>
-    <script src="./assets/js/userJs/productFilter.js"></script>
+    <script src="./assets/js/userJs/productFilter.js?v=2"></script>
     <script src="./assets/js/userJs/wishlist-notify.js"></script>
     <script src="./assets/js/userJs/compare-notify.js?v=1"></script>
     <script src="./assets/js/userJs/trackorder.js"></script>
@@ -82,7 +106,7 @@
 
 </head>
 
-<body class="base-bg-color">
+<body class="base-bg-color<?php echo $__pwa_is_home ? ' is-home-page' : ''; ?>">
     <?php include __DIR__ . '/preloader.php'; ?>
 
     <!-- Page Loader Start -->
@@ -339,6 +363,11 @@
                             <span class="label"><span id="wishlistCount">0</span></span>
                         </a>
                     </li>
+                    <li class="pwa-header-install-wrap">
+                        <a href="#!" class="pwa-header-install-trigger" title="Install app" aria-label="Install app">
+                            <i class="ri-download-2-line" style="font-size:22px;"></i>
+                        </a>
+                    </li>
                     <li>
                         <a data-bs-toggle="offcanvas" href="#cartOffcanvas">
                             <i class="iconsax" data-icon-name="basket-2"></i>
@@ -351,15 +380,20 @@
         
 
         <div class="nav-header custom-container d-flex">
-            <div class="category-header d-sm-flex d-none position-relative">
-                <button type="button" class="btn category-button d-block" id="headerCategoryTrigger" aria-expanded="false">
+            <div class="category-header d-flex position-relative">
+                <button type="button" class="btn category-button d-none d-sm-flex align-items-center gap-1" id="headerCategoryTrigger" aria-expanded="false">
                     <i class="ri-menu-line"></i>
                     <span>Shop By Categories</span>
                 </button>
                 <div class="header-category-mega" id="headerCategoryMega">
-                    <ul class="sub-menu-list" id="headerCategoryList">
-                        <li class="text-center text-muted small py-3">Loading categories...</li>
-                    </ul>
+                    <div class="header-category-mega-inner">
+                        <div class="header-category-mega-scroll">
+                            <ul class="sub-menu-list" id="headerCategoryList">
+                                <li class="text-center text-muted small py-3">Loading categories...</li>
+                            </ul>
+                        </div>
+                        <div class="header-category-flyouts-root" id="headerCategoryFlyoutsRoot" aria-hidden="true"></div>
+                    </div>
                 </div>
             </div>
 
@@ -2264,9 +2298,16 @@
             </li>
 
             <li class="mobile-category">
-                <a href="javascript:void(0)" onclick="document.getElementById('headerCategoryTrigger')?.click(); return false;">
+                <a href="#!" class="mobile-category-open" aria-label="Shop by categories">
                     <i class="ri-menu-line"></i>
                     <span>Category</span>
+                </a>
+            </li>
+
+            <li class="pwa-mobile-install-item">
+                <a href="#!" class="pwa-header-install-trigger" title="Install app" aria-label="Install app">
+                    <i class="ri-download-2-line"></i>
+                    <span>Install</span>
                 </a>
             </li>
 
@@ -2300,18 +2341,55 @@
             position: relative;
         }
         .header-category-mega {
-            position: absolute;
-            top: 100%;
+            position: fixed;
+            top: 0;
             left: 0;
             width: 260px;
+            overflow: visible;
+            display: none;
+            flex-direction: column;
             background: #fff;
             border: 1px solid #ddd;
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-            z-index: 1050;
-            display: none;
+            z-index: 2000;
+            /* Same fixed height for root + every flyout column (~10 rows); overflow scrolls. */
+            --header-cat-visible-rows: 10;
+            --header-cat-row-h: 45px;
+            --header-cat-panel-h: calc(var(--header-cat-visible-rows) * var(--header-cat-row-h));
         }
         .header-category-mega.show {
-            display: block;
+            display: flex;
+        }
+        /* Root column + flyout columns sit side-by-side (index.php hero left rail behaviour). */
+        .header-category-mega-inner {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            position: relative;
+            flex: 1 1 auto;
+            min-height: 0;
+            min-width: 0;
+        }
+        .header-category-flyouts-root {
+            position: relative;
+            flex: 0 0 0;
+            width: 0;
+            overflow: visible;
+            align-self: stretch;
+            min-height: var(--header-cat-panel-h);
+        }
+        .header-category-mega-scroll {
+            flex: 0 0 260px;
+            width: 260px;
+            min-height: 0;
+            height: var(--header-cat-panel-h);
+            max-height: var(--header-cat-panel-h);
+            box-sizing: border-box;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+            overscroll-behavior: contain;
         }
         .header-category-mega .sub-menu-list {
             list-style: none;
@@ -2319,14 +2397,18 @@
             padding: 0;
             position: relative;
         }
+        /* Match index.php sidebar: static rows + hover flyouts (desktop). */
         .header-category-mega .sub-menu-list li {
+            display: block;
             position: static;
         }
         .header-category-mega .sub-menu-list li > a {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 14px;
+            min-height: var(--header-cat-row-h);
+            box-sizing: border-box;
+            padding: 0 14px;
             border-bottom: 1px solid #eee;
             text-decoration: none;
             color: #333;
@@ -2339,7 +2421,7 @@
             color: #0f3460;
         }
         .header-category-mega .sub-menu-list li > a h5 {
-            margin: 0;
+            margin: 0 0 0 8px;
             font-size: 14px;
             font-weight: 500;
         }
@@ -2351,24 +2433,65 @@
         .header-category-mega .sub-menu-list li:hover > a .chevron {
             color: #0f3460;
         }
-        /* Flyout submenus appearing to the right */
+        /* Nested columns: same fixed height as root; top:0 = panel top (not parent row). */
         .header-category-mega .sub-menu-list li ul {
             display: none;
             position: absolute;
             top: 0;
             left: 100%;
-            min-width: 240px;
-            min-height: 100%;
+            width: max-content;
+            min-width: 200px;
+            height: var(--header-cat-panel-h);
+            max-height: var(--header-cat-panel-h);
+            box-sizing: border-box;
+            overflow-y: auto;
+            overflow-x: visible;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
             background: #fff;
             border: 1px solid #ddd;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-            z-index: 1060;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 999;
             list-style: none;
             margin: 0;
             padding: 0;
         }
-        .header-category-mega .sub-menu-list li:hover > ul {
+        .header-category-mega .sub-menu-list li:hover > ul,
+        .header-category-mega .sub-menu-list li.open > ul {
             display: block;
+        }
+        #headerCategoryList > li.header-root-item-active > a {
+            background: #f4f7fb;
+            color: #0f3460;
+        }
+        /* Top-level child menus in port — always flush top (no per-row JS offset); >10 rows scroll. */
+        .header-category-flyouts-root > ul.sub-menu-list {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0 !important;
+            min-width: 200px;
+            width: max-content;
+            max-width: min(480px, calc(100vw - 48px));
+            height: var(--header-cat-panel-h);
+            max-height: var(--header-cat-panel-h);
+            box-sizing: border-box;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .header-category-flyouts-root > ul.sub-menu-list.header-flyout-active {
+            display: block;
+        }
+        .header-category-flyouts-root .sub-menu-list li ul {
+            z-index: 1005;
         }
         .header-category-mega .success-bg-color {
             background: #28a745;
@@ -2378,17 +2501,60 @@
             margin-left: 6px;
             border-radius: 3px;
         }
-        /* Mobile: render as a full-width list below the trigger */
+        /* Mobile: full-height panel; list scrolls inside .header-category-mega-scroll only */
         @media (max-width: 767.98px) {
             .header-category-mega {
                 position: fixed;
                 top: 0;
                 left: 0;
-                width: 85%;
-                height: 100%;
-                overflow-y: auto;
-                z-index: 1055;
+                width: min(92vw, 320px);
+                height: 100vh;
+                max-height: 100vh;
+                height: min(100svh, 100dvh);
+                max-height: min(100svh, 100dvh);
+                overflow: hidden;
+                display: none;
+                flex-direction: column;
+                z-index: 99980;
                 border: 0;
+                padding-top: env(safe-area-inset-top, 0px);
+                box-sizing: border-box;
+            }
+            .header-category-mega.show {
+                display: flex;
+            }
+            .header-category-mega-inner {
+                flex-direction: column;
+                flex: 1 1 auto;
+                min-height: 0;
+            }
+            .header-category-flyouts-root {
+                display: none;
+            }
+            .header-category-mega-scroll {
+                flex: 1 1 auto;
+                width: 100%;
+                max-width: 100%;
+                min-height: 0;
+                height: auto;
+                max-height: none;
+                overflow-y: auto;
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
+                touch-action: pan-y;
+                overscroll-behavior-y: contain;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                /* Extra space so last rows clear Safari / in-app bottom bars */
+                padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px) + 52px);
+            }
+            .header-category-mega-scroll::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+                display: none;
+            }
+            .header-category-mega .sub-menu-list li {
+                position: static;
             }
             .header-category-mega .sub-menu-list li ul {
                 position: static;
@@ -2396,7 +2562,11 @@
                 border: 0;
                 background: #fafbfc;
                 padding-left: 14px;
-                min-height: 0;
+                min-height: 0 !important;
+                height: auto;
+                max-height: none;
+                max-width: 100%;
+                overflow-y: visible;
             }
             .header-category-mega .sub-menu-list li:hover > ul {
                 display: none;
@@ -2404,16 +2574,32 @@
             .header-category-mega .sub-menu-list li.open > ul {
                 display: block;
             }
+            .header-category-mega .sub-menu-list li > a {
+                white-space: normal;
+                min-height: 0;
+                padding: 10px 14px;
+            }
+            .header-category-mega-backdrop {
+                z-index: 99970;
+            }
         }
         .header-category-mega-backdrop {
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.35);
-            z-index: 1045;
+            z-index: 1990;
             display: none;
         }
         .header-category-mega-backdrop.show {
             display: block;
+        }
+        /*
+         * Backdrop lives after </header> with z-index 1990; header uses z-index ~2–9,
+         * so the dim layer was painting above the mega and ate all clicks.
+         * While the mega is open, lift the whole header above the backdrop.
+         */
+        body.header-category-mega-open .header-style-1 {
+            z-index: 10050 !important;
         }
     </style>
     <div class="header-category-mega-backdrop" id="headerCategoryMegaBackdrop"></div>
@@ -2425,18 +2611,92 @@
             const backdrop = document.getElementById('headerCategoryMegaBackdrop');
             if (!trigger || !mega) return;
 
+            const isHomePage = document.body.classList.contains('is-home-page');
             const isMobile = () => window.matchMedia('(max-width: 767.98px)').matches;
+
+            let savedHtmlOverflow = '';
+            let savedBodyOverflow = '';
+            let posFn = null;
+
+            function lockScroll() {
+                if (!isMobile()) return;
+                savedHtmlOverflow = document.documentElement.style.overflow;
+                savedBodyOverflow = document.body.style.overflow;
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+            }
+            function unlockScroll() {
+                document.documentElement.style.overflow = savedHtmlOverflow;
+                document.body.style.overflow = savedBodyOverflow;
+                savedHtmlOverflow = '';
+                savedBodyOverflow = '';
+            }
+
+            function positionMegaDesktop() {
+                if (isMobile()) return;
+                const r = trigger.getBoundingClientRect();
+                mega.style.top = Math.round(r.bottom) + 'px';
+                mega.style.left = Math.round(r.left) + 'px';
+            }
+
+            function attachPositionListeners() {
+                if (isMobile() || posFn) return;
+                posFn = function () {
+                    if (mega.classList.contains('show')) positionMegaDesktop();
+                };
+                window.addEventListener('scroll', posFn, true);
+                window.addEventListener('resize', posFn);
+            }
+
+            function detachPositionListeners() {
+                if (!posFn) return;
+                window.removeEventListener('scroll', posFn, true);
+                window.removeEventListener('resize', posFn);
+                posFn = null;
+            }
 
             function close() {
                 mega.classList.remove('show');
+                document.body.classList.remove('header-category-mega-open');
                 if (backdrop) backdrop.classList.remove('show');
                 trigger.setAttribute('aria-expanded', 'false');
                 mega.querySelectorAll('li.open').forEach(li => li.classList.remove('open'));
+                mega.querySelectorAll('#headerCategoryList > li.header-root-item-active').forEach(function (li) {
+                    li.classList.remove('header-root-item-active');
+                });
+                mega.querySelectorAll('.header-category-flyouts-root > ul.header-flyout-active').forEach(function (u) {
+                    u.classList.remove('header-flyout-active');
+                });
+                unlockScroll();
+                detachPositionListeners();
             }
+
             function open() {
+                detachPositionListeners();
+                mega.querySelectorAll('li.open').forEach(function (li) { li.classList.remove('open'); });
+                mega.querySelectorAll('#headerCategoryList > li.header-root-item-active').forEach(function (li) {
+                    li.classList.remove('header-root-item-active');
+                });
+                mega.querySelectorAll('.header-category-flyouts-root > ul.header-flyout-active').forEach(function (u) {
+                    u.classList.remove('header-flyout-active');
+                });
+                document.body.classList.add('header-category-mega-open');
                 mega.classList.add('show');
-                if (backdrop && isMobile()) backdrop.classList.add('show');
+                if (backdrop) {
+                    if (isMobile()) {
+                        backdrop.classList.add('show');
+                    } else if (!isHomePage) {
+                        backdrop.classList.add('show');
+                    }
+                }
                 trigger.setAttribute('aria-expanded', 'true');
+                lockScroll();
+                if (!isMobile()) {
+                    positionMegaDesktop();
+                    attachPositionListeners();
+                }
+                const sc = mega.querySelector('.header-category-mega-scroll');
+                if (sc) sc.scrollTop = 0;
             }
 
             trigger.addEventListener('click', function (e) {
@@ -2444,7 +2704,14 @@
                 if (mega.classList.contains('show')) close(); else open();
             });
 
+            document.querySelector('.mobile-menu .mobile-category-open')?.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (mega.classList.contains('show')) close(); else open();
+            });
+
             document.addEventListener('click', function (e) {
+                if (e.target.closest('.mobile-category')) return;
                 if (!mega.contains(e.target) && !trigger.contains(e.target)) close();
             });
 
@@ -2454,21 +2721,27 @@
                 if (e.key === 'Escape') close();
             });
 
-            // Mobile: tap parent category to expand/collapse instead of immediate navigation
+            // Mobile: first tap expands children; second tap follows link (desktop: hover + optional click in category.js).
             mega.addEventListener('click', function (e) {
                 if (!isMobile()) return;
                 const anchor = e.target.closest('a[data-has-children="true"]');
                 if (!anchor) return;
                 const li = anchor.parentElement;
-                if (li && !li.classList.contains('open')) {
+                if (!li) return;
+                if (!li.classList.contains('open')) {
                     e.preventDefault();
-                    // Close siblings at the same level
-                    Array.from(li.parentElement.children).forEach(sib => {
+                    Array.from(li.parentElement.children).forEach(function (sib) {
                         if (sib !== li) sib.classList.remove('open');
                     });
                     li.classList.add('open');
                 }
             });
+
+            if (isHomePage) {
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(open);
+                });
+            }
         });
     </script>
 

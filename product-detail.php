@@ -357,27 +357,27 @@
                                         </div>
                                         <ul>
                                             <li>
-                                                <a href="https://www.facebook.com/" target="_blank">
+                                                <a href="#!" data-share-network="facebook" aria-label="Share on Facebook">
                                                     <i class="ri-facebook-fill"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://twitter.com/" target="_blank">
+                                                <a href="#!" data-share-network="twitter" aria-label="Share on X">
                                                     <i class="ri-twitter-x-line"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://www.instagram.com/" target="_blank">
+                                                <a href="#!" data-share-network="instagram" aria-label="Copy link for Instagram">
                                                     <i class="ri-instagram-fill"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://in.pinterest.com/" target="_blank">
+                                                <a href="#!" data-share-network="pinterest" aria-label="Share on Pinterest">
                                                     <i class="ri-pinterest-fill"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://web.whatsapp.com/" target="_blank">
+                                                <a href="#!" data-share-network="whatsapp" aria-label="Share on WhatsApp">
                                                     <i class="ri-whatsapp-fill"></i>
                                                 </a>
                                             </li>
@@ -407,7 +407,7 @@
                             </div>
 
                             <div class="qty-stock-box">
-                                <div class="qty-box h-100 qty-container quantity-box-2">
+                                <!-- <div class="qty-box h-100 qty-container quantity-box-2">
                                     <button class="btn qty-btn qty-btn-minus">
                                         <i class="ri-subtract-line"></i>
                                     </button>
@@ -416,7 +416,7 @@
                                     <button class="btn qty-btn qty-btn-plus">
                                         <i class="ri-add-line"></i>
                                     </button>
-                                </div>
+                                </div> -->
                                 <div class="stock-box">
                                     <h5>stock: <span>856</span></h5>
                                 </div>
@@ -428,9 +428,9 @@
 
                             
                             <div class="seller-product">
-                                <h5>
+                                <!-- <h5>
                                     <a href="#!"><i class="ri-message-2-fill"></i> Chat Seller</a>
-                                </h5>
+                                </h5> -->
                                 <h5>
                                     <a href="#shareProductModal" data-bs-toggle="modal"><i class="ri-share-fill"></i>
                                         Share Product</a>

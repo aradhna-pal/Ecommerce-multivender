@@ -584,4 +584,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render chips immediately so the URL's search term is visible as a
     // removable filter even before any sidebar interaction.
     renderSelectedFilters();
+
+    // Category / brand list search (filter sidebar)
+    function wireFilterListSearch(inputId, listId) {
+        const input = document.getElementById(inputId);
+        const list = document.getElementById(listId);
+        if (!input || !list) return;
+
+        const run = () => {
+            const q = input.value.trim().toLowerCase();
+            list.querySelectorAll(':scope > li').forEach((li) => {
+                const nameEl = li.querySelector('.name');
+                const t = (nameEl ? nameEl.textContent : li.textContent || '').toLowerCase();
+                li.style.display = !q || t.includes(q) ? '' : 'none';
+            });
+        };
+
+        input.addEventListener('input', run);
+        input.addEventListener('search', run);
+        const box = input.closest('.search-box');
+        const btn = box && box.querySelector('.search-button');
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                run();
+            });
+        }
+    }
+
+    wireFilterListSearch('search', 'filterCategoryList');
+    wireFilterListSearch('brand-search', 'filterBrandList');
 });

@@ -2,6 +2,29 @@
 // API host: media-url.js sets window.BASE before this file runs
 const CART_API_ROOT = window.BASE || "https://api.workarya.com";
 
+function isCartItemZeroPriced(item) {
+  const qty = Math.max(1, parseInt(item.quantity, 10) || 1);
+  const total = Number(item.total);
+  const unit =
+    item.price != null ? Number(item.price)
+    : item.currentPrice != null ? Number(item.currentPrice)
+    : Number.isFinite(total) ? total / qty
+    : NaN;
+  return !Number.isFinite(unit) || unit <= 0;
+}
+
+function setOffcanvasCartFooterVisible(show) {
+  const el = document.getElementById("offcanvasCartFooterActions");
+  if (el) el.style.display = show ? "" : "none";
+}
+
+function setCartPageChromeVisible(hasItems) {
+  const clearBtn = document.getElementById("cartPageClearBtn");
+  const proceed = document.getElementById("proceedToCheckoutBtn");
+  if (clearBtn) clearBtn.style.display = hasItems ? "" : "none";
+  if (proceed) proceed.style.display = hasItems ? "" : "none";
+}
+
 const API = {
   applyCoupon: `${CART_API_ROOT}/api/coupon/apply`,
   list: `${CART_API_ROOT}/api/cart/list`,
@@ -63,6 +86,7 @@ async function initMainCart(coupon = null) {
 
     const items = data.items || [];
     renderMainCart(items);
+    setCartPageChromeVisible(items.length > 0);
     updateCartSummary(data);   // Update summary box
   } catch (err) {
     console.error("Main cart load error:", err);
@@ -309,6 +333,20 @@ async function proceedToCheckout() {
     return;
   }
 
+  const zeroItems = currentItems.filter(isCartItemZeroPriced);
+  if (zeroItems.length > 0) {
+    if (typeof Swal !== "undefined") {
+      Swal.fire(
+        "Invalid price",
+        "One or more items in your cart have no valid price (₹0). Remove them or contact support before checkout.",
+        "warning"
+      );
+    } else {
+      alert("Cannot checkout: cart contains items with zero price.");
+    }
+    return;
+  }
+
   const currentCoupon = localStorage.getItem("appliedCoupon") || "";
   const payload = { couponCode: currentCoupon };
 
@@ -426,6 +464,7 @@ function renderOffcanvasCart(items) {
 
   subtotalEl.textContent = "₹" + subtotal.toFixed(2);
   if (countEl) countEl.textContent = items.length;
+  setOffcanvasCartFooterVisible(items.length > 0);
 }
 
 // ==================== GLOBAL CLICK HANDLER ====================

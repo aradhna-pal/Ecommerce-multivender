@@ -1,5 +1,17 @@
 <?php include 'header.php'; ?>
 
+<script>
+(function () {
+    try {
+        if (!localStorage.getItem('userToken')) {
+            window.location.replace('login.php');
+        }
+    } catch (e) {
+        window.location.replace('login.php');
+    }
+})();
+</script>
+
 
     <!-- Breadcrumb Section Start -->
     <section class="breadcrumb-section">
@@ -78,7 +90,7 @@
                             </li>
                         </ul>
                         <div class="logout-box">
-                            <button class="nav-link logout-btn theme-bg-color text-light" logout-nav><i
+                            <button type="button" class="nav-link logout-btn theme-bg-color text-light"><i
                                     class="ri-logout-box-line"></i>Log Out</button>
                         </div>
                     </div>
@@ -183,6 +195,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
+                                                    <th class="text-center">Image</th>
                                                     <th>Product name</th>
                                                     <th>Date</th>
                                                     <th>Status</th>
@@ -192,136 +205,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="order-table-body">
-                                                <tr>
-                                                    <td>#366947</td>
-                                                    <td>
-                                                        <a href="product-circle.html">Apple iPhone 14 (128
-                                                            GB) - Purple</a>
-                                                    </td>
-                                                    <td>30 Sep 2025</td>
-                                                    <td>
-                                                        <span class="status-success">Completed</span>
-                                                    </td>
-                                                    <td>COD</td>
-                                                    <td>$2.54</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#758364</td>
-                                                    <td>
-                                                        <a href="product-circle.html">Apple Watch Series
-                                                            3</a>
-                                                    </td>
-                                                    <td>15 Jun 2025</td>
-                                                    <td>
-                                                        <span class="status-process">Processing</span>
-                                                    </td>
-                                                    <td>COD</td>
-                                                    <td>$24.36</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#758854</td>
-                                                    <td>
-                                                        <a href="product-circle.html">Slim 3 Intel Core
-                                                            i5</a>
-                                                    </td>
-                                                    <td>17 Feb 2025</td>
-                                                    <td>
-                                                        <span class="status-cancel">Canceled</span>
-                                                    </td>
-                                                    <td>COD</td>
-                                                    <td>$24.15</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#357412</td>
-                                                    <td>
-                                                        <a href="product-circle.html">Apple Watch Series
-                                                            3</a>
-                                                    </td>
-                                                    <td>30 Jan 2025</td>
-                                                    <td>
-                                                        <span class="status-cancel">Canceled</span>
-                                                    </td>
-                                                    <td>BT</td>
-                                                    <td>$52.36</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#425235</td>
-                                                    <td>
-                                                        <a href="product-circle.html">Kitchen
-                                                            Accessories</a>
-                                                    </td>
-                                                    <td>15 Jan 2025</td>
-                                                    <td>
-                                                        <span class="status-cancel">Canceled</span>
-                                                    </td>
-                                                    <td>BT</td>
-                                                    <td>$48.24</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#786414</td>
-                                                    <td>
-                                                        <a href="product-circle.html">Rockerz 558
-                                                            Bluetooth</a>
-                                                    </td>
-                                                    <td>8 Jan 2025</td>
-                                                    <td>
-                                                        <span class="status-process">Processing</span>
-                                                    </td>
-                                                    <td>CC</td>
-                                                    <td>$69.36</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#968574</td>
-                                                    <td>
-                                                        <a href="product-circle.html">Motorola Moto X4 32GB
-                                                            Unlocked Smartphone</a>
-                                                    </td>
-                                                    <td>15 Dec 2025</td>
-                                                    <td>
-                                                        <span class="status-success">Completed</span>
-                                                    </td>
-                                                    <td>CC</td>
-                                                    <td>$47.58</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#142536</td>
-                                                    <td>
-                                                        <a href="product-circle.html">EvoFox Game Box 32 GB
-                                                            with Asphalt 8</a>
-                                                    </td>
-                                                    <td>22 Dec 2025</td>
-                                                    <td>
-                                                        <span class="status-process">Processing</span>
-                                                    </td>
-                                                    <td>BT</td>
-                                                    <td>$68.35</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#486246</td>
-                                                    <td>
-                                                        <a href="product-circle.html">Canon EOS 1500D DSLR
-                                                            Camera Body+ 18-55 mm</a>
-                                                    </td>
-                                                    <td>5 Nov 2025</td>
-                                                    <td>
-                                                        <span class="status-success">Completed</span>
-                                                    </td>
-                                                    <td>COD</td>
-                                                    <td>$49.16</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>#537535</td>
-                                                    <td>
-                                                        <a href="product-circle.html">BlackBerry Keyone
-                                                            BBB100-7 64gb unlocked gSM</a>
-                                                    </td>
-                                                    <td>30 Sep 2025</td>
-                                                    <td>
-                                                        <span class="status-cancel">Canceled</span>
-                                                    </td>
-                                                    <td>BT</td>
-                                                    <td>$50.00</td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -599,9 +482,13 @@
                                         </div>
                                         <img src="../assets/images/review/1.jpg" class="img-fluid" id="output" alt="">
                                     </div>
-                                    <div class="profile-content">
+                                    <div class="profile-content flex-grow-1">
                                         <h4 class="notifi-wishlist">Your Picture</h4>
-                                        <h5>Maximum 4 MB for allowed files: *.jpeg, *.jpg, *.png, *.gif</h5>
+                                        <h5 class="text-muted mb-1">Allowed: JPEG, PNG, GIF — max <strong>4 MB</strong>. Recommended <strong>square</strong> image up to <strong>2048×2048</strong> pixels.</h5>
+                                        <p id="profileImageUploadHint" class="small text-warning mb-2" style="display:none;"></p>
+                                        <a id="profileImageOpenLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary align-items-center gap-1" style="display:none;" title="Open current picture in a new tab">
+                                            <i class="ri-external-link-line"></i> Open picture
+                                        </a>
                                     </div>
                                 </div>
 
@@ -883,6 +770,30 @@
                 const fileInput = document.getElementById("file");
                 const outputImg = document.getElementById("output");
                 const avatarImgs = [outputImg, document.getElementById("userProfileImage")].filter(Boolean);
+                const profileImageOpenLink = document.getElementById("profileImageOpenLink");
+                const profileImageUploadHint = document.getElementById("profileImageUploadHint");
+
+                function setProfileImageOpenLink(url) {
+                    if (!profileImageOpenLink) return;
+                    if (url) {
+                        profileImageOpenLink.href = url;
+                        profileImageOpenLink.style.display = "inline-flex";
+                    } else {
+                        profileImageOpenLink.removeAttribute("href");
+                        profileImageOpenLink.style.display = "none";
+                    }
+                }
+
+                function showImageHint(msg) {
+                    if (!profileImageUploadHint) return;
+                    if (msg) {
+                        profileImageUploadHint.textContent = msg;
+                        profileImageUploadHint.style.display = "block";
+                    } else {
+                        profileImageUploadHint.textContent = "";
+                        profileImageUploadHint.style.display = "none";
+                    }
+                }
 
                 const token = localStorage.getItem("userToken");
                 if (!token) {
@@ -929,6 +840,9 @@
                     const url = absoluteImageUrl(p.profileImage);
                     if (url) {
                         avatarImgs.forEach(img => { img.src = url; });
+                        setProfileImageOpenLink(url);
+                    } else {
+                        setProfileImageOpenLink("");
                     }
 
                     // Keep the sidebar name / welcome banner in sync with saved data.
@@ -1045,10 +959,29 @@
                     const file = e.target.files && e.target.files[0];
                     if (!file) return;
 
+                    showImageHint("");
+
                     if (file.size > 4 * 1024 * 1024) {
-                        setStatus("Image is larger than 4 MB.", "error");
+                        setStatus("Image is larger than 4 MB. Please use a file under 4 MB.", "error");
+                        showImageHint("File must be 4 MB or smaller.");
                         e.target.value = "";
                         return;
+                    }
+
+                    try {
+                        if (typeof createImageBitmap === "function") {
+                            const bmp = await createImageBitmap(file);
+                            const w = bmp.width, h = bmp.height;
+                            try { bmp.close(); } catch (_) {}
+                            if (w > 2048 || h > 2048) {
+                                setStatus("Image dimensions are too large. Please use an image up to 2048×2048 pixels.", "error");
+                                showImageHint("Your image is " + w + "×" + h + " px. Resize to max 2048×2048 before uploading.");
+                                e.target.value = "";
+                                return;
+                            }
+                        }
+                    } catch (_) {
+                        /* If bitmap read fails, continue — server may still accept */
                     }
 
                     const fd = new FormData();
@@ -1070,6 +1003,7 @@
                         if (path) {
                             const url = absoluteImageUrl(path);
                             avatarImgs.forEach(img => { img.src = url; });
+                            setProfileImageOpenLink(url);
                             try {
                                 const existing = JSON.parse(localStorage.getItem("userData") || "{}");
                                 existing.profileImage = path;
@@ -1262,5 +1196,8 @@
             })();
         });
     </script>
+
+    <script src="assets/js/image-change.js?v=2"></script>
+    <script src="assets/js/user-dashboard.js?v=2" defer></script>
 
     <?php include 'footer.php'; ?>

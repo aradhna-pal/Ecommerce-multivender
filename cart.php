@@ -41,7 +41,7 @@
                     <div class="cart-table2">
                         <div class="table-title">
                             <h2 id="cartCount">Cart <span>(0)</span></h2>
-                            <button class="clear-btn btn">
+                            <button type="button" class="clear-btn btn" id="cartPageClearBtn">
                                 <span>Clear All</span>
                             </button>
                         </div>
@@ -153,7 +153,7 @@
                                     <h4 class="price theme-color">$132.55</h4>
                                 </li>
                             </ul>
-                            <button id="proceedToCheckoutBtn" class="btn proceed-btn">Proceed to
+                            <button type="button" id="proceedToCheckoutBtn" class="btn proceed-btn">Proceed to
                                 checkout</button>
                         </div>
                     </div>

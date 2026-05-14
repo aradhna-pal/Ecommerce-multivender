@@ -39,6 +39,58 @@ function getUserEmailForOrder() {
   }
 }
 
+function isCheckoutCartItemZeroPriced(item) {
+  const qty = Math.max(1, parseInt(item.quantity, 10) || 1);
+  const total = Number(item.total);
+  const unit =
+    item.price != null ? Number(item.price)
+    : item.currentPrice != null ? Number(item.currentPrice)
+    : Number.isFinite(total) ? total / qty
+    : NaN;
+  return !Number.isFinite(unit) || unit <= 0;
+}
+
+async function postPaymentClientEvent(payload) {
+  try {
+    const userToken = localStorage.getItem("userToken");
+    if (!userToken) return;
+    await fetch("https://api.workarya.com/api/orders/payment-client-event", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + userToken,
+      },
+      body: JSON.stringify(
+        Object.assign(
+          {
+            eventType: "CLIENT_CHECKOUT",
+            userAgent: navigator.userAgent || "",
+          },
+          payload || {}
+        )
+      ),
+    });
+  } catch (_) {
+    /* non-blocking */
+  }
+}
+
+function wireCheckoutOfflineLogger() {
+  if (!document.getElementById("placeOrderBtn")) return;
+  window.addEventListener("offline", function () {
+    if (!window.__checkoutPaymentActive) return;
+    const ctx = window.__checkoutPaymentCtx || {};
+    postPaymentClientEvent({
+      eventType: "OFFLINE_DURING_PAYMENT",
+      orderId: ctx.orderId || "",
+      razorpayOrderId: ctx.razorpayOrderId || "",
+      note: "Browser reported offline during Razorpay/checkout",
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", wireCheckoutOfflineLogger);
+
 document.addEventListener("DOMContentLoaded", function () {
   const placeOrderBtn = document.getElementById("placeOrderBtn");
 
@@ -92,6 +144,15 @@ document.addEventListener("DOMContentLoaded", function () {
       const cartItems = Array.isArray(checkoutData.cartItems) ? checkoutData.cartItems : [];
       if (cartItems.length === 0) {
         Swal.fire({ title: "Cart is empty", text: "Please select item.", icon: "warning" });
+        return;
+      }
+
+      if (cartItems.some(isCheckoutCartItemZeroPriced)) {
+        Swal.fire({
+          title: "Invalid price",
+          text: "One or more items have no valid price (₹0). Remove them before placing the order.",
+          icon: "warning",
+        });
         return;
       }
 
@@ -161,11 +222,15 @@ document.addEventListener("DOMContentLoaded", function () {
             description: "Order Payment",
             order_id: result.razorpayOrderId,           // ← Important: Using razorpayOrderId from backend
             handler: async function (response) {
+              window.__checkoutPaymentActive = false;
+              window.__checkoutPaymentCtx = null;
               // Payment successful → Verify with backend
               await verifyRazorpayPayment(response, result.orderId || result._id, userToken);
             },
             modal: {
               ondismiss: function () {
+                window.__checkoutPaymentActive = false;
+                window.__checkoutPaymentCtx = null;
                 resetButton();
               }
             },
@@ -188,10 +253,17 @@ document.addEventListener("DOMContentLoaded", function () {
           const rzp = new window.Razorpay(options);
 
           rzp.on('payment.failed', function (response) {
+            window.__checkoutPaymentActive = false;
+            window.__checkoutPaymentCtx = null;
             Swal.fire("Payment Failed", response.error.description || "Payment failed", "error");
             resetButton();
           });
 
+          window.__checkoutPaymentCtx = {
+            orderId: String(result.orderId || result.OrderId || result._id || ""),
+            razorpayOrderId: result.razorpayOrderId || "",
+          };
+          window.__checkoutPaymentActive = true;
           rzp.open();
 
         } else {
@@ -225,6 +297,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Helper function to reset button
       function resetButton() {
+        window.__checkoutPaymentActive = false;
+        window.__checkoutPaymentCtx = null;
         placeOrderBtn.disabled = false;
         placeOrderBtn.innerHTML = originalText;
       }
@@ -282,6 +356,10 @@ async function verifyRazorpayPayment(paymentResponse, orderId, userToken) {
     }
   } catch (err) {
     console.error("Payment Verification Error:", err);
+    postPaymentClientEvent({
+      eventType: "PAYMENT_VERIFY_CLIENT_ERROR",
+      note: err && err.message ? String(err.message) : "verifyRazorpayPayment threw",
+    });
     Swal.fire("Error", "Payment verification failed. Please contact support.", "error");
   }
 }

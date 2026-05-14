@@ -435,17 +435,17 @@
                     </ul>
                 </div>
 
-               <div class="accordion custom-accordion-2">
+               <div class="accordion custom-accordion-2" id="shopFilterAccordion">
     
     <!-- Categories -->
     <div class="accordion-item">
         <h2 class="accordion-header">
             <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseTwo">
+                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
                 <span>Categories</span>
             </button>
         </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#shopFilterAccordion">
             <div class="accordion-body">
                 <div class="search-box">
                     <input type="search" class="form-control" id="search" placeholder="Search ..">
@@ -472,12 +472,12 @@
     <!-- Price -->
     <div class="accordion-item">
         <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                 <span>Price</span>
             </button>
         </h2>
-        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show">
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" data-bs-parent="#shopFilterAccordion">
             <div class="accordion-body">
                 <div class="price-range-slider">
                     <div class="slider-container">
@@ -500,12 +500,12 @@
     <!-- Color -->
     <div class="accordion-item">
         <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
                 <span>Color</span>
             </button>
         </h2>
-        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show">
+        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" data-bs-parent="#shopFilterAccordion">
             <div class="accordion-body">
                 <ul class="color-box-list" id="filterColorList">
                     <li>
@@ -519,12 +519,12 @@
     <!-- Size (New) -->
     <div class="accordion-item">
         <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseSize">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseSize" aria-expanded="false" aria-controls="panelsStayOpen-collapseSize">
                 <span>Size</span>
             </button>
         </h2>
-        <div id="panelsStayOpen-collapseSize" class="accordion-collapse collapse show">
+        <div id="panelsStayOpen-collapseSize" class="accordion-collapse collapse" data-bs-parent="#shopFilterAccordion">
             <div class="accordion-body">
                 <ul class="category-list custom-padding custom-height" id="filterSizeList">
                 </ul>
@@ -535,12 +535,12 @@
     <!-- Brand (New) -->
     <div class="accordion-item">
         <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseBrand">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseBrand" aria-expanded="false" aria-controls="panelsStayOpen-collapseBrand">
                 <span>Brand</span>
             </button>
         </h2>
-        <div id="panelsStayOpen-collapseBrand" class="accordion-collapse collapse show">
+        <div id="panelsStayOpen-collapseBrand" class="accordion-collapse collapse" data-bs-parent="#shopFilterAccordion">
             <div class="accordion-body">
                 <div class="search-box">
                     <input type="search" class="form-control" id="brand-search" placeholder="Search brands..">
