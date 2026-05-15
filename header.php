@@ -2441,13 +2441,8 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
             left: 100%;
             width: max-content;
             min-width: 200px;
-            height: var(--header-cat-panel-h);
-            max-height: var(--header-cat-panel-h);
+            min-height: var(--header-cat-panel-h);
             box-sizing: border-box;
-            overflow-y: auto;
-            overflow-x: visible;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
             background: #fff;
             border: 1px solid #ddd;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -2473,12 +2468,8 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
             min-width: 200px;
             width: max-content;
             max-width: min(480px, calc(100vw - 48px));
-            height: var(--header-cat-panel-h);
-            max-height: var(--header-cat-panel-h);
+            min-height: var(--header-cat-panel-h);
             box-sizing: border-box;
-            overflow-y: auto;
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
             background: #fff;
             border: 1px solid #ddd;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -2724,11 +2715,12 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
             // Mobile: first tap expands children; second tap follows link (desktop: hover + optional click in category.js).
             mega.addEventListener('click', function (e) {
                 if (!isMobile()) return;
-                const anchor = e.target.closest('a[data-has-children="true"]');
+                const anchor = e.target.closest('a');
                 if (!anchor) return;
                 const li = anchor.parentElement;
                 if (!li) return;
-                if (!li.classList.contains('open')) {
+                const hasSub = anchor.nextElementSibling && anchor.nextElementSibling.tagName === 'UL';
+                if (hasSub && !li.classList.contains('open')) {
                     e.preventDefault();
                     Array.from(li.parentElement.children).forEach(function (sib) {
                         if (sib !== li) sib.classList.remove('open');
