@@ -104,6 +104,7 @@
     <script src="js/pincode.js"></script>
     <script src="js/banner.js"></script>
     <script src="js/all-article.js"></script>
+    <script src="js/enquiry.js?v=1"></script>
     <script src="js/vender-detail.js?v=3"></script>
 
 
@@ -367,22 +368,22 @@
                         </div>
                     </li>
 
-                    <!-- <li class="menu-item">
+                    <li class="menu-item">
                         <a href="#enqueries" data-bs-toggle="collapse" class="menu-link">
-                            <span class="menu-icon"><i data-feather="help-circle"></i> </span>
-                            <span class="menu-text"> Enqueries </span>
+                            <span class="menu-icon"><i data-feather="mail"></i> </span>
+                            <span class="menu-text"> Enquiry </span>
                             <span class="menu-arrow"></span>
                         </a>
                         <div class="collapse" id="enqueries">
                             <ul class="sub-menu">
                                 <li class="menu-item">
                                     <a href="all-enquery.php" class="menu-link">
-                                        <span class="menu-text">All Enquery</span>
+                                        <span class="menu-text">All Enquiry</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
                                     <a href="bulk-enquery.php" class="menu-link">
-                                        <span class="menu-text">Bulk Enquery</span>
+                                        <span class="menu-text">Bulk Enquiry</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
@@ -397,7 +398,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li> -->
+                    </li>
 
 
                     <li class="menu-item">

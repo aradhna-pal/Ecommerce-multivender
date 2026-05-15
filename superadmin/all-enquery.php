@@ -1,124 +1,72 @@
 
 <?php include 'header.php'; ?>
-            <!-- ========== Topbar End ========== -->
             <div class="content">
 
-                <!-- Start Content-->
                 <div class="container-fluid">
 
-                    <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
                             <div class="d-flex justify-content-between align-items-center py-2">
                                 <h4>All Enquiry</h4>
-
-
                                 <ol class="breadcrumb d-lg-flex d-none mb-0">
-                                    <li class="breadcrumb-item"><a href="index">Home</a></li>
-
-                                    <li class="breadcrumb-item"><a href="">Enquiry</a></li>
+                                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                    <li class="breadcrumb-item active">Enquiry</li>
                                 </ol>
                             </div>
                         </div>
                     </div>
-                    <!-- end page title -->
 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <a href="javascript:void(0);" class="btn btn-danger"><i
-                                                    class="mdi mdi-plus-circle me-2"></i> Add Enquiry</a>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <div class="text-sm-end">
-                                                <button type="button" class="btn btn-success me-1"><i
-                                                        class="mdi mdi-cog-outline"></i></button>
-                                                <button type="button" class="btn btn-light me-1">Import</button>
-                                                <button type="button" class="btn btn-light">Export</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <p class="mb-0 text-muted small">Contact form submissions from the storefront.</p>
                                 </div>
 
                                 <div class="table-responsive">
                                     <table class="table table-centered w-100 nowrap mb-0">
                                         <thead class="table-light">
                                             <tr>
-                                                <th class="all" style="width: 20px;">
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input"
-                                                            id="customCheck1">
-                                                        <label class="form-check-label"
-                                                            for="customCheck1">&nbsp;</label>
-                                                    </div>
-                                                </th>
+                                                <th>S.No</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
-                                                <th>Phone No.</th>
-                                                <th>Subject</th>
-                                                <th>Massage</th>
+                                                <th>Phone</th>
+                                                <th>Topic</th>
+                                                <th>Message</th>
                                                 <th>Status</th>
-                                                
-                                                <th>File</th>
-                                                <!-- <th style="width: 120px;">Action</th> -->
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="allEnquiries">
                                             <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input"
-                                                            id="customCheck2">
-                                                        <label class="form-check-label"
-                                                            for="customCheck2">&nbsp;</label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    xyz
-
-                                                </td>
-                                                <td>
-                                                    xyz@gmail.com
-                                                </td>
-                                                <td>
-                                                    9876543210
-                                                </td>
-
-                                                <td>
-                                                    Subject 1
-                                                </td>
-
-                                                <td>
-                                                    This is sample massage.
-                                                </td>
-                                                <td>
-                                                    <span
-                                                        class="badge bg-success-subtle text-success p-1">Published</span>
-                                                </td>
-                                                <td>
-                                                    <a href="javascript:void(0);">document.pdf</a>
-                                                </td>
-
-                                              
-                                               
+                                                <td colspan="8" class="text-center">Loading...</td>
                                             </tr>
-
-
-
                                         </tbody>
                                     </table>
                                 </div>
-                            </div> <!-- end card-->
-                        </div> <!-- end col -->
+                            </div>
+                        </div>
                     </div>
-                    <!-- end row -->
 
-                </div> <!-- container -->
+                </div>
 
-            </div> <!-- content -->
+            </div>
 
-            
+            <div class="modal fade" id="enquiryDetailModal" tabindex="-1" aria-labelledby="enquiryDetailModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="enquiryDetailModalLabel">Enquiry Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="enquiryDetailBody">
+                            <p class="text-muted mb-0">Loading...</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <?php include 'footer.php'; ?>

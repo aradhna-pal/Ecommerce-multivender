@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="col-xxl-9 col-lg-8 col-md-7">
-                        <form class="contact-right-box">
+                        <form class="contact-right-box" id="contactEnquiryForm" novalidate>
                             <h3>TALK WIH US</h3>
                             <p><span>"</span><span class="txt-danger-color">&nbsp;*&nbsp;</span><span>"</span><span
                                     class="ps-1">indicates required fields</span></p>
@@ -48,30 +48,34 @@
                                     <label for="contactUsName" class="form-label">Name
                                         <span class="txt-danger-color">*</span>
                                     </label>
-                                    <input type="text" class="form-control" id="contactUsName" placeholder="First name">
+                                    <input type="text" class="form-control" id="contactUsName" placeholder="First name" required>
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-6 theme-form">
                                     <label for="contactUsEmail" class="form-label">Email
                                         <span class="txt-danger-color">*</span>
                                     </label>
                                     <input type="email" class="form-control" id="contactUsEmail"
-                                        placeholder="example@domain.com">
+                                        placeholder="example@domain.com" required>
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-6 theme-form">
                                     <label for="contactUsPhone" class="form-label">Phone
                                         <span class="txt-danger-color">*</span>
                                     </label>
-                                    <input type="number" class="form-control" id="contactUsPhone"
-                                        placeholder="Phone number">
+                                    <input type="tel" class="form-control" id="contactUsPhone"
+                                        placeholder="Phone number" required>
                                 </div>
                                 <div class="col-12 theme-form">
                                     <label class="form-label">Select a topic
                                         <span class="txt-danger-color">*</span>
                                     </label>
-                                    <select class="form-select">
-                                        <option selected>Our Story</option>
-                                        <option value="1">Mission Vision</option>
-                                        <option value="2">Core Values</option>
+                                    <select class="form-select" id="contactUsTopic" required>
+                                        <option value="" disabled selected>Select a topic</option>
+                                        <option value="General Inquiry">General Inquiry</option>
+                                        <option value="Order Support">Order Support</option>
+                                        <option value="Product Question">Product Question</option>
+                                        <option value="Returns & Refunds">Returns & Refunds</option>
+                                        <option value="Partnership">Partnership</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                 </div>
                                 <div class="col-12 theme-form">
@@ -79,7 +83,7 @@
                                         <span class="txt-danger-color">*</span>
                                     </label>
                                     <textarea class="form-control" rows="12" id="contactUsHelpMessage"
-                                        placeholder="Description"></textarea>
+                                        placeholder="Description" required></textarea>
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" class="btn theme-bg-color text-white">Send message</button>
@@ -126,5 +130,5 @@
     </section>
     <!-- News-letter Section End -->
 
-   
+    <script src="assets/js/userJs/contact-enquiry.js?v=1"></script>
     <?php include 'footer.php'; ?>
