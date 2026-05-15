@@ -246,7 +246,7 @@
                                     <p class="text-muted font-16 text-dark mt-3"><i class="mdi mdi-circle-double"></i>
                                         Current Week</p>
                                     <h3 class="mb-3 mt-2">
-                                        <span>$1705.54</span>
+                                        <span id="sdTrendLatest">—</span>
                                     </h3>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-3">
