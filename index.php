@@ -194,29 +194,48 @@ if (function_exists('curl_init')) {
         position: relative;
         border: 1px solid #ddd;
         background: #fff;
+        height: 450px;
+        display: flex;
     }
     .sub-menu-list {
-        list-style: none; margin: 0; padding: 0; position: relative;
+        list-style: none; margin: 0; padding: 0;
     }
+    #categoryList {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    #categoryList::-webkit-scrollbar { width: 4px; }
+    #categoryList::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
     .sub-menu-list li { position: static; }
     .sub-menu-list li a {
         display: flex; align-items: center; padding: 10px;
         background: #fff; border-bottom: 1px solid #ddd;
         text-decoration: none; color: #333; white-space: nowrap;
+        height: 45px;
+        box-sizing: border-box;
     }
-    .sub-menu-list li a:hover { background: #f0f0f0; }
-    .sub-menu-list li a h5 { margin-left: 8px; }
+    .sub-menu-list li a:hover,
+    .sub-menu-list li a.active-hover { background: #f4f7fb; color: #0f3460; }
+    .sub-menu-list li a h5 { margin-left: 8px; font-size: 14px; font-weight: 500; margin-bottom: 0; }
     .success-bg-color {
         background: #28a745; color: #fff; padding: 2px 5px;
         font-size: 10px; margin-left: 5px; border-radius: 3px;
     }
-    .sub-menu-list li ul {
-        display: none; position: absolute; top: 0; left: 100%;
-        width: 100%; min-height: 100%; min-width: 200px;
-        background: #fff; border: 1px solid #ddd;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); z-index: 999;
+    .index-flyouts-root {
+        position: absolute; top: 0; left: 100%; width: 100%; height: 100%;
+        z-index: 999; pointer-events: none;
     }
-    .sub-menu-list li:hover > ul { display: block; }
+    .index-flyouts-root > ul {
+        display: none; position: absolute; top: 0; width: 100%; height: 100%;
+        background: #fff; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow-y: auto; overflow-x: hidden; pointer-events: auto;
+    }
+    .index-flyouts-root > ul.active-flyout { display: block; }
+    .index-flyouts-root > ul::-webkit-scrollbar { width: 4px; }
+    .index-flyouts-root > ul::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+    /* Hide original nested uls */
+    #categoryList ul.sub-menu-list { display: none !important; }
 </style>
 <section class="home-section">
     <div class="custom-container">
@@ -281,6 +300,86 @@ if (function_exists('curl_init')) {
             </div>
         </div>
     </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const menuContainer = document.getElementById('categoryMenu');
+    const catList = document.getElementById('categoryList');
+    if (!menuContainer || !catList) return;
+
+    const flyoutRoot = document.createElement('div');
+    flyoutRoot.className = 'index-flyouts-root';
+    menuContainer.appendChild(flyoutRoot);
+
+    const flyouts = new Map();
+    let flyoutIdCounter = 0;
+
+    const observer = new MutationObserver(() => {
+        const nestedUls = catList.querySelectorAll('ul.sub-menu-list');
+        nestedUls.forEach(ul => {
+            const parentLi = ul.parentElement;
+            if (!parentLi.dataset.flyoutId) {
+                const flyoutId = 'flyout-' + (++flyoutIdCounter);
+                parentLi.dataset.flyoutId = flyoutId;
+                
+                let depth = 2;
+                const parentUl = parentLi.parentElement;
+                if (parentUl && parentUl.id !== 'categoryList' && parentUl.dataset.depth) {
+                    depth = parseInt(parentUl.dataset.depth) + 1;
+                }
+                
+                flyoutRoot.appendChild(ul);
+                ul.style.left = ((depth - 2) * 100) + '%';
+                ul.dataset.flyoutId = flyoutId;
+                ul.dataset.depth = depth;
+                flyouts.set(flyoutId, ul);
+            }
+        });
+    });
+    observer.observe(catList, { childList: true, subtree: true });
+
+    let activeFlyouts = [];
+    function hideFlyoutsFromDepth(depth) {
+        activeFlyouts = activeFlyouts.filter(flyout => {
+            if (flyout.depth >= depth) {
+                const ul = flyouts.get(flyout.id);
+                if (ul) ul.classList.remove('active-flyout');
+                const li = document.querySelector(`li[data-flyout-id="${flyout.id}"]`);
+                if (li) {
+                    const a = li.querySelector('a');
+                    if (a) a.classList.remove('active-hover');
+                }
+                return false;
+            }
+            return true;
+        });
+    }
+    function showFlyout(flyoutId, depth) {
+        if (activeFlyouts.some(f => f.id === flyoutId)) return;
+        hideFlyoutsFromDepth(depth);
+        const ul = flyouts.get(flyoutId);
+        if (ul) {
+            ul.classList.add('active-flyout');
+            activeFlyouts.push({ id: flyoutId, depth: depth });
+            const li = document.querySelector(`li[data-flyout-id="${flyoutId}"]`);
+            if (li) {
+                const a = li.querySelector('a');
+                if (a) a.classList.add('active-hover');
+            }
+        }
+    }
+    menuContainer.addEventListener('mouseover', (e) => {
+        const li = e.target.closest('li');
+        if (li) {
+            const parentUl = li.parentElement;
+            const liDepth = parentUl.id === 'categoryList' ? 1 : parseInt(parentUl.dataset.depth || 1);
+            const flyoutId = li.dataset.flyoutId;
+            if (flyoutId) showFlyout(flyoutId, liDepth + 1);
+            else hideFlyoutsFromDepth(liDepth + 1);
+        }
+    });
+    menuContainer.addEventListener('mouseleave', () => hideFlyoutsFromDepth(1));
+});
+</script>
 </section>
 <!-- Home Hero Section End -->
 
