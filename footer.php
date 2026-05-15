@@ -128,7 +128,7 @@
                     </div>
                     <ul class="footer-list">
                         <li>
-                            <a href="user-dashboard.php">My Account</a>
+                            <a href="user-dashboard.php" class="js-account-nav-link">My Account</a>
                         </li>
                         <li>
                             <a href="cart.php">My Cart</a>

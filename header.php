@@ -175,8 +175,8 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
 
             <div class="right-header">
                 <ul class="content-list">
-                    <li id="my-account-nav" style="display: none;">
-                        <a href="user-dashboard.php">My Account</a>
+                    <li id="my-account-nav">
+                        <a href="user-dashboard.php" class="js-account-nav-link">My Account</a>
                     </li>
                     <li>
                         <a href="contact-us.php">Contact Us</a>
@@ -2326,7 +2326,7 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
             </li>
 
             <li>
-                <a href="user-dashboard.php">
+                <a href="user-dashboard.php" class="js-account-nav-link">
                     <i class="ri-user-3-line"></i>
                     <span>Account</span>
                 </a>
@@ -2765,14 +2765,44 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
             const guestActions = document.querySelectorAll('.guest-action');
             const userActions = document.querySelectorAll('.user-action');
 
+            function openLoginModal() {
+                const authModalEl = document.getElementById('authenticationModal');
+                if (authModalEl && typeof bootstrap !== 'undefined') {
+                    bootstrap.Modal.getOrCreateInstance(authModalEl).show();
+                    return true;
+                }
+                return false;
+            }
+
+            function setupAccountNavLinks() {
+                document.querySelectorAll('.js-account-nav-link, a[href*="user-dashboard"]').forEach(function (link) {
+                    if (link.classList.contains('logout-btn')) return;
+                    link.addEventListener('click', function (e) {
+                        if (localStorage.getItem('userToken')) return;
+                        e.preventDefault();
+                        if (!openLoginModal()) {
+                            window.location.href = 'login.php';
+                        }
+                    });
+                });
+            }
+
             if (userToken) {
-                if (myAccountNav) myAccountNav.style.display = '';
                 if (loginNav) loginNav.style.display = 'none';
                 if (logoutNav) logoutNav.style.display = '';
 
                 guestActions.forEach(el => el.style.display = 'none');
                 userActions.forEach(el => el.style.display = '');
+            } else {
+                if (loginNav) loginNav.style.display = '';
+                if (logoutNav) logoutNav.style.display = 'none';
+
+                guestActions.forEach(el => el.style.display = '');
+                userActions.forEach(el => el.style.display = 'none');
             }
+
+            if (myAccountNav) myAccountNav.style.display = '';
+            setupAccountNavLinks();
 
             // Handle Logout
             const logoutBtns = document.querySelectorAll('.logout-btn');
