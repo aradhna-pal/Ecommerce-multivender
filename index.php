@@ -188,7 +188,7 @@ if (function_exists('curl_init')) {
     }
 </style>
 
-<!-- Home Hero Section Start (classic layout) -->
+<!-- Home Hero Section Start (classic layout jdnfjdfdf) -->
 <style>
     .category-menu-list {
         position: relative;
