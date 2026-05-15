@@ -2610,6 +2610,11 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
         body.header-category-mega-open .header-style-1 {
             z-index: 10050 !important;
         }
+        /* Hide the 'Shop By Categories' button and icon entirely on the homepage */
+        body.is-home-page #headerCategoryTrigger {
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
     </style>
     <div class="header-category-mega-backdrop" id="headerCategoryMegaBackdrop"></div>
 
@@ -2746,12 +2751,6 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
                     li.classList.add('open');
                 }
             });
-
-            if (isHomePage) {
-                requestAnimationFrame(function () {
-                    requestAnimationFrame(open);
-                });
-            }
         });
     </script>
 
