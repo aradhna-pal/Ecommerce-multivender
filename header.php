@@ -2377,6 +2377,7 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
             overflow: visible;
             align-self: stretch;
             min-height: var(--header-cat-panel-h);
+            transform: translateZ(0);
         }
         .header-category-mega-scroll {
             flex: 0 0 260px;
@@ -2436,12 +2437,14 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
         /* Nested columns: same fixed height as root; top:0 = panel top (not parent row). */
         .header-category-mega .sub-menu-list li ul {
             display: none;
-            position: absolute;
+            position: fixed;
             top: 0;
-            left: 100%;
-            width: max-content;
-            min-width: 200px;
+            left: 260px;
+            width: 260px;
             min-height: var(--header-cat-panel-h);
+            max-height: var(--header-cat-panel-h);
+            overflow-y: auto;
+            overflow-x: hidden;
             box-sizing: border-box;
             background: #fff;
             border: 1px solid #ddd;
@@ -2465,10 +2468,11 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
             position: absolute;
             left: 0;
             top: 0 !important;
-            min-width: 200px;
-            width: max-content;
-            max-width: min(480px, calc(100vw - 48px));
+            width: 260px;
             min-height: var(--header-cat-panel-h);
+            max-height: var(--header-cat-panel-h);
+            overflow-y: auto;
+            overflow-x: hidden;
             box-sizing: border-box;
             background: #fff;
             border: 1px solid #ddd;
@@ -2477,6 +2481,15 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
             list-style: none;
             margin: 0;
             padding: 0;
+        }
+        .header-category-flyouts-root > ul.sub-menu-list::-webkit-scrollbar,
+        .header-category-mega .sub-menu-list li ul::-webkit-scrollbar {
+            width: 4px;
+        }
+        .header-category-flyouts-root > ul.sub-menu-list::-webkit-scrollbar-thumb,
+        .header-category-mega .sub-menu-list li ul::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 2px;
         }
         .header-category-flyouts-root > ul.sub-menu-list.header-flyout-active {
             display: block;
@@ -2518,6 +2531,10 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
                 flex-direction: column;
                 flex: 1 1 auto;
                 min-height: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
             }
             .header-category-flyouts-root {
                 display: none;
@@ -2549,6 +2566,7 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
             }
             .header-category-mega .sub-menu-list li ul {
                 position: static;
+                width: auto;
                 box-shadow: none;
                 border: 0;
                 background: #fafbfc;
