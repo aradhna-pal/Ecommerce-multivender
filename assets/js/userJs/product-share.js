@@ -14,6 +14,9 @@
       document.querySelector("h1.name") ||
       document.querySelector("[data-product-share-title]");
     var t = el && el.textContent ? el.textContent.trim() : "";
+    if (!t && el && el.getAttribute("data-product-share-title")) {
+      t = el.getAttribute("data-product-share-title").trim();
+    }
     return t || document.title || "Product";
   }
 
@@ -83,13 +86,16 @@
     if (inp) inp.value = pageShareUrl();
   }
 
-  document.addEventListener("click", function (e) {
+  function handleShareClick(e) {
     var a = e.target.closest("a[data-share-network]");
     if (!a) return;
+
     var net = a.getAttribute("data-share-network");
     if (!net) return;
 
     e.preventDefault();
+    e.stopPropagation();
+
     var url = pageShareUrl();
     var text = shareTitle();
 
@@ -107,18 +113,30 @@
 
     var built = buildShareUrl(net, url, text);
     if (built) {
-      window.open(built, "_blank", "noopener,noreferrer");
+      var win = window.open(built, "_blank", "noopener,noreferrer");
+      if (!win && typeof Swal !== "undefined") {
+        Swal.fire({
+          icon: "info",
+          title: "Allow pop-ups",
+          text: "Your browser blocked the share window. Allow pop-ups for this site and try again.",
+        });
+      }
     }
-  });
+  }
+
+  document.addEventListener("click", handleShareClick, true);
 
   function initShareUi() {
+    syncModalUrl();
+
     var modal = document.getElementById("shareProductModal");
     if (modal) {
       modal.addEventListener("show.bs.modal", syncModalUrl);
     }
 
     var copyBtn = document.getElementById("shareProductCopyBtn");
-    if (copyBtn) {
+    if (copyBtn && !copyBtn.dataset.shareBound) {
+      copyBtn.dataset.shareBound = "1";
       copyBtn.addEventListener("click", function () {
         var inp = document.getElementById("shareProductPageUrl");
         var v = inp && inp.value ? inp.value : pageShareUrl();

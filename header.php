@@ -88,7 +88,7 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
     <script src="./assets/js/media-url.js"></script>
     <script src="./assets/js/userJs/login.js?v=2"></script>
     <script src="./assets/js/userJs/blog.js?v=6"></script>
-    <script src="./assets/js/userJs/allproduct.js?v=5"></script>
+    <script src="./assets/js/userJs/allproduct.js?v=6"></script>
     <script src="./assets/js/userJs/category.js?v=7"></script>
     <script src="./assets/js/userJs/user-order.js?v=2"></script>
     <script src="./assets/js/userJs/cart.js"></script>
@@ -99,6 +99,7 @@ $__pwa_is_home = ($__pwa_script === 'index.php' || $__pwa_script === '' || $__pw
     <script src="./assets/js/userJs/productFilter.js?v=2"></script>
     <script src="./assets/js/userJs/wishlist-notify.js"></script>
     <script src="./assets/js/userJs/compare-notify.js?v=1"></script>
+    <script src="./assets/js/userJs/product-share.js?v=2"></script>
     <script src="./assets/js/userJs/trackorder.js"></script>
     <script src="./assets/js/userJs/homecategory.js"></script>
     <!-- <script src="./assets/js/userJs/user-order.js"></script> -->

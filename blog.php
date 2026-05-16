@@ -25,11 +25,6 @@
     <section class="blog-section section-t-space">
         <div class="custom-container">
             <div class="row g-xl-4 g-3">
-                <div class="col-12 m-xl-0">
-                    <div class="filter-button d-xl-none">
-                        <a href="#!"><i class="ri-equalizer-2-line"></i> Filter Menu</a>
-                    </div>
-                </div>
                 <div class="col-xxl-9 col-xl-8 col-12 order-lg-2">
                     <div class="row g-sm-4 g-3" id="blogSection">
                         <div class="col-sm-6">
@@ -38,7 +33,7 @@
                                     <a href="blog-detail.html">
                                         <img src="./assets/images/inner-page/blog/1.jpg" class="img-fluid" alt="">
                                     </a>
-                                    <i class="ri-pushpin-fill pinned"></i>
+                                    <!-- <i class="ri-pushpin-fill pinned"></i> -->
                                 </div>
 
                                 <div class="blog-contain">

@@ -1170,6 +1170,7 @@ function populateProduct(p) {
   const productNameEl = document.querySelector(".right-box-contain .name");
   if (productNameEl) {
     productNameEl.innerText = p.name;
+    productNameEl.setAttribute("data-product-share-title", p.name || "");
     console.log("Updated product name to:", p.name);
   } else {
     console.warn("Product name element not found");

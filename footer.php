@@ -759,7 +759,6 @@
 
   <!-- Bootstrap Js -->
   <script src="assets/js/bootstrap/bootstrap.bundle.js"></script>
-  <script src="assets/js/userJs/product-share.js?v=1"></script>
   <script src="assets/js/bootstrap/bootstrap-validation.js"></script>
 
   <!-- Lazyload Js -->
